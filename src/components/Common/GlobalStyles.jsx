@@ -15,6 +15,11 @@ export const StWrap = styled.div`
 `;
 
 export const StInput = styled.input`
-  width: 90%;
+  width: 80%;
   height: 50px;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  &::placeholder {
+    font-size: 0.8rem;
+  }
 `;
