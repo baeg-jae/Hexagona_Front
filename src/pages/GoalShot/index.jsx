@@ -31,6 +31,7 @@ export default GoalShot;
 const StWrapFlex = styled(StWrap)`
   ${flex({ align: "flex-start" })}
   position: relative;
+  background-color: #e5e5e5;
   .circle {
     ${flex({})}
     position: absolute;
@@ -52,7 +53,7 @@ const StImgDiv = styled.div`
     ${flex({ direction: "column", align: "flex-start" })};
     position: absolute;
     bottom: 5%;
-    left: 10%;
+    left: 5%;
     font-weight: 700;
     color: var(--white);
   }
@@ -76,7 +77,6 @@ const StCircleDiv = styled.div`
   height: 100px;
   background-color: var(--white);
   border-radius: 100%;
-  border: 1px solid black;
   span {
     position: absolute;
     font-size: 2rem;

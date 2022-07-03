@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import flex from "components/Common/flex";
 import { StInput } from "components/Common/GlobalStyles";
+import { useQueryClient, useMutation } from "react-query";
 import Button from "components/Common/Button";
 import IntroPage from "./IntroPage";
 import apis from "shared/api/main";
-import { useQueryClient, useMutation } from "react-query";
+import { badWords } from "./IntroPageTexts";
 
 const MAX_LENGTH = 15;
 const __signup = async (payload) => {
@@ -45,7 +46,7 @@ const SignUpPage = () => {
       queryClient.invalidateQueries("users");
       if (data.data) {
         // 중복검사에 통과되면 회원가입을 진행한다
-        userSignUpMutation.mutate({ name: name });
+        userSignUpMutation.mutate({ nickname: name });
       }
     },
     onError: (error) => {
@@ -57,7 +58,22 @@ const SignUpPage = () => {
 
   // 버튼 핸들러
   const onClickBtnHandler = () => {
-    userDupCheck.mutate({ name: name });
+    userSignUpMutation.mutate({ nickname: name });
+    // userDupCheck.mutate({ name: name });
+  };
+
+  //욕설탐지기
+  const bogusCheck = () => {
+    const foundSwears = badWords.filter((word) =>
+      name.toLowerCase().includes(word.toLowerCase())
+    );
+    if (foundSwears.length) {
+      alert("사용하실 수 없는 아이디 입니다.");
+      return true;
+    } else {
+      onClickBtnHandler();
+      return false;
+    }
   };
 
   // 버튼 disable Handler
@@ -80,7 +96,7 @@ const SignUpPage = () => {
           <Button
             text="입력완료"
             theme="dark"
-            click={onClickBtnHandler}
+            click={bogusCheck}
             disabled={onDisableHandler()}
           />
         </StWrap>

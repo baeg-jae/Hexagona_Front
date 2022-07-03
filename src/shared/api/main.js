@@ -2,7 +2,7 @@ import api from "./core";
 
 export const apis = {
   // user
-  signUp: (payload) => api.post("/user/signup", payload),
+  signUp: (payload) => api.put("/user/update/nickname", payload),
   dupCheck: (payload) => api.post("/user/signup/checkEmail", payload),
 
   // article CRUD
