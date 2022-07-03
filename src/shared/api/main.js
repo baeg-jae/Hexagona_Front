@@ -2,14 +2,8 @@ import api from "./core";
 
 export const apis = {
   // user
-  signUp: (payload) =>
-    api.post("/user/signup", {
-      name: payload.nickName,
-    }),
-  dupCheck: (payload) =>
-    api.post("/user/signup/checkEmail", {
-      email: payload.email,
-    }),
+  signUp: (payload) => api.post("/user/signup", payload),
+  dupCheck: (payload) => api.post("/user/signup/checkEmail", payload),
 
   // article CRUD
   getTodos: () => api.get("/todos"),

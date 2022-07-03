@@ -2,7 +2,7 @@
 
 // 닉네임 형식 검사
 export const idRegCheck = (id) => {
-  const regPass = /^(?=.*[0-9a-zA-Z가-힣])[가-힣a-zA-Z0-9-_.]{2,6}$/;
+  const regPass = /^(?=.*[0-9a-zA-Z가-힣])[가-힣a-zA-Z0-9-_.]{2,15}$/;
   return regPass.test(id);
 };
 

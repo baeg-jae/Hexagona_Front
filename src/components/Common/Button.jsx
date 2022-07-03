@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-const Button = ({ theme, text, click }) => {
+const Button = ({ theme, text, click, disabled }) => {
   return (
-    <Btn theme={theme} onClick={click}>
+    <Btn theme={theme} onClick={click} disabled={disabled}>
       {text}
     </Btn>
   );
