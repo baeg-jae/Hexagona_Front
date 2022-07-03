@@ -6,6 +6,7 @@ import LogIn from "pages/LogIn";
 import Error from "pages/Status/Error";
 import ProtectedRoutesNoLogin from "./ProtectedNoLogin";
 import Home from "pages/Home";
+import GoalShot from "pages/GoalShot";
 
 const Routing = () => {
   return (
@@ -13,6 +14,7 @@ const Routing = () => {
       <Route path="/" element={<LogIn />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/oauth/kakao/callback" element={<Kakao />} />
+      <Route path="/goalshot" element={<GoalShot />} />
 
       <Route element={<ProtectedRoutesNoLogin />}>
         <Route path="/home" element={<Home />} />
