@@ -26,7 +26,7 @@ const SignUpPage = () => {
 
   // 회원가입 mutation
   const userSignUpMutation = useMutation(__signup, {
-    onSuccess: () => {
+    onSuccess: (data) => {
       // 캐시에 있는 모든 쿼리를 무효화한다.
       queryClient.invalidateQueries("users");
       // 회원가입에 통과되면 화면전환
@@ -58,8 +58,7 @@ const SignUpPage = () => {
 
   // 버튼 핸들러
   const onClickBtnHandler = () => {
-    userSignUpMutation.mutate({ nickname: name });
-    // userDupCheck.mutate({ name: name });
+    userDupCheck.mutate({ name: name });
   };
 
   //욕설탐지기
@@ -68,11 +67,10 @@ const SignUpPage = () => {
       name.toLowerCase().includes(word.toLowerCase())
     );
     if (foundSwears.length) {
-      alert("사용하실 수 없는 아이디 입니다.");
-      return true;
+      alert("아이디에는 비속어가 포함되실 수 없습니다.");
     } else {
+      // 욕설탐지기에 안걸리면 실행
       onClickBtnHandler();
-      return false;
     }
   };
 
