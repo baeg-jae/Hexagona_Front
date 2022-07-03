@@ -11,7 +11,7 @@ api.interceptors.request.use(
     // config.headers["Content-Type"] = "application/json; charset=utf-8";
     // config.headers["X-Requested-With"] = "XMLHttpRequest";
     // config.headers.Accept = "application/json";
-    data.headers.token = localStorage.getItem("Authorization");
+    data.headers.Authorization = localStorage.getItem("Authorization");
 
     return data;
   },
