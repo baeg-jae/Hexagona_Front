@@ -8,7 +8,7 @@ const LogIn = () => {
             <div>
                 <div>
                     <h1>
-                        올해는 꼭,
+                        올해는 꼭!,
                         <br />
                         취업하고싶은 당신!
                     </h1>
@@ -48,9 +48,7 @@ const LogIn = () => {
                 </div>
             </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default LogIn;
