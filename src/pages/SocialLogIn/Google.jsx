@@ -6,7 +6,6 @@ import { __googleSignIn } from 'redux/modules/user';
 
 const Google = () => {
     const code = new URL(window.location.href).searchParams.get('code');
-    console.log(code);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { isLogin } = useSelector((state) => state.userReducer);
@@ -15,7 +14,6 @@ const Google = () => {
         dispatch(__googleSignIn(code));
         if (isLogin) {
             navigate('/signup');
-            console.log(code);
         }
     }, [dispatch, code, navigate, isLogin]);
     return (
