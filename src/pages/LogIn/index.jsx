@@ -1,22 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { KAKAO_AUTH_URL } from 'shared/kakao/kakao';
-import LoginButton from 'components/google/Login';
-import LogoutButton from 'components/google/Logout';
-import { gapi } from 'gapi-script';
+import { GOOGLE_AUTH_URL } from 'shared/google/google';
 
-const clientId = process.env.REACT_APP_CLIENTID;
 const LogIn = () => {
-    useEffect(() => {
-        function start() {
-            gapi.client.init({
-                clientId: clientId,
-                scope: '',
-            });
-        }
-        gapi.load('client:auth2', start);
-    });
-
-    var accessToken = gapi.auth.getToken().access_token;
     return (
         <div>
             <div>
@@ -47,8 +33,18 @@ const LogIn = () => {
                             </span>
                         </a>
                     </div>
-                    <LoginButton />
-                    <LogoutButton />
+                    <div className="GoogleWrap">
+                        <a href={GOOGLE_AUTH_URL}>
+                            <span
+                                style={{
+                                    fontSize: '20px',
+                                    color: 'black',
+                                }}
+                            >
+                                구글 로그인
+                            </span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
