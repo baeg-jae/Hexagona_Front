@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 import flex from "components/Common/flex";
 import { StInput } from "components/Common/GlobalStyles";
@@ -8,15 +8,15 @@ import IntroPage from "./IntroPage";
 import apis from "shared/api/main";
 import { badWords } from "./IntroPageTexts";
 
-const MAX_LENGTH = 15;
+const MAX_LENGTH = 10;
 const __signup = async (payload) => {
-  const addTodoDB = await apis.signUp(payload);
-  return addTodoDB;
+  const data = await apis.signUp(payload);
+  return data;
 };
 
 const __dupCheck = async (payload) => {
-  const addTodoDB = await apis.dupCheck(payload);
-  return addTodoDB;
+  const data = await apis.dupCheck(payload);
+  return data;
 };
 
 const SignUpPage = () => {
@@ -26,12 +26,12 @@ const SignUpPage = () => {
 
   // 회원가입 mutation
   const userSignUpMutation = useMutation(__signup, {
-    onSuccess: (data) => {
+    onSuccess: () => {
       // 캐시에 있는 모든 쿼리를 무효화한다.
       queryClient.invalidateQueries("users");
       // 회원가입에 통과되면 화면전환
-      console.log(data);
       alert("가입을 환영합니다");
+
       setFlag((value) => !value);
     },
     onError: (error) => {
@@ -45,13 +45,13 @@ const SignUpPage = () => {
     onSuccess: (data) => {
       // 캐시에 있는 모든 쿼리를 무효화한다.
       queryClient.invalidateQueries("users");
-      setFlag((value) => !value);
-      // if (data.data) {
-      //   // 중복검사에 통과되면 회원가입을 진행한다
-      //   userSignUpMutation.mutate({ nickname: name });
-      // } else {
-      //   alert("중복된 아이디 입니다.");
-      // }
+      console.log(data);
+      if (data.data) {
+        // 중복검사에 통과되면 회원가입을 진행한다
+        userSignUpMutation.mutate({ nickname: name });
+      } else {
+        alert("중복된 아이디 입니다.");
+      }
     },
     onError: (error) => {
       console.log(error.message);

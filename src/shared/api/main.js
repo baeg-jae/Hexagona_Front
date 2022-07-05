@@ -4,6 +4,7 @@ export const apis = {
   // user
   signUp: (payload) => api.put("/user/update/nickname", payload),
   dupCheck: (payload) => api.post("/user/signup/checkNickname", payload),
+  getUser: () => api.get("/user/auth"),
 
   // article CRUD
   getTodos: () => api.get("/todos"),

@@ -5,6 +5,7 @@ import { StWrap } from "components/Common/GlobalStyles";
 import flex from "components/Common/flex";
 import Button from "components/Common/Button";
 import { useNavigate } from "react-router-dom";
+import useGetUser from "components/Hooks/useGetUser";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -30,7 +31,8 @@ const IntroPage = () => {
       </SwiperSlide>
     );
   });
-
+  // 유저정보 받아오기
+  const { data } = useGetUser();
   const navigate = useNavigate();
   const onClickHanlder = () => {
     navigate("/home");
@@ -42,7 +44,7 @@ const IntroPage = () => {
       </Swiper> */}
       <StWrapFlex>
         <div style={{ marginTop: "125px" }}>
-          <span className="OrangeText">김갓생 </span>
+          <span className="OrangeText">{data?.nickname} </span>
           <span>갓생러!</span>
         </div>
         <span style={{ marginBottom: "16px" }}>반갑습니다!</span>
