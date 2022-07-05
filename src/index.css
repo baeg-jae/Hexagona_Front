@@ -29,3 +29,11 @@ button {
 button:disabled {
   background-color: #d6d6d6;
 }
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: inherit;
+}

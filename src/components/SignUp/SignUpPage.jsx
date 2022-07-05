@@ -45,7 +45,6 @@ const SignUpPage = () => {
     onSuccess: (data) => {
       // 캐시에 있는 모든 쿼리를 무효화한다.
       queryClient.invalidateQueries("users");
-      console.log(data);
       if (data.data) {
         // 중복검사에 통과되면 회원가입을 진행한다
         userSignUpMutation.mutate({ nickname: name });
@@ -62,7 +61,7 @@ const SignUpPage = () => {
 
   // 버튼 핸들러
   const onClickBtnHandler = () => {
-    userDupCheck.mutate({ name: name });
+    userDupCheck.mutate({ nickname: name });
   };
 
   //욕설탐지기
