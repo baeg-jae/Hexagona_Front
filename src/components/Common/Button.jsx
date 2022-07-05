@@ -12,9 +12,10 @@ const Button = ({ theme, text, click, disabled }) => {
 export default Button;
 
 const Btn = styled.button`
-  margin: 2rem 0 5rem 0;
-  width: 80%;
-  height: 60px;
+  width: 327px;
+  height: 56px;
+  border-radius: 8px;
+  font-size: 16px;
   background-color: ${(props) =>
     props.theme === "dark" ? "var(--black)" : "var(--white)"};
   color: ${(props) =>

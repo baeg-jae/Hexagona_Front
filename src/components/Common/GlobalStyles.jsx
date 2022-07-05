@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import flex from "./flex";
+import "./font.css";
 
 export const FlexRowDiv = styled.div`
   ${flex({})}
@@ -15,11 +16,9 @@ export const StWrap = styled.div`
 `;
 
 export const StInput = styled.input`
-  width: 80%;
-  height: 50px;
-  border-radius: 8px;
-  font-size: 1.2rem;
+  font-size: 16px;
   &::placeholder {
-    font-size: 0.8rem;
+    color: #b7b7b7;
+    font-size: 16px;
   }
 `;

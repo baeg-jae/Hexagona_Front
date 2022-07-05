@@ -1,9 +1,11 @@
-import React from 'react';
-import { KAKAO_AUTH_URL } from 'shared/kakao/kakao';
-import { GOOGLE_AUTH_URL } from 'shared/google/google';
+import React from "react";
+import { KAKAO_AUTH_URL } from "shared/kakao/kakao";
+import { GOOGLE_AUTH_URL } from "shared/google/google";
 
 const LogIn = () => {
-    return (
+  return (
+    <div>
+      <div>
         <div>
             <div>
                 <div>

@@ -6,9 +6,8 @@ import Button from "components/Common/Button";
 const FirstPage = ({ onStartBtnHandler }) => {
   return (
     <StFirstPageDiv>
-      <span>올해는 꼭!</span>
-      <span className="bigFont">내 인생을</span>
-      <span className="bigFont">갓생으로</span>
+      <span>이번엔 꼭 내 인생을 갓생으로</span>
+      <span className="bigFont">갓생메이커</span>
       <Button
         click={onStartBtnHandler}
         className="StartBtn"
@@ -30,10 +29,16 @@ const StFirstPageDiv = styled.div`
   background-image: linear-gradient(blue, pink);
   background-size: cover;
   background-position: center;
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 20px;
   color: var(--white);
+  text-align: center;
+  letter-spacing: -0.02em;
   .bigFont {
-    font-size: 2.5rem;
+    font-weight: 700;
+
+    font-size: 48px;
+  }
+  & > Button {
+    margin: 25px 0 58px 0;
   }
 `;
