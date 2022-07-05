@@ -130,7 +130,10 @@ const StInput = styled.input`
   font-weight: 400;
   font-size: 16px;
   line-height: 130%;
-  &::placeholder {
-    padding-left: 20px;
+  padding: 20px;
+
+  &:focus {
+    outline: none;
+    border: 1px solid #212121;
   }
 `;
