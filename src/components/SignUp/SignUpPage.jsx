@@ -132,7 +132,7 @@ const StWrap = styled.div`
   font-weight: 700;
   margin-top: 4rem;
   .titleSpan {
-    margin: 135px 0 85px 0;
+    margin: 135px 0 74px 0;
   }
   & > Button {
     margin-bottom: 431px;

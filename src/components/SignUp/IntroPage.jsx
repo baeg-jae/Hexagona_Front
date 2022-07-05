@@ -44,8 +44,8 @@ const IntroPage = () => {
       </Swiper> */}
       <StWrapFlex>
         <div style={{ marginTop: "125px" }}>
-          <span className="OrangeText">{data?.nickname} </span>
-          <span>갓생러!</span>
+          <span className="OrangeText">{data?.nickname}</span>
+          <span>님</span>
         </div>
         <span style={{ marginBottom: "16px" }}>반갑습니다!</span>
         <span className="subTitle">
