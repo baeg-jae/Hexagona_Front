@@ -30,6 +30,7 @@ const SignUpPage = () => {
       // 캐시에 있는 모든 쿼리를 무효화한다.
       queryClient.invalidateQueries("users");
       // 회원가입에 통과되면 화면전환
+      console.log(data);
       alert("가입을 환영합니다");
       setFlag((value) => !value);
     },
@@ -44,10 +45,13 @@ const SignUpPage = () => {
     onSuccess: (data) => {
       // 캐시에 있는 모든 쿼리를 무효화한다.
       queryClient.invalidateQueries("users");
-      if (data.data) {
-        // 중복검사에 통과되면 회원가입을 진행한다
-        userSignUpMutation.mutate({ nickname: name });
-      }
+      setFlag((value) => !value);
+      // if (data.data) {
+      //   // 중복검사에 통과되면 회원가입을 진행한다
+      //   userSignUpMutation.mutate({ nickname: name });
+      // } else {
+      //   alert("중복된 아이디 입니다.");
+      // }
     },
     onError: (error) => {
       console.log(error.message);
