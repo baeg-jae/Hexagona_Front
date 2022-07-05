@@ -30,23 +30,25 @@ const handleTextColor = (color) => {
 const LogIn = () => {
   return (
     <StFirstPageDiv>
-      <span>이번엔 꼭 내 인생을 갓생으로</span>
-      <span className="bigFont">갓생메이커</span>
-      <StButtonDiv name="kakao">
-        <a href={KAKAO_AUTH_URL}>
-          <span className="innerText">카카오 계정으로 시작하기</span>
-        </a>
-      </StButtonDiv>
-      <StButtonDiv name="naver">
-        <a href={GOOGLE_AUTH_URL}>
-          <span className="innerText">네이버 계정으로 시작하기</span>
-        </a>
-      </StButtonDiv>
-      <StButtonDiv name="">
-        <a href={GOOGLE_AUTH_URL}>
-          <span className="innerText">Google 계정으로 계속하기</span>
-        </a>
-      </StButtonDiv>
+      <div className="gradient">
+        <span>이번엔 꼭 내 인생을 갓생으로</span>
+        <span className="bigFont">갓생메이커</span>
+        <StButtonDiv name="kakao">
+          <a href={KAKAO_AUTH_URL}>
+            <span className="innerText">카카오 계정으로 시작하기</span>
+          </a>
+        </StButtonDiv>
+        <StButtonDiv name="naver">
+          <a href={GOOGLE_AUTH_URL}>
+            <span className="innerText">네이버 계정으로 시작하기</span>
+          </a>
+        </StButtonDiv>
+        <StButtonDiv name="">
+          <a href={GOOGLE_AUTH_URL}>
+            <span className="innerText">Google 계정으로 계속하기</span>
+          </a>
+        </StButtonDiv>
+      </div>
     </StFirstPageDiv>
   );
 };
@@ -58,12 +60,7 @@ const StFirstPageDiv = styled.div`
   width: 100%;
   height: 100%;
   background-size: contain;
-  background-image: linear-gradient(
-      180deg,
-      rgba(30, 5, 5, 0) -9.31%,
-      #1e1818 70.22%
-    ),
-    url(${LoginImg});
+  background-image: url(${LoginImg});
   font-size: 20px;
   color: var(--white);
   text-align: center;
@@ -75,6 +72,16 @@ const StFirstPageDiv = styled.div`
   }
   & > Button {
     margin: 25px 0 58px 0;
+  }
+  .gradient {
+    ${flex({ direction: "column", justify: "flex-end" })}
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(
+      180deg,
+      rgba(30, 5, 5, 0) -9.31%,
+      #1e1818 40.46%
+    );
   }
 `;
 
