@@ -15,6 +15,10 @@ export const StWrap = styled.div`
   height: 100vh;
 `;
 
+export const StWidth = styled.div`
+  width: 100%;
+`;
+
 export const StInput = styled.input`
   font-size: 16px;
   &::placeholder {

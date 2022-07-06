@@ -6,6 +6,7 @@ import Two from "assets/img/category2.png";
 import Three from "assets/img/category3.png";
 import Four from "assets/img/category4.png";
 import { Link } from "react-router-dom";
+import { StWidth } from "components/Common/GlobalStyles";
 
 const handlePictureProps = (text) => {
   switch (text) {
@@ -24,7 +25,7 @@ const handlePictureProps = (text) => {
 
 const Main = () => {
   return (
-    <StWrap>
+    <StWidth>
       <StFlexRowDiv>
         <Link to={"/home/exercise"}>
           <StCategoryDiv pic="one"></StCategoryDiv>
@@ -39,15 +40,11 @@ const Main = () => {
           <StCategoryDiv pic="four"></StCategoryDiv>
         </Link>
       </StFlexRowDiv>
-    </StWrap>
+    </StWidth>
   );
 };
 
 export default Main;
-
-const StWrap = styled.div`
-  width: 100%;
-`;
 
 const StFlexRowDiv = styled.div`
   ${flex({ direction: "column" })}
