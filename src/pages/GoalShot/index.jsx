@@ -4,29 +4,35 @@ import flex from "components/Common/flex";
 import { StWrap } from "components/Common/GlobalStyles";
 import XIcon from "assets/img/Vector.png";
 import Dog from "assets/img/Dog.png";
+import NavigatorBar from "components/Common/NavigatorBar";
 
 const GoalShot = ({ text, category }) => {
   return (
-    <StWrapFlex>
-      <StImgDiv>
-        <div className="text">
-          {/* 중요- 추후에 카테고리 생성시 text props로 대체되야 합니다 */}
-          <span className="firstText">강아지 산책시키기</span>
-          {/* 중요- 추후에 카테고리 생성시 category props로 대체되야 합니다 */}
-          <span className="secondText">취미 생활</span>
+    <>
+      <StWrapFlex>
+        <StImgDiv>
+          <div className="gradientImg">
+            <div className="text">
+              {/* 중요- 추후에 카테고리 생성시 text props로 대체되야 합니다 */}
+              <span className="firstText">강아지 산책시키기</span>
+              {/* 중요- 추후에 카테고리 생성시 category props로 대체되야 합니다 */}
+              <span className="secondText">취미 생활</span>
+            </div>
+          </div>
+        </StImgDiv>
+        <div className="circle">
+          <StCircleDiv>
+            <span>
+              <img src={XIcon} alt="" />
+            </span>
+          </StCircleDiv>
+          <StCircleDiv>
+            <span>❤</span>
+          </StCircleDiv>
         </div>
-      </StImgDiv>
-      <div className="circle">
-        <StCircleDiv>
-          <span>
-            <img src={XIcon} alt="" />
-          </span>
-        </StCircleDiv>
-        <StCircleDiv>
-          <span>❤</span>
-        </StCircleDiv>
-      </div>
-    </StWrapFlex>
+      </StWrapFlex>
+      <NavigatorBar />
+    </>
   );
 };
 
@@ -39,6 +45,7 @@ const StWrapFlex = styled(StWrap)`
     ${flex({})}
     position: absolute;
     bottom: 10%;
+    margin-bottom: 39.62px;
   }
 `;
 
@@ -52,10 +59,15 @@ const StImgDiv = styled.div`
   background-size: cover;
   background-position: center;
 
-  .text {
+  .gradientImg {
     ${flex({ direction: "column", align: "flex-start", justify: "flex-end" })};
     width: 100%;
     height: 100%;
+    background-color: gradient(0.14deg, #000000 0.09%, rgba(0, 0, 0, 0) 32.15%);
+  }
+
+  .text {
+    ${flex({ direction: "column", align: "flex-start", justify: "flex-end" })};
     font-weight: 700;
     margin-left: 17.05px;
     color: var(--white);
@@ -84,6 +96,7 @@ const StCircleDiv = styled.div`
   background: #ffffff;
   box-shadow: 10.8513px 9.49487px 23.059px rgba(0, 0, 0, 0.1);
   border-radius: 51.5436px;
+  margin: 0 11px 0 11px;
 
   &:last-child {
     color: #fff;

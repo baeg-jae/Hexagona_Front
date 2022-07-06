@@ -43,8 +43,4 @@ const StWrapFlex = styled.div`
     font-size: 12px;
     line-height: 130%;
   }
-  .Camera {
-    width: 20px;
-    height: 18px;
-  }
 `;
