@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import styled from "@emotion/styled";
 import flex from "components/Common/flex";
 import { StInput } from "components/Common/GlobalStyles";
@@ -60,12 +60,12 @@ const SignUpPage = () => {
   });
 
   // 버튼 핸들러
-  const onClickBtnHandler = () => {
+  const onClickBtnHandler = useCallback(() => {
     userDupCheck.mutate({ nickname: name });
-  };
+  }, [name, userDupCheck]);
 
   //욕설탐지기
-  const bogusCheck = () => {
+  const bogusCheck = useCallback(() => {
     const foundSwears = badWords.filter((word) =>
       name.toLowerCase().includes(word.toLowerCase())
     );
@@ -75,18 +75,18 @@ const SignUpPage = () => {
       // 욕설탐지기에 안걸리면 실행
       onClickBtnHandler();
     }
-  };
+  }, [name, onClickBtnHandler]);
 
   // 버튼 disable Handler
-  const onDisableHandler = () => {
+  const onDisableHandler = useCallback(() => {
     if (name !== "") return false;
     return true;
-  };
+  }, [name]);
 
   // 클래스이름 생성
-  const generateClassName = () => {
+  const generateClassName = useCallback(() => {
     if (name.length > 0) return "currentCount";
-  };
+  }, [name.length]);
 
   return (
     <>

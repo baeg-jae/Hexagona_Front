@@ -1,5 +1,8 @@
 import React from "react";
-import { handleTextColor, handleButtonColor } from "./ButtonHandler";
+import {
+  handleTextColor,
+  handleButtonColor,
+} from "components/Common/ButtonPropsHandler";
 import styled from "@emotion/styled";
 import flex from "components/Common/flex";
 

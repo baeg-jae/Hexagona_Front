@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { StWrap } from "components/Common/GlobalStyles";
 import flex from "components/Common/flex";
 import Button from "components/Common/Button";
@@ -11,9 +11,10 @@ const IntroPage = () => {
   // 유저정보 받아오기
   const { data, isLoading } = useGetUser();
   const navigate = useNavigate();
-  const onClickHandler = () => {
+  const onClickHandler = useCallback(() => {
     navigate("/home");
-  };
+  }, [navigate]);
+
   return (
     <>
       {isLoading ? (

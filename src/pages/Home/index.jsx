@@ -1,10 +1,10 @@
 import React from "react";
-import { StWrap } from "components/Common/GlobalStyles";
 import Header from "components/Common/Header";
 import NavigatorBar from "components/Common/NavigatorBar";
 import styled from "@emotion/styled";
-import { Routes, Route } from "react-router-dom";
 import loadable from "@loadable/component";
+import { Routes, Route } from "react-router-dom";
+import { StWrap } from "components/Common/GlobalStyles";
 
 const Main = loadable(() => import("./Main"));
 const HomeCategory = loadable(() => import("pages/HomeCategory"));

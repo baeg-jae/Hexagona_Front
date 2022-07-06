@@ -1,27 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
 import flex from "components/Common/flex";
-import One from "assets/img/category1.png";
-import Two from "assets/img/category2.png";
-import Three from "assets/img/category3.png";
-import Four from "assets/img/category4.png";
+import { handlePictureProps } from "components/Common/ButtonPropsHandler";
 import { Link } from "react-router-dom";
 import { StWidth } from "components/Common/GlobalStyles";
-
-const handlePictureProps = (text) => {
-  switch (text) {
-    case "one":
-      return One;
-    case "two":
-      return Two;
-    case "three":
-      return Three;
-    case "four":
-      return Four;
-    default:
-      return;
-  }
-};
 
 const Main = () => {
   return (

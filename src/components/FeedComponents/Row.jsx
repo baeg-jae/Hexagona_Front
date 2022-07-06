@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "@emotion/styled";
 import Dog from "assets/img/Dog.png";
 
 const Row = ({ scrollRef }) => {
   // 전체 게시글 정보를 여기서 get 한다음에 아래 div에 채워준다
-  const onClickHandler = () => {
+  const onClickHandler = useCallback(() => {
     // onclick event
-  };
+  }, []);
   return (
     <StRow ref={scrollRef}>
       <div />

@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import styled from "@emotion/styled";
 import { StWidth, FlexRowDiv } from "components/Common/GlobalStyles";
 import flex from "components/Common/flex";
 
 const HomeCategory = () => {
   const [flag, setFlag] = useState(false);
-  const onAddMissionHandler = (id) => {
+  const onAddMissionHandler = useCallback((id) => {
     setFlag((value) => !value);
-  };
-  const onCancelBtnHandler = () => {
+  }, []);
+
+  const onCancelBtnHandler = useCallback(() => {
     setFlag((value) => !value);
-  };
+  }, []);
+
   return (
     <StWrap>
       <StContainer>
