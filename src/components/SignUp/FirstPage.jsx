@@ -35,7 +35,6 @@ const StFirstPageDiv = styled.div`
   letter-spacing: -0.02em;
   .bigFont {
     font-weight: 700;
-
     font-size: 48px;
   }
   & > Button {

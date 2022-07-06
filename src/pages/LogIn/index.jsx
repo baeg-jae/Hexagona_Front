@@ -4,7 +4,6 @@ import flex from "components/Common/flex";
 import { KAKAO_AUTH_URL } from "shared/kakao/kakao";
 import { GOOGLE_AUTH_URL } from "shared/google/google";
 import LoginImg from "assets/img/LoginImg.png";
-import Loading from "pages/Status/Loading";
 
 const handleButtonColor = (color) => {
   switch (color) {
@@ -30,30 +29,27 @@ const handleTextColor = (color) => {
 
 const LogIn = () => {
   return (
-    // <StFirstPageDiv>
-    //   <div className="gradient">
-    //     <span>이번엔 꼭 내 인생을 갓생으로</span>
-    //     <span className="bigFont">갓생메이커</span>
-    //     <StButtonDiv name="kakao">
-    //       <a href={KAKAO_AUTH_URL}>
-    //         <span className="innerText">카카오 계정으로 시작하기</span>
-    //       </a>
-    //     </StButtonDiv>
-    //     <StButtonDiv name="naver">
-    //       <a href={GOOGLE_AUTH_URL}>
-    //         <span className="innerText">네이버 계정으로 시작하기</span>
-    //       </a>
-    //     </StButtonDiv>
-    //     <StButtonDiv name="">
-    //       <a href={GOOGLE_AUTH_URL}>
-    //         <span className="innerText">Google 계정으로 계속하기</span>
-    //       </a>
-    //     </StButtonDiv>
-    //   </div>
-    // </StFirstPageDiv>
-    <>
-      <Loading />
-    </>
+    <StFirstPageDiv>
+      <div className="gradient">
+        <span>이번엔 꼭 내 인생을 갓생으로</span>
+        <span className="bigFont">갓생메이커</span>
+        <StButtonDiv name="kakao">
+          <a href={KAKAO_AUTH_URL}>
+            <span className="innerText">카카오 계정으로 시작하기</span>
+          </a>
+        </StButtonDiv>
+        <StButtonDiv name="naver">
+          <a href={GOOGLE_AUTH_URL}>
+            <span className="innerText">네이버 계정으로 시작하기</span>
+          </a>
+        </StButtonDiv>
+        <StButtonDiv name="">
+          <a href={GOOGLE_AUTH_URL}>
+            <span className="innerText">Google 계정으로 계속하기</span>
+          </a>
+        </StButtonDiv>
+      </div>
+    </StFirstPageDiv>
   );
 };
 
