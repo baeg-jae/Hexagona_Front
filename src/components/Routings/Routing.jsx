@@ -8,11 +8,12 @@ import Error from "pages/Status/Error";
 import ProtectedRoutesNoLogin from "./ProtectedNoLogin";
 import Home from "pages/Home";
 import GoalShot from "pages/GoalShot";
+import HomeCategory from "pages/HomeCategory";
 
 const Routing = () => {
   return (
     <Routes>
-      <Route path="/" element={<Error />} />
+      <Route path="/" element={<LogIn />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/oauth/kakao/callback" element={<Kakao />} />
       <Route path="/goalshot" element={<GoalShot />} />
@@ -20,6 +21,7 @@ const Routing = () => {
 
       <Route element={<ProtectedRoutesNoLogin />}>
         <Route path="/home" element={<Home />} />
+        <Route path="/home/:category" element={<HomeCategory />} />
       </Route>
 
       <Route path="*" element={<Error />} />
