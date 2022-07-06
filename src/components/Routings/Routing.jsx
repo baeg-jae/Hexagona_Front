@@ -20,11 +20,11 @@ const Routing = () => {
       <Route path="/oauth/kakao/callback" element={<Kakao />} />
       <Route path="/goalshot" element={<GoalShot />} />
       <Route path="/oauth/google/callback" element={<Google />} />
-      <Route path="/feed" element={<Feed />} />
-      <Route path="/feed/:id" element={<FeedDetail />} />
 
       <Route element={<ProtectedRoutesNoLogin />}>
         <Route path="/home" element={<Home />} />
+        <Route path="/feed" element={<Feed />} />
+        <Route path="/feed/:id" element={<FeedDetail />} />
         <Route path="/home/:category" element={<HomeCategory />} />
       </Route>
 
