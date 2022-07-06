@@ -5,6 +5,7 @@ import One from "assets/img/category1.png";
 import Two from "assets/img/category2.png";
 import Three from "assets/img/category3.png";
 import Four from "assets/img/category4.png";
+import { Link } from "react-router-dom";
 
 const handlePictureProps = (text) => {
   switch (text) {
@@ -25,10 +26,18 @@ const Main = () => {
   return (
     <StWrap>
       <StFlexRowDiv>
-        <StCategoryDiv pic="one"></StCategoryDiv>
-        <StCategoryDiv pic="two"></StCategoryDiv>
-        <StCategoryDiv pic="three"></StCategoryDiv>
-        <StCategoryDiv pic="four"></StCategoryDiv>
+        <Link to={"/home/exercise"}>
+          <StCategoryDiv pic="one"></StCategoryDiv>
+        </Link>
+        <Link to={"/home/study"}>
+          <StCategoryDiv pic="two"></StCategoryDiv>
+        </Link>
+        <Link to={"/home/life"}>
+          <StCategoryDiv pic="three"></StCategoryDiv>
+        </Link>
+        <Link to={"/home/hobby"}>
+          <StCategoryDiv pic="four"></StCategoryDiv>
+        </Link>
       </StFlexRowDiv>
     </StWrap>
   );

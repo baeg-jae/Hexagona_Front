@@ -15,7 +15,7 @@ const NavigatorBar = () => {
       <span>Feed</span>
       <span>Chat</span>
       <FlexColumnDiv style={{ width: "20%" }}>
-        <FaCamera style={{ color: "#b9b9b9" }} />
+        <FaCamera />
       </FlexColumnDiv>
     </StWrapFlex>
   );
