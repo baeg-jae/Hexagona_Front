@@ -12,8 +12,7 @@ const Header = () => {
         <div className="LeftDiv">
           <div className="ProfilePic" />
           <div className="textDiv">
-            <span className="secondaryText">갓생 입문자</span>
-            <span>김갓생</span>
+            <span>갓생러 김준호</span>
           </div>
         </div>
         <StImg src={SmallMenu} alt="" />
@@ -26,9 +25,9 @@ export default Header;
 
 const StWrapFlex = styled.div`
   ${flex({ align: "flex-start" })}
-  width: 310px;
-  height: 80px;
-  margin-top: 60px;
+  width: 342px;
+  height: 56px;
+  margin-top: 62px;
 `;
 
 const HeaderWrap = styled.div`
@@ -38,11 +37,11 @@ const HeaderWrap = styled.div`
 
   .LeftDiv {
     ${flex({})}
-    margin-left: 33px;
+    margin-left: 15px;
   }
   .ProfilePic {
-    width: 80px;
-    height: 80px;
+    width: 56px;
+    height: 56px;
     border-radius: 100px;
     background-image: url(${Dog});
     background-size: cover;
@@ -51,16 +50,10 @@ const HeaderWrap = styled.div`
   .textDiv {
     ${flex({ direction: "column", align: "flex-start" })}
     font-weight: 700;
-    font-size: 18px;
+    font-size: 14px;
     line-height: 130%;
-    margin-left: 7.5px;
+    margin-left: 12px;
     color: #212121;
-    .secondaryText {
-      font-weight: 400;
-      font-size: 13px;
-      line-height: 130%;
-      color: #888888;
-    }
   }
 `;
 
