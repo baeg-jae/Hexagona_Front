@@ -1,28 +1,28 @@
 import React from "react";
 import styled from "@emotion/styled";
 import flex from "./flex";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FlexColumnDiv } from "./GlobalStyles";
 import { FaCamera } from "react-icons/fa";
 
 const NavigatorBar = () => {
   return (
     <StWrapFlex>
-      <Link to={"/home"}>
+      <NavLink to={"/home"}>
         <span>MY</span>
-      </Link>
-      <Link to={"/goalshot"}>
+      </NavLink>
+      <NavLink to={"/goalshot"}>
         <FlexColumnDiv>
           <span className="smallText">Goal</span>
           <span className="smallText">Shot</span>
         </FlexColumnDiv>
-      </Link>
-      <Link to={"/feed"}>
+      </NavLink>
+      <NavLink to={"/feed"}>
         <span>Feed</span>
-      </Link>
-      <Link to={"/chat"}>
+      </NavLink>
+      <NavLink to={"/chat"}>
         <span>Chat</span>
-      </Link>
+      </NavLink>
       <FlexColumnDiv>
         <FaCamera />
       </FlexColumnDiv>
@@ -50,5 +50,10 @@ const StWrapFlex = styled.div`
     font-weight: 400;
     font-size: 12px;
     line-height: 130%;
+  }
+  .active {
+    span {
+      color: #212121 !important;
+    }
   }
 `;

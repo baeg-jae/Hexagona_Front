@@ -21,15 +21,14 @@ const Routing = () => {
         <Route path="/" element={<LogIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/oauth/kakao/callback" element={<Kakao />} />
-        <Route path="/goalshot" element={<GoalShot />} />
         <Route path="/oauth/google/callback" element={<Google />} />
       </Route>
       <Route element={<ProtectedRoutesNoLogin />}>
         <Route path="/home/*" element={<Home />} />
         <Route path="/feed" element={<Feed />} />
+        <Route path="/goalshot" element={<GoalShot />} />
         <Route path="/feed/:id" element={<FeedDetail />} />
       </Route>
-
       <Route path="*" element={<Error />} />
     </Routes>
   );
