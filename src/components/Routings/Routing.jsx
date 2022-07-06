@@ -9,7 +9,6 @@ import ProtectedRoutesNoLogin from "./ProtectedNoLogin";
 import Home from "pages/Home";
 import Feed from "pages/Feed";
 import GoalShot from "pages/GoalShot";
-import HomeCategory from "pages/HomeCategory";
 import FeedDetail from "pages/FeedDetail";
 
 const Routing = () => {
@@ -22,10 +21,9 @@ const Routing = () => {
       <Route path="/oauth/google/callback" element={<Google />} />
 
       <Route element={<ProtectedRoutesNoLogin />}>
-        <Route path="/home" element={<Home />} />
+        <Route path="/home/*" element={<Home />} />
         <Route path="/feed" element={<Feed />} />
         <Route path="/feed/:id" element={<FeedDetail />} />
-        <Route path="/home/:category" element={<HomeCategory />} />
       </Route>
 
       <Route path="*" element={<Error />} />
