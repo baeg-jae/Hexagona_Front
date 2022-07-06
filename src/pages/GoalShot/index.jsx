@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import flex from "components/Common/flex";
 import { StWrap } from "components/Common/GlobalStyles";
 import XIcon from "assets/img/Vector.png";
+import Dog from "assets/img/Dog.png";
 
 const GoalShot = ({ text, category }) => {
   return (
@@ -47,7 +48,7 @@ const StImgDiv = styled.div`
   height: 592.58px;
   border-radius: 30px;
   margin-top: 59.21px;
-  background-image: url("https://huchu.link/fra0sHh");
+  background-image: url(${Dog});
   background-size: cover;
   background-position: center;
 
@@ -83,7 +84,7 @@ const StCircleDiv = styled.div`
   background: #ffffff;
   box-shadow: 10.8513px 9.49487px 23.059px rgba(0, 0, 0, 0.1);
   border-radius: 51.5436px;
-  margin: 0 15.6px 50.62px 15.6px;
+
   &:last-child {
     color: #fff;
     background: linear-gradient(
