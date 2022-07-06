@@ -53,7 +53,7 @@ const HeaderWrap = styled.div`
     font-size: 14px;
     line-height: 130%;
     margin-left: 12px;
-    color: #212121;
+    color: #4f514a;
   }
 `;
 
