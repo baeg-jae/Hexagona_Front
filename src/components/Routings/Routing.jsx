@@ -7,8 +7,10 @@ import LogIn from "pages/LogIn";
 import Error from "pages/Status/Error";
 import ProtectedRoutesNoLogin from "./ProtectedNoLogin";
 import Home from "pages/Home";
+import Feed from "pages/Feed";
 import GoalShot from "pages/GoalShot";
 import HomeCategory from "pages/HomeCategory";
+import FeedDetail from "pages/FeedDetail";
 
 const Routing = () => {
   return (
@@ -18,6 +20,8 @@ const Routing = () => {
       <Route path="/oauth/kakao/callback" element={<Kakao />} />
       <Route path="/goalshot" element={<GoalShot />} />
       <Route path="/oauth/google/callback" element={<Google />} />
+      <Route path="/feed" element={<Feed />} />
+      <Route path="/feed/:id" element={<FeedDetail />} />
 
       <Route element={<ProtectedRoutesNoLogin />}>
         <Route path="/home" element={<Home />} />
