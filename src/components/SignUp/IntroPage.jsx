@@ -22,18 +22,14 @@ const IntroPage = () => {
         <StWrapFlex>
           <div style={{ marginTop: "125px" }}>
             <span className="OrangeText">{data?.nickname}</span>
-            <span>님</span>
+            <span> 갓생러!</span>
           </div>
           <span style={{ marginBottom: "16px" }}>반갑습니다!</span>
           <span className="subTitle">
             목표를 이루는 여정을 갓생메이커와 함께해요!
           </span>
           <span className="subTitle">먼저, 목표를 정하러 가볼까요?</span>
-          <Button
-            theme="dark"
-            text="갓생 목표 정하러 가기"
-            click={onClickHandler}
-          />
+          <Button theme="dark" text="목표 정하러 가기" click={onClickHandler} />
         </StWrapFlex>
       )}
     </>
@@ -48,7 +44,7 @@ const StWrapFlex = styled(StWrap)`
   font-size: 34px;
   line-height: 130%;
   .OrangeText {
-    color: #ff7a00;
+    color: #956c4a;
   }
   .subTitle {
     font-weight: 400;
