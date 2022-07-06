@@ -3,9 +3,11 @@ import { StWrap } from "components/Common/GlobalStyles";
 import Header from "components/Common/Header";
 import NavigatorBar from "components/Common/NavigatorBar";
 import styled from "@emotion/styled";
-import HomeCategory from "pages/HomeCategory";
-import Main from "./Main";
 import { Routes, Route } from "react-router-dom";
+import loadable from "@loadable/component";
+
+const Main = loadable(() => import("./Main"));
+const HomeCategory = loadable(() => import("pages/HomeCategory"));
 
 const Home = () => {
   return (

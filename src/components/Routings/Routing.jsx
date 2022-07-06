@@ -1,15 +1,17 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Kakao from "pages/SocialLogIn/Kakao";
-import Google from "pages/SocialLogIn/Google";
-import SignUp from "pages/SignUp";
-import LogIn from "pages/LogIn";
-import Error from "pages/Status/Error";
+import loadable from "@loadable/component";
 import ProtectedRoutesNoLogin from "./ProtectedNoLogin";
-import Home from "pages/Home";
-import Feed from "pages/Feed";
-import GoalShot from "pages/GoalShot";
-import FeedDetail from "pages/FeedDetail";
+
+const Kakao = loadable(() => import("pages/SocialLogIn/Kakao"));
+const Google = loadable(() => import("pages/SocialLogIn/Google"));
+const SignUp = loadable(() => import("pages/SignUp"));
+const LogIn = loadable(() => import("pages/LogIn"));
+const Error = loadable(() => import("pages/Status/Error"));
+const Home = loadable(() => import("pages/Home"));
+const Feed = loadable(() => import("pages/Feed"));
+const GoalShot = loadable(() => import("pages/GoalShot"));
+const FeedDetail = loadable(() => import("pages/FeedDetail"));
 
 const Routing = () => {
   return (
