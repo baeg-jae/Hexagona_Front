@@ -1,175 +1,167 @@
-import React, { useState } from "react";
-import styled from "@emotion/styled";
-import flex from "components/Common/flex";
-import { StInput } from "components/Common/GlobalStyles";
-import { useQueryClient, useMutation } from "react-query";
-import Button from "components/Common/Button";
-import IntroPage from "./IntroPage";
-import apis from "shared/api/main";
-import { badWords } from "./IntroPageTexts";
+import React, { useState } from 'react';
+import styled from '@emotion/styled';
+import flex from 'components/Common/flex';
+import { StInput } from 'components/Common/GlobalStyles';
+import { useQueryClient, useMutation } from 'react-query';
+import Button from 'components/Common/Button';
+import IntroPage from './IntroPage';
+import apis from 'shared/api/main';
+import { badWords } from './IntroPageTexts';
 
 const MAX_LENGTH = 10;
 const __signup = async (payload) => {
-  const data = await apis.signUp(payload);
-  return data;
+    const data = await apis.signUp(payload);
+    return data;
 };
 
 const __dupCheck = async (payload) => {
-  const data = await apis.dupCheck(payload);
-  return data;
+    const data = await apis.dupCheck(payload);
+    return data;
 };
 
 const SignUpPage = () => {
-  const [flag, setFlag] = useState();
-  const [name, setName] = useState("");
-  const queryClient = useQueryClient();
+    const [flag, setFlag] = useState();
+    const [name, setName] = useState('');
+    const queryClient = useQueryClient();
 
-  // 회원가입 mutation
-  const userSignUpMutation = useMutation(__signup, {
-    onSuccess: () => {
-      // 캐시에 있는 모든 쿼리를 무효화한다.
-      queryClient.invalidateQueries("users");
-      // 회원가입에 통과되면 화면전환
-      alert("가입을 환영합니다");
+    // 회원가입 mutation
+    const userSignUpMutation = useMutation(__signup, {
+        onSuccess: () => {
+            // 캐시에 있는 모든 쿼리를 무효화한다.
+            queryClient.invalidateQueries('users');
+            // 회원가입에 통과되면 화면전환
+            alert('가입을 환영합니다');
 
-      setFlag((value) => !value);
-    },
-    onError: (error) => {
-      alert(`회원가입: ${error.message}`);
-    },
-    onSettled: () => {},
-  });
+            setFlag((value) => !value);
+        },
+        onError: (error) => {
+            alert(`회원가입: ${error.message}`);
+        },
+        onSettled: () => {},
+    });
 
-  // 중복검사 mutation
-  const userDupCheck = useMutation(__dupCheck, {
-    onSuccess: (data) => {
-      // 캐시에 있는 모든 쿼리를 무효화한다.
-      queryClient.invalidateQueries("users");
-      if (data.data) {
-        // 중복검사에 통과되면 회원가입을 진행한다
-        userSignUpMutation.mutate({ nickname: name });
-      } else {
-        alert("중복된 아이디 입니다.");
-      }
-    },
-    onError: (error) => {
-      console.log(error.message);
-      alert(`중복체크: ${error.message}`);
-    },
-    onSettled: () => {},
-  });
+    // 중복검사 mutation
+    const userDupCheck = useMutation(__dupCheck, {
+        onSuccess: (data) => {
+            // 캐시에 있는 모든 쿼리를 무효화한다.
+            queryClient.invalidateQueries('users');
+            if (data.data) {
+                // 중복검사에 통과되면 회원가입을 진행한다
+                userSignUpMutation.mutate({ nickname: name });
+            } else {
+                alert('중복된 아이디 입니다.');
+            }
+        },
+        onError: (error) => {
+            console.log(error.message);
+            alert(`중복체크: ${error.message}`);
+        },
+        onSettled: () => {},
+    });
 
-  // 버튼 핸들러
-  const onClickBtnHandler = () => {
-    userDupCheck.mutate({ nickname: name });
-  };
+    // 버튼 핸들러
+    const onClickBtnHandler = () => {
+        userDupCheck.mutate({ nickname: name });
+    };
 
-  //욕설탐지기
-  const bogusCheck = () => {
-    const foundSwears = badWords.filter((word) =>
-      name.toLowerCase().includes(word.toLowerCase())
+    //욕설탐지기
+    const bogusCheck = () => {
+        const foundSwears = badWords.filter((word) => name.toLowerCase().includes(word.toLowerCase()));
+        if (foundSwears.length) {
+            alert('아이디에는 비속어가 포함되실 수 없습니다.');
+        } else {
+            // 욕설탐지기에 안걸리면 실행
+            onClickBtnHandler();
+        }
+    };
+
+    // 버튼 disable Handler
+    const onDisableHandler = () => {
+        if (name !== '') return false;
+        return true;
+    };
+
+    // 클래스이름 생성
+    const generateClassName = () => {
+        if (name.length > 0) return 'currentCount';
+    };
+
+    return (
+        <>
+            {!flag ? (
+                <StWrap>
+                    <span className="titleSpan">회원님을 뭐라고 부를까요?</span>
+
+                    <div className="inputBox">
+                        <StInput
+                            placeholder="닉네임을 입력해주세요."
+                            maxLength={MAX_LENGTH}
+                            onChange={(e) => setName(e.target.value)}
+                            className="stInput"
+                        />
+                        <div className="inputCount">
+                            <span className={generateClassName()}>{name.length}</span>/{MAX_LENGTH}
+                        </div>
+                    </div>
+
+                    <Button text="입력완료" theme="dark" click={bogusCheck} disabled={onDisableHandler()} />
+                </StWrap>
+            ) : (
+                <IntroPage></IntroPage>
+            )}
+        </>
     );
-    if (foundSwears.length) {
-      alert("아이디에는 비속어가 포함되실 수 없습니다.");
-    } else {
-      // 욕설탐지기에 안걸리면 실행
-      onClickBtnHandler();
-    }
-  };
-
-  // 버튼 disable Handler
-  const onDisableHandler = () => {
-    if (name !== "") return false;
-    return true;
-  };
-
-  // 클래스이름 생성
-  const generateClassName = () => {
-    if (name.length > 0) return "currentCount";
-  };
-
-  return (
-    <>
-      {!flag ? (
-        <StWrap>
-          <span className="titleSpan">회원님을 뭐라고 부를까요?</span>
-
-          <div className="inputBox">
-            <StInput
-              placeholder="닉네임을 입력해주세요."
-              maxLength={MAX_LENGTH}
-              onChange={(e) => setName(e.target.value)}
-              className="stInput"
-            />
-            <div className="inputCount">
-              <span className={generateClassName()}>{name.length}</span>/
-              {MAX_LENGTH}
-            </div>
-          </div>
-
-          <Button
-            text="입력완료"
-            theme="dark"
-            click={bogusCheck}
-            disabled={onDisableHandler()}
-          />
-        </StWrap>
-      ) : (
-        <IntroPage></IntroPage>
-      )}
-    </>
-  );
 };
 
 export default SignUpPage;
 
 const StWrap = styled.div`
-  ${flex({ direction: "column", justify: "flex-start" })}
-  width: 100%;
-  height: 100%;
-  font-size: 24px;
-  font-weight: 700;
-  margin-top: 4rem;
-  .titleSpan {
-    margin: 135px 0 74px 0;
-  }
-  & > Button {
-    margin-bottom: 431px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    text-align: center;
-    margin: 35px 0 58px 0;
-  }
-
-  .inputBox {
-    ${flex({ justify: "space-between" })}
-    width: 327px;
-    height: 56px;
-    border-radius: 8px;
-    border: 1px solid #d3d3d3;
-    &:focus-within {
-      border: 1px solid black;
+    ${flex({ direction: 'column', justify: 'flex-start' })}
+    width: 100%;
+    height: 100%;
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 4rem;
+    .titleSpan {
+        margin: 135px 0 74px 0;
     }
-  }
-
-  .stInput {
-    border: none;
-    width: 215px;
-    height: 39px;
-    margin-left: 10px;
-    &:focus {
-      outline: none;
+    & > Button {
+        margin-bottom: 431px;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        text-align: center;
+        margin: 35px 0 58px 0;
     }
-  }
 
-  .inputCount {
-    font-weight: 400;
-    font-size: 16px;
-    color: #b7b7b7;
-    margin-right: 20px;
-    .currentCount {
-      font-weight: 700;
-      color: var(--black);
+    .inputBox {
+        ${flex({ justify: 'space-between' })}
+        width: 327px;
+        height: 56px;
+        border-radius: 8px;
+        border: 1px solid #d3d3d3;
+        &:focus-within {
+            border: 1px solid black;
+        }
     }
-  }
+
+    .stInput {
+        border: none;
+        width: 215px;
+        height: 39px;
+        margin-left: 10px;
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .inputCount {
+        font-weight: 400;
+        font-size: 16px;
+        color: #b7b7b7;
+        margin-right: 20px;
+        .currentCount {
+            font-weight: 700;
+            color: var(--black);
+        }
+    }
 `;
