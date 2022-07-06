@@ -15,7 +15,9 @@ const Btn = styled.button`
   width: 327px;
   height: 56px;
   border-radius: 8px;
+  font-weight: 500;
   font-size: 16px;
+  line-height: 130%;
   background-color: ${(props) =>
     props.theme === "dark" ? "var(--black)" : "var(--white)"};
   color: ${(props) =>

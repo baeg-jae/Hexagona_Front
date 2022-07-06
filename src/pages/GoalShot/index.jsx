@@ -2,6 +2,8 @@ import React from "react";
 import styled from "@emotion/styled";
 import flex from "components/Common/flex";
 import { StWrap } from "components/Common/GlobalStyles";
+import XIcon from "assets/img/Vector.png";
+import Dog from "assets/img/Dog.png";
 
 const GoalShot = ({ text, category }) => {
   return (
@@ -16,10 +18,12 @@ const GoalShot = ({ text, category }) => {
       </StImgDiv>
       <div className="circle">
         <StCircleDiv>
-          <span>💔</span>
+          <span>
+            <img src={XIcon} alt="" />
+          </span>
         </StCircleDiv>
         <StCircleDiv>
-          <span>❤️</span>
+          <span>❤</span>
         </StCircleDiv>
       </div>
     </StWrapFlex>
@@ -31,7 +35,6 @@ export default GoalShot;
 const StWrapFlex = styled(StWrap)`
   ${flex({ align: "flex-start" })}
   position: relative;
-  background-color: #e5e5e5;
   .circle {
     ${flex({})}
     position: absolute;
@@ -41,47 +44,66 @@ const StWrapFlex = styled(StWrap)`
 
 const StImgDiv = styled.div`
   position: relative;
-  width: 95%;
-  height: 80%;
+  width: 100%;
+  height: 592.58px;
   border-radius: 30px;
-  margin-top: 2rem;
-  background-image: url("https://huchu.link/fra0sHh");
+  margin-top: 59.21px;
+  background-image: url(${Dog});
   background-size: cover;
   background-position: center;
 
   .text {
-    ${flex({ direction: "column", align: "flex-start" })};
-    position: absolute;
-    bottom: 5%;
-    left: 5%;
+    ${flex({ direction: "column", align: "flex-start", justify: "flex-end" })};
+    width: 100%;
+    height: 100%;
     font-weight: 700;
+    margin-left: 17.05px;
     color: var(--white);
   }
   .firstText {
-    font-size: 1.4rem;
-    text-shadow: 2px 2px 0 var(--black), 2px -2px 0 var(--black),
-      -2px 2px 0 var(--black), -2px -2px 0 var(--black), 2px 0px 0 var(--black),
-      0px 2px 0 var(--black), -2px 0px 0 var(--black), 0px -2px 0 var(--black);
+    font-weight: 700;
+    font-size: 30.0802px;
+    line-height: 130%;
+    margin-bottom: 8.04px;
   }
   .secondText {
-    font-size: 0.7rem;
-    border-radius: 30px;
-    padding: 0.5rem 1rem;
-    background-color: rgba(211, 211, 211, 0.5);
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 66.1765px;
+    padding: 5.01337px 10.0267px;
+    margin-bottom: 16.37px;
+    font-weight: 400;
+    font-size: 13.0348px;
+    line-height: 130%;
   }
 `;
 
 const StCircleDiv = styled.div`
   position: relative;
-  width: 100px;
-  height: 100px;
-  background-color: var(--white);
-  border-radius: 100%;
+  width: 81.38px;
+  height: 81.38px;
+  background: #ffffff;
+  box-shadow: 10.8513px 9.49487px 23.059px rgba(0, 0, 0, 0.1);
+  border-radius: 51.5436px;
+
+  &:last-child {
+    color: #fff;
+    background: linear-gradient(
+      180deg,
+      #ff0000 0%,
+      rgba(255, 107, 0, 0.76) 100%
+    );
+  }
   span {
     position: absolute;
-    font-size: 2rem;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    font-weight: 400;
+    font-size: 46.1179px;
+    line-height: 130%;
+    img {
+      width: 29.19px;
+      height: 29.19px;
+    }
   }
 `;
