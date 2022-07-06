@@ -1,16 +1,16 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { StWrap } from "./GlobalStyles";
+import flex from "./flex";
+
 import Dog from "assets/img/Dog.png";
 import SmallMenu from "assets/img/smallMenu.png";
-import flex from "./flex";
 
 const Header = () => {
   return (
     <StWrapFlex>
       <HeaderWrap>
         <div className="LeftDiv">
-          <img className="ProfilePic" src={Dog} alt="" />
+          <div className="ProfilePic" />
           <div className="textDiv">
             <span className="secondaryText">갓생 입문자</span>
             <span>김갓생</span>
@@ -24,22 +24,29 @@ const Header = () => {
 
 export default Header;
 
-const StWrapFlex = styled(StWrap)`
+const StWrapFlex = styled.div`
   ${flex({ align: "flex-start" })}
+  width: 310px;
+  height: 80px;
   margin-top: 60px;
 `;
 
 const HeaderWrap = styled.div`
   ${flex({ justify: "space-between" })}
-  width: 310px;
-  height: 80px;
+  width: 100%;
+  height: 100%;
+
   .LeftDiv {
     ${flex({})}
+    margin-left: 33px;
   }
   .ProfilePic {
     width: 80px;
     height: 80px;
-    border-radius: 60px;
+    border-radius: 100px;
+    background-image: url(${Dog});
+    background-size: cover;
+    background-position: center;
   }
   .textDiv {
     ${flex({ direction: "column", align: "flex-start" })}
