@@ -15,6 +15,10 @@ export const StWrap = styled.div`
   height: 100vh;
 `;
 
+export const StWidth = styled.div`
+  width: 100%;
+`;
+
 export const StInput = styled.input`
   font-size: 16px;
   &::placeholder {
@@ -25,6 +29,7 @@ export const StInput = styled.input`
 
 export const StWrapFlex = styled(StWrap)`
   ${flex({ direction: "column" })}
+  color: #665547;
   .bigSpan {
     font-weight: 700;
     font-size: 64px;

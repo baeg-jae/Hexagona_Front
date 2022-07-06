@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "@emotion/styled";
 import flex from "components/Common/flex";
-import { StWrap } from "components/Common/GlobalStyles";
 import XIcon from "assets/img/Vector.png";
 import Dog from "assets/img/Dog.png";
 import NavigatorBar from "components/Common/NavigatorBar";
+import { StWrap } from "components/Common/GlobalStyles";
 
 const GoalShot = ({ text, category }) => {
   return (

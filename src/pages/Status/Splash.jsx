@@ -1,4 +1,3 @@
-import React from "react";
 import { StWrapFlex } from "components/Common/GlobalStyles";
 
 const Splash = () => {

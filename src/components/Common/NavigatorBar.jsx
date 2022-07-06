@@ -1,21 +1,30 @@
 import React from "react";
 import styled from "@emotion/styled";
 import flex from "./flex";
+import { NavLink } from "react-router-dom";
 import { FlexColumnDiv } from "./GlobalStyles";
 import { FaCamera } from "react-icons/fa";
 
 const NavigatorBar = () => {
   return (
     <StWrapFlex>
-      <span>MY</span>
-      <FlexColumnDiv style={{ width: "20%" }}>
-        <span className="smallText">Goal</span>
-        <span className="smallText">Shot</span>
-      </FlexColumnDiv>
-      <span>Feed</span>
-      <span>Chat</span>
-      <FlexColumnDiv style={{ width: "20%" }}>
-        <FaCamera style={{ color: "#b9b9b9" }} />
+      <NavLink to={"/home"}>
+        <span>MY</span>
+      </NavLink>
+      <NavLink to={"/goalshot"}>
+        <FlexColumnDiv>
+          <span className="smallText">Goal</span>
+          <span className="smallText">Shot</span>
+        </FlexColumnDiv>
+      </NavLink>
+      <NavLink to={"/feed"}>
+        <span>Feed</span>
+      </NavLink>
+      <NavLink to={"/chat"}>
+        <span>Chat</span>
+      </NavLink>
+      <FlexColumnDiv>
+        <FaCamera />
       </FlexColumnDiv>
     </StWrapFlex>
   );
@@ -27,12 +36,11 @@ const StWrapFlex = styled.div`
   ${flex({ justify: "space-around" })}
   position: fixed;
   bottom: 0;
-  width: 375px;
+  width: 100%;
   height: 68px;
   text-align: center;
   border-top: 1px solid #e3e3e3;
   span {
-    width: 20%;
     font-weight: 500;
     font-size: 13px;
     line-height: 130%;
@@ -42,5 +50,10 @@ const StWrapFlex = styled.div`
     font-weight: 400;
     font-size: 12px;
     line-height: 130%;
+  }
+  .active {
+    span {
+      color: #212121 !important;
+    }
   }
 `;
