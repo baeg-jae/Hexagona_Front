@@ -1,19 +1,19 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { Outlet } from 'react-router';
 
 const Header = () => {
     return (
         <HeaderWrap>
             <ImageWrap>
-                <Image>
-                    <image />
-                </Image>
+                <Image>{/* <image /> */}</Image>
                 <NicknameWrap>
                     <Laval>갓생 입문자</Laval>
                     <Nickname>김갓생</Nickname>
                 </NicknameWrap>
             </ImageWrap>
-            <div>...</div>
+            <NavigatorBar>...</NavigatorBar>
+            <Outlet />
         </HeaderWrap>
     );
 };
@@ -21,23 +21,33 @@ const Header = () => {
 export default Header;
 
 const HeaderWrap = styled.div`
+    width: 310px;
+    height: 80px;
+    /* display: flex;
+    justify-items: row;
+    justify-content: flex-start;
+    position: absolute; */
+    flex-direction: row;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-start;
-    padding: 0px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 15vh;
+    background-color: white;
+    color: transparent;
 `;
 const ImageWrap = styled.div`
     flex-direction: row;
-    justify-content: space-between;
-    width: 310px;
-    height: 80px;
+    display: flex;
+    overflow: hidden;
+    margin-left: 33px;
 `;
 const Image = styled.div`
     width: 80px;
     height: 80px;
     border-radius: 80px;
-    background-color: white;
+
+    background-color: black;
 `;
 const NicknameWrap = styled.div`
     flex-direction: column;
@@ -51,4 +61,8 @@ const Laval = styled.p`
 const Nickname = styled.div`
     color: black;
     font-size: 18px;
+`;
+const NavigatorBar = styled.div`
+    margin-right: 13px;
+    color: black;
 `;
