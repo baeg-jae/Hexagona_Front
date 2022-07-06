@@ -22,3 +22,19 @@ export const StInput = styled.input`
     font-size: 16px;
   }
 `;
+
+export const StWrapFlex = styled(StWrap)`
+  ${flex({ direction: "column" })}
+  .bigSpan {
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 130%;
+    margin-bottom: 6px;
+  }
+  .smallSpan {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 130%;
+    margin-bottom: 42px;
+  }
+`;
