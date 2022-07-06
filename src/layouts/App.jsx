@@ -1,6 +1,7 @@
 import MobileFrame from "components/Common/MobileFrame";
 import Routing from "components/Routings/Routing";
 import styled from "@emotion/styled";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 function App() {
   return (

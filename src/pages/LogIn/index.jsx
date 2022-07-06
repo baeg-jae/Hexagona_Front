@@ -4,7 +4,7 @@ import flex from "components/Common/flex";
 import { KAKAO_AUTH_URL } from "shared/kakao/kakao";
 import { GOOGLE_AUTH_URL } from "shared/google/google";
 import LoginImg from "assets/img/LoginImg.png";
-import Splash from "pages/Status/Splash";
+import Loading from "pages/Status/Loading";
 
 const handleButtonColor = (color) => {
   switch (color) {
@@ -52,7 +52,7 @@ const LogIn = () => {
     //   </div>
     // </StFirstPageDiv>
     <>
-      <Splash />
+      <Loading />
     </>
   );
 };
