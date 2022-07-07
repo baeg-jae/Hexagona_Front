@@ -39,3 +39,33 @@ export const handlePictureProps = (text) => {
       return;
   }
 };
+
+export const categoryTextColorHandler = (col) => {
+  switch (col) {
+    case "one":
+      return "#FFF";
+    case "two":
+      return "#3F3F3F";
+    case "three":
+      return "#FFF";
+    case "four":
+      return "#202020";
+    default:
+      return;
+  }
+};
+
+export const categoryBGColorHandler = (col) => {
+  switch (col) {
+    case "one":
+      return "rgba(255, 255, 255, 0.25)";
+    case "two":
+      return "rgba(255, 255, 255, 0.6)";
+    case "three":
+      return "#5E534C";
+    case "four":
+      return "rgba(255, 255, 255, 0.7)";
+    default:
+      return;
+  }
+};
