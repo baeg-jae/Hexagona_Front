@@ -180,7 +180,7 @@ const StImg = styled.div`
   margin-left: 31.5px;
   overflow: hidden;
   width: 105px;
-  height: 76px;
+  height: 80px;
   background-image: url(${EmptyMission});
   background-size: contain;
   background-position: center;
