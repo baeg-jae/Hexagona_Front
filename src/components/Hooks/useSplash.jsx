@@ -6,7 +6,7 @@ const useSplash = () => {
   useEffect(() => {
     let interval = setInterval(() => {
       navigate("/home");
-    }, 5000);
+    }, 3000);
     return () => {
       clearInterval(interval);
     };

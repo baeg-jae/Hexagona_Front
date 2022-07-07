@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { keyframes } from "@emotion/react";
 import flex from "./flex";
 import "./font.css";
 
@@ -42,4 +43,17 @@ export const StWrapFlex = styled(StWrap)`
     line-height: 130%;
     margin-bottom: 42px;
   }
+`;
+export const scaleAnimation = keyframes`
+  50% {
+    transform: scale(1.05);
+  }
+`;
+
+export const fadeAnimation = keyframes`
+ 0% { 
+  background-color: rgba(0,0,0,1);
+  color: rgba(0,0,0,1) 
+}
+  100% { opacity: 1; }
 `;

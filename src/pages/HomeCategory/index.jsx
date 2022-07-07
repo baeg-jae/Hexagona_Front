@@ -42,22 +42,24 @@ const HomeCategory = () => {
         </div>
       </StContainer>
       {flag && (
-        <StModal>
-          <div className="StInnerContainer">
-            <div className="InfoContainer">
-              <span className="missionTitle">목표 생성하기</span>
-              <input
-                className="missionInput"
-                type="text"
-                placeholder="ex) 매일 런닝 30분"
-              />
-              <FlexRowDiv>
-                <StButton onClick={onCancelBtnHandler}>취소</StButton>
-                <StButton color="brown">등록하기</StButton>
-              </FlexRowDiv>
+        <>
+          <StModal>
+            <div className="StInnerContainer">
+              <div className="InfoContainer">
+                <span className="missionTitle">목표 생성하기</span>
+                <input
+                  className="missionInput"
+                  type="text"
+                  placeholder="ex) 매일 런닝 30분"
+                />
+                <FlexRowDiv>
+                  <StButton onClick={onCancelBtnHandler}>취소</StButton>
+                  <StButton color="brown">등록하기</StButton>
+                </FlexRowDiv>
+              </div>
             </div>
-          </div>
-        </StModal>
+          </StModal>
+        </>
       )}
     </StWrap>
   );
@@ -117,7 +119,7 @@ const StContainer = styled.div`
   }
 `;
 
-const StModal = styled.div`
+const StModal = styled.button`
   ${flex({})}
   position: absolute;
   top: 0;
