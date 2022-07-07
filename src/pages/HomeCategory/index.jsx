@@ -143,7 +143,7 @@ const StModal = styled.div`
 const StButton = styled.button`
   width: 131.94px;
   height: 48px;
-  border-radius: 62px;
+  border-radius: 8px;
   margin: 0 4.06px 0 4.06px;
   border: 1px solid ${(props) => (props.color === "brown" ? "none" : "#CACDD3")};
   background-color: ${(props) =>

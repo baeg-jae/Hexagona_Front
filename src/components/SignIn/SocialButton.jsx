@@ -20,7 +20,7 @@ const StButtonDiv = styled.div`
   ${flex({ direction: "column" })}
   width: 327px;
   height: 56px;
-  border-radius: 30px;
+  border-radius: 10px;
   margin-top: 8px;
   background-color: ${(props) => handleButtonColor(props.name)};
   color: ${(props) => handleTextColor(props.name)};
