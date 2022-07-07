@@ -1,6 +1,8 @@
 import { StWrapFlex } from "components/Common/GlobalStyles";
+import useSplash from "components/Hooks/useSplash";
 
 const Splash = () => {
+  useSplash();
   return (
     <StWrapFlex>
       <span className="smallSpan" style={{ margin: "0" }}>
