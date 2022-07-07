@@ -12,9 +12,9 @@ const GoalShot = ({ text, category }) => {
       <StWrapFlex>
         <div style={{ display: "flex" }}>
           {Array.from(
-            [1, 2, 3].map(() => {
+            [1, 2, 3].map((v, i) => {
               return (
-                <StImgDiv>
+                <StImgDiv key={i}>
                   <div className="gradientImg">
                     <div className="text">
                       {/* 중요- 추후에 카테고리 생성시 text props로 대체되야 합니다 */}
@@ -74,10 +74,10 @@ const StImgDiv = styled.div`
   background-image: url(${Dog});
   background-size: cover;
   background-position: center;
-  &:nth-child(1) {
+  &:nth-of-type(1) {
     margin: 106px 10px 0 0;
   }
-  &:nth-child(3) {
+  &:nth-of-type(3) {
     margin: 106px 0 0 10px;
   }
 
