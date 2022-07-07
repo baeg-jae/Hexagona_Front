@@ -2,6 +2,7 @@ import React, { useCallback, useState } from "react";
 import styled from "@emotion/styled";
 import { StWidth, FlexRowDiv } from "components/Common/GlobalStyles";
 import flex from "components/Common/flex";
+import EmptyMission from "assets/img/noMission.png";
 
 const HomeCategory = () => {
   const [flag, setFlag] = useState(false);
@@ -22,10 +23,22 @@ const HomeCategory = () => {
           <span>수행완료</span>
         </div>
         <div className="missions">
-          <div className="mission" onClick={() => onAddMissionHandler(1)}></div>
-          <div className="mission" onClick={() => onAddMissionHandler(2)}></div>
-          <div className="mission" onClick={() => onAddMissionHandler(3)}></div>
-          <div className="mission" onClick={() => onAddMissionHandler(4)}></div>
+          <div className="mission" onClick={() => onAddMissionHandler(1)}>
+            <StImg />
+            <span class="innerText">목표를 생성해주세요.</span>
+          </div>
+          <div className="mission" onClick={() => onAddMissionHandler(2)}>
+            <StImg />
+            <span class="innerText">목표를 생성해주세요.</span>
+          </div>
+          <div className="mission" onClick={() => onAddMissionHandler(3)}>
+            <StImg />
+            <span class="innerText">목표를 생성해주세요.</span>
+          </div>
+          <div className="mission" onClick={() => onAddMissionHandler(4)}>
+            <StImg />
+            <span class="innerText">목표를 생성해주세요.</span>
+          </div>
         </div>
       </StContainer>
       {flag && (
@@ -84,11 +97,22 @@ const StContainer = styled.div`
     width: 345px;
     height: 444px;
     .mission {
+      position: relative;
       width: 345px;
       height: 105px;
       border: 1px solid #e0e0e0;
       border-radius: 20px;
       margin-bottom: 8px;
+      .innerText {
+        position: absolute;
+        right: 24px;
+        bottom: 24px;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 29px;
+        letter-spacing: -0.02em;
+        color: #727272;
+      }
     }
   }
 `;
@@ -149,4 +173,15 @@ const StButton = styled.button`
   background-color: ${(props) =>
     props.color === "brown" ? "#956C4A" : "var(--white)"};
   color: ${(props) => (props.color === "brown" ? "#fff" : "#4C525C")};
+`;
+
+const StImg = styled.div`
+  margin-top: 24.25px;
+  margin-left: 31.5px;
+  overflow: hidden;
+  width: 105px;
+  height: 76px;
+  background-image: url(${EmptyMission});
+  background-size: contain;
+  background-position: center;
 `;
