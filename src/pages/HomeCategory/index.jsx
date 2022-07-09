@@ -48,10 +48,10 @@ const HomeCategory = () => {
 
   const onCompletedHandler = useCallback(
     (payload) => {
-      alert("미션이 완료 되었습니다. 사진을 추가해주세요");
       completedTodoMutation.mutate({
         missionId: payload.missionId,
       });
+      alert("미션이 완료 되었습니다. 사진을 추가해주세요");
     },
     [completedTodoMutation]
   );
