@@ -5,15 +5,15 @@ import ProtectedRoutesNoLogin from "./ProtectedNoLogin";
 import ProtectedRoutesYesLogin from "./ProtectedYesLogin";
 import Splash from "pages/Status/Splash";
 
-const Kakao = loadable(() => import("pages/SocialLogIn/Kakao"));
-const Google = loadable(() => import("pages/SocialLogIn/Google"));
-const SignUp = loadable(() => import("pages/SignUp"));
-const LogIn = loadable(() => import("pages/LogIn"));
-const Error = loadable(() => import("pages/Status/Error"));
-const Home = loadable(() => import("pages/Home"));
-const Feed = loadable(() => import("pages/Feed"));
-const GoalShot = loadable(() => import("pages/GoalShot"));
-const FeedDetail = loadable(() => import("pages/FeedDetail"));
+const Kakao = loadable(() => import('pages/SocialLogIn/Kakao'));
+const Google = loadable(() => import('pages/SocialLogIn/Google'));
+const SignUp = loadable(() => import('pages/SignUp'));
+const LogIn = loadable(() => import('pages/LogIn'));
+const Error = loadable(() => import('pages/Status/Error'));
+const Home = loadable(() => import('pages/Home'));
+const Feed = loadable(() => import('pages/Feed'));
+const GoalShot = loadable(() => import('pages/GoalShot'));
+const FeedDetail = loadable(() => import('pages/FeedDetail'));
 
 const Routing = () => {
   return (
@@ -30,6 +30,7 @@ const Routing = () => {
       <Route path="/feed" element={<Feed />} />
       <Route path="/goalshot" element={<GoalShot />} />
       <Route path="/feed/:id" element={<FeedDetail />} />
+      <Route path="/detail" element={<FeedDetail />} />
       {/* </Route> */}
       <Route path="*" element={<Error />} />
     </Routes>
