@@ -39,6 +39,7 @@ const StWrapFlex = styled.div`
   width: 100%;
   height: 68px;
   text-align: center;
+  background-color: #fff;
   border-top: 1px solid #e3e3e3;
   span {
     font-weight: 500;

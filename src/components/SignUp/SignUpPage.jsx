@@ -8,7 +8,7 @@ import IntroPage from "./IntroPage";
 import apis from "shared/api/main";
 import { badWords } from "./IntroPageTexts";
 
-const MAX_LENGTH = 10;
+const MAX_LENGTH = 7;
 const __signup = async (payload) => {
   const data = await apis.signUp(payload);
   return data;

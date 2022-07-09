@@ -1,27 +1,36 @@
 import React from "react";
 import styled from "@emotion/styled";
 import flex from "./flex";
+import useGetUser from "components/Hooks/useGetUser";
 
 import Dog from "assets/img/Dog.png";
 import SmallMenu from "assets/img/smallMenu.png";
 
 const Header = () => {
+  const { data, isLoading } = useGetUser();
   return (
-    <StWrapFlex>
-      <HeaderWrap>
-        <div className="LeftDiv">
-          <div className="ProfilePic" />
-          <div className="textDiv">
-            <span>갓생러 김준호</span>
+    <StWrap>
+      <StWrapFlex>
+        <HeaderWrap>
+          <div className="LeftDiv">
+            <div className="ProfilePic" />
+            <div className="textDiv">
+              <span>갓생러 {data?.nickname}</span>
+            </div>
           </div>
-        </div>
-        <StImg src={SmallMenu} alt="" />
-      </HeaderWrap>
-    </StWrapFlex>
+          <StImg src={SmallMenu} alt="" />
+        </HeaderWrap>
+      </StWrapFlex>
+    </StWrap>
   );
 };
 
 export default Header;
+
+const StWrap = styled.div`
+  ${flex({})}
+  width: 100%;
+`;
 
 const StWrapFlex = styled.div`
   ${flex({ align: "flex-start" })}

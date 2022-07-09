@@ -1,27 +1,13 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React from "react";
 import { StWrapFlex } from "components/Common/GlobalStyles";
-import Row from "components/FeedComponents/Row";
+import Column from "components/FeedComponents/Column";
 import NavigatorBar from "components/Common/NavigatorBar";
 
-const ScrollLocation = 70;
-
 const Feed = () => {
-  const scrollRef = useRef(null);
-
-  const onScrollEvent = useCallback(() => {
-    scrollRef.current.scrollTo(ScrollLocation, 0);
-  }, []);
-
-  useEffect(() => {
-    onScrollEvent(scrollRef);
-  });
-
   return (
     <>
       <StWrapFlex>
-        <Row />
-        <Row scrollRef={scrollRef} />
-        <Row />
+        <Column />
       </StWrapFlex>
       <NavigatorBar />
     </>
