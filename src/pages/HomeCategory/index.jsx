@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { StWidth } from "components/Common/GlobalStyles";
 import flex from "components/Common/flex";
@@ -8,7 +8,7 @@ import Loading from "pages/Status/Loading";
 import { useParams } from "react-router-dom";
 import AddModal from "components/Common/addModal";
 import { useMutation, useQueryClient } from "react-query";
-
+import AddPost from "components/missionComponents/AddPost";
 import {
   missionBG,
   missionCamera,
@@ -71,6 +71,11 @@ const HomeCategory = () => {
             return list[i] !== undefined ? (
               list[i]?.missionState ? (
                 <StCompletedDiv number={i}>
+                  <AddPost
+                    missionId={list[i]?.missionId}
+                    category={category}
+                    postContent={list[i]?.missionContent}
+                  />
                   <span className="missionStatusText">수행중</span>
                   <StImg number={i} />
                   <span className="innerText">{list[i]?.missionContent}</span>

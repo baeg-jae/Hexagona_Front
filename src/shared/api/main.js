@@ -13,6 +13,10 @@ export const apis = {
   completedTodo: (payload) =>
     api.put(`/api/missions/changeMissionState/${payload.missionId}`, {}),
   deleteTodo: (payload) => api.delete(`/todos/${payload.id}`),
+
+  // post CRUD
+  addPost: (payload) => api.post("/api/post", payload),
+  getPost: () => api.get("/api/post"),
 };
 
 export default apis;
