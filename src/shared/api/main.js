@@ -17,6 +17,7 @@ export const apis = {
   // post CRUD
   addPost: (payload) => api.post("/api/post", payload),
   getPost: () => api.get("/api/posts"),
+  getPostDetail: (payload) => api.get(`/api/post/${payload.postId}`),
 };
 
 export default apis;

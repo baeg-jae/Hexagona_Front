@@ -1,17 +1,24 @@
 import React, { useCallback } from "react";
 import styled from "@emotion/styled";
 import { FlexRowDiv } from "components/Common/GlobalStyles";
-import Dog from "assets/img/Dog.png";
 import useGetPost from "components/Hooks/useGetPost";
 import loadable from "@loadable/component";
+import { useNavigate } from "react-router-dom";
 
 const Loading = loadable(() => import("pages/Status/Loading"));
 
 const Column = () => {
   const { data, isLoading } = useGetPost();
-  const onClickHandler = useCallback(() => {
-    // onclick event
-  }, []);
+  const navigate = useNavigate();
+  const onClickHandler = useCallback(
+    (postId) => {
+      // onclick event
+      navigate(`/detail/${postId}`);
+    },
+    [navigate]
+  );
+
+  console.log(data);
 
   if (isLoading) {
     return <Loading />;
@@ -23,8 +30,9 @@ const Column = () => {
           return i % 2 === 0 ? (
             <StImgDiv
               className="imgDiv"
-              onClick={onClickHandler}
+              onClick={() => onClickHandler(v?.postId)}
               coverImg={v?.photoUrl}
+              style={{ marginRight: "4.5px" }}
             />
           ) : (
             ""
@@ -38,8 +46,9 @@ const Column = () => {
           return i % 2 === 1 ? (
             <StImgDiv
               className="imgDiv"
-              onClick={onClickHandler}
+              onClick={() => onClickHandler(v?.postId)}
               coverImg={v?.photoUrl}
+              style={{ marginLeft: "4.5px" }}
             />
           ) : (
             ""
@@ -63,7 +72,12 @@ const StRowFirst = styled.div`
   display: grid;
   grid-template-columns: 158px;
   gap: 9px;
-  margin-right: 4.5;
+`;
+
+const StRowSecond = styled.div`
+  display: grid;
+  grid-template-columns: 158px;
+  gap: 9px;
 `;
 
 const StImgDiv = styled.div`
@@ -72,15 +86,8 @@ const StImgDiv = styled.div`
   background-size: cover;
   background-position: center;
   border-radius: 20px;
-  margin-right: 4.5px;
 `;
 
-const StRowSecond = styled.div`
-  display: grid;
-  grid-template-columns: 158px;
-  gap: 9px;
-  margin-right: 4.5;
-`;
 const EmptyDiv = styled.div`
   width: 158px;
   height: 50px;

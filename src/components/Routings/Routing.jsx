@@ -30,7 +30,7 @@ const Routing = () => {
         <Route path="/feed" element={<Feed />} />
         <Route path="/goalshot" element={<GoalShot />} />
         <Route path="/feed/:id" element={<FeedDetail />} />
-        <Route path="/detail" element={<FeedDetail />} />
+        <Route path="/detail/:postId" element={<FeedDetail />} />
       </Route>
       <Route path="*" element={<Error />} />
     </Routes>
