@@ -2,12 +2,16 @@ import React, { useCallback, useState } from "react";
 import styled from "@emotion/styled";
 import { StWidth } from "components/Common/GlobalStyles";
 import flex from "components/Common/flex";
-import EmptyMission from "assets/img/noMission.png";
 import useCategory from "components/Hooks/useCategory";
 import useGetMission from "components/Hooks/useGetMission";
 import Loading from "pages/Status/Loading";
 import { useParams } from "react-router-dom";
 import AddModal from "components/Common/addModal";
+import {
+  missionBG,
+  missionCamera,
+  missionText,
+} from "components/Common/ButtonPropsHandler";
 
 const HomeCategory = () => {
   const [flag, setFlag] = useState(false);
@@ -15,9 +19,10 @@ const HomeCategory = () => {
   const { category } = useParams();
   const categoryCheck = useCategory();
   const { data, isLoading } = useGetMission();
+  const arr = [1, 2, 3, 4];
 
   const list = data
-    ?.map((v, i) => {
+    ?.map((v) => {
       return category === v.category && v;
     })
     .filter((v) => {
@@ -39,50 +44,20 @@ const HomeCategory = () => {
           <span>{categoryCheck}</span>
         </div>
         <div className="missions">
-          {list[0] !== undefined ? (
-            <div className="mission">
-              <StImg />
-              <span className="innerText">{list[0]?.missionContent}</span>
-            </div>
-          ) : (
-            <div className="mission" onClick={onToggleModal}>
-              <StImg />
-              <span className="innerText">목표를 생성해주세요.</span>
-            </div>
-          )}
-          {list[1] !== undefined ? (
-            <div className="mission">
-              <StImg />
-              <span className="innerText">{list[1]?.missionContent}</span>
-            </div>
-          ) : (
-            <div className="mission" onClick={onToggleModal}>
-              <StImg />
-              <span className="innerText">목표를 생성해주세요.</span>
-            </div>
-          )}
-          {list[2] !== undefined ? (
-            <div className="mission">
-              <StImg />
-              <span className="innerText">{list[2]?.missionContent}</span>
-            </div>
-          ) : (
-            <div className="mission" onClick={onToggleModal}>
-              <StImg />
-              <span className="innerText">목표를 생성해주세요.</span>
-            </div>
-          )}
-          {list[3] !== undefined ? (
-            <div className="mission">
-              <StImg />
-              <span className="innerText">{list[3]?.missionContent}</span>
-            </div>
-          ) : (
-            <div className="mission" onClick={onToggleModal}>
-              <StImg />
-              <span className="innerText">목표를 생성해주세요.</span>
-            </div>
-          )}
+          {arr.map((_, i) => {
+            return list[i] !== undefined ? (
+              <StDiv number={i}>
+                <span className="missionStatusText">수행중</span>
+                <StImg number={i} />
+                <span className="innerText">{list[i]?.missionContent}</span>
+              </StDiv>
+            ) : (
+              <StDiv onClick={onToggleModal}>
+                <StImg />
+                <span className="innerText">목표를 생성해주세요.</span>
+              </StDiv>
+            );
+          })}
         </div>
       </StContainer>
       {flag && (
@@ -128,37 +103,46 @@ const StContainer = styled.div`
       color: #202020;
     }
   }
-  .missions {
-    width: 345px;
-    height: 444px;
-    .mission {
-      position: relative;
-      width: 345px;
-      height: 105px;
-      border: 1px solid #e0e0e0;
-      border-radius: 20px;
-      margin-bottom: 8px;
-      .innerText {
-        position: absolute;
-        right: 24px;
-        bottom: 24px;
-        font-weight: 600;
-        font-size: 24px;
-        line-height: 29px;
-        letter-spacing: -0.02em;
-        color: #727272;
-      }
-    }
+`;
+const StDiv = styled.div`
+  position: relative;
+  width: 345px;
+  height: 105px;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  margin-bottom: 8px;
+  background-color: ${(props) => missionBG(props.number)};
+  .missionStatusText {
+    position: absolute;
+    top: 23.5px;
+    left: 20px;
+    padding: 8px 16px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: -0.02em;
+    background: #ffffff;
+    border-radius: 63px;
+    color: ${(props) => missionText(props.number)};
+  }
+  .innerText {
+    position: absolute;
+    right: 24px;
+    bottom: 24px;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    letter-spacing: -0.02em;
+    color: ${(props) => missionText(props.number)};
   }
 `;
 
 const StImg = styled.div`
   margin-top: 24.25px;
   margin-left: 31.5px;
-  overflow: hidden;
   width: 105px;
   height: 76px;
-  background-image: url(${EmptyMission});
-  background-size: contain;
+  background-image: url(${(props) => missionCamera(props.number)});
+  background-size: cover;
   background-position: center;
 `;
