@@ -1,16 +1,31 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useState } from "react";
 import styled from "@emotion/styled";
 import { StWidth, FlexRowDiv } from "components/Common/GlobalStyles";
 import flex from "components/Common/flex";
 import EmptyMission from "assets/img/noMission.png";
 import useCategory from "components/Hooks/useCategory";
 import useAddMission from "components/Hooks/useAddMission";
+import useGetMission from "components/Hooks/useGetMission";
+import Loading from "pages/Status/Loading";
+import { useParams } from "react-router-dom";
 
 const HomeCategory = () => {
   const [flag, setFlag] = useState(false);
   const [content, setContent] = useState("");
+  const { category } = useParams();
   const categoryCheck = useCategory();
   const { mutate } = useAddMission();
+  const { data, isLoading } = useGetMission();
+
+  const list = data
+    ?.map((v, i) => {
+      return category === v.category && v;
+    })
+    .filter((v) => {
+      return v !== false;
+    });
+
+  console.log(list);
 
   const onToggleModal = useCallback(() => {
     setFlag((value) => !value);
@@ -19,14 +34,18 @@ const HomeCategory = () => {
   const onAddMissionHandler = useCallback(() => {
     mutate({
       missionContent: content,
-      category: categoryCheck,
+      category: category,
     });
     setFlag((value) => !value);
-  }, [categoryCheck, mutate, content]);
+  }, [category, mutate, content]);
 
   const onCancelBtnHandler = useCallback(() => {
     setFlag((value) => !value);
   }, []);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <StWrap>
@@ -35,22 +54,50 @@ const HomeCategory = () => {
           <span>{categoryCheck}</span>
         </div>
         <div className="missions">
-          <div className="mission" onClick={onToggleModal}>
-            <StImg />
-            <span className="innerText">목표를 생성해주세요.</span>
-          </div>
-          <div className="mission" onClick={onToggleModal}>
-            <StImg />
-            <span className="innerText">목표를 생성해주세요.</span>
-          </div>
-          <div className="mission" onClick={onToggleModal}>
-            <StImg />
-            <span className="innerText">목표를 생성해주세요.</span>
-          </div>
-          <div className="mission" onClick={onToggleModal}>
-            <StImg />
-            <span className="innerText">목표를 생성해주세요.</span>
-          </div>
+          {list[0] !== undefined ? (
+            <div className="mission">
+              <StImg />
+              <span className="innerText">{list[0]?.missionContent}</span>
+            </div>
+          ) : (
+            <div className="mission" onClick={onToggleModal}>
+              <StImg />
+              <span className="innerText">목표를 생성해주세요.</span>
+            </div>
+          )}
+          {list[1] !== undefined ? (
+            <div className="mission">
+              <StImg />
+              <span className="innerText">{list[1]?.missionContent}</span>
+            </div>
+          ) : (
+            <div className="mission" onClick={onToggleModal}>
+              <StImg />
+              <span className="innerText">목표를 생성해주세요.</span>
+            </div>
+          )}
+          {list[2] !== undefined ? (
+            <div className="mission">
+              <StImg />
+              <span className="innerText">{list[2]?.missionContent}</span>
+            </div>
+          ) : (
+            <div className="mission" onClick={onToggleModal}>
+              <StImg />
+              <span className="innerText">목표를 생성해주세요.</span>
+            </div>
+          )}
+          {list[3] !== undefined ? (
+            <div className="mission">
+              <StImg />
+              <span className="innerText">{list[3]?.missionContent}</span>
+            </div>
+          ) : (
+            <div className="mission" onClick={onToggleModal}>
+              <StImg />
+              <span className="innerText">목표를 생성해주세요.</span>
+            </div>
+          )}
         </div>
       </StContainer>
       {flag && (

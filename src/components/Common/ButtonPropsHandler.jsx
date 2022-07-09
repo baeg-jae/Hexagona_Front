@@ -69,3 +69,18 @@ export const categoryBGColorHandler = (col) => {
       return;
   }
 };
+
+export const missionBG = (col) => {
+  switch (col) {
+    case "one":
+      return "rgba(255, 255, 255, 0.25)";
+    case "two":
+      return "rgba(255, 255, 255, 0.6)";
+    case "three":
+      return "#5E534C";
+    case "four":
+      return "rgba(255, 255, 255, 0.7)";
+    default:
+      return;
+  }
+};

@@ -7,7 +7,7 @@ const useGetUser = () => {
     return data;
   };
 
-  return useQuery("todos", fetcher);
+  return useQuery("users", fetcher);
 };
 
 export default useGetUser;

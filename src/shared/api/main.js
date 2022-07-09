@@ -6,9 +6,9 @@ export const apis = {
   dupCheck: (payload) => api.post("/user/signup/checkNickname", payload),
   getUser: () => api.get("/user/auth"),
 
-  // article CRUD
-  getTodos: () => api.get("/todos"),
-  addTodo: (payload) => api.post("/api/missions", payload),
+  // mission CRUD
+  getTodos: () => api.get("/api/category/missions"),
+  addTodo: (payload) => api.post("api/category/missions", payload),
   updateTodo: (payload) => api.patch(`/todos/${payload.id}`, payload),
   deleteTodo: (payload) => api.delete(`/todos/${payload.id}`),
 };
