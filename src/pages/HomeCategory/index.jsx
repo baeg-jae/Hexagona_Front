@@ -141,7 +141,7 @@ const StImg = styled.div`
   margin-top: 24.25px;
   margin-left: 31.5px;
   width: 105px;
-  height: 76px;
+  height: 79px;
   background-image: url(${(props) => missionCamera(props.number)});
   background-size: cover;
   background-position: center;

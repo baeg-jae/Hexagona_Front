@@ -12,7 +12,6 @@ const useAddMission = () => {
   return useMutation(addTodo, {
     onSuccess: (data) => {
       queryClient.invalidateQueries("todos");
-      console.log(data);
       alert("작성 완료!");
     },
     onError: () => {

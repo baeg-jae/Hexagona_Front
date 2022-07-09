@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import flex from "components/Common/flex";
 import { FlexRowDiv } from "./GlobalStyles";
 import useAddMission from "components/Hooks/useAddMission";
+import { badWords } from "components/SignUp/IntroPageTexts";
 
 const AddModal = ({ setContent, content, category, setFlag }) => {
   const { mutate } = useAddMission();
@@ -18,6 +19,19 @@ const AddModal = ({ setContent, content, category, setFlag }) => {
   const onCancelBtnHandler = useCallback(() => {
     setFlag((value) => !value);
   }, [setFlag]);
+
+  //욕설탐지기
+  const bogusCheck = useCallback(() => {
+    const foundSwears = badWords.filter((word) =>
+      content.toLowerCase().includes(word.toLowerCase())
+    );
+    if (foundSwears.length) {
+      alert("미션을 제대로 적어주세요.");
+    } else {
+      // 욕설탐지기에 안걸리면 실행
+      onAddMissionHandler();
+    }
+  }, [content, onAddMissionHandler]);
   return (
     <StModal>
       <div className="StInnerContainer">
@@ -31,7 +45,7 @@ const AddModal = ({ setContent, content, category, setFlag }) => {
           />
           <FlexRowDiv>
             <StButton onClick={onCancelBtnHandler}>취소</StButton>
-            <StButton color="brown" onClick={() => onAddMissionHandler()}>
+            <StButton color="brown" onClick={() => bogusCheck()}>
               등록하기
             </StButton>
           </FlexRowDiv>
