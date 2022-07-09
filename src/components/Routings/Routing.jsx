@@ -19,12 +19,12 @@ const Routing = () => {
   return (
     <Routes>
       <Route path="/" element={<Splash />} />
-      {/* <Route element={<ProtectedRoutesYesLogin />}> */}
-      <Route path="/login" element={<LogIn />} />
-      <Route path="/signup" element={<SignUp />} />
-      <Route path="/oauth/kakao/callback" element={<Kakao />} />
-      <Route path="/oauth/google/callback" element={<Google />} />
-      {/* </Route> */}
+      <Route element={<ProtectedRoutesYesLogin />}>
+        <Route path="/login" element={<LogIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/oauth/kakao/callback" element={<Kakao />} />
+        <Route path="/oauth/google/callback" element={<Google />} />
+      </Route>
       {/* <Route element={<ProtectedRoutesNoLogin />}> */}
       <Route path="/home/*" element={<Home />} />
       <Route path="/feed" element={<Feed />} />

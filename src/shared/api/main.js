@@ -8,7 +8,7 @@ export const apis = {
 
   // article CRUD
   getTodos: () => api.get("/todos"),
-  addTodo: (payload) => api.post("/todos", payload),
+  addTodo: (payload) => api.post("/api/missions", payload),
   updateTodo: (payload) => api.patch(`/todos/${payload.id}`, payload),
   deleteTodo: (payload) => api.delete(`/todos/${payload.id}`),
 };

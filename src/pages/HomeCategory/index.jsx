@@ -1,16 +1,28 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { StWidth, FlexRowDiv } from "components/Common/GlobalStyles";
 import flex from "components/Common/flex";
 import EmptyMission from "assets/img/noMission.png";
 import useCategory from "components/Hooks/useCategory";
+import useAddMission from "components/Hooks/useAddMission";
 
 const HomeCategory = () => {
   const [flag, setFlag] = useState(false);
+  const [content, setContent] = useState("");
   const categoryCheck = useCategory();
-  const onAddMissionHandler = useCallback((id) => {
+  const { mutate } = useAddMission();
+
+  const onToggleModal = useCallback(() => {
     setFlag((value) => !value);
   }, []);
+
+  const onAddMissionHandler = useCallback(() => {
+    mutate({
+      missionContent: content,
+      category: categoryCheck,
+    });
+    setFlag((value) => !value);
+  }, [categoryCheck, mutate, content]);
 
   const onCancelBtnHandler = useCallback(() => {
     setFlag((value) => !value);
@@ -23,21 +35,21 @@ const HomeCategory = () => {
           <span>{categoryCheck}</span>
         </div>
         <div className="missions">
-          <div className="mission" onClick={() => onAddMissionHandler(1)}>
+          <div className="mission" onClick={onToggleModal}>
             <StImg />
-            <span class="innerText">목표를 생성해주세요.</span>
+            <span className="innerText">목표를 생성해주세요.</span>
           </div>
-          <div className="mission" onClick={() => onAddMissionHandler(2)}>
+          <div className="mission" onClick={onToggleModal}>
             <StImg />
-            <span class="innerText">목표를 생성해주세요.</span>
+            <span className="innerText">목표를 생성해주세요.</span>
           </div>
-          <div className="mission" onClick={() => onAddMissionHandler(3)}>
+          <div className="mission" onClick={onToggleModal}>
             <StImg />
-            <span class="innerText">목표를 생성해주세요.</span>
+            <span className="innerText">목표를 생성해주세요.</span>
           </div>
-          <div className="mission" onClick={() => onAddMissionHandler(4)}>
+          <div className="mission" onClick={onToggleModal}>
             <StImg />
-            <span class="innerText">목표를 생성해주세요.</span>
+            <span className="innerText">목표를 생성해주세요.</span>
           </div>
         </div>
       </StContainer>
@@ -51,10 +63,13 @@ const HomeCategory = () => {
                   className="missionInput"
                   type="text"
                   placeholder="ex) 매일 런닝 30분"
+                  onChange={(e) => setContent(e.target.value)}
                 />
                 <FlexRowDiv>
                   <StButton onClick={onCancelBtnHandler}>취소</StButton>
-                  <StButton color="brown">등록하기</StButton>
+                  <StButton color="brown" onClick={() => onAddMissionHandler()}>
+                    등록하기
+                  </StButton>
                 </FlexRowDiv>
               </div>
             </div>
@@ -85,7 +100,7 @@ const StContainer = styled.div`
     width: 201px;
     height: 27px;
 
-    &:first-child {
+    &:first-of-type {
       margin-left: 9px;
     }
     span {

@@ -3,8 +3,7 @@ import styled from "@emotion/styled";
 import { FlexRowDiv } from "components/Common/GlobalStyles";
 import Dog from "assets/img/Dog.png";
 
-const Column = ({ scrollRef }) => {
-  // 전체 게시글 정보를 여기서 get 한다음에 아래 div에 채워준다
+const Column = () => {
   const onClickHandler = useCallback(() => {
     // onclick event
   }, []);
