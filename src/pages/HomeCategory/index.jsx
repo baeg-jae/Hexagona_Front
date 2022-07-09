@@ -1,20 +1,19 @@
 import React, { useCallback, useState } from "react";
 import styled from "@emotion/styled";
-import { StWidth, FlexRowDiv } from "components/Common/GlobalStyles";
+import { StWidth } from "components/Common/GlobalStyles";
 import flex from "components/Common/flex";
 import EmptyMission from "assets/img/noMission.png";
 import useCategory from "components/Hooks/useCategory";
-import useAddMission from "components/Hooks/useAddMission";
 import useGetMission from "components/Hooks/useGetMission";
 import Loading from "pages/Status/Loading";
 import { useParams } from "react-router-dom";
+import AddModal from "components/Common/addModal";
 
 const HomeCategory = () => {
   const [flag, setFlag] = useState(false);
   const [content, setContent] = useState("");
   const { category } = useParams();
   const categoryCheck = useCategory();
-  const { mutate } = useAddMission();
   const { data, isLoading } = useGetMission();
 
   const list = data
@@ -25,21 +24,7 @@ const HomeCategory = () => {
       return v !== false;
     });
 
-  console.log(list);
-
   const onToggleModal = useCallback(() => {
-    setFlag((value) => !value);
-  }, []);
-
-  const onAddMissionHandler = useCallback(() => {
-    mutate({
-      missionContent: content,
-      category: category,
-    });
-    setFlag((value) => !value);
-  }, [category, mutate, content]);
-
-  const onCancelBtnHandler = useCallback(() => {
     setFlag((value) => !value);
   }, []);
 
@@ -101,27 +86,12 @@ const HomeCategory = () => {
         </div>
       </StContainer>
       {flag && (
-        <>
-          <StModal>
-            <div className="StInnerContainer">
-              <div className="InfoContainer">
-                <span className="missionTitle">목표 생성하기</span>
-                <input
-                  className="missionInput"
-                  type="text"
-                  placeholder="ex) 매일 런닝 30분"
-                  onChange={(e) => setContent(e.target.value)}
-                />
-                <FlexRowDiv>
-                  <StButton onClick={onCancelBtnHandler}>취소</StButton>
-                  <StButton color="brown" onClick={() => onAddMissionHandler()}>
-                    등록하기
-                  </StButton>
-                </FlexRowDiv>
-              </div>
-            </div>
-          </StModal>
-        </>
+        <AddModal
+          setContent={setContent}
+          content={content}
+          category={category}
+          setFlag={setFlag}
+        />
       )}
     </StWrap>
   );
@@ -180,64 +150,6 @@ const StContainer = styled.div`
       }
     }
   }
-`;
-
-const StModal = styled.button`
-  ${flex({})}
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-  .StInnerContainer {
-    ${flex({})}
-    width: 320px;
-    height: 251px;
-    background: #ffffff;
-    border-radius: 8px;
-    .InfoContainer {
-      ${flex({
-        direction: "column",
-        justify: "flex-start",
-        align: "flex-start",
-      })}
-      width: 272px;
-      height: 179px;
-      .missionTitle {
-        font-weight: 700;
-        font-size: 18px;
-        line-height: 22px;
-        color: #292e41;
-        margin-bottom: 24px;
-      }
-      .missionInput {
-        width: 272px;
-        height: 61px;
-        background: #f7f7f7;
-        border-radius: 8px;
-        border: none;
-        margin-bottom: 24px;
-        &::placeholder {
-          font-weight: 500;
-          font-size: 15px;
-          line-height: 18px;
-          color: #b5b5b5;
-        }
-      }
-    }
-  }
-`;
-
-const StButton = styled.button`
-  width: 131.94px;
-  height: 48px;
-  border-radius: 8px;
-  margin: 0 4.06px 0 4.06px;
-  border: 1px solid ${(props) => (props.color === "brown" ? "none" : "#CACDD3")};
-  background-color: ${(props) =>
-    props.color === "brown" ? "#956C4A" : "var(--white)"};
-  color: ${(props) => (props.color === "brown" ? "#fff" : "#4C525C")};
 `;
 
 const StImg = styled.div`
