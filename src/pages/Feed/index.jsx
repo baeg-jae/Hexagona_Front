@@ -6,9 +6,7 @@ import NavigatorBar from "components/Common/NavigatorBar";
 const Feed = () => {
   return (
     <>
-      <StWrapFlex>
-        <Column />
-      </StWrapFlex>
+      <Column />
       <NavigatorBar />
     </>
   );

@@ -9,35 +9,70 @@ const Column = ({ scrollRef }) => {
     // onclick event
   }, []);
   return (
-    <FlexRowDiv>
+    <StWrap>
       <StRowFirst>
         <div className="imgDiv" />
         <div className="imgDiv" />
         <div className="imgDiv" />
+        <div className="imgDiv" />
+        <div className="imgDiv" />
+        <div className="imgDiv" />
+        <div className="imgDiv" />
+        <EmptyDiv />
       </StRowFirst>
-    </FlexRowDiv>
+      <StRowSecond>
+        <EmptyDiv />
+        <div className="imgDiv" />
+        <div className="imgDiv" />
+        <div className="imgDiv" />
+        <div className="imgDiv" />
+        <div className="imgDiv" />
+        <div className="imgDiv" />
+        <div className="imgDiv" />
+        <EmptyDiv />
+      </StRowSecond>
+    </StWrap>
   );
 };
 
 export default Column;
 
+const StWrap = styled(FlexRowDiv)`
+  width: 100%;
+  overflow-y: scroll;
+  white-space: nowrap;
+`;
+
 const StRowFirst = styled.div`
   display: grid;
   grid-template-columns: 158px;
   gap: 9px;
-  margin-right: 4.5px;
-  overflow: hidden;
-  white-space: nowrap;
+  margin-right: 4.5;
   .imgDiv {
     height: 213.91px;
     background-image: url(${Dog});
     background-size: cover;
     background-position: center;
     border-radius: 20px;
+    margin-right: 4.5px;
   }
 `;
 
+const StRowSecond = styled.div`
+  display: grid;
+  grid-template-columns: 158px;
+  gap: 9px;
+  margin-right: 4.5;
+  .imgDiv {
+    height: 213.91px;
+    background-image: url(${Dog});
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+    margin-left: 4.5px;
+  }
+`;
 const EmptyDiv = styled.div`
   width: 158px;
-  height: 400px;
+  height: 50px;
 `;
