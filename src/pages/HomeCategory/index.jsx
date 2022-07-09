@@ -3,9 +3,11 @@ import styled from "@emotion/styled";
 import { StWidth, FlexRowDiv } from "components/Common/GlobalStyles";
 import flex from "components/Common/flex";
 import EmptyMission from "assets/img/noMission.png";
+import useCategory from "components/Hooks/useCategory";
 
 const HomeCategory = () => {
   const [flag, setFlag] = useState(false);
+  const categoryCheck = useCategory();
   const onAddMissionHandler = useCallback((id) => {
     setFlag((value) => !value);
   }, []);
@@ -18,9 +20,7 @@ const HomeCategory = () => {
     <StWrap>
       <StContainer>
         <div className="category">
-          <span>전체</span>
-          <span>수행중</span>
-          <span>수행완료</span>
+          <span>{categoryCheck}</span>
         </div>
         <div className="missions">
           <div className="mission" onClick={() => onAddMissionHandler(1)}>
@@ -84,15 +84,16 @@ const StContainer = styled.div`
     ${flex({ justify: "flex-start" })}
     width: 201px;
     height: 27px;
+
     &:first-child {
       margin-left: 9px;
     }
     span {
       margin-right: 19px;
       font-weight: 700;
-      font-size: 13px;
+      font-size: 18px;
       line-height: 130%;
-      color: #b7b7b7;
+      color: #202020;
     }
   }
   .missions {

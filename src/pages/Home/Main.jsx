@@ -22,17 +22,17 @@ const Main = () => {
         </Link>
         <Link to={"/home/study"}>
           <StCategoryDiv pic="two">
-            <span className="innerText">운동하기</span>
+            <span className="innerText">학습</span>
           </StCategoryDiv>
         </Link>
         <Link to={"/home/life"}>
           <StCategoryDiv pic="three">
-            <span className="innerText">운동하기</span>
+            <span className="innerText">생활습관</span>
           </StCategoryDiv>
         </Link>
         <Link to={"/home/hobby"}>
           <StCategoryDiv pic="four">
-            <span className="innerText">운동하기</span>
+            <span className="innerText">취미생활</span>
           </StCategoryDiv>
         </Link>
       </StFlexRowDiv>
