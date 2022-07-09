@@ -12,13 +12,10 @@ const Column = () => {
   const navigate = useNavigate();
   const onClickHandler = useCallback(
     (postId) => {
-      // onclick event
       navigate(`/detail/${postId}`);
     },
     [navigate]
   );
-
-  console.log(data);
 
   if (isLoading) {
     return <Loading />;
