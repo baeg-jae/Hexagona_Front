@@ -10,6 +10,8 @@ export const apis = {
   getTodos: () => api.get("/api/category/missions"),
   addTodo: (payload) => api.post("api/category/missions", payload),
   updateTodo: (payload) => api.patch(`/todos/${payload.id}`, payload),
+  completedTodo: (payload) =>
+    api.put(`/api/missions/changeMissionState/${payload.missionId}`, {}),
   deleteTodo: (payload) => api.delete(`/todos/${payload.id}`),
 };
 

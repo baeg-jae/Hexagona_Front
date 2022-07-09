@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { StWidth } from "components/Common/GlobalStyles";
 import flex from "components/Common/flex";
@@ -7,11 +7,14 @@ import useGetMission from "components/Hooks/useGetMission";
 import Loading from "pages/Status/Loading";
 import { useParams } from "react-router-dom";
 import AddModal from "components/Common/addModal";
+import { useMutation, useQueryClient } from "react-query";
+
 import {
   missionBG,
   missionCamera,
   missionText,
 } from "components/Common/ButtonPropsHandler";
+import apis from "shared/api/main";
 
 const HomeCategory = () => {
   const [flag, setFlag] = useState(false);
@@ -20,6 +23,9 @@ const HomeCategory = () => {
   const categoryCheck = useCategory();
   const { data, isLoading } = useGetMission();
   const arr = [1, 2, 3, 4];
+  const queryClient = useQueryClient();
+
+  useEffect(() => {}, [data]);
 
   const list = data
     ?.map((v) => {
@@ -32,6 +38,23 @@ const HomeCategory = () => {
   const onToggleModal = useCallback(() => {
     setFlag((value) => !value);
   }, []);
+
+  const completedTodoMutation = useMutation(apis.completedTodo, {
+    onSuccess: () => {
+      // 캐시에 있는 모든 쿼리를 무효화한다.
+      queryClient.invalidateQueries("todos");
+    },
+  });
+
+  const onCompletedHandler = useCallback(
+    (payload) => {
+      alert("미션이 완료 되었습니다. 사진을 추가해주세요");
+      completedTodoMutation.mutate({
+        missionId: payload.missionId,
+      });
+    },
+    [completedTodoMutation]
+  );
 
   if (isLoading) {
     return <Loading />;
@@ -46,11 +69,26 @@ const HomeCategory = () => {
         <div className="missions">
           {arr.map((_, i) => {
             return list[i] !== undefined ? (
-              <StDiv number={i}>
-                <span className="missionStatusText">수행중</span>
-                <StImg number={i} />
-                <span className="innerText">{list[i]?.missionContent}</span>
-              </StDiv>
+              list[i]?.missionState ? (
+                <StCompletedDiv number={i}>
+                  <span className="missionStatusText">수행중</span>
+                  <StImg number={i} />
+                  <span className="innerText">{list[i]?.missionContent}</span>
+                </StCompletedDiv>
+              ) : (
+                <StDiv
+                  number={i}
+                  onClick={() =>
+                    onCompletedHandler({
+                      missionId: list[i]?.missionId,
+                    })
+                  }
+                >
+                  <span className="missionStatusText">수행중</span>
+                  <StImg number={i} />
+                  <span className="innerText">{list[i]?.missionContent}</span>
+                </StDiv>
+              )
             ) : (
               <StDiv onClick={onToggleModal}>
                 <StImg />
@@ -145,4 +183,11 @@ const StImg = styled.div`
   background-image: url(${(props) => missionCamera(props.number)});
   background-size: cover;
   background-position: center;
+`;
+
+const StCompletedDiv = styled(StDiv)`
+  background-color: ${(props) => missionText(props.number)};
+  .innerText {
+    color: white;
+  }
 `;
