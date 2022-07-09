@@ -42,7 +42,7 @@ const AddModal = ({ setContent, content, category, setFlag }) => {
             type="text"
             placeholder="ex) 매일 런닝 30분"
             onChange={(e) => setContent(e.target.value)}
-            maxLength={15}
+            maxLength={12}
           />
           <FlexRowDiv>
             <StButton onClick={onCancelBtnHandler}>취소</StButton>

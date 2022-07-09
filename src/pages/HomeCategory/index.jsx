@@ -51,7 +51,7 @@ const HomeCategory = () => {
       completedTodoMutation.mutate({
         missionId: payload.missionId,
       });
-      alert("미션이 완료 되었습니다. 사진을 추가해주세요");
+      alert("미션이 완료 되었습니다. 다시 클릭해서 사진을 추가해주세요");
     },
     [completedTodoMutation]
   );
