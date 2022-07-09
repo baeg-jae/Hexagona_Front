@@ -3,7 +3,7 @@ import apis from "shared/api/main";
 
 const useGetPost = () => {
   const fetcher = async () => {
-    const { data } = await apis.getUser();
+    const { data } = await apis.getPost();
     return data;
   };
 

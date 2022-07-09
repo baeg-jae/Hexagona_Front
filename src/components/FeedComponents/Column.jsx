@@ -2,32 +2,49 @@ import React, { useCallback } from "react";
 import styled from "@emotion/styled";
 import { FlexRowDiv } from "components/Common/GlobalStyles";
 import Dog from "assets/img/Dog.png";
+import useGetPost from "components/Hooks/useGetPost";
+import loadable from "@loadable/component";
+
+const Loading = loadable(() => import("pages/Status/Loading"));
 
 const Column = () => {
+  const { data, isLoading } = useGetPost();
   const onClickHandler = useCallback(() => {
     // onclick event
   }, []);
+
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <StWrap>
       <StRowFirst>
-        <div className="imgDiv" />
-        <div className="imgDiv" />
-        <div className="imgDiv" />
-        <div className="imgDiv" />
-        <div className="imgDiv" />
-        <div className="imgDiv" />
-        <div className="imgDiv" />
+        {data?.map((v, i) => {
+          return i % 2 === 0 ? (
+            <StImgDiv
+              className="imgDiv"
+              onClick={onClickHandler}
+              coverImg={v?.photoUrl}
+            />
+          ) : (
+            ""
+          );
+        })}
         <EmptyDiv />
       </StRowFirst>
       <StRowSecond>
         <EmptyDiv />
-        <div className="imgDiv" />
-        <div className="imgDiv" />
-        <div className="imgDiv" />
-        <div className="imgDiv" />
-        <div className="imgDiv" />
-        <div className="imgDiv" />
-        <div className="imgDiv" />
+        {data?.map((v, i) => {
+          return i % 2 === 1 ? (
+            <StImgDiv
+              className="imgDiv"
+              onClick={onClickHandler}
+              coverImg={v?.photoUrl}
+            />
+          ) : (
+            ""
+          );
+        })}
         <EmptyDiv />
       </StRowSecond>
     </StWrap>
@@ -47,14 +64,15 @@ const StRowFirst = styled.div`
   grid-template-columns: 158px;
   gap: 9px;
   margin-right: 4.5;
-  .imgDiv {
-    height: 213.91px;
-    background-image: url(${Dog});
-    background-size: cover;
-    background-position: center;
-    border-radius: 20px;
-    margin-right: 4.5px;
-  }
+`;
+
+const StImgDiv = styled.div`
+  height: 213.91px;
+  background-image: url(${(props) => props.coverImg});
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+  margin-right: 4.5px;
 `;
 
 const StRowSecond = styled.div`
@@ -62,14 +80,6 @@ const StRowSecond = styled.div`
   grid-template-columns: 158px;
   gap: 9px;
   margin-right: 4.5;
-  .imgDiv {
-    height: 213.91px;
-    background-image: url(${Dog});
-    background-size: cover;
-    background-position: center;
-    border-radius: 20px;
-    margin-left: 4.5px;
-  }
 `;
 const EmptyDiv = styled.div`
   width: 158px;

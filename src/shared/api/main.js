@@ -16,19 +16,7 @@ export const apis = {
 
   // post CRUD
   addPost: (payload) => api.post("/api/post", payload),
-  getPost: () => api.get("/api/post"),
+  getPost: () => api.get("/api/posts"),
 };
 
 export default apis;
-
-// 사용법
-/*
-    1. import 한다
-    import apis from "../api/main";
-
-    2. 아래처럼 쓴다
-    const addTodo = async (payload) => {
-    const addTodoDB = await apis.addTodo(payload);
-    return addTodoDB;
-    };
-*/
