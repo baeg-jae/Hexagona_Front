@@ -7,6 +7,7 @@ import Button from "components/Common/Button";
 import IntroPage from "./IntroPage";
 import apis from "shared/api/main";
 import { badWords } from "./IntroPageTexts";
+import Swal from "sweetalert2";
 
 const MAX_LENGTH = 7;
 const __signup = async (payload) => {
@@ -30,7 +31,13 @@ const SignUpPage = () => {
       // 캐시에 있는 모든 쿼리를 무효화한다.
       queryClient.invalidateQueries("users");
       // 회원가입에 통과되면 화면전환
-      alert("가입을 환영합니다");
+      Swal.fire({
+        icon: "success",
+        title: "가입완료",
+        text: "환영합니다",
+        showConfirmButton: false,
+        timer: 1500,
+      });
 
       setFlag((value) => !value);
     },
@@ -49,7 +56,12 @@ const SignUpPage = () => {
         // 중복검사에 통과되면 회원가입을 진행한다
         userSignUpMutation.mutate({ nickname: name });
       } else {
-        alert("중복된 아이디 입니다.");
+        Swal.fire({
+          title: "에러!",
+          text: "중복된 아이디 입니다.",
+          icon: "error",
+          confirmButtonText: "Cool",
+        });
       }
     },
     onError: (error) => {
@@ -69,7 +81,12 @@ const SignUpPage = () => {
       name.toLowerCase().includes(word.toLowerCase())
     );
     if (foundSwears.length) {
-      alert("아이디에는 비속어가 포함되실 수 없습니다.");
+      Swal.fire({
+        title: "에러!",
+        text: "제대로 된 닉네임을 입력해주세요",
+        icon: "error",
+        confirmButtonText: "Cool",
+      });
     } else {
       // 욕설탐지기에 안걸리면 실행
       onClickBtnHandler();
