@@ -1,20 +1,64 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import styled from "@emotion/styled";
-import { StWidth, FlexRowDiv } from "components/Common/GlobalStyles";
+import { StWidth } from "components/Common/GlobalStyles";
 import flex from "components/Common/flex";
-import EmptyMission from "assets/img/noMission.png";
 import useCategory from "components/Hooks/useCategory";
+import useGetMission from "components/Hooks/useGetMission";
+import Loading from "pages/Status/Loading";
+import { useParams } from "react-router-dom";
+import AddModal from "components/Common/addModal";
+import { useMutation, useQueryClient } from "react-query";
+import AddPost from "components/missionComponents/AddPost";
+import {
+  missionBG,
+  missionCamera,
+  missionText,
+} from "components/Common/ButtonPropsHandler";
+import apis from "shared/api/main";
 
 const HomeCategory = () => {
   const [flag, setFlag] = useState(false);
+  const [content, setContent] = useState("");
+  const { category } = useParams();
   const categoryCheck = useCategory();
-  const onAddMissionHandler = useCallback((id) => {
+  const { data, isLoading } = useGetMission();
+  const arr = [1, 2, 3, 4];
+  const queryClient = useQueryClient();
+
+  useEffect(() => {}, [data]);
+
+  const list = data
+    ?.map((v) => {
+      return category === v.category && v;
+    })
+    .filter((v) => {
+      return v !== false;
+    });
+
+  const onToggleModal = useCallback(() => {
     setFlag((value) => !value);
   }, []);
 
-  const onCancelBtnHandler = useCallback(() => {
-    setFlag((value) => !value);
-  }, []);
+  const completedTodoMutation = useMutation(apis.completedTodo, {
+    onSuccess: () => {
+      // 캐시에 있는 모든 쿼리를 무효화한다.
+      queryClient.invalidateQueries("todos");
+    },
+  });
+
+  const onCompletedHandler = useCallback(
+    (payload) => {
+      completedTodoMutation.mutate({
+        missionId: payload.missionId,
+      });
+      alert("미션이 완료 되었습니다. 다시 클릭해서 사진을 추가해주세요");
+    },
+    [completedTodoMutation]
+  );
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <StWrap>
@@ -23,43 +67,49 @@ const HomeCategory = () => {
           <span>{categoryCheck}</span>
         </div>
         <div className="missions">
-          <div className="mission" onClick={() => onAddMissionHandler(1)}>
-            <StImg />
-            <span class="innerText">목표를 생성해주세요.</span>
-          </div>
-          <div className="mission" onClick={() => onAddMissionHandler(2)}>
-            <StImg />
-            <span class="innerText">목표를 생성해주세요.</span>
-          </div>
-          <div className="mission" onClick={() => onAddMissionHandler(3)}>
-            <StImg />
-            <span class="innerText">목표를 생성해주세요.</span>
-          </div>
-          <div className="mission" onClick={() => onAddMissionHandler(4)}>
-            <StImg />
-            <span class="innerText">목표를 생성해주세요.</span>
-          </div>
+          {arr.map((_, i) => {
+            return list[i] !== undefined ? (
+              list[i]?.missionState ? (
+                <StCompletedDiv number={i}>
+                  <AddPost
+                    missionId={list[i]?.missionId}
+                    category={category}
+                    postContent={list[i]?.missionContent}
+                  />
+                  <span className="missionStatusText">수행중</span>
+                  <StImg number={i} />
+                  <span className="innerText">{list[i]?.missionContent}</span>
+                </StCompletedDiv>
+              ) : (
+                <StDiv
+                  number={i}
+                  onClick={() =>
+                    onCompletedHandler({
+                      missionId: list[i]?.missionId,
+                    })
+                  }
+                >
+                  <span className="missionStatusText">수행중</span>
+                  <StImg number={i} />
+                  <span className="innerText">{list[i]?.missionContent}</span>
+                </StDiv>
+              )
+            ) : (
+              <StDiv onClick={onToggleModal}>
+                <StImg />
+                <span className="innerText">목표를 생성해주세요.</span>
+              </StDiv>
+            );
+          })}
         </div>
       </StContainer>
       {flag && (
-        <>
-          <StModal>
-            <div className="StInnerContainer">
-              <div className="InfoContainer">
-                <span className="missionTitle">목표 생성하기</span>
-                <input
-                  className="missionInput"
-                  type="text"
-                  placeholder="ex) 매일 런닝 30분"
-                />
-                <FlexRowDiv>
-                  <StButton onClick={onCancelBtnHandler}>취소</StButton>
-                  <StButton color="brown">등록하기</StButton>
-                </FlexRowDiv>
-              </div>
-            </div>
-          </StModal>
-        </>
+        <AddModal
+          setContent={setContent}
+          content={content}
+          category={category}
+          setFlag={setFlag}
+        />
       )}
     </StWrap>
   );
@@ -85,7 +135,7 @@ const StContainer = styled.div`
     width: 201px;
     height: 27px;
 
-    &:first-child {
+    &:first-of-type {
       margin-left: 9px;
     }
     span {
@@ -96,95 +146,53 @@ const StContainer = styled.div`
       color: #202020;
     }
   }
-  .missions {
-    width: 345px;
-    height: 444px;
-    .mission {
-      position: relative;
-      width: 345px;
-      height: 105px;
-      border: 1px solid #e0e0e0;
-      border-radius: 20px;
-      margin-bottom: 8px;
-      .innerText {
-        position: absolute;
-        right: 24px;
-        bottom: 24px;
-        font-weight: 600;
-        font-size: 24px;
-        line-height: 29px;
-        letter-spacing: -0.02em;
-        color: #727272;
-      }
-    }
-  }
 `;
-
-const StModal = styled.button`
-  ${flex({})}
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-  .StInnerContainer {
-    ${flex({})}
-    width: 320px;
-    height: 251px;
+const StDiv = styled.div`
+  position: relative;
+  width: 345px;
+  height: 105px;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  margin-bottom: 8px;
+  background-color: ${(props) => missionBG(props.number)};
+  .missionStatusText {
+    position: absolute;
+    top: 23.5px;
+    left: 20px;
+    padding: 8px 16px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: -0.02em;
     background: #ffffff;
-    border-radius: 8px;
-    .InfoContainer {
-      ${flex({
-        direction: "column",
-        justify: "flex-start",
-        align: "flex-start",
-      })}
-      width: 272px;
-      height: 179px;
-      .missionTitle {
-        font-weight: 700;
-        font-size: 18px;
-        line-height: 22px;
-        color: #292e41;
-        margin-bottom: 24px;
-      }
-      .missionInput {
-        width: 272px;
-        height: 61px;
-        background: #f7f7f7;
-        border-radius: 8px;
-        border: none;
-        margin-bottom: 24px;
-        &::placeholder {
-          font-weight: 500;
-          font-size: 15px;
-          line-height: 18px;
-          color: #b5b5b5;
-        }
-      }
-    }
+    border-radius: 63px;
+    color: ${(props) => missionText(props.number)};
   }
-`;
-
-const StButton = styled.button`
-  width: 131.94px;
-  height: 48px;
-  border-radius: 8px;
-  margin: 0 4.06px 0 4.06px;
-  border: 1px solid ${(props) => (props.color === "brown" ? "none" : "#CACDD3")};
-  background-color: ${(props) =>
-    props.color === "brown" ? "#956C4A" : "var(--white)"};
-  color: ${(props) => (props.color === "brown" ? "#fff" : "#4C525C")};
+  .innerText {
+    position: absolute;
+    right: 24px;
+    bottom: 24px;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    letter-spacing: -0.02em;
+    color: ${(props) => missionText(props.number)};
+  }
 `;
 
 const StImg = styled.div`
   margin-top: 24.25px;
   margin-left: 31.5px;
-  overflow: hidden;
   width: 105px;
-  height: 76px;
-  background-image: url(${EmptyMission});
-  background-size: contain;
+  height: 79px;
+  background-image: url(${(props) => missionCamera(props.number)});
+  background-size: cover;
   background-position: center;
+`;
+
+const StCompletedDiv = styled(StDiv)`
+  background-color: ${(props) => missionText(props.number)};
+  .innerText {
+    color: white;
+  }
 `;

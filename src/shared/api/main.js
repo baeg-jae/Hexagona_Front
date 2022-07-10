@@ -6,23 +6,18 @@ export const apis = {
   dupCheck: (payload) => api.post("/user/signup/checkNickname", payload),
   getUser: () => api.get("/user/auth"),
 
-  // article CRUD
-  getTodos: () => api.get("/todos"),
-  addTodo: (payload) => api.post("/todos", payload),
+  // mission CRUD
+  getTodos: () => api.get("/api/category/missions"),
+  addTodo: (payload) => api.post("api/category/missions", payload),
   updateTodo: (payload) => api.patch(`/todos/${payload.id}`, payload),
+  completedTodo: (payload) =>
+    api.put(`/api/missions/changeMissionState/${payload.missionId}`, {}),
   deleteTodo: (payload) => api.delete(`/todos/${payload.id}`),
+
+  // post CRUD
+  addPost: (payload) => api.post("/api/post", payload),
+  getPost: () => api.get("/api/posts"),
+  getPostDetail: (payload) => api.get(`/api/post/${payload.postId}`),
 };
 
 export default apis;
-
-// 사용법
-/*
-    1. import 한다
-    import apis from "../api/main";
-
-    2. 아래처럼 쓴다
-    const addTodo = async (payload) => {
-    const addTodoDB = await apis.addTodo(payload);
-    return addTodoDB;
-    };
-*/

@@ -16,25 +16,25 @@ const GoalShot = loadable(() => import('pages/GoalShot'));
 const FeedDetail = loadable(() => import('pages/FeedDetail'));
 
 const Routing = () => {
-    return (
-        <Routes>
-            <Route path="/" element={<Splash />} />
-            {/* <Route element={<ProtectedRoutesYesLogin />}> */}
-            <Route path="/login" element={<LogIn />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/oauth/kakao/callback" element={<Kakao />} />
-            <Route path="/oauth/google/callback" element={<Google />} />
-            {/* </Route> */}
-            {/* <Route element={<ProtectedRoutesNoLogin />}> */}
-            <Route path="/home/*" element={<Home />} />
-            <Route path="/feed" element={<Feed />} />
-            <Route path="/goalshot" element={<GoalShot />} />
-            <Route path="/feed/:id" element={<FeedDetail />} />
-            <Route path="/detail" element={<FeedDetail />} />
-            {/* </Route> */}
-            <Route path="*" element={<Error />} />
-        </Routes>
-    );
+  return (
+    <Routes>
+      <Route path="/" element={<Splash />} />
+      <Route element={<ProtectedRoutesYesLogin />}>
+        <Route path="/login" element={<LogIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/oauth/kakao/callback" element={<Kakao />} />
+        <Route path="/oauth/google/callback" element={<Google />} />
+      </Route>
+      <Route element={<ProtectedRoutesNoLogin />}>
+        <Route path="/home/*" element={<Home />} />
+        <Route path="/feed" element={<Feed />} />
+        <Route path="/goalshot" element={<GoalShot />} />
+        <Route path="/feed/:id" element={<FeedDetail />} />
+        <Route path="/detail/:postId" element={<FeedDetail />} />
+      </Route>
+      <Route path="*" element={<Error />} />
+    </Routes>
+  );
 };
 
 export default Routing;

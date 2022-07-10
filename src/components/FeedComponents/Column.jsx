@@ -1,43 +1,91 @@
 import React, { useCallback } from "react";
 import styled from "@emotion/styled";
 import { FlexRowDiv } from "components/Common/GlobalStyles";
-import Dog from "assets/img/Dog.png";
+import useGetPost from "components/Hooks/useGetPost";
+import loadable from "@loadable/component";
+import { useNavigate } from "react-router-dom";
 
-const Column = ({ scrollRef }) => {
-  // 전체 게시글 정보를 여기서 get 한다음에 아래 div에 채워준다
-  const onClickHandler = useCallback(() => {
-    // onclick event
-  }, []);
+const Loading = loadable(() => import("pages/Status/Loading"));
+
+const Column = () => {
+  const { data, isLoading } = useGetPost();
+  const navigate = useNavigate();
+  const onClickHandler = useCallback(
+    (postId) => {
+      navigate(`/detail/${postId}`);
+    },
+    [navigate]
+  );
+
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
-    <FlexRowDiv>
+    <StWrap>
       <StRowFirst>
-        <div className="imgDiv" />
-        <div className="imgDiv" />
-        <div className="imgDiv" />
+        {data?.map((v, i) => {
+          return i % 2 === 0 ? (
+            <StImgDiv
+              className="imgDiv"
+              onClick={() => onClickHandler(v?.postId)}
+              coverImg={v?.photoUrl}
+              style={{ marginRight: "4.5px" }}
+            />
+          ) : (
+            ""
+          );
+        })}
+        <EmptyDiv />
       </StRowFirst>
-    </FlexRowDiv>
+      <StRowSecond>
+        <EmptyDiv />
+        {data?.map((v, i) => {
+          return i % 2 === 1 ? (
+            <StImgDiv
+              className="imgDiv"
+              onClick={() => onClickHandler(v?.postId)}
+              coverImg={v?.photoUrl}
+              style={{ marginLeft: "4.5px" }}
+            />
+          ) : (
+            ""
+          );
+        })}
+        <EmptyDiv />
+      </StRowSecond>
+    </StWrap>
   );
 };
 
 export default Column;
 
+const StWrap = styled(FlexRowDiv)`
+  width: 100%;
+  overflow-y: scroll;
+  white-space: nowrap;
+`;
+
 const StRowFirst = styled.div`
   display: grid;
   grid-template-columns: 158px;
   gap: 9px;
-  margin-right: 4.5px;
-  overflow: hidden;
-  white-space: nowrap;
-  .imgDiv {
-    height: 213.91px;
-    background-image: url(${Dog});
-    background-size: cover;
-    background-position: center;
-    border-radius: 20px;
-  }
+`;
+
+const StRowSecond = styled.div`
+  display: grid;
+  grid-template-columns: 158px;
+  gap: 9px;
+`;
+
+const StImgDiv = styled.div`
+  height: 213.91px;
+  background-image: url(${(props) => props.coverImg});
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
 `;
 
 const EmptyDiv = styled.div`
   width: 158px;
-  height: 400px;
+  height: 50px;
 `;

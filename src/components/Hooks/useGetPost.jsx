@@ -1,13 +1,13 @@
 import { useQuery } from "react-query";
 import apis from "shared/api/main";
 
-const useGetUser = () => {
+const useGetPost = () => {
   const fetcher = async () => {
-    const { data } = await apis.getUser();
+    const { data } = await apis.getPost();
     return data;
   };
 
-  return useQuery("users", fetcher);
+  return useQuery("post", fetcher);
 };
 
-export default useGetUser;
+export default useGetPost;
