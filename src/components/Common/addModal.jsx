@@ -88,7 +88,7 @@ const StModal = styled.button`
         margin-bottom: 24px;
       }
       .missionInput {
-        width: 272px;
+        width: 242px;
         height: 61px;
         background: #f7f7f7;
         border-radius: 8px;
