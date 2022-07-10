@@ -53,7 +53,6 @@ const SignUpPage = () => {
       }
     },
     onError: (error) => {
-      console.log(error.message);
       alert(`중복체크: ${error.message}`);
     },
     onSettled: () => {},
@@ -149,7 +148,7 @@ const StWrap = styled.div`
     border: 1px solid #d3d3d3;
     color: #d2bca9;
     &:focus-within {
-      border: 1px solid #d2bca9;
+      border: 1px solid #1f201d;
     }
   }
 
@@ -158,7 +157,7 @@ const StWrap = styled.div`
     width: 215px;
     height: 39px;
     margin-left: 10px;
-    color: #956c4a;
+    color: #1f201d;
     &:focus {
       outline: none;
     }
@@ -171,7 +170,7 @@ const StWrap = styled.div`
     margin-right: 20px;
     .currentCount {
       font-weight: 700;
-      color: #956c4a;
+      color: #1f201d;
     }
   }
 `;

@@ -20,19 +20,9 @@ const getRequestLoading = (payload) => ({ type: GET_REQUEST_LOADING, payload });
 export const __userSignUp =
   ({ nickName, email, number, location, pw, gender, birth, fileImage }) =>
   async (dispatch) => {
-    console.log(
-      nickName,
-      email,
-      number,
-      location,
-      pw,
-      gender,
-      birth,
-      fileImage
-    );
     dispatch(getRequestLoading(true));
     try {
-      const data = await api.post(`/user/signup`, {
+      await api.post(`/user/signup`, {
         name: nickName,
         email: email,
         p_number: number,
@@ -42,7 +32,6 @@ export const __userSignUp =
         birth: birth,
         profile_img: fileImage,
       });
-      console.log(data);
     } catch (error) {
       alert("Sign Up Error:" + error);
     } finally {
@@ -71,13 +60,11 @@ export const __userIdCheck =
 export const __userEmailCheck =
   ({ email }) =>
   async (dispatch) => {
-    console.log(email);
     dispatch(getRequestLoading(true));
     try {
       const data = await api.post(`/user/signup/checkEmail`, {
         email: email,
       });
-      console.log(data);
       // data.data.result
       //   ? alert("사용가능한 이메일입니다")
       //   : alert("이미 있는 이메일 입니다");
@@ -93,14 +80,12 @@ export const __userEmailCheck =
 export const __userSignIn =
   ({ email, password }) =>
   async (dispatch) => {
-    console.log(email, password);
     dispatch(getRequestLoading(true));
     try {
-      const data = await api.post(`/user/login`, {
+      await api.post(`/user/login`, {
         email: email,
         password: password,
       });
-      console.log(data);
       // localStorage.setItem("Authorization", data.data.token);
       // localStorage.setItem("username", data.data.nickname);
       // dispatch(userLogin(data.data.result));
@@ -116,7 +101,6 @@ export const __kakaoSignIn = (code) => async (dispatch) => {
   dispatch(getRequestLoading(true));
   try {
     const data = await api.get(`/oauth/kakao/callback?code=${code}`);
-    console.log(data);
     if (data.headers.authorization !== undefined) {
       localStorage.setItem("Authorization", data.headers.authorization);
     }

@@ -23,9 +23,6 @@ const NavigatorBar = () => {
       <NavLink to={"/chat"}>
         <span>Chat</span>
       </NavLink>
-      <FlexColumnDiv>
-        <FaCamera />
-      </FlexColumnDiv>
     </StWrapFlex>
   );
 };
@@ -33,7 +30,7 @@ const NavigatorBar = () => {
 export default NavigatorBar;
 
 const StWrapFlex = styled.div`
-  ${flex({ justify: "space-around" })}
+  ${flex({ justify: "space-evenly" })}
   position: fixed;
   bottom: 0;
   width: 100%;

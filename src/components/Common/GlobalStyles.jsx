@@ -53,7 +53,8 @@ export const scaleAnimation = keyframes`
 export const fadeAnimation = keyframes`
  0% { 
   background-color: rgba(0,0,0,1);
-  color: rgba(0,0,0,1) 
+  color: rgba(0,0,0,1);
+  opacity: 0; 
 }
   100% { opacity: 1; }
 `;

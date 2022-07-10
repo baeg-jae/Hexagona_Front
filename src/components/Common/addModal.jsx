@@ -94,6 +94,7 @@ const StModal = styled.button`
         border-radius: 8px;
         border: none;
         margin-bottom: 24px;
+        padding: 16px;
         &::placeholder {
           font-weight: 500;
           font-size: 15px;

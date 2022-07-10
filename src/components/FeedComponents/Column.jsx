@@ -9,7 +9,6 @@ const Loading = loadable(() => import("pages/Status/Loading"));
 
 const Column = () => {
   const { data, isLoading } = useGetPost();
-  console.log(data);
   const navigate = useNavigate();
   const onClickHandler = useCallback(
     (postId) => {

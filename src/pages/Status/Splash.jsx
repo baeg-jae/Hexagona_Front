@@ -37,5 +37,6 @@ const StWrapFlex = styled(StWrap)`
     font-size: 20px;
     line-height: 130%;
     margin-bottom: 42px;
+    color: #555555;
   }
 `;

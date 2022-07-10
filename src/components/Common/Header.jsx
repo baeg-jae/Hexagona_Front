@@ -23,7 +23,7 @@ const Header = () => {
               <span>갓생러 {data?.nickname}</span>
             </div>
           </div>
-          <StImg src={SmallMenu} alt="" />
+          <StImgDiv />
         </HeaderWrap>
       </StWrapFlex>
     </StWrap>
@@ -71,7 +71,11 @@ const HeaderWrap = styled.div`
   }
 `;
 
-const StImg = styled.img`
-  width: 3px;
+const StImgDiv = styled.div`
+  width: 3.5px;
   height: 12px;
+  background-image: url(${SmallMenu});
+  background-size: cover;
+  background-position: center;
+  margin-right: 10.25px;
 `;

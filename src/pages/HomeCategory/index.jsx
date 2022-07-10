@@ -76,7 +76,7 @@ const HomeCategory = () => {
                     category={category}
                     postContent={list[i]?.missionContent}
                   />
-                  <span className="missionStatusText">수행중</span>
+                  <span className="missionStatusText">수행완료</span>
                   <StImg number={i} />
                   <span className="innerText">{list[i]?.missionContent}</span>
                 </StCompletedDiv>
