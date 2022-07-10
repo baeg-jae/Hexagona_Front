@@ -5,9 +5,14 @@ import useGetUser from "components/Hooks/useGetUser";
 
 import Dog from "assets/img/Dog.png";
 import SmallMenu from "assets/img/smallMenu.png";
+import Loading from "pages/Status/Loading";
 
 const Header = () => {
   const { data, isLoading } = useGetUser();
+
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <StWrap>
       <StWrapFlex>

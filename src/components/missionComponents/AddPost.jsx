@@ -38,6 +38,7 @@ const AddPost = ({ missionId, postContent, category }) => {
       "data",
       new Blob([JSON.stringify(secondData)], { type: "application/json" })
     );
+    console.log(files);
     addTodoMutation.mutate(formData);
   };
 
