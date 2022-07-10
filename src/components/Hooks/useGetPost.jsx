@@ -7,7 +7,7 @@ const useGetPost = () => {
     return data;
   };
 
-  return useQuery("post", fetcher);
+  return useQuery("posts", fetcher);
 };
 
 export default useGetPost;
