@@ -13,6 +13,7 @@ const Loading = loadable(() => import("pages/Status/Loading"));
 const FeedDetail = () => {
   const { postId } = useParams();
   const { data, isLoading } = useGetPostDetail({ postId: postId });
+  console.log(data);
   return (
     <StWrapFlex>
       {isLoading ? (
@@ -24,7 +25,7 @@ const FeedDetail = () => {
             postContent={data?.postContent}
             img={data?.photoUrl}
           />
-          <CommentInput />
+          <CommentInput postId={data?.postId} />
         </>
       )}
 

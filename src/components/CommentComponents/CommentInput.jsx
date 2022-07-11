@@ -2,11 +2,22 @@ import useGetUser from "components/Hooks/useGetUser";
 import loadable from "@loadable/component";
 import styled from "@emotion/styled";
 import flex from "../Common/flex";
+import useAddComment from "components/Hooks/useAddComment";
+import { useState } from "react";
 
 const Loading = loadable(() => import("pages/Status/Loading"));
 
-const CommentInput = () => {
+const CommentInput = ({ postId }) => {
   const { data, isLoading } = useGetUser();
+  const { mutate } = useAddComment();
+  const [comment, setComment] = useState("");
+
+  const addComment = () => {
+    mutate({
+      comment: comment,
+      postId: postId,
+    });
+  };
   return (
     <StWrapFlex>
       {isLoading ? (
@@ -19,8 +30,11 @@ const CommentInput = () => {
               type="text"
               className="commentInput"
               placeholder="인증샷에 대한 감상평을 남겨주세요."
+              onChange={(e) => setComment(e.target.value)}
             />
-            <button className="commentButton">게시</button>
+            <button className="commentButton" onClick={addComment}>
+              게시
+            </button>
           </StDiv>
         </>
       )}
