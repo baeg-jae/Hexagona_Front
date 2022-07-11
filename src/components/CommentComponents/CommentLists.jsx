@@ -1,23 +1,31 @@
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
+import { FlexColumnDiv } from "components/Common/GlobalStyles";
 
 const CommentLists = ({ comment }) => {
   return (
     <StWrap>
-      {comment?.map((v, i) => {
-        return (
-          <StReplyWrap>
-            <StProfile img={v.profile_img} />
-            <div className="reply">
-              <div>
-                <div className="replyUser">{v.nickname}</div>
-                <div className="replyDay">{v.createdAtDateOnly}</div>
+      {comment.length === 0 ? (
+        <FlexColumnDiv style={{ height: "100%" }}>
+          <span className="emptySpan">아직 쓰여진 댓글이 없습니다.</span>
+          <span className="emptySpan">첫 댓글을 등록해보세요!</span>
+        </FlexColumnDiv>
+      ) : (
+        comment?.map((v, i) => {
+          return (
+            <StReplyWrap>
+              <StProfile img={v.profile_img} />
+              <div className="reply">
+                <div>
+                  <div className="replyUser">{v.nickname}</div>
+                  <div className="replyDay">{v.createdAtDateOnly}</div>
+                </div>
+                <div className="replyText">{v.comment}</div>
               </div>
-              <div className="replyText">{v.comment}</div>
-            </div>
-          </StReplyWrap>
-        );
-      })}
+            </StReplyWrap>
+          );
+        })
+      )}
     </StWrap>
   );
 };
@@ -30,12 +38,19 @@ const StWrap = styled.div`
   height: 140px;
   margin-top: 35px;
   overflow-y: scroll;
+  .emptySpan {
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 130%;
+    color: #a3a3a3;
+  }
 `;
 
 const StReplyWrap = styled.div`
   ${flex({ justify: "flex-start", direction: "row", align: "flex-start" })}
   margin: 10px;
-  white-space: nowrap;
+  white-space: wrap;
   .reply {
     width: 280px;
     .replyUser {

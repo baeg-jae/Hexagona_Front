@@ -8,6 +8,7 @@ import CommentLists from "components/CommentComponents/CommentLists";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 import loadable from "@loadable/component";
+import { useEffect } from "react";
 
 const Loading = loadable(() => import("pages/Status/Loading"));
 
@@ -15,6 +16,7 @@ const FeedDetail = () => {
   const { postId } = useParams();
   const { data, isLoading } = useGetPostDetail({ postId: postId });
   const cList = data?.commentList;
+  useEffect(() => {}, [cList]);
   return (
     <StWrapFlex>
       {isLoading ? (

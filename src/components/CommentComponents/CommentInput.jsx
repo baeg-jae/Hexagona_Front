@@ -1,9 +1,10 @@
+import { COMMENT_MAX_LENGTH } from "shared/data";
+import { useState } from "react";
 import useGetUser from "components/Hooks/useGetUser";
 import loadable from "@loadable/component";
 import styled from "@emotion/styled";
 import flex from "../Common/flex";
 import useAddComment from "components/Hooks/useAddComment";
-import { useState } from "react";
 
 const Loading = loadable(() => import("pages/Status/Loading"));
 
@@ -26,11 +27,12 @@ const CommentInput = ({ postId }) => {
         <>
           <StProfile profile_img={data?.profile_img} />
           <StDiv>
-            <input
+            <textarea
               type="text"
               className="commentInput"
               placeholder="인증샷에 대한 감상평을 남겨주세요."
               onChange={(e) => setComment(e.target.value)}
+              maxLength={COMMENT_MAX_LENGTH}
             />
             <button className="commentButton" onClick={addComment}>
               게시
@@ -72,11 +74,14 @@ const StDiv = styled.div`
   .commentInput {
     border: none;
     background-color: transparent;
+    width: 60%;
+    padding: 8px;
     &:focus {
       outline: none;
     }
     &::placeholder {
-      font-size: 13px;
+      padding: 8px;
+      font-size: 10px;
     }
   }
   .commentButton {
