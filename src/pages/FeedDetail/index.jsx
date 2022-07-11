@@ -1,13 +1,14 @@
 import { StWrap } from "components/Common/GlobalStyles";
 import { useParams } from "react-router-dom";
-import styled from "@emotion/styled";
-import flex from "components/Common/flex";
-
 import NavigatorBar from "components/Common/NavigatorBar";
 import useGetPostDetail from "components/Hooks/useGetPostDetail";
 import CommentInput from "components/CommentComponents/CommentInput";
 import CommentImg from "components/CommentComponents/CommentImg";
-import Loading from "pages/Status/Loading";
+import flex from "components/Common/flex";
+import styled from "@emotion/styled";
+import loadable from "@loadable/component";
+
+const Loading = loadable(() => import("pages/Status/Loading"));
 
 const FeedDetail = () => {
   const { postId } = useParams();

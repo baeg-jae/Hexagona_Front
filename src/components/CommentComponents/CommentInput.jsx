@@ -1,19 +1,29 @@
-import HeaderImg from "assets/img/HeaderImg.png";
+import useGetUser from "components/Hooks/useGetUser";
+import loadable from "@loadable/component";
 import styled from "@emotion/styled";
 import flex from "../Common/flex";
 
+const Loading = loadable(() => import("pages/Status/Loading"));
+
 const CommentInput = () => {
+  const { data, isLoading } = useGetUser();
   return (
     <StWrapFlex>
-      <StProfile></StProfile>
-      <StDiv>
-        <input
-          type="text"
-          className="commentInput"
-          placeholder="인증샷에 대한 감상평을 남겨주세요."
-        />
-        <button className="commentButton">게시</button>
-      </StDiv>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <StProfile profile_img={data?.profile_img} />
+          <StDiv>
+            <input
+              type="text"
+              className="commentInput"
+              placeholder="인증샷에 대한 감상평을 남겨주세요."
+            />
+            <button className="commentButton">게시</button>
+          </StDiv>
+        </>
+      )}
     </StWrapFlex>
   );
 };
@@ -31,8 +41,9 @@ const StWrapFlex = styled.div`
 const StProfile = styled.div`
   width: 40px;
   height: 40px;
-  background-image: url(${HeaderImg});
+  background-image: url(${(props) => props.profile_img});
   background-position: center;
+  background-size: cover;
   border-radius: 100%;
 `;
 
