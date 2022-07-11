@@ -5,6 +5,7 @@ export const apis = {
   signUp: (payload) => api.put("/user/update/nickname", payload),
   dupCheck: (payload) => api.post("/user/signup/checkNickname", payload),
   getUser: () => api.get("/user/auth"),
+  newOldUser: () => api.put("/user/update/isNewUser"),
 
   // mission CRUD
   getTodos: () => api.get("/api/category/missions"),

@@ -12,7 +12,7 @@ const IntroPage = () => {
   const { data, isLoading } = useGetUser();
   const navigate = useNavigate();
   const onClickHandler = useCallback(() => {
-    navigate("/home");
+    navigate("/tutorial");
   }, [navigate]);
 
   return (

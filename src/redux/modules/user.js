@@ -104,6 +104,7 @@ export const __kakaoSignIn = (code) => async (dispatch) => {
     if (data.headers.authorization !== undefined) {
       localStorage.setItem("Authorization", data.headers.authorization);
     }
+    console.log(data);
     dispatch(userLogin(data.data));
   } catch (error) {
     // alert('아이디 혹은 비밀번호를 체크해주세요')
@@ -122,6 +123,7 @@ export const __googleSignIn = (code) => async (dispatch) => {
     if (data.headers.authorization !== undefined) {
       localStorage.setItem("Authorization", data.headers.authorization);
     }
+    console.log(data);
     dispatch(userLogin(data.data));
   } catch (error) {
     // alert('아이디 혹은 비밀번호를 체크해주세요')
@@ -207,6 +209,7 @@ const initialState = {
   idCheck: false,
   emailCheck: false,
   isLogin: false,
+  newUser: true,
   address: "",
   phone: 0,
 };
@@ -222,6 +225,7 @@ export default function userReducer(state = initialState, { payload, type }) {
       return {
         ...state,
         isLogin: payload,
+        newUser: payload.newUser,
       };
     case USER_LOGOUT:
       return {

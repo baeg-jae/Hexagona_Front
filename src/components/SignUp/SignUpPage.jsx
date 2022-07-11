@@ -8,6 +8,9 @@ import IntroPage from "./IntroPage";
 import apis from "shared/api/main";
 import { badWords } from "./IntroPageTexts";
 import Swal from "sweetalert2";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const MAX_LENGTH = 7;
 const __signup = async (payload) => {
@@ -24,6 +27,14 @@ const SignUpPage = () => {
   const [flag, setFlag] = useState();
   const [name, setName] = useState("");
   const queryClient = useQueryClient();
+  const { newUser } = useSelector((state) => state.userReducer);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!newUser) {
+      navigate("/home");
+    }
+  }, [navigate]);
 
   // 회원가입 mutation
   const userSignUpMutation = useMutation(__signup, {
