@@ -15,15 +15,13 @@ const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      {/* useQuery 훅 안에서 QueryClient 인스턴스에 접근할 수 있도록 QueryClientProvider를 컴포넌트 트리 상위에 추가 */}
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-        {/* <ReactQueryDevtools initialIsOpen /> */}
-      </QueryClientProvider>
-    </Provider>
-  </React.StrictMode>
+  <Provider store={store}>
+    {/* useQuery 훅 안에서 QueryClient 인스턴스에 접근할 수 있도록 QueryClientProvider를 컴포넌트 트리 상위에 추가 */}
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+      {/* <ReactQueryDevtools initialIsOpen /> */}
+    </QueryClientProvider>
+  </Provider>
 );

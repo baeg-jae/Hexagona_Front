@@ -26,6 +26,14 @@ const AddModal = ({ setContent, content, category, setFlag }) => {
     const foundSwears = badWords.filter((word) =>
       content.toLowerCase().includes(word.toLowerCase())
     );
+    if (foundSwears === "") {
+      Swal.fire({
+        title: "에러!",
+        text: "제대로 된 미션을 입력해주세요",
+        icon: "error",
+        confirmButtonText: "Cool",
+      });
+    }
     if (foundSwears.length) {
       Swal.fire({
         title: "에러!",
