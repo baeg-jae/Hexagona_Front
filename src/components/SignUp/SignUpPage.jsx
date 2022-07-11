@@ -1,15 +1,15 @@
-import React, { useCallback, useState } from "react";
-import styled from "@emotion/styled";
-import flex from "components/Common/flex";
 import { StInput } from "components/Common/GlobalStyles";
 import { useQueryClient, useMutation } from "react-query";
+import { useCallback, useState } from "react";
+import { SIGN_UP_MAX_LENGTH } from "shared/data";
+import { badWords } from "shared/TextsData";
+import flex from "components/Common/flex";
 import Button from "components/Common/Button";
 import IntroPage from "./IntroPage";
+import styled from "@emotion/styled";
 import apis from "shared/api/main";
-import { badWords } from "shared/TextsData";
 import Swal from "sweetalert2";
 
-const MAX_LENGTH = 7;
 const __signup = async (payload) => {
   const data = await apis.signUp(payload);
   return data;
@@ -113,13 +113,13 @@ const SignUpPage = () => {
           <div className="inputBox">
             <StInput
               placeholder="닉네임을 입력해주세요."
-              maxLength={MAX_LENGTH}
+              maxLength={SIGN_UP_MAX_LENGTH}
               onChange={(e) => setName(e.target.value)}
               className="stInput"
             />
             <div className="inputCount">
               <span className={generateClassName()}>{name.length}</span>/
-              {MAX_LENGTH}
+              {SIGN_UP_MAX_LENGTH}
             </div>
           </div>
 

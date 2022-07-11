@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import flex from "components/Common/flex";
 import { FlexRowDiv } from "./GlobalStyles";
 import useAddMission from "components/Hooks/useAddMission";
-import { badWords } from "components/SignUp/IntroPageTexts";
+import { badWords } from "shared/TextsData";
 import Swal from "sweetalert2";
 
 const AddModal = ({ setContent, content, category, setFlag }) => {

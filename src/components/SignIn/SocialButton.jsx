@@ -1,10 +1,9 @@
-import React from "react";
 import {
   handleTextColor,
   handleButtonColor,
 } from "components/Common/ButtonPropsHandler";
-import styled from "@emotion/styled";
 import flex from "components/Common/flex";
+import styled from "@emotion/styled";
 
 export const SocialButton = ({ link, text, name }) => {
   return (

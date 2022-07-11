@@ -1,12 +1,13 @@
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { SPLASH_LOADING_TIME } from "shared/data";
 
 const useSplash = () => {
   const navigate = useNavigate();
   useEffect(() => {
     let interval = setInterval(() => {
       navigate("/home");
-    }, 3000);
+    }, SPLASH_LOADING_TIME);
     return () => {
       clearInterval(interval);
     };

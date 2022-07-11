@@ -1,15 +1,12 @@
-import React from "react";
-import styled from "@emotion/styled";
-import flex from "./flex";
 import useGetUser from "components/Hooks/useGetUser";
-
-import Dog from "assets/img/Dog.png";
 import SmallMenu from "assets/img/smallMenu.png";
 import Loading from "pages/Status/Loading";
+import styled from "@emotion/styled";
+import flex from "./flex";
 
 const Header = () => {
   const { data, isLoading } = useGetUser();
-
+  console.log(data.profile_img);
   if (isLoading) {
     return <Loading />;
   }
@@ -18,7 +15,7 @@ const Header = () => {
       <StWrapFlex>
         <HeaderWrap>
           <div className="LeftDiv">
-            <div className="ProfilePic" />
+            <StProfileImgDiv pic={data.profile_img} />
             <div className="textDiv">
               <span>갓생러 {data?.nickname}</span>
             </div>
@@ -53,14 +50,6 @@ const HeaderWrap = styled.div`
     ${flex({})}
     margin-left: 15px;
   }
-  .ProfilePic {
-    width: 56px;
-    height: 56px;
-    border-radius: 100px;
-    background-image: url(${Dog});
-    background-size: cover;
-    background-position: center;
-  }
   .textDiv {
     ${flex({ direction: "column", align: "flex-start" })}
     font-weight: 700;
@@ -69,6 +58,15 @@ const HeaderWrap = styled.div`
     margin-left: 12px;
     color: #4f514a;
   }
+`;
+
+const StProfileImgDiv = styled.div`
+  width: 56px;
+  height: 56px;
+  border-radius: 100px;
+  background-image: url(${(props) => props.pic};);
+  background-size: cover;
+  background-position: center;
 `;
 
 const StImgDiv = styled.div`

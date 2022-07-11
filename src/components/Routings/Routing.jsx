@@ -1,8 +1,7 @@
-import React from "react";
 import { Routes, Route } from "react-router-dom";
-import loadable from "@loadable/component";
 import ProtectedRoutesNoLogin from "./ProtectedNoLogin";
 import ProtectedRoutesYesLogin from "./ProtectedYesLogin";
+import loadable from "@loadable/component";
 import Splash from "pages/Status/Splash";
 
 const Kakao = loadable(() => import("pages/SocialLogIn/Kakao"));
