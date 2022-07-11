@@ -4,6 +4,7 @@ import NavigatorBar from "components/Common/NavigatorBar";
 import useGetPostDetail from "components/Hooks/useGetPostDetail";
 import CommentInput from "components/CommentComponents/CommentInput";
 import CommentImg from "components/CommentComponents/CommentImg";
+import CommentLists from "components/CommentComponents/CommentLists";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 import loadable from "@loadable/component";
@@ -13,7 +14,7 @@ const Loading = loadable(() => import("pages/Status/Loading"));
 const FeedDetail = () => {
   const { postId } = useParams();
   const { data, isLoading } = useGetPostDetail({ postId: postId });
-  console.log(data);
+  const cList = data?.commentList;
   return (
     <StWrapFlex>
       {isLoading ? (
@@ -24,7 +25,10 @@ const FeedDetail = () => {
             category={data?.category}
             postContent={data?.postContent}
             img={data?.photoUrl}
+            profile={data?.profile_img}
+            name={data?.nickname}
           />
+          <CommentLists comment={cList} />
           <CommentInput postId={data?.postId} />
         </>
       )}

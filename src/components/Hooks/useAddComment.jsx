@@ -12,7 +12,7 @@ const useAddComment = () => {
   const queryClient = useQueryClient();
 
   return useMutation(addComment, {
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries("comment");
       Swal.fire({
         icon: "success",
@@ -20,7 +20,6 @@ const useAddComment = () => {
         showConfirmButton: false,
         timer: MODAL_TIME,
       });
-      console.log(data);
     },
     onError: (e) => {
       alert(e);

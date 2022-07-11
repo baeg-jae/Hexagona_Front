@@ -3,16 +3,16 @@ import flex from "../Common/flex";
 import HeaderImg from "assets/img/HeaderImg.png";
 import useCategory from "components/Hooks/useCategory";
 
-const CommentImg = ({ category, postContent, img }) => {
+const CommentImg = ({ category, postContent, img, profile, name }) => {
   const getCategory = useCategory({ category });
   return (
     <StWrapFlex img={img}>
       <div className="gradient">
         <HeaderDiv>
-          <StProfile />
+          <StProfile img={profile} />
           <StTextDiv>
             <span className="titleText">갓생 입문자</span>
-            <span className="nameText">나중에 바꿀거</span>
+            <span className="nameText">{name}</span>
           </StTextDiv>
         </HeaderDiv>
         <BottomDiv>
@@ -61,7 +61,8 @@ const HeaderDiv = styled.div`
 const StProfile = styled.div`
   width: 40px;
   height: 40px;
-  background-image: url(${HeaderImg});
+  background-image: url(${(props) => props.img});
+  background-size: cover;
   background-position: center;
   border-radius: 100%;
 `;

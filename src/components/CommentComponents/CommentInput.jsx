@@ -50,6 +50,7 @@ const StWrapFlex = styled.div`
   top: calc(100% - 160px);
   width: 100%;
   height: 92px;
+  background-color: var(--white);
 `;
 
 const StProfile = styled.div`
