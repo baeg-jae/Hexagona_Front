@@ -1,50 +1,51 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import styled from "@emotion/styled";
-import { StWidth } from "components/Common/GlobalStyles";
-import flex from "components/Common/flex";
-import useCategory from "components/Hooks/useCategory";
-import useGetMission from "components/Hooks/useGetMission";
-import Loading from "pages/Status/Loading";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import useGetMission from "components/Hooks/useGetMission";
+import useCategory from "components/Hooks/useCategory";
 import AddModal from "components/Common/addModal";
+import Loading from "pages/Status/Loading";
+import flex from "components/Common/flex";
+import styled from "@emotion/styled";
 
 const HomeCategory = () => {
   const [flag, setFlag] = useState(false);
   const [content, setContent] = useState("");
+  const { data, isLoading } = useGetMission();
   const { category } = useParams();
   const categoryCheck = useCategory();
-  const { data, isLoading } = useGetMission();
-  console.log(data);
   useEffect(() => {}, [data]);
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
   return (
-    <StWrap>
-      <StContainer>
-        <div className="category">
-          <span>{categoryCheck}</span>
-        </div>
-        <div className="missions"></div>
-      </StContainer>
-      {flag && (
-        <AddModal
-          setContent={setContent}
-          content={content}
-          category={category}
-          setFlag={setFlag}
-        />
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <StWrap>
+          <StContainer>
+            <div className="category">
+              <span>{categoryCheck}</span>
+            </div>
+            <div className="missions"></div>
+          </StContainer>
+          {flag && (
+            <AddModal
+              setContent={setContent}
+              content={content}
+              category={category}
+              setFlag={setFlag}
+            />
+          )}
+        </StWrap>
       )}
-    </StWrap>
+    </>
   );
 };
 
 export default HomeCategory;
 
-const StWrap = styled(StWidth)`
-  ${flex({ direction: "column" })}
+const StWrap = styled.div`
+  ${flex({ direction: "column" })};
+  width: 100%;
 `;
 
 const StContainer = styled.div`
@@ -53,9 +54,11 @@ const StContainer = styled.div`
     justify: "space-between",
     align: "flex-start",
   })}
+
   width: 345px;
   height: 497px;
   margin-top: 40px;
+
   .category {
     ${flex({ justify: "flex-start" })}
     width: 201px;
@@ -64,6 +67,7 @@ const StContainer = styled.div`
     &:first-of-type {
       margin-left: 9px;
     }
+
     span {
       margin-right: 19px;
       font-weight: 700;

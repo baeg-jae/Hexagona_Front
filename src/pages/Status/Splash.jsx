@@ -1,16 +1,15 @@
+import { scaleAnimation, fadeAnimation } from "components/Common/GlobalStyles";
+import { SPLASH_SCALE_ANIMATION, SPLASH_FADE_ANIMATION } from "shared/data";
 import { StWrap } from "components/Common/GlobalStyles";
 import useSplash from "components/Hooks/useSplash";
-import styled from "@emotion/styled";
 import flex from "components/Common/flex";
-import { scaleAnimation, fadeAnimation } from "components/Common/GlobalStyles";
+import styled from "@emotion/styled";
 
 const Splash = () => {
   useSplash();
   return (
     <StWrapFlex>
-      <span className="smallSpan" style={{ margin: "0" }}>
-        이번엔 꼭 내 인생을 갓생으로
-      </span>
+      <span className="smallSpan">이번엔 꼭 내 인생을 갓생으로</span>
       <StSpan className="bigSpan">갓생메이커</StSpan>
     </StWrapFlex>
   );
@@ -19,13 +18,13 @@ const Splash = () => {
 export default Splash;
 
 const StSpan = styled.span`
-  animation: ${scaleAnimation} 1s infinite;
+  animation: ${scaleAnimation} ${SPLASH_SCALE_ANIMATION}s infinite;
 `;
 
 const StWrapFlex = styled(StWrap)`
   ${flex({ direction: "column" })}
-  animation: ${fadeAnimation} 3s ease;
-  color: #665547;
+  animation: ${fadeAnimation} ${SPLASH_FADE_ANIMATION}s ease;
+  color: var(--brown);
   .bigSpan {
     font-weight: 700;
     font-size: 64px;
@@ -36,7 +35,6 @@ const StWrapFlex = styled(StWrap)`
     font-weight: 400;
     font-size: 20px;
     line-height: 130%;
-    margin-bottom: 42px;
-    color: #555555;
+    color: var(--gray);
   }
 `;

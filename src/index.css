@@ -2,7 +2,7 @@
   --primary: #2ec2b8;
   --primary-hover: #20a097;
   --font-main: #0f0f0f;
-  --gray: #cbcbcb;
+  --gray: #555555;
   --Line: #f4f4f4;
   --purple: #8e44ad;
   --yellow: #fff200;
@@ -12,6 +12,9 @@
   --black: #212121;
   --blue: #4d7cfe;
   --red: #e00303;
+  --brown: #665547;
+  --gradient: #1e1818;
+  --goalShotButton: #2c2825;
 }
 
 body {

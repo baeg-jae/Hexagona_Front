@@ -1,10 +1,8 @@
-import React from "react";
-import styled from "@emotion/styled";
-import flex from "components/Common/flex";
+import { KAKAO_AUTH_URL, GOOGLE_AUTH_URL } from "shared/socialAuth";
 import { SocialButton } from "components/SignIn/SocialButton";
-import { KAKAO_AUTH_URL } from "shared/kakao/kakao";
-import { GOOGLE_AUTH_URL } from "shared/google/google";
 import LoginImg from "assets/img/LoginImg.png";
+import flex from "components/Common/flex";
+import styled from "@emotion/styled";
 
 const LogIn = () => {
   return (
@@ -55,7 +53,7 @@ const StFirstPageDiv = styled.div`
     background: linear-gradient(
       180deg,
       rgba(30, 5, 5, 0) -9.31%,
-      #1e1818 40.46%
+      var(--gradient) 40.46%
     );
   }
 `;

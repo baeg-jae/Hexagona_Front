@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Loading from "pages/Status/Loading";
 import { __kakaoSignIn } from "redux/modules/user";
+import Loading from "pages/Status/Loading";
 
 const Kakao = () => {
   const code = new URL(window.location.href).searchParams.get("code");
