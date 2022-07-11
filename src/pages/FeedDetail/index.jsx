@@ -14,12 +14,14 @@ const Loading = loadable(() => import("pages/Status/Loading"));
 
 const FeedDetail = () => {
   const { postId } = useParams();
-  const { data, isLoading } = useGetPostDetail({ postId: postId });
+  const { data, isFetching } = useGetPostDetail({
+    postId: postId,
+  });
   const cList = data?.commentList;
   useEffect(() => {}, [cList]);
   return (
     <StWrapFlex>
-      {isLoading ? (
+      {isFetching ? (
         <Loading />
       ) : (
         <>

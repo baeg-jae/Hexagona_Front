@@ -5,8 +5,8 @@ import styled from "@emotion/styled";
 import flex from "./flex";
 
 const Header = () => {
-  const { data, isLoading } = useGetUser();
-  if (isLoading) {
+  const { data, isFetching } = useGetUser();
+  if (isFetching) {
     return <Loading />;
   }
   return (

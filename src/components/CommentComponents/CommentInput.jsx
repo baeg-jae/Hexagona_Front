@@ -9,7 +9,7 @@ import useAddComment from "components/Hooks/useAddComment";
 const Loading = loadable(() => import("pages/Status/Loading"));
 
 const CommentInput = ({ postId }) => {
-  const { data, isLoading } = useGetUser();
+  const { data, isFetching } = useGetUser();
   const { mutate } = useAddComment();
   const [comment, setComment] = useState("");
 
@@ -21,7 +21,7 @@ const CommentInput = ({ postId }) => {
   };
   return (
     <StWrapFlex>
-      {isLoading ? (
+      {isFetching ? (
         <Loading />
       ) : (
         <>

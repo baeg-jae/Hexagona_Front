@@ -8,7 +8,7 @@ import styled from "@emotion/styled";
 const Loading = loadable(() => import("pages/Status/Loading"));
 
 const Column = () => {
-  const { data, isLoading } = useGetPost();
+  const { data, isFetching } = useGetPost();
   const navigate = useNavigate();
   const onClickHandler = useCallback(
     (postId) => {
@@ -19,7 +19,7 @@ const Column = () => {
 
   return (
     <>
-      {isLoading ? (
+      {isFetching ? (
         <Loading />
       ) : (
         <StWrap>
