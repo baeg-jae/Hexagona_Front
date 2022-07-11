@@ -6,7 +6,6 @@ import flex from "./flex";
 
 const Header = () => {
   const { data, isLoading } = useGetUser();
-  console.log(data.profile_img);
   if (isLoading) {
     return <Loading />;
   }
