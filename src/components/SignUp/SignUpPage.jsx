@@ -1,14 +1,15 @@
-import React, { useCallback, useState } from "react";
-import styled from "@emotion/styled";
-import flex from "components/Common/flex";
 import { StInput } from "components/Common/GlobalStyles";
 import { useQueryClient, useMutation } from "react-query";
+import { useCallback, useState } from "react";
+import { SIGN_UP_MAX_LENGTH } from "shared/data";
+import { badWords } from "shared/TextsData";
+import flex from "components/Common/flex";
 import Button from "components/Common/Button";
 import IntroPage from "./IntroPage";
+import styled from "@emotion/styled";
 import apis from "shared/api/main";
-import { badWords } from "./IntroPageTexts";
+import Swal from "sweetalert2";
 
-const MAX_LENGTH = 7;
 const __signup = async (payload) => {
   const data = await apis.signUp(payload);
   return data;
@@ -30,7 +31,13 @@ const SignUpPage = () => {
       // 캐시에 있는 모든 쿼리를 무효화한다.
       queryClient.invalidateQueries("users");
       // 회원가입에 통과되면 화면전환
-      alert("가입을 환영합니다");
+      Swal.fire({
+        icon: "success",
+        title: "가입완료",
+        text: "환영합니다",
+        showConfirmButton: false,
+        timer: 1500,
+      });
 
       setFlag((value) => !value);
     },
@@ -49,11 +56,15 @@ const SignUpPage = () => {
         // 중복검사에 통과되면 회원가입을 진행한다
         userSignUpMutation.mutate({ nickname: name });
       } else {
-        alert("중복된 아이디 입니다.");
+        Swal.fire({
+          title: "에러!",
+          text: "중복된 아이디 입니다.",
+          icon: "error",
+          confirmButtonText: "Cool",
+        });
       }
     },
     onError: (error) => {
-      console.log(error.message);
       alert(`중복체크: ${error.message}`);
     },
     onSettled: () => {},
@@ -70,7 +81,12 @@ const SignUpPage = () => {
       name.toLowerCase().includes(word.toLowerCase())
     );
     if (foundSwears.length) {
-      alert("아이디에는 비속어가 포함되실 수 없습니다.");
+      Swal.fire({
+        title: "에러!",
+        text: "제대로 된 닉네임을 입력해주세요",
+        icon: "error",
+        confirmButtonText: "Cool",
+      });
     } else {
       // 욕설탐지기에 안걸리면 실행
       onClickBtnHandler();
@@ -97,13 +113,13 @@ const SignUpPage = () => {
           <div className="inputBox">
             <StInput
               placeholder="닉네임을 입력해주세요."
-              maxLength={MAX_LENGTH}
+              maxLength={SIGN_UP_MAX_LENGTH}
               onChange={(e) => setName(e.target.value)}
               className="stInput"
             />
             <div className="inputCount">
               <span className={generateClassName()}>{name.length}</span>/
-              {MAX_LENGTH}
+              {SIGN_UP_MAX_LENGTH}
             </div>
           </div>
 
@@ -149,7 +165,7 @@ const StWrap = styled.div`
     border: 1px solid #d3d3d3;
     color: #d2bca9;
     &:focus-within {
-      border: 1px solid #d2bca9;
+      border: 1px solid #1f201d;
     }
   }
 
@@ -158,7 +174,7 @@ const StWrap = styled.div`
     width: 215px;
     height: 39px;
     margin-left: 10px;
-    color: #956c4a;
+    color: #1f201d;
     &:focus {
       outline: none;
     }
@@ -171,7 +187,7 @@ const StWrap = styled.div`
     margin-right: 20px;
     .currentCount {
       font-weight: 700;
-      color: #956c4a;
+      color: #1f201d;
     }
   }
 `;

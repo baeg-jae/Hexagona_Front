@@ -4,7 +4,7 @@ import { StWrapFlex } from "components/Common/GlobalStyles";
 const Loading = () => {
   return (
     <StWrapFlex>
-      <MutatingDots color="#000" height={100} width={100} />
+      <MutatingDots color="var(--black)" height={100} width={100} />
     </StWrapFlex>
   );
 };

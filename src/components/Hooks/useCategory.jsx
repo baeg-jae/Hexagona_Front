@@ -1,7 +1,4 @@
-import { useParams } from "react-router-dom";
-
-const useCategory = () => {
-  const { category } = useParams();
+const useCategory = ({ category }) => {
   const categoryCheck = () => {
     switch (category) {
       case "exercise":

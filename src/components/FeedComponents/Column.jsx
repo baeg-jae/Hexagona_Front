@@ -1,15 +1,14 @@
-import React, { useCallback } from "react";
-import styled from "@emotion/styled";
 import { FlexRowDiv } from "components/Common/GlobalStyles";
+import { useNavigate } from "react-router-dom";
+import { useCallback } from "react";
 import useGetPost from "components/Hooks/useGetPost";
 import loadable from "@loadable/component";
-import { useNavigate } from "react-router-dom";
+import styled from "@emotion/styled";
 
 const Loading = loadable(() => import("pages/Status/Loading"));
 
 const Column = () => {
-  const { data, isLoading } = useGetPost();
-  console.log(data);
+  const { data, isFetching } = useGetPost();
   const navigate = useNavigate();
   const onClickHandler = useCallback(
     (postId) => {
@@ -18,44 +17,46 @@ const Column = () => {
     [navigate]
   );
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
   return (
-    <StWrap>
-      <StRowFirst>
-        {data?.map((v, i) => {
-          return i % 2 === 0 ? (
-            <StImgDiv
-              className="imgDiv"
-              onClick={() => onClickHandler(v?.postId)}
-              coverImg={v?.photoUrl}
-              style={{ marginRight: "4.5px" }}
-            />
-          ) : (
-            ""
-          );
-        })}
-        <EmptyDiv />
-      </StRowFirst>
-      <StRowSecond>
-        <EmptyDiv />
-        {data?.map((v, i) => {
-          return i % 2 === 1 ? (
-            <StImgDiv
-              className="imgDiv"
-              onClick={() => onClickHandler(v?.postId)}
-              coverImg={v?.photoUrl}
-              style={{ marginLeft: "4.5px" }}
-            />
-          ) : (
-            ""
-          );
-        })}
-        <EmptyDiv />
-      </StRowSecond>
-    </StWrap>
+    <>
+      {isFetching ? (
+        <Loading />
+      ) : (
+        <StWrap>
+          <StRowFirst>
+            {data?.map((v, i) => {
+              return i % 2 === 0 ? (
+                <StImgDiv
+                  className="imgDiv"
+                  onClick={() => onClickHandler(v?.postId)}
+                  coverImg={v?.photoUrl}
+                  style={{ marginRight: "4.5px" }}
+                />
+              ) : (
+                ""
+              );
+            })}
+            <EmptyDiv />
+          </StRowFirst>
+          <StRowSecond>
+            <EmptyDiv />
+            {data?.map((v, i) => {
+              return i % 2 === 1 ? (
+                <StImgDiv
+                  className="imgDiv"
+                  onClick={() => onClickHandler(v?.postId)}
+                  coverImg={v?.photoUrl}
+                  style={{ marginLeft: "4.5px" }}
+                />
+              ) : (
+                ""
+              );
+            })}
+            <EmptyDiv />
+          </StRowSecond>
+        </StWrap>
+      )}
+    </>
   );
 };
 

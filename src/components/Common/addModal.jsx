@@ -3,7 +3,8 @@ import styled from "@emotion/styled";
 import flex from "components/Common/flex";
 import { FlexRowDiv } from "./GlobalStyles";
 import useAddMission from "components/Hooks/useAddMission";
-import { badWords } from "components/SignUp/IntroPageTexts";
+import { badWords } from "shared/TextsData";
+import Swal from "sweetalert2";
 
 const AddModal = ({ setContent, content, category, setFlag }) => {
   const { mutate } = useAddMission();
@@ -25,8 +26,21 @@ const AddModal = ({ setContent, content, category, setFlag }) => {
     const foundSwears = badWords.filter((word) =>
       content.toLowerCase().includes(word.toLowerCase())
     );
+    if (foundSwears === "") {
+      Swal.fire({
+        title: "에러!",
+        text: "제대로 된 미션을 입력해주세요",
+        icon: "error",
+        confirmButtonText: "Cool",
+      });
+    }
     if (foundSwears.length) {
-      alert("미션을 제대로 적어주세요.");
+      Swal.fire({
+        title: "에러!",
+        text: "제대로 된 미션을 입력해주세요",
+        icon: "error",
+        confirmButtonText: "Cool",
+      });
     } else {
       // 욕설탐지기에 안걸리면 실행
       onAddMissionHandler();
@@ -88,12 +102,13 @@ const StModal = styled.button`
         margin-bottom: 24px;
       }
       .missionInput {
-        width: 272px;
+        width: 242px;
         height: 61px;
         background: #f7f7f7;
         border-radius: 8px;
         border: none;
         margin-bottom: 24px;
+        padding: 16px;
         &::placeholder {
           font-weight: 500;
           font-size: 15px;

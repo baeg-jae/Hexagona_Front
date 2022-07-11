@@ -1,12 +1,11 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import styled from "@emotion/styled";
-import { StWidth } from "components/Common/GlobalStyles";
-import flex from "components/Common/flex";
-import useCategory from "components/Hooks/useCategory";
-import useGetMission from "components/Hooks/useGetMission";
-import Loading from "pages/Status/Loading";
+import { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
+import useGetMission from "components/Hooks/useGetMission";
+import useCategory from "components/Hooks/useCategory";
 import AddModal from "components/Common/addModal";
+import Loading from "pages/Status/Loading";
+import flex from "components/Common/flex";
+import styled from "@emotion/styled";
 import { useMutation, useQueryClient } from "react-query";
 import AddPost from "components/missionComponents/AddPost";
 import {
@@ -19,14 +18,12 @@ import apis from "shared/api/main";
 const HomeCategory = () => {
   const [flag, setFlag] = useState(false);
   const [content, setContent] = useState("");
-  const { category } = useParams();
-  const categoryCheck = useCategory();
   const { data, isLoading } = useGetMission();
+  const { category } = useParams();
+  const categoryCheck = useCategory({ category });
+  useEffect(() => {}, [data]);
   const arr = [1, 2, 3, 4];
   const queryClient = useQueryClient();
-
-  useEffect(() => {}, [data]);
-
   const list = data
     ?.map((v) => {
       return category === v.category && v;
@@ -56,69 +53,76 @@ const HomeCategory = () => {
     [completedTodoMutation]
   );
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
   return (
-    <StWrap>
-      <StContainer>
-        <div className="category">
-          <span>{categoryCheck}</span>
-        </div>
-        <div className="missions">
-          {arr.map((_, i) => {
-            return list[i] !== undefined ? (
-              list[i]?.missionState ? (
-                <StCompletedDiv number={i}>
-                  <AddPost
-                    missionId={list[i]?.missionId}
-                    category={category}
-                    postContent={list[i]?.missionContent}
-                  />
-                  <span className="missionStatusText">수행중</span>
-                  <StImg number={i} />
-                  <span className="innerText">{list[i]?.missionContent}</span>
-                </StCompletedDiv>
-              ) : (
-                <StDiv
-                  number={i}
-                  onClick={() =>
-                    onCompletedHandler({
-                      missionId: list[i]?.missionId,
-                    })
-                  }
-                >
-                  <span className="missionStatusText">수행중</span>
-                  <StImg number={i} />
-                  <span className="innerText">{list[i]?.missionContent}</span>
-                </StDiv>
-              )
-            ) : (
-              <StDiv onClick={onToggleModal}>
-                <StImg />
-                <span className="innerText">목표를 생성해주세요.</span>
-              </StDiv>
-            );
-          })}
-        </div>
-      </StContainer>
-      {flag && (
-        <AddModal
-          setContent={setContent}
-          content={content}
-          category={category}
-          setFlag={setFlag}
-        />
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <StWrap>
+          <StContainer>
+            <div className="category">
+              <span>{categoryCheck}</span>
+            </div>
+            <div className="missions">
+              {arr.map((_, i) => {
+                return list[i] !== undefined ? (
+                  list[i]?.missionState ? (
+                    <StCompletedDiv number={i}>
+                      <AddPost
+                        missionId={list[i]?.missionId}
+                        category={category}
+                        postContent={list[i]?.missionContent}
+                      />
+                      <span className="missionStatusText">수행완료</span>
+                      <StImg number={i} />
+                      <span className="innerText">
+                        {list[i]?.missionContent}
+                      </span>
+                    </StCompletedDiv>
+                  ) : (
+                    <StDiv
+                      number={i}
+                      onClick={() =>
+                        onCompletedHandler({
+                          missionId: list[i]?.missionId,
+                        })
+                      }
+                    >
+                      <span className="missionStatusText">수행중</span>
+                      <StImg number={i} />
+                      <span className="innerText">
+                        {list[i]?.missionContent}
+                      </span>
+                    </StDiv>
+                  )
+                ) : (
+                  <StDiv onClick={onToggleModal}>
+                    <StImg />
+                    <span className="innerText">목표를 생성해주세요.</span>
+                  </StDiv>
+                );
+              })}
+            </div>
+          </StContainer>
+          {flag && (
+            <AddModal
+              setContent={setContent}
+              content={content}
+              category={category}
+              setFlag={setFlag}
+            />
+          )}
+        </StWrap>
       )}
-    </StWrap>
+    </>
   );
 };
 
 export default HomeCategory;
 
-const StWrap = styled(StWidth)`
-  ${flex({ direction: "column" })}
+const StWrap = styled.div`
+  ${flex({ direction: "column" })};
+  width: 100%;
 `;
 
 const StContainer = styled.div`
@@ -127,9 +131,11 @@ const StContainer = styled.div`
     justify: "space-between",
     align: "flex-start",
   })}
+
   width: 345px;
   height: 497px;
   margin-top: 40px;
+
   .category {
     ${flex({ justify: "flex-start" })}
     width: 201px;
@@ -138,6 +144,7 @@ const StContainer = styled.div`
     &:first-of-type {
       margin-left: 9px;
     }
+
     span {
       margin-right: 19px;
       font-weight: 700;

@@ -3,26 +3,28 @@ import apis from "shared/api/main";
 import Swal from "sweetalert2";
 import { MODAL_TIME } from "shared/data";
 
-const addTodo = async (payload) => {
-  const addTodoDB = await apis.addTodo(payload);
-  return addTodoDB;
+const addComment = async (payload) => {
+  const addCommentDB = await apis.addComment(payload);
+  return addCommentDB;
 };
 
-const useAddMission = () => {
+const useAddComment = () => {
   const queryClient = useQueryClient();
 
-  return useMutation(addTodo, {
+  return useMutation(addComment, {
     onSuccess: () => {
-      queryClient.invalidateQueries("todos");
+      queryClient.invalidateQueries("comment");
       Swal.fire({
         icon: "success",
-        title: "미션이 추가되었습니다",
-        text: "미션을 수행해보세요",
+        text: "댓글이 추가되었습니다",
         showConfirmButton: false,
         timer: MODAL_TIME,
       });
     },
+    onError: (e) => {
+      alert(e);
+    },
   });
 };
 
-export default useAddMission;
+export default useAddComment;

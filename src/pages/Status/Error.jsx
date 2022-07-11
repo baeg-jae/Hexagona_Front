@@ -1,6 +1,6 @@
+import { StWrapFlex } from "components/Common/GlobalStyles";
 import Button from "components/Common/Button";
 import useBack from "components/Hooks/useBack";
-import { StWrapFlex } from "components/Common/GlobalStyles";
 
 const Error = () => {
   const back = useBack();

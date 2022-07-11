@@ -16,10 +16,6 @@ export const StWrap = styled.div`
   height: 100vh;
 `;
 
-export const StWidth = styled.div`
-  width: 100%;
-`;
-
 export const StInput = styled.input`
   font-size: 16px;
   &::placeholder {
@@ -53,7 +49,8 @@ export const scaleAnimation = keyframes`
 export const fadeAnimation = keyframes`
  0% { 
   background-color: rgba(0,0,0,1);
-  color: rgba(0,0,0,1) 
+  color: rgba(0,0,0,1);
+  opacity: 0; 
 }
   100% { opacity: 1; }
 `;

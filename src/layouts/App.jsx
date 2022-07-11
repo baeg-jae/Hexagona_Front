@@ -1,7 +1,7 @@
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import MobileFrame from "components/Common/MobileFrame";
 import Routing from "components/Routings/Routing";
 import styled from "@emotion/styled";
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 function App() {
   return (
@@ -39,7 +39,7 @@ const Fullscreen = styled.div`
 
 const Wrap = styled.div`
   width: 100%;
-  height: auto;
   max-height: 100%;
+  height: auto;
   -webkit-overflow-scrolling: touch;
 `;

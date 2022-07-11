@@ -1,9 +1,7 @@
-import React from "react";
+import { FlexColumnDiv } from "./GlobalStyles";
+import { NavLink } from "react-router-dom";
 import styled from "@emotion/styled";
 import flex from "./flex";
-import { NavLink } from "react-router-dom";
-import { FlexColumnDiv } from "./GlobalStyles";
-import { FaCamera } from "react-icons/fa";
 
 const NavigatorBar = () => {
   return (
@@ -23,9 +21,6 @@ const NavigatorBar = () => {
       <NavLink to={"/chat"}>
         <span>Chat</span>
       </NavLink>
-      <FlexColumnDiv>
-        <FaCamera />
-      </FlexColumnDiv>
     </StWrapFlex>
   );
 };
@@ -33,13 +28,13 @@ const NavigatorBar = () => {
 export default NavigatorBar;
 
 const StWrapFlex = styled.div`
-  ${flex({ justify: "space-around" })}
+  ${flex({ justify: "space-evenly" })}
   position: fixed;
   bottom: 0;
   width: 100%;
   height: 68px;
   text-align: center;
-  background-color: #fff;
+  background-color: var(--white);
   border-top: 1px solid #e3e3e3;
   span {
     font-weight: 500;
