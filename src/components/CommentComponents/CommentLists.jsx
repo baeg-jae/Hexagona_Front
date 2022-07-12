@@ -4,6 +4,7 @@ import { FlexColumnDiv } from 'components/Common/GlobalStyles';
 import useGetComment from 'components/Hooks/useGetComment';
 import { useEffect } from 'react';
 
+
 const CommentLists = ({ postId }) => {
     const { data, isFetching } = useGetComment({ postId: postId });
 

@@ -67,7 +67,6 @@ const SignUpPage = () => {
     onError: (error) => {
       alert(`중복체크: ${error.message}`);
     },
-    onSettled: () => {},
   });
 
   // 버튼 핸들러
