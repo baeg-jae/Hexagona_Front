@@ -8,14 +8,17 @@ const Kakao = () => {
   const code = new URL(window.location.href).searchParams.get("code");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isLogin } = useSelector((state) => state.userReducer);
+  const { isLogin, newUser } = useSelector((state) => state.userReducer);
 
   useEffect(() => {
     dispatch(__kakaoSignIn(code));
     if (isLogin) {
       navigate("/signup");
     }
-  }, [dispatch, code, navigate, isLogin]);
+    if (!newUser) {
+      navigate("/home");
+    }
+  }, [dispatch, code, navigate, isLogin, newUser]);
   return (
     <>
       <Loading />

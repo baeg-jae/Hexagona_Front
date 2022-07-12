@@ -7,19 +7,18 @@ const NavigatorBar = () => {
   return (
     <StWrapFlex>
       <NavLink to={"/home"}>
-        <span>MY</span>
+        <span>마이</span>
       </NavLink>
       <NavLink to={"/goalshot"}>
         <FlexColumnDiv>
-          <span className="smallText">Goal</span>
-          <span className="smallText">Shot</span>
+          <span className="smallText">골샷</span>
         </FlexColumnDiv>
       </NavLink>
       <NavLink to={"/feed"}>
-        <span>Feed</span>
+        <span>피드</span>
       </NavLink>
       <NavLink to={"/chat"}>
-        <span>Chat</span>
+        <span>채팅</span>
       </NavLink>
     </StWrapFlex>
   );

@@ -5,9 +5,9 @@ import useGetPostDetail from "components/Hooks/useGetPostDetail";
 import CommentInput from "components/CommentComponents/CommentInput";
 import CommentImg from "components/CommentComponents/CommentImg";
 import CommentLists from "components/CommentComponents/CommentLists";
+import loadable from "@loadable/component";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
-import loadable from "@loadable/component";
 
 const Loading = loadable(() => import("pages/Status/Loading"));
 

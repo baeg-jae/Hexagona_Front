@@ -2,16 +2,34 @@ import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 import { FlexColumnDiv } from "components/Common/GlobalStyles";
 import useGetComment from "components/Hooks/useGetComment";
+import { useEffect } from "react";
 
-const CommentLists = ({ comment, postId }) => {
+const CommentLists = ({ postId }) => {
   const { data, isFetching } = useGetComment({ postId: postId });
+
+  // 댓글 무한스크롤 - 만드는 중
+  // useEffect(() => {
+  //   let fetching = false;
+  //   const onScroll = (e) => {
+  //     const { scrollHeight, scrollTop, clientHeight } =
+  //       e.target.scrollingElement;
+  //     if (!fetching && scrollHeight - scrollTop <= clientHeight) {
+  //       console.log("fetched");
+  //     }
+  //   };
+  //   document.addEventListener("scroll", onScroll);
+  //   return () => {
+  //     document.removeEventListener("scroll", onScroll);
+  //   };
+  // }, []);
+
   return (
     <>
       {isFetching ? (
         <></>
       ) : (
         <StWrap>
-          {data === undefined ? (
+          {data?.length === 0 ? (
             <FlexColumnDiv style={{ height: "100%" }}>
               <span className="emptySpan">아직 쓰여진 댓글이 없습니다.</span>
               <span className="emptySpan">첫 댓글을 등록해보세요!</span>
