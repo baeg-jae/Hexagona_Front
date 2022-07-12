@@ -10,7 +10,8 @@ import useAddLike from "components/Hooks/useAddLike";
 const CommentImg = ({ category, postContent, img, profile, name, postId }) => {
   const [like, setLike] = useState(false);
   const getCategory = useCategory({ category });
-  const { mutate } = useAddLike();
+  const { mutate, data } = useAddLike();
+  //  메모 : data에 true/false 받으면 그걸로 좋아요 판단
   const addLike = () => {
     mutate({
       postId: postId,

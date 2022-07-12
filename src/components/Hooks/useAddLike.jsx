@@ -11,6 +11,7 @@ const useAddLike = () => {
   return useMutation(addLike, {
     onSuccess: (data) => {
       queryClient.invalidateQueries("like");
+      return data;
     },
     onError: (e) => {
       alert(e.massage);

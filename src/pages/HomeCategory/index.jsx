@@ -1,7 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import useGetMission from "components/Hooks/useGetMission";
-import useCategory from "components/Hooks/useCategory";
 import AddModal from "components/Common/addModal";
 import Loading from "pages/Status/Loading";
 import flex from "components/Common/flex";
@@ -20,7 +19,6 @@ const HomeCategory = () => {
   const [content, setContent] = useState("");
   const { data, isLoading } = useGetMission();
   const { category } = useParams();
-  const categoryCheck = useCategory({ category });
   useEffect(() => {}, [data]);
   const arr = [1, 2, 3, 4];
   const queryClient = useQueryClient();
@@ -61,8 +59,30 @@ const HomeCategory = () => {
       ) : (
         <StWrap>
           <StContainer>
-            <div className="category">
-              <span>{categoryCheck}</span>
+            <div className="LinkDiv">
+              <div className="categoryDiv">
+                <div>
+                  <NavLink to="/home/exercise" className="linkTag">
+                    운동
+                  </NavLink>
+                </div>
+                <div>
+                  <NavLink to="/home/study" className="linkTag">
+                    학습
+                  </NavLink>
+                </div>
+                <div>
+                  <NavLink to="/home/life" className="linkTag">
+                    생활습관
+                  </NavLink>
+                </div>
+                <div>
+                  <NavLink to="/home/hobby" className="linkTag">
+                    취미생활
+                  </NavLink>
+                </div>
+              </div>
+              <div className="borderBar"></div>
             </div>
             <div className="missions">
               {arr.map((_, i) => {
@@ -124,6 +144,9 @@ export default HomeCategory;
 const StWrap = styled.div`
   ${flex({ direction: "column" })};
   width: 100%;
+  .active {
+    color: #212121 !important;
+  }
 `;
 
 const StContainer = styled.div`
@@ -137,22 +160,40 @@ const StContainer = styled.div`
   height: 497px;
   margin-top: 40px;
 
-  .category {
-    ${flex({ justify: "flex-start" })}
-    width: 201px;
-    height: 27px;
-
-    &:first-of-type {
-      margin-left: 9px;
+  &:first-of-type {
+    margin-left: 9px;
+  }
+  .LinkDiv {
+    ${flex({ direction: "column" })}
+    width: 100%;
+    .categoryDiv {
+      ${flex({ justify: "flex-start" })}
+      width: 100%;
     }
-
-    span {
-      margin-right: 19px;
-      font-weight: 700;
-      font-size: 18px;
+    .linkTag {
+      font-weight: 500;
+      font-size: 13px;
       line-height: 130%;
-      color: #202020;
+      color: #b7b7b7;
+      margin-left: 27px;
+      margin-bottom: 10px;
+      &:first-of-type {
+        margin-left: 24px;
+      }
     }
+    .borderBar {
+      width: 345px;
+      border: 1px solid #eaeaea;
+      margin-bottom: 26px;
+    }
+  }
+
+  span {
+    margin-right: 19px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 130%;
+    color: #202020;
   }
 `;
 const StDiv = styled.div`
@@ -203,4 +244,9 @@ const StCompletedDiv = styled(StDiv)`
   .innerText {
     color: white;
   }
+`;
+
+const StBorderCategoryDiv = styled.div`
+  width: 67px;
+  border: 1px solid #3e4039;
 `;
