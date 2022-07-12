@@ -10,6 +10,7 @@ const Modal = ({
   cancelTitle,
   confirmTitle,
   placeholder,
+  count,
 }) => {
   return (
     <StModal>
@@ -21,7 +22,7 @@ const Modal = ({
             type="text"
             placeholder={`ex) ${placeholder}`}
             onChange={(e) => set(e.target.value)}
-            maxLength={12}
+            maxLength={count}
           />
           <FlexRowDiv>
             <StButton onClick={cancel}>{cancelTitle}</StButton>

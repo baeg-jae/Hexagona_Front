@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { dropBoxAnimation, FlexRowDiv } from "./GlobalStyles";
-import useUpdateNickname from "components/Hooks/useUpdateNickname";
+import useNicknameHandle from "components/Hooks/useNicknameHandle";
 import SmallMenu from "assets/img/smallMenu.png";
 import Modal from "components/Common/Modal";
 import styled from "@emotion/styled";
@@ -8,9 +8,8 @@ import flex from "./flex";
 
 const DropDownMenu = ({ text, text2, margin, click }) => {
   const [flag, setFlag] = useState(false);
-  const [nicknameFlag, setNicknameFlag] = useState(false);
-  const [nickname, setNickname] = useState("");
-  const { mutate } = useUpdateNickname();
+  const { setNicknameFlag, nicknameFlag, setNickname, onSendNickname } =
+    useNicknameHandle();
 
   const onClickHandler = () => {
     setFlag((value) => !value);
@@ -29,11 +28,6 @@ const DropDownMenu = ({ text, text2, margin, click }) => {
     setter((value) => !value);
   }, []);
 
-  const onSendNickname = (setter) => {
-    setter((value) => !value);
-    mutate({ nickname: nickname });
-  };
-
   return (
     <FlexRowDiv>
       {nicknameFlag ? (
@@ -45,6 +39,7 @@ const DropDownMenu = ({ text, text2, margin, click }) => {
           cancelTitle="취소"
           confirmTitle="변경하기"
           placeholder="닉네임을 써주세요"
+          count={7}
         />
       ) : (
         <></>
