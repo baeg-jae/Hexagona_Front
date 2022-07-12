@@ -5,19 +5,22 @@ import loadable from "@loadable/component";
 import styled from "@emotion/styled";
 import flex from "../Common/flex";
 import useAddComment from "components/Hooks/useAddComment";
+import { useRef } from "react";
 
 const Loading = loadable(() => import("pages/Status/Loading"));
 
 const CommentInput = ({ postId }) => {
   const { data, isFetching } = useGetUser();
-  const { mutate } = useAddComment();
   const [comment, setComment] = useState("");
+  const { mutate } = useAddComment();
+  const inputRef = useRef(null);
 
   const addComment = () => {
     mutate({
       comment: comment,
       postId: postId,
     });
+    inputRef.current.value = "";
   };
   return (
     <StWrapFlex>
@@ -33,6 +36,7 @@ const CommentInput = ({ postId }) => {
               placeholder="인증샷에 대한 감상평을 남겨주세요."
               onChange={(e) => setComment(e.target.value)}
               maxLength={COMMENT_MAX_LENGTH}
+              ref={inputRef}
             />
             <button className="commentButton" onClick={addComment}>
               게시
