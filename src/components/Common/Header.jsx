@@ -24,6 +24,7 @@ const Header = () => {
             text2="닉네임 변경"
             margin="40"
             click2="nickname"
+            click="image"
           />
         </HeaderWrap>
       </StWrapFlex>

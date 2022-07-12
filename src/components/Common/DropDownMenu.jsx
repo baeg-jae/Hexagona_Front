@@ -3,23 +3,36 @@ import { SIGN_UP_MAX_LENGTH } from "shared/data";
 import { useState, useCallback } from "react";
 import useNicknameHandle from "components/Hooks/useNicknameHandle";
 import SmallMenu from "assets/img/smallMenu.png";
-import Modal from "components/Common/Modal";
+import InputModal from "components/Common/InputModal";
+import ImageModal from "./ImageModal";
 import styled from "@emotion/styled";
 import flex from "./flex";
+import useImageHandler from "components/Hooks/useImageHandler";
 
 const DropDownMenu = ({ text, text2, margin, click, click2 }) => {
   const [flag, setFlag] = useState(false);
   const { setNicknameFlag, nicknameFlag, setNickname, bogusCheck } =
     useNicknameHandle();
+  const { setProfileFlag, profileFlag, setProfile, onSendProfile } =
+    useImageHandler();
 
   const onClickHandler = () => {
     setFlag((value) => !value);
   };
 
-  const clickTypeHandler = () => {
+  const SecondClickTypeHandler = () => {
     switch (click2) {
       case "nickname":
         return setNicknameFlag((value) => !value);
+      default:
+        return;
+    }
+  };
+
+  const FirstClickTypeHandler = () => {
+    switch (click) {
+      case "image":
+        return setProfileFlag((value) => !value);
       default:
         return;
     }
@@ -31,8 +44,20 @@ const DropDownMenu = ({ text, text2, margin, click, click2 }) => {
 
   return (
     <FlexRowDiv>
+      {profileFlag ? (
+        <InputModal
+          set={setProfile}
+          confirm={onSendProfile}
+          cancel={() => onCancelBtnHandler(setProfileFlag)}
+          title="사진 변경하기"
+          cancelTitle="취소"
+          confirmTitle="등록하기"
+        />
+      ) : (
+        <></>
+      )}
       {nicknameFlag ? (
-        <Modal
+        <ImageModal
           set={setNickname}
           confirm={bogusCheck}
           cancel={() => onCancelBtnHandler(setNicknameFlag)}
@@ -47,11 +72,11 @@ const DropDownMenu = ({ text, text2, margin, click, click2 }) => {
       )}
       {flag ? (
         <DropRow margin={margin}>
-          <span>{text}</span>
+          <span onClick={() => FirstClickTypeHandler()}>{text}</span>
           {text2 !== undefined ? (
             <>
               <div />
-              <span onClick={() => clickTypeHandler()}>{text2}</span>
+              <span onClick={() => SecondClickTypeHandler()}>{text2}</span>
             </>
           ) : (
             <></>

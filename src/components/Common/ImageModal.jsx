@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import flex from "components/Common/flex";
 import { FlexRowDiv } from "./GlobalStyles";
 
-const Modal = ({
+const ImageModal = ({
   set,
   cancel,
   confirm,
@@ -36,7 +36,7 @@ const Modal = ({
   );
 };
 
-export default Modal;
+export default ImageModal;
 
 const StModal = styled.button`
   ${flex({})}
