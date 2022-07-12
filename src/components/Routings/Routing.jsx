@@ -13,7 +13,6 @@ const Home = loadable(() => import("pages/Home"));
 const Feed = loadable(() => import("pages/Feed"));
 const GoalShot = loadable(() => import("pages/GoalShot"));
 const FeedDetail = loadable(() => import("pages/FeedDetail"));
-const Tutorial = loadable(() => import("pages/Tutorial"));
 
 const Routing = () => {
   return (
@@ -28,7 +27,6 @@ const Routing = () => {
       <Route element={<ProtectedRoutesNoLogin />}>
         <Route path="/home/*" element={<Home />} />
         <Route path="/feed" element={<Feed />} />
-        <Route path="/tutorial" element={<Tutorial />} />
         <Route path="/goalshot" element={<GoalShot />} />
         <Route path="/feed/:id" element={<FeedDetail />} />
         <Route path="/detail/:postId" element={<FeedDetail />} />

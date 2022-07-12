@@ -29,7 +29,7 @@ const CommentLists = ({ postId }) => {
         <></>
       ) : (
         <StWrap>
-          {data?.length === 0 ? (
+          {data === undefined ? (
             <FlexColumnDiv style={{ height: "100%" }}>
               <span className="emptySpan">아직 쓰여진 댓글이 없습니다.</span>
               <span className="emptySpan">첫 댓글을 등록해보세요!</span>

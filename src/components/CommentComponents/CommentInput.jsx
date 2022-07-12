@@ -53,7 +53,7 @@ export default CommentInput;
 const StWrapFlex = styled.div`
   ${flex({})}
   position: fixed;
-  top: calc(100% - 160px);
+  top: calc(100% - 150px);
   width: 100%;
   height: 92px;
   background-color: var(--white);
