@@ -22,8 +22,9 @@ export const apis = {
     deletePost: (payload) => api.delete(`/api/post/${payload.postId}`, payload),
 
     // comment CRUD
-    addComment: (payload) => api.post(`/api/post/${payload.postId}/comment/${payload.commentId}`, payload),
-
+    getComment: (payload) => api.get(`/api/post/${payload.postId}/comment`),
+    addComment: (payload) =>
+      api.post(`/api/post/${payload.postId}/comment`, payload),
     updateComment: (payload) => api.patch(`/todos/${payload.id}`, payload),
     deleteComment: (payload) => api.delete(`/api/post/${payload.postId}/comment/${payload.commentId}`, payload),
 };

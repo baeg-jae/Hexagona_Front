@@ -1,32 +1,58 @@
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 import { FlexColumnDiv } from "components/Common/GlobalStyles";
+import useGetComment from "components/Hooks/useGetComment";
+import { useEffect } from "react";
 
-const CommentLists = ({ comment }) => {
+const CommentLists = ({ postId }) => {
+  const { data, isFetching } = useGetComment({ postId: postId });
+
+  // 댓글 무한스크롤 - 만드는 중
+  // useEffect(() => {
+  //   let fetching = false;
+  //   const onScroll = (e) => {
+  //     const { scrollHeight, scrollTop, clientHeight } =
+  //       e.target.scrollingElement;
+  //     if (!fetching && scrollHeight - scrollTop <= clientHeight) {
+  //       console.log("fetched");
+  //     }
+  //   };
+  //   document.addEventListener("scroll", onScroll);
+  //   return () => {
+  //     document.removeEventListener("scroll", onScroll);
+  //   };
+  // }, []);
+
   return (
-    <StWrap>
-      {comment.length === 0 ? (
-        <FlexColumnDiv style={{ height: "100%" }}>
-          <span className="emptySpan">아직 쓰여진 댓글이 없습니다.</span>
-          <span className="emptySpan">첫 댓글을 등록해보세요!</span>
-        </FlexColumnDiv>
+    <>
+      {isFetching ? (
+        <></>
       ) : (
-        comment?.map((v, i) => {
-          return (
-            <StReplyWrap>
-              <StProfile img={v.profile_img} />
-              <div className="reply">
-                <div>
-                  <div className="replyUser">{v.nickname}</div>
-                  <div className="replyDay">{v.createdAtDateOnly}</div>
-                </div>
-                <div className="replyText">{v.comment}</div>
-              </div>
-            </StReplyWrap>
-          );
-        })
+        <StWrap>
+          {data === undefined ? (
+            <FlexColumnDiv style={{ height: "100%" }}>
+              <span className="emptySpan">아직 쓰여진 댓글이 없습니다.</span>
+              <span className="emptySpan">첫 댓글을 등록해보세요!</span>
+            </FlexColumnDiv>
+          ) : (
+            data?.map((v, i) => {
+              return (
+                <StReplyWrap>
+                  <StProfile img={v.profile_img} />
+                  <div className="reply">
+                    <div>
+                      <div className="replyUser">{v.nickname}</div>
+                      <div className="replyDay">{v.createdAtDateOnly}</div>
+                    </div>
+                    <div className="replyText">{v.comment}</div>
+                  </div>
+                </StReplyWrap>
+              );
+            })
+          )}
+        </StWrap>
       )}
-    </StWrap>
+    </>
   );
 };
 

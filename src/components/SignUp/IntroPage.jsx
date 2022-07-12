@@ -9,15 +9,15 @@ import Loading from "pages/Status/Loading";
 
 const IntroPage = () => {
   // 유저정보 받아오기
-  const { data, isFetching } = useGetUser();
+  const { data, isLoading } = useGetUser();
   const navigate = useNavigate();
   const onClickHandler = useCallback(() => {
-    navigate("/tutorial");
+    navigate("/home");
   }, [navigate]);
 
   return (
     <>
-      {isFetching ? (
+      {isLoading ? (
         <Loading />
       ) : (
         <StWrapFlex>
