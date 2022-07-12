@@ -1,14 +1,15 @@
 import { MISSION_ADD_LENGTH } from "shared/data";
 import { useState, useCallback } from "react";
+import { badWords } from "shared/TextsData";
 import useAddMission from "components/Hooks/useAddMission";
 import InputModal from "components/Common/InputModal";
+import AddedMission from "./AddedMission";
 import flex from "components/Common/flex";
-import styled from "@emotion/styled";
 import plus from "assets/img/plus.png";
-import { badWords } from "shared/TextsData";
+import styled from "@emotion/styled";
 import Swal from "sweetalert2";
 
-const EmptyMission = ({ category }) => {
+const EmptyMission = ({ category, list }) => {
   const arr = [1, 2, 3, 4];
   const [mission, setMission] = useState("");
   const [clicked, setClicked] = useState(false);
@@ -39,7 +40,6 @@ const EmptyMission = ({ category }) => {
         confirmButtonText: "Cool",
       });
     } else {
-      // 욕설탐지기에 안걸리면 실행
       onAddMissionHandler();
     }
   }, [mission, onAddMissionHandler]);
@@ -61,7 +61,9 @@ const EmptyMission = ({ category }) => {
         <></>
       )}
       {arr.map((v, i) => {
-        return (
+        return list[i] !== undefined ? (
+          <AddedMission missionContent={list[i].missionContent} />
+        ) : (
           <StWrap onClick={onClickedHandler}>
             <StCircle>
               <StImg img={plus} />

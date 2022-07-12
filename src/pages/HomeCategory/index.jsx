@@ -28,7 +28,7 @@ const HomeCategory = () => {
         <StWrap>
           <StContainer>
             <CategoryTop />
-            <EmptyMission category={category} />
+            <EmptyMission category={category} list={list} />
           </StContainer>
         </StWrap>
       )}
