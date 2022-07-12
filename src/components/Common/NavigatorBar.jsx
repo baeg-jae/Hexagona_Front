@@ -11,7 +11,7 @@ const NavigatorBar = () => {
       </NavLink>
       <NavLink to={"/goalshot"}>
         <FlexColumnDiv>
-          <span className="smallText">골샷</span>
+          <span className="smallText">인증샷</span>
         </FlexColumnDiv>
       </NavLink>
       <NavLink to={"/feed"}>
