@@ -6,6 +6,7 @@ import { useEffect } from "react";
 
 const CommentLists = ({ postId }) => {
   const { data, isFetching } = useGetComment({ postId: postId });
+  console.log(data);
 
   // 댓글 무한스크롤 - 만드는 중
   // useEffect(() => {
@@ -29,7 +30,7 @@ const CommentLists = ({ postId }) => {
         <></>
       ) : (
         <StWrap>
-          {data === undefined ? (
+          {data?.length === 0 ? (
             <FlexColumnDiv style={{ height: "100%" }}>
               <span className="emptySpan">아직 쓰여진 댓글이 없습니다.</span>
               <span className="emptySpan">첫 댓글을 등록해보세요!</span>
