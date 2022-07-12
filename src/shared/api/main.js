@@ -13,10 +13,11 @@ export const apis = {
   // mission CRUD
   getTodos: () => api.get("/api/category/missions"),
   addTodo: (payload) => api.post("api/category/missions", payload),
-  updateTodo: (payload) => api.patch(`/todos/${payload.id}`, payload),
+  updateTodo: (payload) =>
+    api.put(`/api/missions/${payload.missionId}`, payload),
   completedTodo: (payload) =>
     api.put(`/api/missions/changeMissionState/${payload.missionId}`, {}),
-  deleteTodo: (payload) => api.delete(`/todos/${payload.id}`),
+  deleteTodo: (payload) => api.delete(`/api/missions/${payload.missionId}`),
 
   // post CRUD
   addPost: (payload) => api.post("/api/post", payload),

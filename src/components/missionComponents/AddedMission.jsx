@@ -1,12 +1,14 @@
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 import Camera from "assets/img/Camera.png";
-const AddedMission = ({ missionContent }) => {
+import UpdateMission from "./UpdateMission";
+const AddedMission = ({ missionContent, missionId }) => {
   return (
     <StWrap>
       <div className="innerDiv">
         <span>{missionContent}</span>
         <StImg img={Camera} />
+        <UpdateMission missionId={missionId} />
       </div>
     </StWrap>
   );

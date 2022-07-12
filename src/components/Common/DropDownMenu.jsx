@@ -8,7 +8,6 @@ import ImageModal from "./ImageModal";
 import styled from "@emotion/styled";
 import flex from "./flex";
 import useImageHandler from "components/Hooks/useImageHandler";
-import { useEffect } from "react";
 
 const DropDownMenu = ({ text, text2, margin, click, click2 }) => {
   const [flag, setFlag] = useState(false);
@@ -42,19 +41,6 @@ const DropDownMenu = ({ text, text2, margin, click, click2 }) => {
   const onCancelBtnHandler = useCallback((setter) => {
     setter((value) => !value);
   }, []);
-
-  const onCloseDropDown = useCallback(() => {
-    if (flag) {
-      setFlag(false);
-    }
-  }, [flag]);
-
-  useEffect(() => {
-    document.body.addEventListener("mousedown", onCloseDropDown);
-    return () => {
-      document.body.removeEventListener("mousedown", onCloseDropDown);
-    };
-  }, [onCloseDropDown]);
 
   return (
     <FlexRowDiv>
