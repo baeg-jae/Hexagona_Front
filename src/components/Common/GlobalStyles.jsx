@@ -54,3 +54,12 @@ export const fadeAnimation = keyframes`
 }
   100% { opacity: 1; }
 `;
+
+export const dropBoxAnimation = keyframes`
+ 0% { 
+  transform: translateX(50px) scale(0);
+}
+  100% {  
+    transform: translateX(0) scale(1); 
+  }
+`;
