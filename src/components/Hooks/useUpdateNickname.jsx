@@ -22,7 +22,12 @@ const useUpdateNickname = () => {
       });
     },
     onError: (e) => {
-      alert(e);
+      Swal.fire({
+        icon: "error",
+        text: "닉네임이 중복 되었습니다",
+        showConfirmButton: false,
+        timer: MODAL_TIME,
+      });
     },
   });
 };

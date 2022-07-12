@@ -8,7 +8,7 @@ import flex from "./flex";
 
 const DropDownMenu = ({ text, text2, margin, click }) => {
   const [flag, setFlag] = useState(false);
-  const { setNicknameFlag, nicknameFlag, setNickname, onSendNickname } =
+  const { setNicknameFlag, nicknameFlag, setNickname, bogusCheck } =
     useNicknameHandle();
 
   const onClickHandler = () => {
@@ -33,7 +33,7 @@ const DropDownMenu = ({ text, text2, margin, click }) => {
       {nicknameFlag ? (
         <Modal
           set={setNickname}
-          confirm={() => onSendNickname(setNicknameFlag)}
+          confirm={bogusCheck}
           cancel={() => onCancelBtnHandler(setNicknameFlag)}
           title="닉네임 변경하기"
           cancelTitle="취소"
