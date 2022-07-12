@@ -5,6 +5,7 @@ import useGetMission from "components/Hooks/useGetMission";
 import Loading from "pages/Status/Loading";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
+import EmptyMission from "components/missionComponents/EmptyMission";
 
 const HomeCategory = () => {
   const { data, isLoading } = useGetMission();
@@ -19,8 +20,6 @@ const HomeCategory = () => {
       return v !== false;
     });
 
-  console.log(list);
-
   return (
     <>
       {isLoading ? (
@@ -29,6 +28,7 @@ const HomeCategory = () => {
         <StWrap>
           <StContainer>
             <CategoryTop />
+            <EmptyMission />
           </StContainer>
         </StWrap>
       )}
@@ -41,31 +41,14 @@ export default HomeCategory;
 const StWrap = styled.div`
   ${flex({ direction: "column" })};
   width: 100%;
-  .active {
-    color: #212121 !important;
-  }
 `;
 
 const StContainer = styled.div`
   ${flex({
     direction: "column",
-    justify: "space-between",
-    align: "flex-start",
+    justify: "flex-start",
   })}
-
   width: 345px;
   height: 497px;
   margin-top: 40px;
-
-  &:first-of-type {
-    margin-left: 9px;
-  }
-
-  span {
-    margin-right: 19px;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 130%;
-    color: #202020;
-  }
 `;
