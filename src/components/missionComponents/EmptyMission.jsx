@@ -1,14 +1,68 @@
+import { MISSION_ADD_LENGTH } from "shared/data";
+import { useState, useCallback } from "react";
+import useAddMission from "components/Hooks/useAddMission";
+import InputModal from "components/Common/InputModal";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 import plus from "assets/img/plus.png";
+import { badWords } from "shared/TextsData";
+import Swal from "sweetalert2";
 
-const EmptyMission = () => {
+const EmptyMission = ({ category }) => {
   const arr = [1, 2, 3, 4];
+  const [mission, setMission] = useState("");
+  const [clicked, setClicked] = useState(false);
+  const { mutate } = useAddMission();
+
+  const onClickedHandler = () => {
+    setClicked((value) => !value);
+  };
+
+  const onCancelBtnHandler = useCallback((setter) => {
+    setter((value) => !value);
+  }, []);
+
+  const onAddMissionHandler = useCallback(() => {
+    mutate({ missionContent: mission, category: category });
+    setClicked((value) => !value);
+  }, [mutate, mission, category]);
+
+  const bogusCheck = useCallback(() => {
+    const foundSwears = badWords.filter((word) =>
+      mission.toLowerCase().includes(word.toLowerCase())
+    );
+    if (foundSwears.length) {
+      Swal.fire({
+        title: "에러!",
+        text: "제대로 된 닉네임을 입력해주세요",
+        icon: "error",
+        confirmButtonText: "Cool",
+      });
+    } else {
+      // 욕설탐지기에 안걸리면 실행
+      onAddMissionHandler();
+    }
+  }, [mission, onAddMissionHandler]);
+
   return (
     <>
+      {clicked ? (
+        <InputModal
+          set={setMission}
+          confirm={bogusCheck}
+          cancel={() => onCancelBtnHandler(setClicked)}
+          title="목표 생성하기"
+          cancelTitle="취소"
+          confirmTitle="등록하기"
+          placeholder="매일 런닝 30분"
+          count={MISSION_ADD_LENGTH}
+        />
+      ) : (
+        <></>
+      )}
       {arr.map((v, i) => {
         return (
-          <StWrap>
+          <StWrap onClick={onClickedHandler}>
             <StCircle>
               <StImg img={plus} />
             </StCircle>

@@ -12,7 +12,7 @@ const useAddMission = () => {
   const queryClient = useQueryClient();
 
   return useMutation(addTodo, {
-    onSuccess: () => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries("todos");
       Swal.fire({
         icon: "success",
@@ -21,6 +21,7 @@ const useAddMission = () => {
         showConfirmButton: false,
         timer: MODAL_TIME,
       });
+      console.log(data);
     },
   });
 };
