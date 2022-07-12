@@ -1,12 +1,13 @@
-import { useState, useCallback } from "react";
 import { dropBoxAnimation, FlexRowDiv } from "./GlobalStyles";
+import { SIGN_UP_MAX_LENGTH } from "shared/data";
+import { useState, useCallback } from "react";
 import useNicknameHandle from "components/Hooks/useNicknameHandle";
 import SmallMenu from "assets/img/smallMenu.png";
 import Modal from "components/Common/Modal";
 import styled from "@emotion/styled";
 import flex from "./flex";
 
-const DropDownMenu = ({ text, text2, margin, click }) => {
+const DropDownMenu = ({ text, text2, margin, click, click2 }) => {
   const [flag, setFlag] = useState(false);
   const { setNicknameFlag, nicknameFlag, setNickname, bogusCheck } =
     useNicknameHandle();
@@ -16,7 +17,7 @@ const DropDownMenu = ({ text, text2, margin, click }) => {
   };
 
   const clickTypeHandler = () => {
-    switch (click) {
+    switch (click2) {
       case "nickname":
         return setNicknameFlag((value) => !value);
       default:
@@ -39,7 +40,7 @@ const DropDownMenu = ({ text, text2, margin, click }) => {
           cancelTitle="취소"
           confirmTitle="변경하기"
           placeholder="닉네임을 써주세요"
-          count={7}
+          count={SIGN_UP_MAX_LENGTH}
         />
       ) : (
         <></>

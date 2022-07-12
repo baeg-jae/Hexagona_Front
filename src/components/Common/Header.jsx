@@ -23,7 +23,7 @@ const Header = () => {
             text="사진 변경"
             text2="닉네임 변경"
             margin="40"
-            click="nickname"
+            click2="nickname"
           />
         </HeaderWrap>
       </StWrapFlex>
