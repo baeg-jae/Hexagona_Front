@@ -1,32 +1,40 @@
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 import { FlexColumnDiv } from "components/Common/GlobalStyles";
+import useGetComment from "components/Hooks/useGetComment";
 
-const CommentLists = ({ comment }) => {
+const CommentLists = ({ comment, postId }) => {
+  const { data, isFetching } = useGetComment({ postId: postId });
   return (
-    <StWrap>
-      {comment.length === 0 ? (
-        <FlexColumnDiv style={{ height: "100%" }}>
-          <span className="emptySpan">아직 쓰여진 댓글이 없습니다.</span>
-          <span className="emptySpan">첫 댓글을 등록해보세요!</span>
-        </FlexColumnDiv>
+    <>
+      {isFetching ? (
+        <></>
       ) : (
-        comment?.map((v, i) => {
-          return (
-            <StReplyWrap>
-              <StProfile img={v.profile_img} />
-              <div className="reply">
-                <div>
-                  <div className="replyUser">{v.nickname}</div>
-                  <div className="replyDay">{v.createdAtDateOnly}</div>
-                </div>
-                <div className="replyText">{v.comment}</div>
-              </div>
-            </StReplyWrap>
-          );
-        })
+        <StWrap>
+          {data === undefined ? (
+            <FlexColumnDiv style={{ height: "100%" }}>
+              <span className="emptySpan">아직 쓰여진 댓글이 없습니다.</span>
+              <span className="emptySpan">첫 댓글을 등록해보세요!</span>
+            </FlexColumnDiv>
+          ) : (
+            data?.map((v, i) => {
+              return (
+                <StReplyWrap>
+                  <StProfile img={v.profile_img} />
+                  <div className="reply">
+                    <div>
+                      <div className="replyUser">{v.nickname}</div>
+                      <div className="replyDay">{v.createdAtDateOnly}</div>
+                    </div>
+                    <div className="replyText">{v.comment}</div>
+                  </div>
+                </StReplyWrap>
+              );
+            })
+          )}
+        </StWrap>
       )}
-    </StWrap>
+    </>
   );
 };
 

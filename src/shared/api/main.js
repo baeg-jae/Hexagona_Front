@@ -21,6 +21,7 @@ export const apis = {
   getPostDetail: (payload) => api.get(`/api/post/${payload.postId}`),
 
   // comment CRUD
+  getComment: (payload) => api.get(`/api/post/${payload.postId}/comment`),
   addComment: (payload) =>
     api.post(`/api/post/${payload.postId}/comment`, payload),
 

@@ -8,7 +8,6 @@ import CommentLists from "components/CommentComponents/CommentLists";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 import loadable from "@loadable/component";
-import { useEffect } from "react";
 
 const Loading = loadable(() => import("pages/Status/Loading"));
 
@@ -17,8 +16,6 @@ const FeedDetail = () => {
   const { data, isFetching } = useGetPostDetail({
     postId: postId,
   });
-  const cList = data?.commentList;
-  useEffect(() => {}, [cList]);
   return (
     <StWrapFlex>
       {isFetching ? (
@@ -32,7 +29,7 @@ const FeedDetail = () => {
             profile={data?.profile_img}
             name={data?.nickname}
           />
-          <CommentLists comment={cList} />
+          <CommentLists postId={postId} />
           <CommentInput postId={data?.postId} />
         </>
       )}
