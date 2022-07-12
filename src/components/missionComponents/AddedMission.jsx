@@ -27,7 +27,7 @@ const StWrap = styled.div`
     width: 100%;
     height: 100%;
     span {
-      width: 70%;
+      width: 65%;
       margin-left: 40px;
       font-style: normal;
       font-weight: 600;
@@ -35,6 +35,7 @@ const StWrap = styled.div`
       line-height: 29px;
       letter-spacing: -0.02em;
       color: #454545;
+      white-space: pre-wrap;
     }
   }
 `;

@@ -8,6 +8,7 @@ import ImageModal from "./ImageModal";
 import styled from "@emotion/styled";
 import flex from "./flex";
 import useImageHandler from "components/Hooks/useImageHandler";
+import { useEffect } from "react";
 
 const DropDownMenu = ({ text, text2, margin, click, click2 }) => {
   const [flag, setFlag] = useState(false);
@@ -42,6 +43,19 @@ const DropDownMenu = ({ text, text2, margin, click, click2 }) => {
     setter((value) => !value);
   }, []);
 
+  const onCloseDropDown = useCallback(() => {
+    if (flag) {
+      setFlag(false);
+    }
+  }, [flag]);
+
+  useEffect(() => {
+    document.body.addEventListener("mousedown", onCloseDropDown);
+    return () => {
+      document.body.removeEventListener("mousedown", onCloseDropDown);
+    };
+  }, [onCloseDropDown]);
+
   return (
     <FlexRowDiv>
       {profileFlag ? (
@@ -70,22 +84,24 @@ const DropDownMenu = ({ text, text2, margin, click, click2 }) => {
       ) : (
         <></>
       )}
-      {flag ? (
-        <DropRow margin={margin}>
-          <span onClick={() => FirstClickTypeHandler()}>{text}</span>
-          {text2 !== undefined ? (
-            <>
-              <div />
-              <span onClick={() => SecondClickTypeHandler()}>{text2}</span>
-            </>
-          ) : (
-            <></>
-          )}
-        </DropRow>
-      ) : (
-        <></>
-      )}
-      <StImgDiv onClick={onClickHandler} />
+
+      <StImgDiv onClick={onClickHandler}>
+        {flag ? (
+          <DropRow margin={margin}>
+            <span onClick={() => FirstClickTypeHandler()}>{text}</span>
+            {text2 !== undefined ? (
+              <>
+                <div />
+                <span onClick={() => SecondClickTypeHandler()}>{text2}</span>
+              </>
+            ) : (
+              <></>
+            )}
+          </DropRow>
+        ) : (
+          <></>
+        )}
+      </StImgDiv>
     </FlexRowDiv>
   );
 };
@@ -93,6 +109,7 @@ const DropDownMenu = ({ text, text2, margin, click, click2 }) => {
 export default DropDownMenu;
 
 const StImgDiv = styled.div`
+  position: relative;
   width: 2.5px;
   height: 12px;
   background-image: url(${SmallMenu});
@@ -102,13 +119,14 @@ const StImgDiv = styled.div`
 `;
 const DropRow = styled.div`
   ${flex({ direction: "column" })}
+  position: absolute;
+  left: -120px;
+  top: -10px;
   width: 111px;
   background: #fff;
   box-shadow: 0px 2px 14px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
   padding: 4px 0px;
-  margin-right: 10px;
-  margin-top: ${(props) => props.margin}px;
   animation: ${dropBoxAnimation} 0.5s;
   div {
     width: 99px;
