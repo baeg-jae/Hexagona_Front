@@ -24,6 +24,7 @@ const HomeCategory = () => {
   useEffect(() => {}, [data]);
   const arr = [1, 2, 3, 4];
   const queryClient = useQueryClient();
+
   const list = data
     ?.map((v) => {
       return category === v.category && v;

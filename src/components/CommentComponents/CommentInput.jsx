@@ -1,11 +1,11 @@
 import { COMMENT_MAX_LENGTH } from "shared/data";
 import { useState } from "react";
+import { useRef } from "react";
 import useGetUser from "components/Hooks/useGetUser";
 import loadable from "@loadable/component";
 import styled from "@emotion/styled";
 import flex from "../Common/flex";
 import useAddComment from "components/Hooks/useAddComment";
-import { useRef } from "react";
 
 const Loading = loadable(() => import("pages/Status/Loading"));
 
