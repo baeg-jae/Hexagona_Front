@@ -45,7 +45,7 @@ const DropDownMenu = ({ text, text2, margin, click, click2 }) => {
   return (
     <FlexRowDiv>
       {profileFlag ? (
-        <InputModal
+        <ImageModal
           set={setProfile}
           confirm={onSendProfile}
           cancel={() => onCancelBtnHandler(setProfileFlag)}
@@ -57,7 +57,7 @@ const DropDownMenu = ({ text, text2, margin, click, click2 }) => {
         <></>
       )}
       {nicknameFlag ? (
-        <ImageModal
+        <InputModal
           set={setNickname}
           confirm={bogusCheck}
           cancel={() => onCancelBtnHandler(setNicknameFlag)}
