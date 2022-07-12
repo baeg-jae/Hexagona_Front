@@ -1,10 +1,22 @@
+import { useState } from 'react';
 import styled from '@emotion/styled';
 import flex from '../Common/flex';
 import like from 'assets/img/like.png';
+import button from 'assets/img/button.png';
 import useCategory from 'components/Hooks/useCategory';
+import useAddLike from 'components/Hooks/useAddLike';
 
-const CommentImg = ({ category, postContent, img, profile, name }) => {
+const CommentImg = ({ category, postContent, img, profile, name, postId }) => {
+    const [like, setLike] = useState(false);
     const getCategory = useCategory({ category });
+    const { mutate } = useAddLike();
+    const addLike = () => {
+        mutate({
+            postId: postId,
+        });
+        setLike((value) => !value);
+    };
+
     return (
         <StWrapFlex img={img}>
             <div className="gradient">
@@ -20,7 +32,10 @@ const CommentImg = ({ category, postContent, img, profile, name }) => {
                         <span className="titleText">{getCategory}</span>
                         <span className="nameText">{postContent}</span>
                     </BottomDiv>
-                    <LikeButton />
+                    <div className="imgWrap">
+                        <LikeButton onClick={() => addLike()} />
+                        <PutButton />
+                    </div>
                 </BottomWarp>
             </div>
         </StWrapFlex>
@@ -102,13 +117,23 @@ const BottomDiv = styled.div`
 const BottomWarp = styled.div`
     ${flex({ direction: 'row', justify: 'space-between' })}
     width: 90%;
+    .imgWrap {
+        ${flex({ direction: 'row' })}
+    }
 `;
 
 const LikeButton = styled.div`
-    width: 40px;
-    height: 45px;
+    width: 20px;
+    height: 18.75px;
     background-image: url(${like});
     background-size: cover;
     background-position: center;
-    margin-bottom: 20px;
+    margin-right: 16px;
+`;
+const PutButton = styled.div`
+    width: 1.5px;
+    height: 12px;
+    background-image: url(${button});
+    background-size: cover;
+    background-position: center;
 `;

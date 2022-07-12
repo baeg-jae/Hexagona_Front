@@ -5,26 +5,25 @@ import styled from '@emotion/styled';
 import flex from './flex';
 
 const Header = () => {
-  const { data, isLoading } = useGetUser();
-  if (isLoading) {
-    return <Loading />;
-  }
-  return (
-    <StWrap>
-      <StWrapFlex>
-        <HeaderWrap>
-          <div className="LeftDiv">
-            <StProfileImgDiv pic={data.profile_img} />
-            <div className="textDiv">
-              <span>갓생러 {data?.nickname}</span>
-            </div>
-          </div>
-          <StImgDiv />
-        </HeaderWrap>
-      </StWrapFlex>
-    </StWrap>
-  );
-
+    const { data, isLoading } = useGetUser();
+    if (isLoading) {
+        return <Loading />;
+    }
+    return (
+        <StWrap>
+            <StWrapFlex>
+                <HeaderWrap>
+                    <div className="LeftDiv">
+                        <StProfileImgDiv pic={data?.profile_img} />
+                        <div className="textDiv">
+                            <span>갓생러 {data?.nickname}</span>
+                        </div>
+                    </div>
+                    <StImgDiv />
+                </HeaderWrap>
+            </StWrapFlex>
+        </StWrap>
+    );
 };
 
 export default Header;
