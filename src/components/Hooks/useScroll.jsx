@@ -9,7 +9,6 @@ const useScroll = () => {
 
       if (!fetching && scrollHeight - scrollTop <= clientHeight * 1.5) {
         fetching = true;
-        console.log("fetched");
         fetching = false;
       }
     };

@@ -5,7 +5,6 @@ const userLogin = (payload) => ({ type: USER_LOGIN, payload });
 // 카카오 로그인
 export const __kakaoSignIn = (code) => async (dispatch) => {
   const data = await api.get(`/oauth/kakao/callback?code=${code}`);
-  console.log(data);
   if (data.headers.authorization !== undefined) {
     localStorage.setItem("Authorization", data.headers.authorization);
   }
@@ -17,7 +16,6 @@ export const __googleSignIn = (code) => async (dispatch) => {
   const data = await api.get(
     `/oauth/google/callback?code=${code}&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid&authuser=0&prompt=none`
   );
-  console.log(data);
   if (data.headers.authorization !== undefined) {
     localStorage.setItem("Authorization", data.headers.authorization);
   }

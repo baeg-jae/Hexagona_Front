@@ -1,14 +1,21 @@
+import { FlexColumnDiv, FlexRowDiv } from "components/Common/GlobalStyles";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 import Camera from "assets/img/Camera.png";
 import UpdateMission from "./UpdateMission";
+import DeleteMission from "./DeleteMission";
 const AddedMission = ({ missionContent, missionId }) => {
   return (
     <StWrap>
       <div className="innerDiv">
         <span>{missionContent}</span>
-        <StImg img={Camera} />
-        <UpdateMission missionId={missionId} />
+        <FlexColumnDiv>
+          <StImg img={Camera} />
+          <FlexRowDiv>
+            <UpdateMission missionId={missionId} />
+            <DeleteMission missionId={missionId} />
+          </FlexRowDiv>
+        </FlexColumnDiv>
       </div>
     </StWrap>
   );
