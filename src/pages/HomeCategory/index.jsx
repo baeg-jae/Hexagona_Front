@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import CategoryTop from "components/missionComponents/CategoryTop";
+import CategoryTop from "components/MissionPage/CategoryTop";
 import useGetMission from "components/Hooks/Mission/useGetMission";
 import Loading from "pages/Status/Loading";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
-import EmptyMission from "components/missionComponents/EmptyMission";
+import EmptyMission from "components/MissionPage/EmptyMission";
 
 const HomeCategory = () => {
   const { data, isLoading } = useGetMission();

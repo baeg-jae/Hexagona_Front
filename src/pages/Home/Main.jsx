@@ -1,4 +1,4 @@
-import CategoryLink from "components/MainComponents/CategoryLink";
+import CategoryLink from "components/MainPage/CategoryLink";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 

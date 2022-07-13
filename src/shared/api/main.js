@@ -2,11 +2,10 @@ import api from "./core";
 
 export const apis = {
   // user
+  getUser: () => api.get("/user/auth"),
   signUp: (payload) => api.put("/user/update/nickname", payload),
   dupCheck: (payload) => api.post("/user/signup/checkNickname", payload),
   newOldUser: () => api.put("/user/update/isNewUser"),
-
-  getUser: () => api.get("/user/auth"),
   updateUserNickname: (payload) => api.put("/user/update/nickname", payload),
   updateUserProfile: (payload) => api.put("/user/update/profile", payload),
 
@@ -20,9 +19,9 @@ export const apis = {
   deleteTodo: (payload) => api.delete(`/api/missions/${payload.missionId}`),
 
   // post CRUD
-  addPost: (payload) => api.post("/api/post", payload),
   getPost: () => api.get("/api/posts"),
   getPostDetail: (payload) => api.get(`/api/post/${payload.postId}`, payload),
+  addPost: (payload) => api.post("/api/post", payload),
   deletePost: (payload) => api.delete(`/api/post/${payload.postId}`, payload),
 
   // comment CRUD
@@ -38,8 +37,8 @@ export const apis = {
     api.delete(`/api/post/${payload.postId}/comment/${payload.commentId}`),
 
   // like CRUD
-  addLike: (payload) => api.post(`/api/post/${payload.postId}/like`, {}),
   getAllLikes: (payload) => api.get(`/api/post/${payload.postId}/likeUser`),
+  addLike: (payload) => api.post(`/api/post/${payload.postId}/like`, {}),
 };
 
 export default apis;
