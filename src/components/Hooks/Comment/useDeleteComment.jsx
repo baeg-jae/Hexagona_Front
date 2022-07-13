@@ -22,7 +22,6 @@ const useDeleteComment = () => {
       });
     },
     onError: (e) => {
-      console.log(e);
       Swal.fire({
         icon: "error",
         text: "삭제 에러",

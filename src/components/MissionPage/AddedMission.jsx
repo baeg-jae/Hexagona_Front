@@ -12,7 +12,6 @@ const AddedMission = ({ missionContent, missionId }) => {
   const saveFileImage = (e) => {
     setFiles(e.target.files[0]);
   };
-  console.log(files);
   return (
     <>
       {files !== undefined ? (
