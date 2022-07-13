@@ -28,7 +28,7 @@ const CommentLists = ({ postId, userId }) => {
                     <div>
                       <div className="replyUser">
                         {v.nickname}
-                        {v.commentId !== userId ? (
+                        {v.userId !== userId ? (
                           <></>
                         ) : (
                           <DropDownMenu

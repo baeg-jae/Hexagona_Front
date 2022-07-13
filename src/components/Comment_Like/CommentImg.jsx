@@ -44,7 +44,7 @@ const CommentImg = ({
   return (
     <>
       {isFetching ? (
-        <Loading />
+        <></>
       ) : (
         <StWrapFlex img={img}>
           <div className="gradient">

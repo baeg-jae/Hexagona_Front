@@ -44,7 +44,7 @@ const CommentInput = ({ postId }) => {
   return (
     <StWrapFlex>
       {isFetching ? (
-        <Loading />
+        <></>
       ) : (
         <>
           <StProfile profile_img={data?.profile_img} />
@@ -97,13 +97,17 @@ const StDiv = styled.div`
   .commentInput {
     border: none;
     background-color: transparent;
-    width: 60%;
-    padding: 8px;
+    width: 70%;
+    height: 30px;
+    margin: 8px;
+    white-space: normal;
+    text-align: justify;
+    padding-top: 12px;
     &:focus {
       outline: none;
     }
     &::placeholder {
-      padding: 8px;
+      padding: 5px;
       font-size: 10px;
     }
   }
