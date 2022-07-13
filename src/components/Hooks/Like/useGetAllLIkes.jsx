@@ -1,5 +1,6 @@
 import { useQuery } from "react-query";
 import apis from "shared/api/main";
+import { QueryKeys } from "shared/QueryKeys";
 
 const useGetAllLIkes = (payload) => {
   const fetcher = async () => {
@@ -7,7 +8,7 @@ const useGetAllLIkes = (payload) => {
     return data;
   };
 
-  return useQuery("like", fetcher);
+  return useQuery(QueryKeys.like, fetcher);
 };
 
 export default useGetAllLIkes;

@@ -1,5 +1,6 @@
 import { useQuery } from "react-query";
 import apis from "shared/api/main";
+import { QueryKeys } from "shared/QueryKeys";
 
 const useGetComment = (payload) => {
   const fetcher = async () => {
@@ -7,7 +8,7 @@ const useGetComment = (payload) => {
     return data;
   };
 
-  return useQuery("comment", fetcher);
+  return useQuery(QueryKeys.comment, fetcher);
 };
 
 export default useGetComment;

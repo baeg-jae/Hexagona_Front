@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "react-query";
 import apis from "shared/api/main";
 import Swal from "sweetalert2";
 import { MODAL_TIME } from "shared/data";
+import { QueryKeys } from "shared/QueryKeys";
 
 const updateProfile = async (payload) => {
   const updatePic = await apis.updateUserProfile(payload);
@@ -13,7 +14,7 @@ const useUpdateProfile = () => {
 
   return useMutation(updateProfile, {
     onSuccess: () => {
-      queryClient.invalidateQueries("user");
+      queryClient.invalidateQueries(QueryKeys.user);
       Swal.fire({
         icon: "success",
         text: "프로필사진이 변경 되었습니다",

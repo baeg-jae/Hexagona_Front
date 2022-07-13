@@ -1,5 +1,6 @@
 import { useQuery } from "react-query";
 import apis from "shared/api/main";
+import { QueryKeys } from "shared/QueryKeys";
 
 const useGetPostDetail = (payload) => {
   const fetcher = async () => {
@@ -7,7 +8,7 @@ const useGetPostDetail = (payload) => {
     return data;
   };
 
-  return useQuery("post", fetcher);
+  return useQuery(QueryKeys.detail, fetcher);
 };
 
 export default useGetPostDetail;

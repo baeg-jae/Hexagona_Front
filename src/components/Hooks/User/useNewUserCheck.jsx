@@ -2,6 +2,7 @@ import { useQueryClient, useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { useCallback } from "react";
 import apis from "shared/api/main";
+import { QueryKeys } from "shared/QueryKeys";
 
 const __newUserCheck = async () => {
   const data = await apis.newOldUser();
@@ -15,7 +16,7 @@ const useNewUserCheck = () => {
 
   const newUserCheckMutation = useMutation(__newUserCheck, {
     onSuccess: (data) => {
-      queryClient.invalidateQueries("users");
+      queryClient.invalidateQueries(QueryKeys.user);
       if (data) navigate("/home");
     },
   });

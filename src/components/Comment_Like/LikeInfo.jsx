@@ -14,9 +14,9 @@ const LikeInfo = ({ postId }) => {
     if (data?.length < 5) {
       return arr.map((_, i) => {
         return (
-          <>
-            <StImg img={data[i]?.profile_img} key={i} />
-          </>
+          <div key={i}>
+            <StImg img={data[i]?.profile_img} />
+          </div>
         );
       });
     } else {

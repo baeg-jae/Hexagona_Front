@@ -1,5 +1,6 @@
 import { useQuery } from "react-query";
 import apis from "shared/api/main";
+import { QueryKeys } from "shared/QueryKeys";
 
 const useGetIfLiked = (payload) => {
   const fetcher = async () => {
@@ -7,7 +8,7 @@ const useGetIfLiked = (payload) => {
     return data;
   };
 
-  return useQuery("liked", fetcher);
+  return useQuery(QueryKeys.like, fetcher);
 };
 
 export default useGetIfLiked;
