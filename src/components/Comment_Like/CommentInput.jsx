@@ -5,9 +5,12 @@ import { useState } from "react";
 import { useRef } from "react";
 import useAddComment from "components/Hooks/Comment/useAddComment";
 import useGetUser from "components/Hooks/User/useGetUser";
+import loadable from "@loadable/component";
 import styled from "@emotion/styled";
 import flex from "../Common/flex";
 import Swal from "sweetalert2";
+
+const Loading = loadable(() => import("pages/Status/Loading"));
 
 const CommentInput = ({ postId }) => {
   const { data, isFetching } = useGetUser();

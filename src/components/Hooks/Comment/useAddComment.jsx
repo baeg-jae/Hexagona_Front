@@ -2,7 +2,6 @@ import { useMutation, useQueryClient } from "react-query";
 import apis from "shared/api/main";
 import Swal from "sweetalert2";
 import { MODAL_TIME } from "shared/data";
-import { QueryKeys } from "shared/QueryKeys";
 
 const addComment = async (payload) => {
   const addCommentDB = await apis.addComment(payload);
@@ -14,7 +13,7 @@ const useAddComment = () => {
 
   return useMutation(addComment, {
     onSuccess: () => {
-      queryClient.invalidateQueries(QueryKeys.comment);
+      queryClient.invalidateQueries("comment");
       Swal.fire({
         icon: "success",
         text: "댓글이 추가되었습니다",

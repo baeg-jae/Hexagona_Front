@@ -1,6 +1,5 @@
 import { useMutation, useQueryClient } from "react-query";
 import apis from "shared/api/main";
-import { QueryKeys } from "shared/QueryKeys";
 
 const addLike = async (payload) => {
   const addLikeDB = await apis.addLike(payload);
@@ -11,7 +10,7 @@ const useAddLike = () => {
 
   return useMutation(addLike, {
     onSuccess: (data) => {
-      queryClient.invalidateQueries(QueryKeys.like);
+      queryClient.invalidateQueries("like");
       return data;
     },
     onError: (e) => {

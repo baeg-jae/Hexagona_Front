@@ -2,7 +2,6 @@ import { useMutation, useQueryClient } from "react-query";
 import apis from "shared/api/main";
 import Swal from "sweetalert2";
 import { MODAL_TIME } from "shared/data";
-import { QueryKeys } from "shared/QueryKeys";
 
 const addTodo = async (payload) => {
   const addTodoDB = await apis.addTodo(payload);
@@ -14,7 +13,7 @@ const useAddMission = () => {
 
   return useMutation(addTodo, {
     onSuccess: () => {
-      queryClient.invalidateQueries(QueryKeys.mission);
+      queryClient.invalidateQueries("todos");
       Swal.fire({
         icon: "success",
         title: "미션이 추가되었습니다",

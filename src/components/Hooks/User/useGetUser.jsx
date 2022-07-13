@@ -1,6 +1,5 @@
 import { useQuery } from "react-query";
 import apis from "shared/api/main";
-import { QueryKeys } from "shared/QueryKeys";
 
 const useGetUser = () => {
   const fetcher = async () => {
@@ -8,7 +7,7 @@ const useGetUser = () => {
     return data;
   };
 
-  return useQuery(QueryKeys.user, fetcher);
+  return useQuery("user", fetcher);
 };
 
 export default useGetUser;

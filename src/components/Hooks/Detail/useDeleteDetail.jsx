@@ -2,7 +2,6 @@ import { useMutation, useQueryClient } from "react-query";
 import apis from "shared/api/main";
 import Swal from "sweetalert2";
 import { MODAL_TIME } from "shared/data";
-import { QueryKeys } from "shared/QueryKeys";
 
 const deleteDetail = async (payload) => {
   const deleteDetailDB = await apis.deletePost(payload);
@@ -14,7 +13,7 @@ const useDeleteDetail = () => {
 
   return useMutation(deleteDetail, {
     onSuccess: () => {
-      queryClient.invalidateQueries(QueryKeys.detail);
+      queryClient.invalidateQueries("post");
       Swal.fire({
         icon: "success",
         text: "게시글이 삭제 되었습니다",
@@ -22,7 +21,7 @@ const useDeleteDetail = () => {
         timer: MODAL_TIME,
       });
     },
-    onError: () => {
+    onError: (e) => {
       Swal.fire({
         icon: "error",
         text: "삭제 에러",
