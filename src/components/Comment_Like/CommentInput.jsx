@@ -5,12 +5,9 @@ import { useState } from "react";
 import { useRef } from "react";
 import useAddComment from "components/Hooks/Comment/useAddComment";
 import useGetUser from "components/Hooks/User/useGetUser";
-import loadable from "@loadable/component";
 import styled from "@emotion/styled";
 import flex from "../Common/flex";
 import Swal from "sweetalert2";
-
-const Loading = loadable(() => import("pages/Status/Loading"));
 
 const CommentInput = ({ postId }) => {
   const { data, isFetching } = useGetUser();
@@ -44,7 +41,7 @@ const CommentInput = ({ postId }) => {
   return (
     <StWrapFlex>
       {isFetching ? (
-        <Loading />
+        <></>
       ) : (
         <>
           <StProfile profile_img={data?.profile_img} />
@@ -97,13 +94,17 @@ const StDiv = styled.div`
   .commentInput {
     border: none;
     background-color: transparent;
-    width: 60%;
-    padding: 8px;
+    width: 70%;
+    height: 30px;
+    margin: 8px;
+    white-space: normal;
+    text-align: justify;
+    padding-top: 12px;
     &:focus {
       outline: none;
     }
     &::placeholder {
-      padding: 8px;
+      padding: 5px;
       font-size: 10px;
     }
   }

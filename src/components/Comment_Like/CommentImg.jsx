@@ -10,6 +10,7 @@ import DropDownMenu from "components/Common/DropDownMenu";
 import useGetIfLiked from "components/Hooks/Like/useGetIfLiked";
 import loadable from "@loadable/component";
 import UserInfo from "components/Feed/UserInfo";
+import { useEffect } from "react";
 
 const Loading = loadable(() => import("pages/Status/Loading"));
 
@@ -29,6 +30,10 @@ const CommentImg = ({
   const { data, isFetching } = useGetIfLiked({ postId: Number(postId) });
   const userInfo = UserInfo();
 
+  useEffect(() => {
+    setLike(data);
+  }, [data]);
+
   const addLike = useCallback(() => {
     mutate({
       postId: postId,
@@ -39,7 +44,7 @@ const CommentImg = ({
   return (
     <>
       {isFetching ? (
-        <Loading />
+        <></>
       ) : (
         <StWrapFlex img={img}>
           <div className="gradient">
@@ -58,11 +63,7 @@ const CommentImg = ({
                 <span className="nameText">{postContent}</span>
               </BottomDiv>
               <div className="imgWrap">
-                {data || like ? (
-                  <LikeButton onClick={() => addLike()} img={likeImg} />
-                ) : (
-                  <LikeButton onClick={() => addLike()} img={unlikeImg} />
-                )}
+                <LikeButton onClick={() => addLike()} like={like} />
                 {userId !== userInfo?.userId ? (
                   <></>
                 ) : (
@@ -171,7 +172,8 @@ const BottomWarp = styled.div`
 const LikeButton = styled.div`
   width: 20px;
   height: 18.75px;
-  background-image: url(${(props) => props.img});
+  background-image: ${(props) =>
+    props.like ? `url(${likeImg})` : `url(${unlikeImg})`};
   background-size: cover;
   background-position: center;
   margin-left: 74px;

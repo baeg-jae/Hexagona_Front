@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "react-query";
 import apis from "shared/api/main";
 import Swal from "sweetalert2";
 import { MODAL_TIME } from "shared/data";
+import { QueryKeys } from "shared/QueryKeys";
 
 const deleteMission = async (payload) => {
   const deleteMissionDB = await apis.deleteTodo(payload);
@@ -13,7 +14,7 @@ const useUpdateMission = () => {
 
   return useMutation(deleteMission, {
     onSuccess: () => {
-      queryClient.invalidateQueries("todos");
+      queryClient.invalidateQueries(QueryKeys.mission);
       Swal.fire({
         icon: "success",
         text: "미션이 삭제 되었습니다",
