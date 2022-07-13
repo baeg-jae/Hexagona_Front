@@ -9,6 +9,7 @@ import useAddLike from "components/Hooks/Like/useAddLike";
 import DropDownMenu from "components/Common/DropDownMenu";
 import useGetIfLiked from "components/Hooks/Like/useGetIfLiked";
 import loadable from "@loadable/component";
+import UserInfo from "components/Feed/UserInfo";
 
 const Loading = loadable(() => import("pages/Status/Loading"));
 
@@ -20,12 +21,13 @@ const CommentImg = ({
   name,
   postId,
   nickname,
+  userId,
 }) => {
   const [like, setLike] = useState(false);
   const getCategory = useCategory({ category });
-  const username = localStorage.getItem("nickname");
   const { mutate } = useAddLike();
   const { data, isFetching } = useGetIfLiked({ postId: Number(postId) });
+  const userInfo = UserInfo();
 
   const addLike = useCallback(() => {
     mutate({
@@ -61,7 +63,7 @@ const CommentImg = ({
                 ) : (
                   <LikeButton onClick={() => addLike()} img={unlikeImg} />
                 )}
-                {nickname !== username ? (
+                {userId !== userInfo?.userId ? (
                   <></>
                 ) : (
                   <DropDownMenu

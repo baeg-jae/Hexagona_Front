@@ -5,9 +5,8 @@ import useGetComment from "components/Hooks/Comment/useGetComment";
 import DropDownMenu from "components/Common/DropDownMenu";
 import LikeInfo from "./LikeInfo";
 
-const CommentLists = ({ postId }) => {
+const CommentLists = ({ postId, userId }) => {
   const { data, isFetching } = useGetComment({ postId: postId });
-  const username = localStorage.getItem("nickname");
   return (
     <>
       {isFetching ? (
@@ -29,7 +28,7 @@ const CommentLists = ({ postId }) => {
                     <div>
                       <div className="replyUser">
                         {v.nickname}
-                        {v.nickname !== username ? (
+                        {v.commentId !== userId ? (
                           <></>
                         ) : (
                           <DropDownMenu
