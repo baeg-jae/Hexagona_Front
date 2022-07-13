@@ -1,9 +1,7 @@
 import { useQueryClient, useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { MODAL_TIME } from "shared/data";
-import apis from "shared/api/main";
-import Swal from "sweetalert2";
 import { useCallback } from "react";
+import apis from "shared/api/main";
 
 const __newUserCheck = async () => {
   const data = await apis.newOldUser();
@@ -18,12 +16,6 @@ const useNewUserCheck = () => {
   const newUserCheckMutation = useMutation(__newUserCheck, {
     onSuccess: (data) => {
       queryClient.invalidateQueries("users");
-      Swal.fire({
-        icon: "success",
-        text: "스킵되었습니다",
-        showConfirmButton: false,
-        timer: MODAL_TIME,
-      });
       if (data) navigate("/home");
     },
   });
