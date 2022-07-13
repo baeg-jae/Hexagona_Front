@@ -18,6 +18,7 @@ const UpdateMission = ({ missionId }) => {
   }, []);
 
   const onUpdateHandler = useCallback(() => {
+    setFlag((value) => !value);
     mutate({ missionId: missionId, missionContent: missionContent });
   }, [missionId, missionContent, mutate]);
   return (

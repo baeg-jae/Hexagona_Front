@@ -5,7 +5,6 @@ const userLogin = (payload) => ({ type: USER_LOGIN, payload });
 // 카카오 로그인
 export const __kakaoSignIn = (code) => async (dispatch) => {
   const data = await api.get(`/oauth/kakao/callback?code=${code}`);
-  console.log(data);
   if (data.headers.authorization !== undefined) {
     localStorage.setItem("Authorization", data.headers.authorization);
   }

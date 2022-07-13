@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { FlexRowDiv } from "components/Common/GlobalStyles";
 import styled from "@emotion/styled";
 import flex from "../Common/flex";
@@ -7,7 +7,11 @@ import unlikeImg from "assets/img/unlike.png";
 import useCategory from "components/Hooks/useCategory";
 import useAddLike from "components/Hooks/Like/useAddLike";
 import DropDownMenu from "components/Common/DropDownMenu";
-import { useCallback } from "react";
+import useGetIfLiked from "components/Hooks/Like/useGetIfLiked";
+import loadable from "@loadable/component";
+import UserInfo from "components/Feed/UserInfo";
+
+const Loading = loadable(() => import("pages/Status/Loading"));
 
 const CommentImg = ({
   category,
@@ -17,12 +21,13 @@ const CommentImg = ({
   name,
   postId,
   nickname,
+  userId,
 }) => {
   const [like, setLike] = useState(false);
   const getCategory = useCategory({ category });
-  const username = localStorage.getItem("nickname");
-  const { mutate, data } = useAddLike();
-  //  메모 : data에 true/false 받으면 그걸로 좋아요 판단
+  const { mutate } = useAddLike();
+  const { data, isFetching } = useGetIfLiked({ postId: Number(postId) });
+  const userInfo = UserInfo();
 
   const addLike = useCallback(() => {
     mutate({
@@ -32,42 +37,49 @@ const CommentImg = ({
   }, [mutate, postId]);
 
   return (
-    <StWrapFlex img={img}>
-      <div className="gradient">
-        <HeaderDiv>
-          <FlexRowDiv>
-            <StProfile img={profile} />
-            <StTextDiv>
-              <span className="titleText">갓생 입문자</span>
-              <span className="nameText">{name}</span>
-            </StTextDiv>
-          </FlexRowDiv>
-        </HeaderDiv>
-        <BottomWarp>
-          <BottomDiv>
-            <span className="titleText">{getCategory}</span>
-            <span className="nameText">{postContent}</span>
-          </BottomDiv>
-          <div className="imgWrap">
-            {like ? (
-              <LikeButton onClick={() => addLike()} img={likeImg} />
-            ) : (
-              <LikeButton onClick={() => addLike()} img={unlikeImg} />
-            )}
-            {nickname !== username ? (
-              <></>
-            ) : (
-              <DropDownMenu
-                text="게시글 삭제"
-                margin="40"
-                click="detailD"
-                color="white"
-              />
-            )}
+    <>
+      {isFetching ? (
+        <Loading />
+      ) : (
+        <StWrapFlex img={img}>
+          <div className="gradient">
+            <HeaderDiv>
+              <FlexRowDiv>
+                <StProfile img={profile} />
+                <StTextDiv>
+                  <span className="titleText">갓생 입문자</span>
+                  <span className="nameText">{name}</span>
+                </StTextDiv>
+              </FlexRowDiv>
+            </HeaderDiv>
+            <BottomWarp>
+              <BottomDiv>
+                <span className="titleText">{getCategory}</span>
+                <span className="nameText">{postContent}</span>
+              </BottomDiv>
+              <div className="imgWrap">
+                {data || like ? (
+                  <LikeButton onClick={() => addLike()} img={likeImg} />
+                ) : (
+                  <LikeButton onClick={() => addLike()} img={unlikeImg} />
+                )}
+                {userId !== userInfo?.userId ? (
+                  <></>
+                ) : (
+                  <DropDownMenu
+                    text="게시글 삭제"
+                    margin="40"
+                    click="detailD"
+                    color="white"
+                    postId={postId}
+                  />
+                )}
+              </div>
+            </BottomWarp>
           </div>
-        </BottomWarp>
-      </div>
-    </StWrapFlex>
+        </StWrapFlex>
+      )}
+    </>
   );
 };
 

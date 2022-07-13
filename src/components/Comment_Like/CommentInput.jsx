@@ -1,12 +1,14 @@
 import { COMMENT_MAX_LENGTH } from "shared/data";
+import { badWordsComment } from "shared/TextsData";
+import { useCallback } from "react";
 import { useState } from "react";
 import { useRef } from "react";
+import useAddComment from "components/Hooks/Comment/useAddComment";
 import useGetUser from "components/Hooks/User/useGetUser";
 import loadable from "@loadable/component";
 import styled from "@emotion/styled";
 import flex from "../Common/flex";
-import useAddComment from "components/Hooks/Comment/useAddComment";
-import { useCallback } from "react";
+import Swal from "sweetalert2";
 
 const Loading = loadable(() => import("pages/Status/Loading"));
 
@@ -15,7 +17,6 @@ const CommentInput = ({ postId }) => {
   const [comment, setComment] = useState("");
   const { mutate } = useAddComment();
   const inputRef = useRef(null);
-
   const addComment = useCallback(() => {
     mutate({
       comment: comment,
@@ -23,6 +24,22 @@ const CommentInput = ({ postId }) => {
     });
     inputRef.current.value = "";
   }, [comment, mutate, postId]);
+
+  const bogusCheck = useCallback(() => {
+    const foundSwears = badWordsComment.filter((word) =>
+      comment.toLowerCase().includes(word.toLowerCase())
+    );
+    if (foundSwears.length) {
+      Swal.fire({
+        title: "에러!",
+        text: "제대로 된 댓글을 입력해주세요",
+        icon: "error",
+        confirmButtonText: "Cool",
+      });
+    } else {
+      addComment();
+    }
+  }, [comment, addComment]);
 
   return (
     <StWrapFlex>
@@ -40,7 +57,7 @@ const CommentInput = ({ postId }) => {
               maxLength={COMMENT_MAX_LENGTH}
               ref={inputRef}
             />
-            <button className="commentButton" onClick={addComment}>
+            <button className="commentButton" onClick={bogusCheck}>
               게시
             </button>
           </StDiv>

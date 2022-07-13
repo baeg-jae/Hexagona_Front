@@ -16,6 +16,7 @@ const FeedDetail = () => {
   const { data, isFetching } = useGetPostDetail({
     postId: postId,
   });
+  console.log(data);
 
   return (
     <StWrapFlex>
@@ -32,8 +33,9 @@ const FeedDetail = () => {
               name={data?.nickname}
               postId={postId}
               nickname={data?.nickname}
+              userId={data?.userId}
             />
-            <CommentLists postId={postId} />
+            <CommentLists postId={postId} userId={data?.userId} />
             <CommentInput postId={data?.postId} />
           </StWrapComment>
         </>
