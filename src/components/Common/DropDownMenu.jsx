@@ -2,19 +2,32 @@ import { dropBoxAnimation, FlexRowDiv } from "./GlobalStyles";
 import { SIGN_UP_MAX_LENGTH } from "shared/data";
 import { useState, useCallback } from "react";
 import useNicknameHandle from "components/Hooks/useNicknameHandle";
+import useImageHandler from "components/Hooks/useImageHandler";
+import useCommentDHandle from "components/Hooks/useCommentDHandle";
 import SmallMenu from "assets/img/smallMenu.png";
 import InputModal from "components/Common/InputModal";
 import ImageModal from "./ImageModal";
 import styled from "@emotion/styled";
 import flex from "./flex";
-import useImageHandler from "components/Hooks/useImageHandler";
 
-const DropDownMenu = ({ text, text2, margin, click, click2 }) => {
+const DropDownMenu = ({
+  text,
+  text2,
+  margin,
+  click,
+  click2,
+  postId,
+  commentId,
+}) => {
   const [flag, setFlag] = useState(false);
   const { setNicknameFlag, nicknameFlag, setNickname, bogusCheck } =
     useNicknameHandle();
   const { setProfileFlag, profileFlag, setProfile, onSendProfile } =
     useImageHandler();
+  const { onDelete } = useCommentDHandle({
+    postId: postId,
+    commentId: commentId,
+  });
 
   const onClickHandler = () => {
     setFlag((value) => !value);
@@ -24,6 +37,8 @@ const DropDownMenu = ({ text, text2, margin, click, click2 }) => {
     switch (click2) {
       case "nickname":
         return setNicknameFlag((value) => !value);
+      case "commentD":
+        return onDelete();
       default:
         return;
     }
@@ -33,6 +48,8 @@ const DropDownMenu = ({ text, text2, margin, click, click2 }) => {
     switch (click) {
       case "image":
         return setProfileFlag((value) => !value);
+      case "commentU":
+        return onDelete();
       default:
         return;
     }

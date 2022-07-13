@@ -2,6 +2,7 @@ import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 import { FlexColumnDiv } from "components/Common/GlobalStyles";
 import useGetComment from "components/Hooks/useGetComment";
+import DropDownMenu from "components/Common/DropDownMenu";
 
 const CommentLists = ({ postId }) => {
   const { data, isFetching } = useGetComment({ postId: postId });
@@ -24,7 +25,18 @@ const CommentLists = ({ postId }) => {
                   <StProfile img={v.profile_img} />
                   <div className="reply">
                     <div>
-                      <div className="replyUser">{v.nickname}</div>
+                      <div className="replyUser">
+                        {v.nickname}
+                        <DropDownMenu
+                          postId={postId}
+                          commentId={v.commentId}
+                          text="댓글 수정"
+                          text2="댓글 삭제"
+                          margin="40"
+                          click2="commentD"
+                          click="commentU"
+                        />
+                      </div>
                       <div className="replyDay">{v.createdAtDateOnly}</div>
                     </div>
                     <div className="replyText">{v.comment}</div>
@@ -63,6 +75,7 @@ const StReplyWrap = styled.div`
   .reply {
     width: 280px;
     .replyUser {
+      ${flex({ justify: "space-between" })}
       font-weight: 700;
       font-size: 14px;
       line-height: 130%;
