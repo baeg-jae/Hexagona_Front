@@ -1,7 +1,7 @@
 import { MISSION_ADD_LENGTH } from "shared/data";
 import { useState, useCallback } from "react";
 import { badWords } from "shared/TextsData";
-import useAddMission from "components/Hooks/useAddMission";
+import useAddMission from "components/Hooks/Mission/useAddMission";
 import InputModal from "components/Common/InputModal";
 import AddedMission from "./AddedMission";
 import flex from "components/Common/flex";

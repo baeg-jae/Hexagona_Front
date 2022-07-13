@@ -1,4 +1,4 @@
-import useGetUser from "components/Hooks/useGetUser";
+import useGetUser from "components/Hooks/User/useGetUser";
 import Loading from "pages/Status/Loading";
 import DropDownMenu from "./DropDownMenu";
 import styled from "@emotion/styled";

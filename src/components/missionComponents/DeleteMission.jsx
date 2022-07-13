@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import useDeleteMission from "components/Hooks/useDeleteMission";
+import useDeleteMission from "components/Hooks/Mission/useDeleteMission";
 import deleteImg from "assets/img/delete.png";
 import styled from "@emotion/styled";
 

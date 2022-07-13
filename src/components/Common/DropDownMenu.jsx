@@ -1,15 +1,15 @@
 import { dropBoxAnimation, FlexRowDiv } from "./GlobalStyles";
 import { SIGN_UP_MAX_LENGTH } from "shared/data";
 import { useState, useCallback } from "react";
-import useNicknameHandle from "components/Hooks/useNicknameHandle";
+import useNicknameHandle from "components/Hooks/User/useNicknameHandle";
 import useImageHandler from "components/Hooks/useImageHandler";
-import useCommentDHandle from "components/Hooks/useCommentDHandle";
+import useCommentDHandle from "components/Hooks/Comment/useCommentDHandle";
+import useDetailDHandle from "components/Hooks/Detail/useDetailDHandle";
 import InputModal from "components/Common/InputModal";
 import ImageModal from "./ImageModal";
 import styled from "@emotion/styled";
 import flex from "./flex";
 import { BiDotsVerticalRounded } from "react-icons/bi";
-import useDetailDHandle from "components/Hooks/useDetailDHandle";
 
 const DropDownMenu = ({
   text,

@@ -5,7 +5,7 @@ import flex from "../Common/flex";
 import likeImg from "assets/img/like.png";
 import unlikeImg from "assets/img/unlike.png";
 import useCategory from "components/Hooks/useCategory";
-import useAddLike from "components/Hooks/useAddLike";
+import useAddLike from "components/Hooks/Like/useAddLike";
 import DropDownMenu from "components/Common/DropDownMenu";
 
 const CommentImg = ({

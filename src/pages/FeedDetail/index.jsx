@@ -1,7 +1,7 @@
 import { StWrap } from "components/Common/GlobalStyles";
 import { useParams } from "react-router-dom";
 import NavigatorBar from "components/Common/NavigatorBar";
-import useGetPostDetail from "components/Hooks/useGetPostDetail";
+import useGetPostDetail from "components/Hooks/Detail/useGetPostDetail";
 import CommentInput from "components/CommentComponents/CommentInput";
 import CommentImg from "components/CommentComponents/CommentImg";
 import CommentLists from "components/CommentComponents/CommentLists";

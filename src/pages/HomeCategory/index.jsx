@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CategoryTop from "components/missionComponents/CategoryTop";
-import useGetMission from "components/Hooks/useGetMission";
+import useGetMission from "components/Hooks/Mission/useGetMission";
 import Loading from "pages/Status/Loading";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";

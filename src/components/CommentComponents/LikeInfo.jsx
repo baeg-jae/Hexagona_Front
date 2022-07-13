@@ -1,4 +1,4 @@
-import useGetAllLIkes from "components/Hooks/useGetAllLIkes";
+import useGetAllLIkes from "components/Hooks/Like/useGetAllLIkes";
 import styled from "@emotion/styled";
 import flex from "components/Common/flex";
 import Loading from "pages/Status/Loading";
@@ -9,7 +9,6 @@ const LikeInfo = ({ postId }) => {
 
   const picAmountHandler = () => {
     if (data?.length < 5) {
-      console.log("1");
       return arr.map((_, i) => {
         return (
           <>
@@ -18,13 +17,11 @@ const LikeInfo = ({ postId }) => {
         );
       });
     } else {
-      console.log("123131");
       return data?.map((v) => {
         return <StImg img={v.profile_img} />;
       });
     }
   };
-  //   <StImg img={v.profile_img} />
 
   return (
     <>

@@ -9,6 +9,7 @@ import IntroPage from "./IntroPage";
 import styled from "@emotion/styled";
 import apis from "shared/api/main";
 import Swal from "sweetalert2";
+import useNewUserCheck from "components/Hooks/User/useNewUserCheck";
 
 const __signup = async (payload) => {
   const data = await apis.signUp(payload);
@@ -24,10 +25,12 @@ const SignUpPage = () => {
   const [flag, setFlag] = useState();
   const [name, setName] = useState("");
   const queryClient = useQueryClient();
+  const onSkipHandler = useNewUserCheck();
 
   // 회원가입 mutation
   const userSignUpMutation = useMutation(__signup, {
     onSuccess: () => {
+      onSkipHandler();
       // 캐시에 있는 모든 쿼리를 무효화한다.
       queryClient.invalidateQueries("users");
       // 회원가입에 통과되면 화면전환

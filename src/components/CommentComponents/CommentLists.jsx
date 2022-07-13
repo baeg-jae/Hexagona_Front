@@ -1,7 +1,7 @@
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 import { FlexColumnDiv } from "components/Common/GlobalStyles";
-import useGetComment from "components/Hooks/useGetComment";
+import useGetComment from "components/Hooks/Comment/useGetComment";
 import DropDownMenu from "components/Common/DropDownMenu";
 import LikeInfo from "./LikeInfo";
 

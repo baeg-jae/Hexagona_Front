@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import useUpdateNickname from "components/Hooks/useUpdateNickname";
+import useUpdateNickname from "components/Hooks/User/useUpdateNickname";
 import { badWords } from "shared/TextsData";
 import Swal from "sweetalert2";
 

@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import styled from "@emotion/styled";
 import flex from "components/Common/flex";
 import { FlexRowDiv } from "./GlobalStyles";
-import useAddMission from "components/Hooks/useAddMission";
+import useAddMission from "components/Hooks/Mission/useAddMission";
 import { badWords } from "shared/TextsData";
 import Swal from "sweetalert2";
 

@@ -3,7 +3,7 @@ import { StWrap } from "components/Common/GlobalStyles";
 import flex from "components/Common/flex";
 import Button from "components/Common/Button";
 import { useNavigate } from "react-router-dom";
-import useGetUser from "components/Hooks/useGetUser";
+import useGetUser from "components/Hooks/User/useGetUser";
 import styled from "@emotion/styled";
 import Loading from "pages/Status/Loading";
 

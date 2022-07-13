@@ -1,6 +1,6 @@
 import { MISSION_ADD_LENGTH } from "shared/data";
 import { useState, useCallback } from "react";
-import useUpdateMission from "components/Hooks/useUpdateMission";
+import useUpdateMission from "components/Hooks/Mission/useUpdateMission";
 import InputModal from "components/Common/InputModal";
 import modify from "assets/img/modify.png";
 import styled from "@emotion/styled";
