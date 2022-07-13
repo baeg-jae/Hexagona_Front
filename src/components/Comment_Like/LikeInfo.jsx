@@ -12,13 +12,13 @@ const LikeInfo = ({ postId }) => {
       return arr.map((_, i) => {
         return (
           <>
-            <StImg img={data[i]?.profile_img} />
+            <StImg img={data[i]?.profile_img} key={i} />
           </>
         );
       });
     } else {
-      return data?.map((v) => {
-        return <StImg img={v.profile_img} />;
+      return data?.map((v, i) => {
+        return <StImg img={v.profile_img} key={i} />;
       });
     }
   };

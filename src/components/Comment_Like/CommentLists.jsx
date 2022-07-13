@@ -23,7 +23,7 @@ const CommentLists = ({ postId }) => {
           ) : (
             data?.map((v, i) => {
               return (
-                <StReplyWrap>
+                <StReplyWrap key={i}>
                   <StProfile img={v.profile_img} />
                   <div className="reply">
                     <div>

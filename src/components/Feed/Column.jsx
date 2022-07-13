@@ -31,6 +31,7 @@ const Column = () => {
                   onClick={() => onClickHandler(v?.postId)}
                   coverImg={v?.photoUrl}
                   style={{ marginRight: "4.5px" }}
+                  key={i}
                 />
               ) : (
                 ""
@@ -47,6 +48,7 @@ const Column = () => {
                   onClick={() => onClickHandler(v?.postId)}
                   coverImg={v?.photoUrl}
                   style={{ marginLeft: "4.5px" }}
+                  key={i}
                 />
               ) : (
                 ""

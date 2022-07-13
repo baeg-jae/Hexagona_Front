@@ -60,12 +60,13 @@ const EmptyMission = ({ category, list }) => {
       ) : (
         <></>
       )}
-      {arr.map((v, i) => {
+      {arr.map((_, i) => {
         return list[i] !== undefined ? (
           <AddedMission
             missionContent={list[i].missionContent}
             missionId={list[i].missionId}
             index={list[i]}
+            key={i}
           />
         ) : (
           <StWrap onClick={onClickedHandler}>
