@@ -4,11 +4,12 @@ import { useState, useCallback } from "react";
 import useNicknameHandle from "components/Hooks/useNicknameHandle";
 import useImageHandler from "components/Hooks/useImageHandler";
 import useCommentDHandle from "components/Hooks/useCommentDHandle";
-import SmallMenu from "assets/img/smallMenu.png";
 import InputModal from "components/Common/InputModal";
 import ImageModal from "./ImageModal";
 import styled from "@emotion/styled";
 import flex from "./flex";
+import { BiDotsVerticalRounded } from "react-icons/bi";
+import useDetailDHandle from "components/Hooks/useDetailDHandle";
 
 const DropDownMenu = ({
   text,
@@ -18,6 +19,7 @@ const DropDownMenu = ({
   click2,
   postId,
   commentId,
+  color,
 }) => {
   const [flag, setFlag] = useState(false);
   const { setNicknameFlag, nicknameFlag, setNickname, bogusCheck } =
@@ -28,6 +30,7 @@ const DropDownMenu = ({
     postId: postId,
     commentId: commentId,
   });
+  const { onDeleteDetail } = useDetailDHandle({ postId: postId });
 
   const onClickHandler = () => {
     setFlag((value) => !value);
@@ -49,7 +52,9 @@ const DropDownMenu = ({
       case "image":
         return setProfileFlag((value) => !value);
       case "commentU":
-        return onDelete();
+        return;
+      case "detailD":
+        return onDeleteDetail();
       default:
         return;
     }
@@ -89,6 +94,9 @@ const DropDownMenu = ({
       )}
 
       <StImgDiv onClick={onClickHandler}>
+        <StDotDiv color={color}>
+          <BiDotsVerticalRounded />
+        </StDotDiv>
         {flag ? (
           <DropRow margin={margin}>
             <span onClick={() => FirstClickTypeHandler()}>{text}</span>
@@ -115,11 +123,12 @@ const StImgDiv = styled.div`
   position: relative;
   width: 2.5px;
   height: 12px;
-  background-image: url(${SmallMenu});
-  background-size: cover;
-  background-position: center;
   margin-right: 10.25px;
 `;
+const StDotDiv = styled.div`
+  color: ${(props) => props.color};
+`;
+
 const DropRow = styled.div`
   ${flex({ direction: "column" })}
   position: absolute;

@@ -31,6 +31,7 @@ const FeedDetail = () => {
               profile={data?.profile_img}
               name={data?.nickname}
               postId={postId}
+              nickname={data?.nickname}
             />
             <CommentLists postId={postId} />
             <CommentInput postId={data?.postId} />

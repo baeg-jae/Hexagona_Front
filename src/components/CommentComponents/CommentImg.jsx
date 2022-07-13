@@ -1,15 +1,25 @@
 import { useState } from "react";
+import { FlexRowDiv } from "components/Common/GlobalStyles";
 import styled from "@emotion/styled";
 import flex from "../Common/flex";
 import likeImg from "assets/img/like.png";
 import unlikeImg from "assets/img/unlike.png";
-import button from "assets/img/button.png";
 import useCategory from "components/Hooks/useCategory";
 import useAddLike from "components/Hooks/useAddLike";
+import DropDownMenu from "components/Common/DropDownMenu";
 
-const CommentImg = ({ category, postContent, img, profile, name, postId }) => {
+const CommentImg = ({
+  category,
+  postContent,
+  img,
+  profile,
+  name,
+  postId,
+  nickname,
+}) => {
   const [like, setLike] = useState(false);
   const getCategory = useCategory({ category });
+  const username = localStorage.getItem("nickname");
   const { mutate, data } = useAddLike();
   //  메모 : data에 true/false 받으면 그걸로 좋아요 판단
   const addLike = () => {
@@ -23,11 +33,13 @@ const CommentImg = ({ category, postContent, img, profile, name, postId }) => {
     <StWrapFlex img={img}>
       <div className="gradient">
         <HeaderDiv>
-          <StProfile img={profile} />
-          <StTextDiv>
-            <span className="titleText">갓생 입문자</span>
-            <span className="nameText">{name}</span>
-          </StTextDiv>
+          <FlexRowDiv>
+            <StProfile img={profile} />
+            <StTextDiv>
+              <span className="titleText">갓생 입문자</span>
+              <span className="nameText">{name}</span>
+            </StTextDiv>
+          </FlexRowDiv>
         </HeaderDiv>
         <BottomWarp>
           <BottomDiv>
@@ -40,7 +52,16 @@ const CommentImg = ({ category, postContent, img, profile, name, postId }) => {
             ) : (
               <LikeButton onClick={() => addLike()} img={unlikeImg} />
             )}
-            <PutButton />
+            {nickname !== username ? (
+              <></>
+            ) : (
+              <DropDownMenu
+                text="게시글 삭제"
+                margin="40"
+                click="detailD"
+                color="white"
+              />
+            )}
           </div>
         </BottomWarp>
       </div>
@@ -76,7 +97,7 @@ const StWrapFlex = styled.div`
 `;
 
 const HeaderDiv = styled.div`
-  ${flex({ justify: "flex-start", align: "flex-start" })}
+  ${flex({ justify: "space-between", align: "flex-start" })}
   width: 100%;
   height: 100%;
   margin: 20px 0 0 20px;
@@ -96,6 +117,7 @@ const StTextDiv = styled.div`
   letter-spacing: -0.02em;
   line-height: 130%;
   margin-left: 8px;
+  margin-right: 180px;
   color: #212121;
   .titleText {
     font-weight: 400;
@@ -126,7 +148,7 @@ const BottomDiv = styled.div`
 
 const BottomWarp = styled.div`
   ${flex({ direction: "row", justify: "space-between" })}
-  width: 90%;
+  width: 95%;
   .imgWrap {
     ${flex({ direction: "row" })}
   }
@@ -138,12 +160,6 @@ const LikeButton = styled.div`
   background-image: url(${(props) => props.img});
   background-size: cover;
   background-position: center;
+  margin-left: 74px;
   margin-right: 16px;
-`;
-const PutButton = styled.div`
-  width: 1.5px;
-  height: 12px;
-  background-image: url(${button});
-  background-size: cover;
-  background-position: center;
 `;
