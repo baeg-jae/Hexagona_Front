@@ -1,25 +1,32 @@
-import { useState, useCallback } from 'react';
-import { FlexRowDiv } from 'components/Common/GlobalStyles';
-import styled from '@emotion/styled';
-import flex from '../Common/flex';
-import likeImg from 'assets/img/like.png';
-import unlikeImg from 'assets/img/unlike.png';
-import useCategory from 'components/Hooks/useCategory';
-import useAddLike from 'components/Hooks/Like/useAddLike';
-import DropDownMenu from 'components/Common/DropDownMenu';
-import useGetIfLiked from 'components/Hooks/Like/useGetIfLiked';
-import loadable from '@loadable/component';
-import UserInfo from 'components/Feed/UserInfo';
-import { useEffect } from 'react';
+import { useState, useCallback } from "react";
+import { FlexRowDiv } from "components/Common/GlobalStyles";
+import styled from "@emotion/styled";
+import flex from "../Common/flex";
+import likeImg from "assets/img/like.png";
+import unlikeImg from "assets/img/unlike.png";
+import useCategory from "components/Hooks/useCategory";
+import useAddLike from "components/Hooks/Like/useAddLike";
+import DropDownMenu from "components/Common/DropDownMenu";
+import useGetIfLiked from "components/Hooks/Like/useGetIfLiked";
+import UserInfo from "components/Feed/UserInfo";
+import { useEffect } from "react";
 
-const Loading = loadable(() => import('pages/Status/Loading'));
+const CommentImg = ({
+  category,
+  postContent,
+  img,
+  profile,
+  name,
+  postId,
+  nickname,
+  userId,
+}) => {
+  const [like, setLike] = useState(false);
+  const getCategory = useCategory({ category });
+  const { mutate } = useAddLike();
+  const { data } = useGetIfLiked({ postId: Number(postId) });
+  const userInfo = UserInfo();
 
-const CommentImg = ({ category, postContent, img, profile, name, postId, nickname, userId }) => {
-    const [like, setLike] = useState(false);
-    const getCategory = useCategory({ category });
-    const { mutate } = useAddLike();
-    const { data, isFetching } = useGetIfLiked({ postId: Number(postId) });
-    const userInfo = UserInfo();
 
     useEffect(() => {
         setLike(data);
@@ -32,47 +39,50 @@ const CommentImg = ({ category, postContent, img, profile, name, postId, nicknam
         setLike((value) => !value);
     }, [mutate, postId]);
 
-    return (
-        <>
-            {isFetching ? (
+  const addLike = useCallback(() => {
+    mutate({
+      postId: postId,
+    });
+    setLike((value) => !value);
+  }, [mutate, postId]);
+
+  return (
+    <>
+      <StWrapFlex img={img}>
+        <div className="gradient">
+          <HeaderDiv>
+            <FlexRowDiv>
+              <StProfile img={profile} />
+              <StTextDiv>
+                <span className="titleText">갓생 입문자</span>
+                <span className="nameText">{name}</span>
+              </StTextDiv>
+            </FlexRowDiv>
+          </HeaderDiv>
+          <BottomWarp>
+            <BottomDiv>
+              <span className="titleText">{getCategory}</span>
+              <span className="nameText">{postContent}</span>
+            </BottomDiv>
+            <div className="imgWrap">
+              <LikeButton onClick={() => addLike()} like={like} />
+              {userId !== userInfo?.userId ? (
                 <></>
-            ) : (
-                <StWrapFlex img={img}>
-                    <div className="gradient">
-                        <HeaderDiv>
-                            <FlexRowDiv>
-                                <StProfile img={profile} />
-                                <StTextDiv>
-                                    <span className="titleText">갓생 입문자</span>
-                                    <span className="nameText">{name}</span>
-                                </StTextDiv>
-                            </FlexRowDiv>
-                        </HeaderDiv>
-                        <BottomWarp>
-                            <BottomDiv>
-                                <span className="titleText">{getCategory}</span>
-                                <span className="nameText">{postContent}</span>
-                            </BottomDiv>
-                            <div className="imgWrap">
-                                <LikeButton onClick={() => addLike()} like={like} />
-                                {userId !== userInfo?.userId ? (
-                                    <></>
-                                ) : (
-                                    <DropDownMenu
-                                        text="게시글 삭제"
-                                        margin="40"
-                                        click="detailD"
-                                        color="white"
-                                        postId={postId}
-                                    />
-                                )}
-                            </div>
-                        </BottomWarp>
-                    </div>
-                </StWrapFlex>
-            )}
-        </>
-    );
+              ) : (
+                <DropDownMenu
+                  text="게시글 삭제"
+                  margin="40"
+                  click="detailD"
+                  color="white"
+                  postId={postId}
+                />
+              )}
+            </div>
+          </BottomWarp>
+        </div>
+      </StWrapFlex>
+    </>
+  );
 };
 
 export default CommentImg;

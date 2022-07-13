@@ -1,6 +1,5 @@
 import { useQuery } from "react-query";
 import apis from "shared/api/main";
-import { QueryKeys } from "shared/QueryKeys";
 
 const useGetMission = () => {
   const fetcher = async () => {
@@ -8,7 +7,7 @@ const useGetMission = () => {
     return data;
   };
 
-  return useQuery(QueryKeys.mission, fetcher);
+  return useQuery("todos", fetcher);
 };
 
 export default useGetMission;

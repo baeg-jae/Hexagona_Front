@@ -1,6 +1,5 @@
 import { useQuery } from "react-query";
 import apis from "shared/api/main";
-import { QueryKeys } from "shared/QueryKeys";
 
 const useGetPost = () => {
   const fetcher = async () => {
@@ -8,7 +7,7 @@ const useGetPost = () => {
     return data;
   };
 
-  return useQuery(QueryKeys.feed, fetcher, {
+  return useQuery("posts", fetcher, {
     refetchOnWindowFocus: "always",
   });
 };
