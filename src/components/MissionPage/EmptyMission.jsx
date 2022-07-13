@@ -35,7 +35,7 @@ const EmptyMission = ({ category, list }) => {
     if (foundSwears.length) {
       Swal.fire({
         title: "에러!",
-        text: "제대로 된 닉네임을 입력해주세요",
+        text: "제대로 된 미션을 입력해주세요",
         icon: "error",
         confirmButtonText: "Cool",
       });

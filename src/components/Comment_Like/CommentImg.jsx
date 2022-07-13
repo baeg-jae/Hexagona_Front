@@ -69,6 +69,7 @@ const CommentImg = ({
                     margin="40"
                     click="detailD"
                     color="white"
+                    postId={postId}
                   />
                 )}
               </div>

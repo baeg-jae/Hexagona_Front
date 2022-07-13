@@ -7,7 +7,9 @@ const useGetPost = () => {
     return data;
   };
 
-  return useQuery("posts", fetcher);
+  return useQuery("posts", fetcher, {
+    refetchOnWindowFocus: "always",
+  });
 };
 
 export default useGetPost;
