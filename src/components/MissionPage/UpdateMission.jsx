@@ -9,9 +9,10 @@ const UpdateMission = ({ missionId }) => {
   const [missionContent, setMissionContent] = useState("");
   const [flag, setFlag] = useState(false);
   const { mutate } = useUpdateMission();
-  const onClickHandler = () => {
+  const onClickHandler = useCallback(() => {
     setFlag((value) => !value);
-  };
+  }, []);
+
   const onCancelBtnHandler = useCallback((setter) => {
     setter((value) => !value);
   }, []);

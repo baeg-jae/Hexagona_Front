@@ -1,13 +1,16 @@
+import { useCallback } from "react";
 import useGetAllLIkes from "components/Hooks/Like/useGetAllLIkes";
 import styled from "@emotion/styled";
 import flex from "components/Common/flex";
-import Loading from "pages/Status/Loading";
+import loadable from "@loadable/component";
+
+const Loading = loadable(() => import("pages/Status/Loading"));
 
 const LikeInfo = ({ postId }) => {
   const { data, isFetching } = useGetAllLIkes({ postId: Number(postId) });
-  const arr = [1, 2, 3, 4, 5];
 
-  const picAmountHandler = () => {
+  const picAmountHandler = useCallback(() => {
+    const arr = [1, 2, 3, 4, 5];
     if (data?.length < 5) {
       return arr.map((_, i) => {
         return (
@@ -21,7 +24,7 @@ const LikeInfo = ({ postId }) => {
         return <StImg img={v.profile_img} key={i} />;
       });
     }
-  };
+  }, [data]);
 
   return (
     <>

@@ -32,11 +32,11 @@ const DropDownMenu = ({
   });
   const { onDeleteDetail } = useDetailDHandle({ postId: postId });
 
-  const onClickHandler = () => {
+  const onClickHandler = useCallback(() => {
     setFlag((value) => !value);
-  };
+  }, []);
 
-  const SecondClickTypeHandler = () => {
+  const SecondClickTypeHandler = useCallback(() => {
     switch (click2) {
       case "nickname":
         return setNicknameFlag((value) => !value);
@@ -44,9 +44,9 @@ const DropDownMenu = ({
       default:
         return;
     }
-  };
+  }, [click2, setNicknameFlag]);
 
-  const FirstClickTypeHandler = () => {
+  const FirstClickTypeHandler = useCallback(() => {
     switch (click) {
       case "image":
         return setProfileFlag((value) => !value);
@@ -57,7 +57,7 @@ const DropDownMenu = ({
       default:
         return;
     }
-  };
+  }, [click, onDelete, onDeleteDetail, setProfileFlag]);
 
   const onCancelBtnHandler = useCallback((setter) => {
     setter((value) => !value);

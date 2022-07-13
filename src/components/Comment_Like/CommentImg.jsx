@@ -7,6 +7,7 @@ import unlikeImg from "assets/img/unlike.png";
 import useCategory from "components/Hooks/useCategory";
 import useAddLike from "components/Hooks/Like/useAddLike";
 import DropDownMenu from "components/Common/DropDownMenu";
+import { useCallback } from "react";
 
 const CommentImg = ({
   category,
@@ -22,12 +23,13 @@ const CommentImg = ({
   const username = localStorage.getItem("nickname");
   const { mutate, data } = useAddLike();
   //  메모 : data에 true/false 받으면 그걸로 좋아요 판단
-  const addLike = () => {
+
+  const addLike = useCallback(() => {
     mutate({
       postId: postId,
     });
     setLike((value) => !value);
-  };
+  }, [mutate, postId]);
 
   return (
     <StWrapFlex img={img}>

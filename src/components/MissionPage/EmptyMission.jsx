@@ -15,9 +15,9 @@ const EmptyMission = ({ category, list }) => {
   const [clicked, setClicked] = useState(false);
   const { mutate } = useAddMission();
 
-  const onClickedHandler = () => {
+  const onClickedHandler = useCallback(() => {
     setClicked((value) => !value);
-  };
+  }, []);
 
   const onCancelBtnHandler = useCallback((setter) => {
     setter((value) => !value);
