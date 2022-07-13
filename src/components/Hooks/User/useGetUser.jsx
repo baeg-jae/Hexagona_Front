@@ -4,6 +4,7 @@ import apis from "shared/api/main";
 const useGetUser = () => {
   const fetcher = async () => {
     const { data } = await apis.getUser();
+    localStorage.setItem("nickname", data.nickname);
     return data;
   };
 

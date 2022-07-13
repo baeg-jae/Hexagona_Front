@@ -1,11 +1,12 @@
 import { COMMENT_MAX_LENGTH } from "shared/data";
 import { useState } from "react";
 import { useRef } from "react";
-import useGetUser from "components/Hooks/useGetUser";
+import useGetUser from "components/Hooks/User/useGetUser";
 import loadable from "@loadable/component";
 import styled from "@emotion/styled";
 import flex from "../Common/flex";
-import useAddComment from "components/Hooks/useAddComment";
+import useAddComment from "components/Hooks/Comment/useAddComment";
+import { useCallback } from "react";
 
 const Loading = loadable(() => import("pages/Status/Loading"));
 
@@ -15,13 +16,14 @@ const CommentInput = ({ postId }) => {
   const { mutate } = useAddComment();
   const inputRef = useRef(null);
 
-  const addComment = () => {
+  const addComment = useCallback(() => {
     mutate({
       comment: comment,
       postId: postId,
     });
     inputRef.current.value = "";
-  };
+  }, [comment, mutate, postId]);
+
   return (
     <StWrapFlex>
       {isFetching ? (

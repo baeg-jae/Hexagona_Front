@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import useUpdateProfile from "components/Hooks/useUpdateProfile";
+import useUpdateProfile from "components/Hooks/User/useUpdateProfile";
 
 const useImageHandler = () => {
   const [profileFlag, setProfileFlag] = useState(false);

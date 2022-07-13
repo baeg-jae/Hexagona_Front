@@ -1,11 +1,13 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { StWrap } from "components/Common/GlobalStyles";
+import { useNavigate } from "react-router-dom";
 import flex from "components/Common/flex";
 import Button from "components/Common/Button";
-import { useNavigate } from "react-router-dom";
-import useGetUser from "components/Hooks/useGetUser";
+import useGetUser from "components/Hooks/User/useGetUser";
+import loadable from "@loadable/component";
 import styled from "@emotion/styled";
-import Loading from "pages/Status/Loading";
+
+const Loading = loadable(() => import("pages/Status/Loading"));
 
 const IntroPage = () => {
   // 유저정보 받아오기

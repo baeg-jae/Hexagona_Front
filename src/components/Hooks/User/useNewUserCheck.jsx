@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { MODAL_TIME } from "shared/data";
 import apis from "shared/api/main";
 import Swal from "sweetalert2";
+import { useCallback } from "react";
 
 const __newUserCheck = async () => {
   const data = await apis.newOldUser();
@@ -11,9 +12,7 @@ const __newUserCheck = async () => {
 
 const useNewUserCheck = () => {
   const navigate = useNavigate();
-  const onSkipHandler = () => {
-    newUserCheckMutation.mutate({});
-  };
+
   const queryClient = useQueryClient();
 
   const newUserCheckMutation = useMutation(__newUserCheck, {
@@ -28,6 +27,11 @@ const useNewUserCheck = () => {
       if (data) navigate("/home");
     },
   });
+
+  const onSkipHandler = useCallback(() => {
+    newUserCheckMutation.mutate({});
+  }, [newUserCheckMutation]);
+
   return onSkipHandler;
 };
 

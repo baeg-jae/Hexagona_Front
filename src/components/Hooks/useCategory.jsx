@@ -1,5 +1,7 @@
+import { useCallback } from "react";
+
 const useCategory = ({ category }) => {
-  const categoryCheck = () => {
+  const categoryCheck = useCallback(() => {
     switch (category) {
       case "exercise":
         return "운동하기";
@@ -12,7 +14,8 @@ const useCategory = ({ category }) => {
       default:
         return;
     }
-  };
+  }, [category]);
+
   return categoryCheck();
 };
 

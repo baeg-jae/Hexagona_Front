@@ -1,8 +1,10 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Loading from "pages/Status/Loading";
 import { __googleSignIn } from "redux/modules/user";
+import { useEffect } from "react";
+import loadable from "@loadable/component";
+
+const Loading = loadable(() => import("pages/Status/Loading"));
 
 const Google = () => {
   const code = new URL(window.location.href).searchParams.get("code");

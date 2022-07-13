@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import apis from "shared/api/main";
 import { useMutation, useQueryClient } from "react-query";
+import { useCallback } from "react";
 
 const addPost = async (payload) => {
   const addedData = await apis.addPost(payload);
@@ -25,7 +26,7 @@ const AddPost = ({ missionId, postContent, category }) => {
     },
   });
 
-  const onCreate = () => {
+  const onCreate = useCallback(() => {
     const formData = new FormData();
     const secondData = {
       postContent: postContent,
@@ -39,16 +40,12 @@ const AddPost = ({ missionId, postContent, category }) => {
       new Blob([JSON.stringify(secondData)], { type: "application/json" })
     );
     addTodoMutation.mutate(formData);
-  };
+  }, [addTodoMutation, category, files, missionId, postContent]);
 
   return (
     <div>
       <input type="file" id="file" onChange={saveFileImage} />
-      {files !== undefined ? (
-        <label for="file">여길 눌러서 수정해주세요</label>
-      ) : (
-        <label for="file">여길 눌러서 추가해주세요</label>
-      )}
+      <label for="file">여길 눌러서 추가해주세요</label>
       <button onClick={onCreate}>생성하기</button>
     </div>
   );

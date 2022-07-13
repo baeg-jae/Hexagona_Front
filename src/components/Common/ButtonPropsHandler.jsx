@@ -2,11 +2,6 @@ import One from "assets/img/category1.png";
 import Two from "assets/img/category2.png";
 import Three from "assets/img/category3.png";
 import Four from "assets/img/category4.png";
-import mOne from "assets/img/mission1.png";
-import mTwo from "assets/img/mission2.png";
-import mThree from "assets/img/mission3.png";
-import mFour from "assets/img/mission4.png";
-import EmptyMission from "assets/img/noMission.png";
 
 export const handleButtonColor = (color) => {
   switch (color) {
@@ -72,21 +67,6 @@ export const categoryBGColorHandler = (col) => {
       return "rgba(255, 255, 255, 0.7)";
     default:
       return;
-  }
-};
-
-export const missionCamera = (number) => {
-  switch (number) {
-    case 0:
-      return mOne;
-    case 1:
-      return mTwo;
-    case 2:
-      return mThree;
-    case 3:
-      return mFour;
-    default:
-      return EmptyMission;
   }
 };
 
