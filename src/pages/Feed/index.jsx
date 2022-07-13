@@ -1,5 +1,5 @@
 import React from "react";
-import Column from "components/FeedComponents/Column";
+import Column from "components/Feed/Column";
 import NavigatorBar from "components/Common/NavigatorBar";
 
 const Feed = () => {
