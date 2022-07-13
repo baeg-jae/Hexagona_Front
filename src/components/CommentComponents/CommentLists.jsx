@@ -6,6 +6,8 @@ import DropDownMenu from "components/Common/DropDownMenu";
 
 const CommentLists = ({ postId }) => {
   const { data, isFetching } = useGetComment({ postId: postId });
+  const username = localStorage.getItem("nickname");
+  console.log(data);
 
   return (
     <>
@@ -27,15 +29,19 @@ const CommentLists = ({ postId }) => {
                     <div>
                       <div className="replyUser">
                         {v.nickname}
-                        <DropDownMenu
-                          postId={postId}
-                          commentId={v.commentId}
-                          text="댓글 수정"
-                          text2="댓글 삭제"
-                          margin="40"
-                          click2="commentD"
-                          click="commentU"
-                        />
+                        {v.nickname !== username ? (
+                          <></>
+                        ) : (
+                          <DropDownMenu
+                            postId={postId}
+                            commentId={v.commentId}
+                            text="댓글 수정"
+                            text2="댓글 삭제"
+                            margin="40"
+                            click2="commentD"
+                            click="commentU"
+                          />
+                        )}
                       </div>
                       <div className="replyDay">{v.createdAtDateOnly}</div>
                     </div>

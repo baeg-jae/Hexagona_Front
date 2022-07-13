@@ -4,7 +4,6 @@ import Swal from "sweetalert2";
 import { MODAL_TIME } from "shared/data";
 
 const deleteComment = async (payload) => {
-  console.log(payload);
   const deleteCommentDB = await apis.deleteComment(payload);
   return deleteCommentDB;
 };
