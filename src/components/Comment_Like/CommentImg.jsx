@@ -27,9 +27,17 @@ const CommentImg = ({
   const { data } = useGetIfLiked({ postId: Number(postId) });
   const userInfo = UserInfo();
 
-  useEffect(() => {
-    setLike(data);
-  }, [data]);
+
+    useEffect(() => {
+        setLike(data);
+    }, [data]);
+    console.log(data);
+    const addLike = useCallback(() => {
+        mutate({
+            postId: postId,
+        });
+        setLike((value) => !value);
+    }, [mutate, postId]);
 
   const addLike = useCallback(() => {
     mutate({
@@ -80,95 +88,90 @@ const CommentImg = ({
 export default CommentImg;
 
 const StWrapFlex = styled.div`
-  ${flex({
-    direction: "column",
-    justify: "space-between",
-  })}
-  width: 325px;
-  height: 440px;
-  margin-top: 59px;
-  background-image: url(${(props) => props.img});
-  background-position: center;
-  background-size: cover;
-  border-radius: 20px;
-  .gradient {
-    ${flex({ direction: "column", align: "flex-start", justify: "flex-end" })}
-    width: 100%;
+    ${flex({
+        direction: 'column',
+        justify: 'space-between',
+    })}
+    width: 325px;
     height: 440px;
+    margin-top: 59px;
+    background-image: url(${(props) => props.img});
+    background-position: center;
+    background-size: cover;
     border-radius: 20px;
-    background: linear-gradient(
-      0.14deg,
-      #000000 0.09%,
-      rgba(0, 0, 0, 0) 32.15%
-    );
-  }
+    .gradient {
+        ${flex({ direction: 'column', align: 'flex-start', justify: 'flex-end' })}
+        width: 100%;
+        height: 440px;
+        border-radius: 20px;
+        background: linear-gradient(#fff 0.01%, rgba(0, 0, 0, 0) 32.15%);
+    }
 `;
 
 const HeaderDiv = styled.div`
-  ${flex({ justify: "space-between", align: "flex-start" })}
-  width: 100%;
-  height: 100%;
-  margin: 20px 0 0 20px;
+    ${flex({ justify: 'space-between', align: 'flex-start' })}
+    width: 100%;
+    height: 100%;
+    margin: 20px 0 0 20px;
 `;
 
 const StProfile = styled.div`
-  width: 40px;
-  height: 40px;
-  background-image: url(${(props) => props.img});
-  background-size: cover;
-  background-position: center;
-  border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    background-image: url(${(props) => props.img});
+    background-size: cover;
+    background-position: center;
+    border-radius: 100%;
 `;
 
 const StTextDiv = styled.div`
-  ${flex({ direction: "column", align: "flex-start" })}
-  letter-spacing: -0.02em;
-  line-height: 130%;
-  margin-left: 8px;
-  margin-right: 180px;
-  color: #212121;
-  .titleText {
-    font-weight: 400;
-    font-size: 13px;
-  }
-  .nameText {
-    font-weight: 700;
-    font-size: 15px;
-  }
+    ${flex({ direction: 'column', align: 'flex-start' })}
+    letter-spacing: -0.02em;
+    line-height: 130%;
+    margin-left: 8px;
+    margin-right: 180px;
+    color: #212121;
+    .titleText {
+        font-weight: 400;
+        font-size: 13px;
+    }
+    .nameText {
+        font-weight: 700;
+        font-size: 15px;
+    }
 `;
 
 const BottomDiv = styled.div`
-  ${flex({ direction: "column", align: "flex-start" })}
-  letter-spacing: -0.02em;
-  margin: 0 0 20px 20px;
-  color: var(--white);
-  .titleText {
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 19px;
-  }
-  .nameText {
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 29px;
-  }
+    ${flex({ direction: 'column', align: 'flex-start' })}
+    letter-spacing: -0.02em;
+    margin: 0 0 20px 20px;
+    color: var(--white);
+    .titleText {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 19px;
+    }
+    .nameText {
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 29px;
+    }
 `;
 
 const BottomWarp = styled.div`
-  ${flex({ direction: "row", justify: "space-between" })}
-  width: 95%;
-  .imgWrap {
-    ${flex({ direction: "row" })}
-  }
+    ${flex({ direction: 'row', justify: 'space-between' })}
+    width: 95%;
+    .imgWrap {
+        ${flex({ direction: 'row' })}
+    }
 `;
 
 const LikeButton = styled.div`
-  width: 20px;
-  height: 18.75px;
-  background-image: ${(props) =>
-    props.like ? `url(${likeImg})` : `url(${unlikeImg})`};
-  background-size: cover;
-  background-position: center;
-  margin-left: 74px;
-  margin-right: 16px;
+    width: 20px;
+    height: 18.75px;
+    background-image: ${(props) => (props.like ? `url(${likeImg})` : `url(${unlikeImg})`)};
+    background-size: cover;
+    background-position: center;
+    margin-left: 74px;
+    margin-right: 16px;
 `;
