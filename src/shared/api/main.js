@@ -39,6 +39,7 @@ export const apis = {
 
   // like CRUD
   addLike: (payload) => api.post(`/api/post/${payload.postId}/like`, {}),
+  getAllLikes: (payload) => api.get(`/api/post/${payload.postId}/likeUser`),
 };
 
 export default apis;

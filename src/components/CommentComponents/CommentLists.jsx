@@ -3,17 +3,18 @@ import styled from "@emotion/styled";
 import { FlexColumnDiv } from "components/Common/GlobalStyles";
 import useGetComment from "components/Hooks/useGetComment";
 import DropDownMenu from "components/Common/DropDownMenu";
+import LikeInfo from "./LikeInfo";
 
 const CommentLists = ({ postId }) => {
   const { data, isFetching } = useGetComment({ postId: postId });
   const username = localStorage.getItem("nickname");
-
   return (
     <>
       {isFetching ? (
         <></>
       ) : (
         <StWrap>
+          <LikeInfo postId={postId} />
           {data?.length === 0 ? (
             <FlexColumnDiv style={{ height: "100%" }}>
               <span className="emptySpan">아직 쓰여진 댓글이 없습니다.</span>
