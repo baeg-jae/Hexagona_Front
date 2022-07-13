@@ -34,7 +34,7 @@ const FeedDetail = () => {
               nickname={data?.nickname}
               userId={data?.userId}
             />
-            <CommentLists postId={postId} userId={data?.userId} />
+            <CommentLists postId={postId} />
             <CommentInput postId={data?.postId} />
           </StWrapComment>
         </>

@@ -4,9 +4,12 @@ import { FlexColumnDiv } from "components/Common/GlobalStyles";
 import useGetComment from "components/Hooks/Comment/useGetComment";
 import DropDownMenu from "components/Common/DropDownMenu";
 import LikeInfo from "./LikeInfo";
+import UserInfo from "components/Feed/UserInfo";
 
-const CommentLists = ({ postId, userId }) => {
+const CommentLists = ({ postId }) => {
   const { data, isFetching } = useGetComment({ postId: postId });
+  const userInfo = UserInfo();
+
   return (
     <>
       {isFetching ? (
@@ -28,7 +31,7 @@ const CommentLists = ({ postId, userId }) => {
                     <div>
                       <div className="replyUser">
                         {v.nickname}
-                        {v.userId !== userId ? (
+                        {v.userId !== userInfo?.userId ? (
                           <></>
                         ) : (
                           <DropDownMenu
