@@ -65,6 +65,7 @@ const EmptyMission = ({ category, list }) => {
           <AddedMission
             missionContent={list[i].missionContent}
             missionId={list[i].missionId}
+            index={list[i]}
           />
         ) : (
           <StWrap onClick={onClickedHandler}>

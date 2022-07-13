@@ -1,23 +1,39 @@
-import { FlexColumnDiv, FlexRowDiv } from "components/Common/GlobalStyles";
+import { FlexColumnDiv } from "components/Common/GlobalStyles";
+import { useState } from "react";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 import Camera from "assets/img/Camera.png";
 import UpdateMission from "./UpdateMission";
 import DeleteMission from "./DeleteMission";
+import AddPhoto from "./AddPhoto";
+
 const AddedMission = ({ missionContent, missionId }) => {
+  const [files, setFiles] = useState();
+  const saveFileImage = (e) => {
+    setFiles(e.target.files[0]);
+  };
+  console.log(files);
   return (
-    <StWrap>
-      <div className="innerDiv">
-        <span>{missionContent}</span>
-        <FlexColumnDiv>
-          <StImg img={Camera} />
-          <FlexRowDiv>
-            <UpdateMission missionId={missionId} />
-            <DeleteMission missionId={missionId} />
-          </FlexRowDiv>
-        </FlexColumnDiv>
-      </div>
-    </StWrap>
+    <>
+      {files !== undefined ? (
+        <AddPhoto />
+      ) : (
+        <StWrap>
+          <div className="innerDiv">
+            <span>{missionContent}</span>
+            <label for="file">
+              <StImg img={Camera} />
+            </label>
+            <input type="file" id="file" onChange={saveFileImage} />
+
+            <FlexColumnDiv>
+              <UpdateMission missionId={missionId} />
+              <DeleteMission missionId={missionId} />
+            </FlexColumnDiv>
+          </div>
+        </StWrap>
+      )}
+    </>
   );
 };
 

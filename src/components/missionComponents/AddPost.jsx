@@ -44,11 +44,7 @@ const AddPost = ({ missionId, postContent, category }) => {
   return (
     <div>
       <input type="file" id="file" onChange={saveFileImage} />
-      {files !== undefined ? (
-        <label for="file">여길 눌러서 수정해주세요</label>
-      ) : (
-        <label for="file">여길 눌러서 추가해주세요</label>
-      )}
+      <label for="file">여길 눌러서 추가해주세요</label>
       <button onClick={onCreate}>생성하기</button>
     </div>
   );
