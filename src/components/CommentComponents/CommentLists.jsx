@@ -7,7 +7,6 @@ import DropDownMenu from "components/Common/DropDownMenu";
 const CommentLists = ({ postId }) => {
   const { data, isFetching } = useGetComment({ postId: postId });
   const username = localStorage.getItem("nickname");
-  console.log(data);
 
   return (
     <>

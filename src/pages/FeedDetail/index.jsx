@@ -52,6 +52,7 @@ const StWrapFlex = styled(StWrap)`
 const StWrapComment = styled.div`
   ${flex({ direction: "column", justify: "flex-start" })}
   width: 100%;
+  height: 100%;
   overflow-y: scroll;
   margin-bottom: 160px;
 `;
