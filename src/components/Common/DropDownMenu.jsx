@@ -40,8 +40,7 @@ const DropDownMenu = ({
     switch (click2) {
       case "nickname":
         return setNicknameFlag((value) => !value);
-      case "commentD":
-        return onDelete();
+
       default:
         return;
     }
@@ -51,8 +50,8 @@ const DropDownMenu = ({
     switch (click) {
       case "image":
         return setProfileFlag((value) => !value);
-      case "commentU":
-        return;
+      case "commentD":
+        return onDelete();
       case "detailD":
         return onDeleteDetail();
       default:

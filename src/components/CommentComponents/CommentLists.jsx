@@ -34,11 +34,9 @@ const CommentLists = ({ postId }) => {
                           <DropDownMenu
                             postId={postId}
                             commentId={v.commentId}
-                            text="댓글 수정"
-                            text2="댓글 삭제"
+                            text="댓글 삭제"
                             margin="40"
-                            click2="commentD"
-                            click="commentU"
+                            click="commentD"
                           />
                         )}
                       </div>
