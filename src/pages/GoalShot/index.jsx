@@ -1,16 +1,23 @@
 import { StWrap } from "components/Common/GlobalStyles";
+import { useState } from "react";
+import GoalShotButtons from "components/GoalShot/GoalShotButtons";
+import GoalShotCards from "components/GoalShot/GoalShotCards";
 import NavigatorBar from "components/Common/NavigatorBar";
-import styled from "@emotion/styled";
+import useGetPost from "components/Hooks/useGetPost";
 
 const GoalShot = () => {
+  const [count, setCount] = useState(1);
+  const { data } = useGetPost();
+
   return (
     <>
-      <StWrapFlex></StWrapFlex>
+      <StWrap>
+        <GoalShotCards count={count} data={data} />
+        <GoalShotButtons count={count} setCount={setCount} data={data} />
+      </StWrap>
       <NavigatorBar />
     </>
   );
 };
 
 export default GoalShot;
-
-const StWrapFlex = styled(StWrap)``;
