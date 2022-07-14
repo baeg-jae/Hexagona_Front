@@ -163,6 +163,7 @@ const BottomWarp = styled.div`
   width: 95%;
   .imgWrap {
     ${flex({ direction: "row" })}
+    margin-bottom: 20px;
   }
 `;
 

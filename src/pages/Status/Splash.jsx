@@ -18,12 +18,12 @@ const Splash = () => {
 export default Splash;
 
 const StSpan = styled.span`
-  animation: ${scaleAnimation} ${SPLASH_SCALE_ANIMATION}s infinite;
+  /* animation: ${scaleAnimation} ${SPLASH_SCALE_ANIMATION}s infinite; */
 `;
 
 const StWrapFlex = styled(StWrap)`
   ${flex({ direction: "column" })}
-  animation: ${fadeAnimation} ${SPLASH_FADE_ANIMATION}s ease;
+  /* animation: ${fadeAnimation} ${SPLASH_FADE_ANIMATION}s ease; */
   color: var(--brown);
   .bigSpan {
     font-weight: 700;

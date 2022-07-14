@@ -46,7 +46,7 @@ const CommentInput = ({ postId }) => {
         <>
           <StProfile profile_img={data?.profile_img} />
           <StDiv>
-            <textarea
+            <input
               type="text"
               className="commentInput"
               placeholder="인증샷에 대한 감상평을 남겨주세요."
@@ -94,26 +94,22 @@ const StDiv = styled.div`
   .commentInput {
     border: none;
     background-color: transparent;
-    width: 70%;
-    height: 30px;
-    margin: 8px;
     white-space: normal;
     text-align: justify;
-    padding-top: 12px;
+    margin-left: 20px;
     &:focus {
       outline: none;
     }
     &::placeholder {
-      padding: 5px;
-      font-size: 10px;
+      font-size: 13px;
     }
   }
   .commentButton {
     background-color: transparent;
-    letter-spacing: -0.538462px;
     font-weight: 700;
     font-size: 14px;
     line-height: 20px;
     color: #4876ef;
+    margin-right: 20px;
   }
 `;

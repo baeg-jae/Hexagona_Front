@@ -1,9 +1,9 @@
-import { FlexRowDiv } from "components/Common/GlobalStyles";
 import { useNavigate } from "react-router-dom";
 import { useCallback } from "react";
 import useGetPost from "components/Hooks/useGetPost";
 import SkeletonFeed from "./SkeletonFeed";
 import styled from "@emotion/styled";
+import flex from "components/Common/flex";
 
 const Column = () => {
   const { data, isFetching } = useGetPost();
@@ -24,21 +24,23 @@ const Column = () => {
           <StRowFirst>
             {data?.map((v, i) => {
               return i % 2 === 0 ? (
-                <StImgDiv
-                  className="imgDiv"
-                  onClick={() => onClickHandler(v?.postId)}
-                  coverImg={v?.photoUrl}
-                  style={{ marginRight: "4.5px" }}
-                  key={i}
-                />
+                i === 0 ? (
+                  <StMyPage />
+                ) : (
+                  <StImgDiv
+                    className="imgDiv"
+                    onClick={() => onClickHandler(v?.postId)}
+                    coverImg={v?.photoUrl}
+                    style={{ marginRight: "4.5px" }}
+                    key={i}
+                  />
+                )
               ) : (
                 ""
               );
             })}
-            <EmptyDiv />
           </StRowFirst>
           <StRowSecond>
-            <EmptyDiv />
             {data?.map((v, i) => {
               return i % 2 === 1 ? (
                 <StImgDiv
@@ -52,7 +54,6 @@ const Column = () => {
                 ""
               );
             })}
-            <EmptyDiv />
           </StRowSecond>
         </StWrap>
       )}
@@ -62,33 +63,38 @@ const Column = () => {
 
 export default Column;
 
-const StWrap = styled(FlexRowDiv)`
+const StWrap = styled.div`
+  display: flex;
+  justify-content: center;
   width: 100%;
-  overflow-y: scroll;
-  white-space: nowrap;
-`;
-
-const StRowFirst = styled.div`
-  display: grid;
-  grid-template-columns: 158px;
-  gap: 9px;
-`;
-
-const StRowSecond = styled.div`
-  display: grid;
-  grid-template-columns: 158px;
-  gap: 9px;
+  height: calc(100vh - 100px);
+  overflow: scroll;
 `;
 
 const StImgDiv = styled.div`
-  height: 213.91px;
+  width: 166px;
+  height: 225px;
   background-image: url(${(props) => props.coverImg});
   background-size: cover;
   background-position: center;
   border-radius: 20px;
+  margin-top: 10px;
 `;
 
-const EmptyDiv = styled.div`
-  width: 158px;
-  height: 50px;
+const StMyPage = styled.div`
+  width: 166px;
+  height: 225px;
+  border-radius: 20px;
+  background-color: tomato;
+`;
+
+const StRowFirst = styled.div`
+  width: 166px;
+  margin-top: 80px;
+  margin-right: 5px;
+`;
+
+const StRowSecond = styled.div`
+  width: 166px;
+  margin-left: 5px;
 `;
