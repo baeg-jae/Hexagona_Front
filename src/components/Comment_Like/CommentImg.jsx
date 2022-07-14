@@ -24,7 +24,7 @@ const CommentImg = ({
   const [like, setLike] = useState(false);
   const getCategory = useCategory({ category });
   const { mutate } = useAddLike();
-  const { data } = useGetIfLiked({ postId: Number(postId) });
+  const { data, isFetching } = useGetIfLiked({ postId: Number(postId) });
   const userInfo = UserInfo();
 
   useEffect(() => {
@@ -40,39 +40,43 @@ const CommentImg = ({
 
   return (
     <>
-      <StWrapFlex img={img}>
-        <div className="gradient">
-          <HeaderDiv>
-            <FlexRowDiv>
-              <StProfile img={profile} />
-              <StTextDiv>
-                <span className="titleText">갓생 입문자</span>
-                <span className="nameText">{name}</span>
-              </StTextDiv>
-            </FlexRowDiv>
-          </HeaderDiv>
-          <BottomWarp>
-            <BottomDiv>
-              <span className="titleText">{getCategory}</span>
-              <span className="nameText">{postContent}</span>
-            </BottomDiv>
-            <div className="imgWrap">
-              <LikeButton onClick={() => addLike()} like={like} />
-              {userId !== userInfo?.userId ? (
-                <></>
-              ) : (
-                <DropDownMenu
-                  text="게시글 삭제"
-                  margin="40"
-                  click="detailD"
-                  color="white"
-                  postId={postId}
-                />
-              )}
-            </div>
-          </BottomWarp>
-        </div>
-      </StWrapFlex>
+      {isFetching ? (
+        <></>
+      ) : (
+        <StWrapFlex img={img}>
+          <div className="gradient">
+            <HeaderDiv>
+              <FlexRowDiv>
+                <StProfile img={profile} />
+                <StTextDiv>
+                  <span className="titleText">갓생 입문자</span>
+                  <span className="nameText">{name}</span>
+                </StTextDiv>
+              </FlexRowDiv>
+            </HeaderDiv>
+            <BottomWarp>
+              <BottomDiv>
+                <span className="titleText">{getCategory}</span>
+                <span className="nameText">{postContent}</span>
+              </BottomDiv>
+              <div className="imgWrap">
+                <LikeButton onClick={() => addLike()} like={like} />
+                {userId !== userInfo?.userId ? (
+                  <></>
+                ) : (
+                  <DropDownMenu
+                    text="게시글 삭제"
+                    margin="40"
+                    click="detailD"
+                    color="white"
+                    postId={postId}
+                  />
+                )}
+              </div>
+            </BottomWarp>
+          </div>
+        </StWrapFlex>
+      )}
     </>
   );
 };
@@ -96,7 +100,11 @@ const StWrapFlex = styled.div`
     width: 100%;
     height: 440px;
     border-radius: 20px;
-    background: linear-gradient(#fff 0.01%, rgba(0, 0, 0, 0) 32.15%);
+    background: linear-gradient(
+      0.14deg,
+      #000000 0.09%,
+      rgba(0, 0, 0, 0) 32.15%
+    );
   }
 `;
 
