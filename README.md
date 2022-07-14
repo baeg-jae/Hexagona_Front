@@ -32,25 +32,33 @@
 | 고승준   | [https://github.com/kokomong2](https://github.com/kokomong2) | Backend     |
 | 김규관   | [https://github.com/kwan97](https://github.com/kwan97)                     | Backend |
 | 김성영   | [https://github.com/sungyoungk](https://github.com/sungyoungk)                     | Backend  |
-
+| 이지유   |                     | UI & UX  |
 <br>
 
 
 # ****🍀**** 와이어프레임
 
-<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/8766aaf5-b3c5-417a-8788-f1219ae82473/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220616%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220616T065103Z&X-Amz-Expires=86400&X-Amz-Signature=0bb1cd10ea5fe61f1a5dcff810bc6f6a3b0430606c2633c05373154b142d9656&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject" width="600">
+- [[와이어프레임 팀 피그마]](https://www.figma.com/file/jwyyh1kwYKJVD9LoQMnypT/Untitled?node-id=0%3A1)
 
 # 💛 API 설계
 
-- [[API 설계 팀 노션]](https://www.notion.so/SA-6-5cd78501002f4ac39ffede51c0e3f829)
+- [[API 설계 팀 노션]](https://www.notion.so/8991a35585474adcb5778b9d38e0e6df?v=0ec066f3839b4309ab13abe09d446377)
 
-# ****🗺**** ERD 설계
-
-<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/a804b0ed-e3ad-4474-88b6-930b42f479de/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220616%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220616T065303Z&X-Amz-Expires=86400&X-Amz-Signature=282478e44048067b6d89fd3883954a594d2ef1e4247ff9f30d66527c21f4b9d0&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject" width="650">
 
 # ****🧩 아키텍처****
 
 <img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/10f20d3a-d7ef-4dde-a162-d71c74406096/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220616%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220616T065347Z&X-Amz-Expires=86400&X-Amz-Signature=763c44611277014ea28cda382f429239df4d4de8f0db7f115a146ab78292b36c&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject" width="900">
 
 # ****💡 Trouble Shooting****
-1. 여기에 트러블 슈팅 적으시면 됩니당~
+1. - **프론트엔드:**
+    - **싱글페이지 어플리케이션에서 번들 사이즈가 커지면 로딩속도나 성능면에서 문제가 생길 수고, 모든 페이지를 처음부터 불러올 필요가 있을까 하는 생각이 있었습니다.**
+        - **검색을 통해, 지금 사용하는 코드가 아닌 코드는 나중에 불러와 사용할 수 가 있는 코드 스플리팅이 있다고 해서 도입하여 페이지별 로딩속도를 개선하였습니다.**
+        - **정확히는 페이스북에서  추천하는 Loadable Components를 사용하여 코드 스플리팅을 진행하였습니다.**
+        ![zxc](https://user-images.githubusercontent.com/59503331/178904370-d7e2c699-d718-400a-8b15-74f3c5188c5c.PNG)          
+        - **닉네임가입 페이지에서 닉네임 최대길이와, 현재길이를 보여주기위해 div태그 안에 input의 border를 안보이게해서 만들었는데, input을 focusing 했을때 상위 태그인 div에 접근을 하는 방법이 필요했습니다.**
+        - **검색을 통해 &:focus-within 이라는 가상클래스를 찾아내어서 상위태그에 접근하여 스타일링을 적용했습니다.**
+        ![asasd](https://user-images.githubusercontent.com/59503331/178904368-02b1a738-765d-4a59-9923-f575851a5af9.PNG)
+            
+  
+
+            
