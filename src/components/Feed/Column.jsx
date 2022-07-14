@@ -3,7 +3,6 @@ import { useCallback } from "react";
 import useGetPost from "components/Hooks/useGetPost";
 import SkeletonFeed from "./SkeletonFeed";
 import styled from "@emotion/styled";
-import flex from "components/Common/flex";
 
 const Column = () => {
   const { data, isFetching } = useGetPost();

@@ -1,6 +1,7 @@
+import { CenterCardAnim, RightCardAnim } from "components/Common/GlobalStyles";
+import { GOALSHOT_RANDOM_CARD } from "shared/data";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
-import { CenterCardAnim, RightCardAnim } from "components/Common/GlobalStyles";
 
 const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
   const cardTrigger = () => {
@@ -21,11 +22,15 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
               <span className="postContent">{data[count]?.postContent}</span>
             </div>
           </StCard>
-          <StRightCard
-            img={data[count + 1]?.photoUrl}
-            differ
-            flag={cardTrigger()}
-          />
+          {count === GOALSHOT_RANDOM_CARD - 1 ? (
+            <StLastCard differ flag={cardTrigger()} />
+          ) : (
+            <StRightCard
+              img={data[count + 1]?.photoUrl}
+              differ
+              flag={cardTrigger()}
+            />
+          )}
         </>
       ) : (
         <></>
@@ -94,4 +99,20 @@ const StRightCard = styled(StCard)`
 
 const StLeftCard = styled(StCard)`
   animation: ${(props) => props.flag && RightCardAnim()} 1s ease;
+`;
+
+const StLastCard = styled.div`
+  ${flex({
+    direction: "column",
+    justify: "flex-end",
+    align: "flex-start",
+  })}
+  min-width: 285px;
+  height: 480px;
+  filter: drop-shadow(0px 43px 40px rgba(0, 0, 0, 0.2));
+  border-radius: 20px;
+  margin-top: ${(props) => (props.differ ? "107px" : "57px")};
+  opacity: ${(props) => (props.differ ? "0.6" : "1")};
+  animation: ${(props) => props.flag && RightCardAnim()} 1s ease;
+  background-color: tomato;
 `;

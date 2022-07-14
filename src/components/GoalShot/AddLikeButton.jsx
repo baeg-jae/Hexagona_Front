@@ -16,7 +16,7 @@ const AddLikeButton = ({
   };
 
   const onLike = () => {
-    if (count < data?.length - 1) {
+    if (count < data?.length) {
       isChooseTwo(true);
       addLike();
     } else {

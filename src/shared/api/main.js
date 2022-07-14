@@ -42,6 +42,9 @@ export const apis = {
   getIfLiked: (payload) => api.get(`/api/post/${payload.postId}/isLiked`),
   addLike: (payload) => api.post(`/api/post/${payload.postId}/like`, {}),
   addDislike: (payload) => api.post(`/api/post/${payload.postId}/dontLike`, {}),
+
+  // goal shot
+  getGoalShot: () => api.get("/api/posts/goalShot"),
 };
 
 export default apis;

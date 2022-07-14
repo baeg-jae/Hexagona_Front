@@ -1,4 +1,3 @@
-import { FlexRowDiv } from "components/Common/GlobalStyles";
 import styled from "@emotion/styled";
 
 const SkeletonFeed = ({ data }) => {
