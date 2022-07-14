@@ -1,24 +1,31 @@
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
-import { CenterCardAnim } from "components/Common/GlobalStyles";
+import { CenterCardAnim, RightCardAnim } from "components/Common/GlobalStyles";
 
 const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
   const cardTrigger = () => {
     if (chooseOne || chooseTwo) return true;
   };
-  console.log(cardTrigger());
   return (
     <StCardContainer>
       {data !== undefined ? (
         <>
-          <StCard img={data[count - 1]?.photoUrl} differ />
+          <StLeftCard
+            img={data[count - 1]?.photoUrl}
+            differ
+            flag={cardTrigger()}
+          />
           <StCard img={data[count]?.photoUrl} flag={cardTrigger()}>
             <div className="gradient">
               <span className="category">{data[count]?.category}</span>
               <span className="postContent">{data[count]?.postContent}</span>
             </div>
           </StCard>
-          <StCard img={data[count + 1]?.photoUrl} differ />
+          <StRightCard
+            img={data[count + 1]?.photoUrl}
+            differ
+            flag={cardTrigger()}
+          />
         </>
       ) : (
         <></>
@@ -79,4 +86,12 @@ const StCard = styled.div`
       var(--gradient) 72.46%
     );
   }
+`;
+
+const StRightCard = styled(StCard)`
+  animation: ${(props) => props.flag && RightCardAnim()} 1s ease;
+`;
+
+const StLeftCard = styled(StCard)`
+  animation: ${(props) => props.flag && RightCardAnim()} 1s ease;
 `;

@@ -81,3 +81,12 @@ export const CenterCardAnim = () => keyframes`
     transform: translateX(-290px) translateY(50px); 
 }
 `;
+
+export const RightCardAnim = () => keyframes`
+  0% {  
+    transform: translateX(0) translateY(0); 
+}
+  100% {  
+    transform: translateX(-290px) translateY(-50px); 
+}
+`;
