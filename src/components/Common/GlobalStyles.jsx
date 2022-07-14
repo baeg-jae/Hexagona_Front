@@ -63,3 +63,21 @@ export const dropBoxAnimation = keyframes`
     transform: translateX(0) scale(1); 
   }
 `;
+
+export const ButtonClicked = () => keyframes`
+  50% {  
+    transform: translateY(-20px); 
+}
+  100% {  
+    transform: translateY(0); 
+}
+`;
+
+export const CenterCardAnim = () => keyframes`
+  0% {  
+    transform: translateX(0) translateY(0); 
+}
+  100% {  
+    transform: translateX(-290px) translateY(50px); 
+}
+`;

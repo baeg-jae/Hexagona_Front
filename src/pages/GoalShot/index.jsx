@@ -10,6 +10,9 @@ const GoalShot = () => {
   const [count, setCount] = useState(1);
   const { data, isLoading } = useGetPost();
 
+  const [chooseOne, isChooseOne] = useState(false);
+  const [chooseTwo, isChooseTwo] = useState(false);
+
   return (
     <>
       <StWrap>
@@ -19,8 +22,23 @@ const GoalShot = () => {
           </>
         ) : (
           <>
-            <GoalShotCards count={count} data={data} />
-            <GoalShotButtons count={count} setCount={setCount} data={data} />
+            <GoalShotCards
+              count={count}
+              data={data}
+              chooseOne={chooseOne}
+              chooseTwo={chooseTwo}
+              isChooseOne={isChooseOne}
+              isChooseTwo={isChooseTwo}
+            />
+            <GoalShotButtons
+              count={count}
+              setCount={setCount}
+              data={data}
+              chooseOne={chooseOne}
+              chooseTwo={chooseTwo}
+              isChooseOne={isChooseOne}
+              isChooseTwo={isChooseTwo}
+            />
           </>
         )}
       </StWrap>

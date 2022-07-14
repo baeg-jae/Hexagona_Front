@@ -1,12 +1,27 @@
-import { FlexRowDiv } from "components/Common/GlobalStyles";
+import { ButtonClicked, FlexRowDiv } from "components/Common/GlobalStyles";
+import { useState } from "react";
 import useAddLike from "components/Hooks/Like/useAddLike";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 import heart from "assets/img/heart.png";
 import x from "assets/img/x.png";
+import { useEffect } from "react";
 
-const GoalShotButtons = ({ count, setCount, data }) => {
+const GoalShotButtons = ({
+  count,
+  setCount,
+  data,
+  chooseOne,
+  chooseTwo,
+  isChooseOne,
+  isChooseTwo,
+}) => {
   const { mutate } = useAddLike();
+
+  const disableHandler = () => {
+    if (chooseOne || chooseTwo) return true;
+    return false;
+  };
 
   const addLike = () => {
     mutate({
@@ -14,27 +29,53 @@ const GoalShotButtons = ({ count, setCount, data }) => {
     });
   };
 
+  const onDisLike = () => {
+    if (count > -1) {
+      isChooseOne(true);
+    } else {
+      return;
+    }
+  };
+
   const onLike = () => {
     if (count < data?.length - 1) {
-      setCount((value) => value + 1);
+      isChooseTwo(true);
       addLike();
     } else {
       return;
     }
   };
-  const onDisLike = () => {
-    if (count > -1) {
-      setCount((value) => value - 1);
-    } else {
-      return;
-    }
-  };
+
+  useEffect(() => {
+    const interval = setTimeout(() => {
+      if (chooseOne) {
+        isChooseOne(false);
+        setCount((value) => value - 1);
+      } else if (chooseTwo) {
+        isChooseTwo(false);
+        setCount((value) => value + 1);
+      }
+    }, 1000);
+    return () => {
+      clearTimeout(interval);
+    };
+  }, [chooseOne, chooseTwo, setCount, isChooseOne, isChooseTwo]);
+
   return (
     <FlexRowDiv style={{ gap: "16px" }}>
-      <StButton onClick={onDisLike}>
+      <StButton
+        onClick={onDisLike}
+        flag={chooseOne}
+        disabled={disableHandler()}
+      >
         <StImageDiv />
       </StButton>
-      <StButton onClick={onLike} red>
+      <StButton
+        onClick={onLike}
+        red
+        flag={chooseTwo}
+        disabled={disableHandler()}
+      >
         <StImageDiv heart />
       </StButton>
     </FlexRowDiv>
@@ -53,6 +94,10 @@ const StButton = styled.button`
   border: 1px solid #f5f0f0;
   box-shadow: 6px 11px 17px rgba(0, 0, 0, 0.13);
   border-radius: 48.0529px;
+  animation: ${(props) => props.flag && ButtonClicked()} 1s ease;
+  &:disabled {
+    background-color: inherit;
+  }
 `;
 
 const StImageDiv = styled.div`
