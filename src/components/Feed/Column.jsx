@@ -2,10 +2,8 @@ import { FlexRowDiv } from "components/Common/GlobalStyles";
 import { useNavigate } from "react-router-dom";
 import { useCallback } from "react";
 import useGetPost from "components/Hooks/useGetPost";
-import loadable from "@loadable/component";
+import SkeletonFeed from "./SkeletonFeed";
 import styled from "@emotion/styled";
-
-const Loading = loadable(() => import("pages/Status/Loading"));
 
 const Column = () => {
   const { data, isFetching } = useGetPost();
@@ -20,7 +18,7 @@ const Column = () => {
   return (
     <>
       {isFetching ? (
-        <Loading />
+        <SkeletonFeed data={data} />
       ) : (
         <StWrap>
           <StRowFirst>
