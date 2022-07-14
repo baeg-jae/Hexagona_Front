@@ -35,7 +35,6 @@ const StCard = styled.div`
   min-width: 285px;
   height: 480px;
   background-color: var(--skeleton);
-  box-shadow: 6px 11px 17px rgba(0, 0, 0, 0.13);
   border-radius: 20px;
   margin-top: ${(props) => (props.differ ? "107px" : "57px")};
 `;
@@ -46,6 +45,5 @@ const StButton = styled.button`
   height: 95.38px;
   margin-top: 63px;
   border: 1px solid var(--skeleton);
-  box-shadow: 6px 11px 17px rgba(0, 0, 0, 0.13);
   border-radius: 48.0529px;
 `;
