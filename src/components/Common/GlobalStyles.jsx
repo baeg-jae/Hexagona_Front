@@ -70,18 +70,31 @@ export const ButtonClicked = () => keyframes`
 
 export const CenterCardAnim = () => keyframes`
   0% {  
-    transform: translateX(0) translateY(0); 
+    transform: translateX(0) translateY(0);
+    opacity: 1;
 }
   100% {  
     transform: translateX(-290px) translateY(50px); 
+    opacity: 0.6;
 }
 `;
 
 export const RightCardAnim = () => keyframes`
   0% {  
     transform: translateX(0) translateY(0); 
+    opacity: 0.6;
 }
   100% {  
     transform: translateX(-290px) translateY(-50px); 
+    opacity: 1;
+}
+`;
+
+export const RightRightCardAnim = () => keyframes`
+  0% {  
+    transform: translateX(0); 
+}
+  100% {  
+    transform: translateX(-290px); 
 }
 `;
