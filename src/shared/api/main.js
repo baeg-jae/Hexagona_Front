@@ -23,7 +23,7 @@ export const apis = {
   getPost: () => api.get("/api/posts"),
   getPostDetail: (payload) => api.get(`/api/post/${payload.postId}`, payload),
   addPost: (payload) => api.post("/api/post", payload),
-  deletePost: (payload) => api.delete(`/api/post/${payload.postId}`, payload),
+  deletePost: (payload) => api.delete(`/api/post/${payload.postId}`),
 
   // comment CRUD
   getComment: (payload) => api.get(`/api/post/${payload.postId}/comment`),
@@ -41,6 +41,7 @@ export const apis = {
   getAllLikes: (payload) => api.get(`/api/post/${payload.postId}/likeUser`),
   getIfLiked: (payload) => api.get(`/api/post/${payload.postId}/isLiked`),
   addLike: (payload) => api.post(`/api/post/${payload.postId}/like`, {}),
+  addDislike: (payload) => api.post(`/api/post/${payload.postId}/dontLike`, {}),
 };
 
 export default apis;

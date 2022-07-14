@@ -40,19 +40,14 @@ export const StWrapFlex = styled(StWrap)`
     margin-bottom: 42px;
   }
 `;
-export const scaleAnimation = keyframes`
-  50% {
-    transform: scale(1.05);
-  }
-`;
 
 export const fadeAnimation = keyframes`
  0% { 
-  background-color: rgba(0,0,0,1);
-  color: rgba(0,0,0,1);
-  opacity: 0; 
-}
-  100% { opacity: 1; }
+    opacity: 0; 
+  }
+  100% { 
+    opacity: 1; 
+  }
 `;
 
 export const dropBoxAnimation = keyframes`

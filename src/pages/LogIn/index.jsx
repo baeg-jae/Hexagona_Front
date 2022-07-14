@@ -42,6 +42,7 @@ const StFirstPageDiv = styled.div`
     font-weight: 700;
     font-size: 48px;
     margin-bottom: 13px;
+    opacity: 1;
   }
   & > Button {
     margin: 25px 0 58px 0;
