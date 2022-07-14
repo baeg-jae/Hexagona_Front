@@ -1,16 +1,8 @@
-import useGetUser from "components/Hooks/User/useGetUser";
 import DropDownMenu from "./DropDownMenu";
 import styled from "@emotion/styled";
 import flex from "./flex";
-import loadable from "@loadable/component";
 
-const Loading = loadable(() => import("pages/Status/Loading"));
-
-const Header = () => {
-  const { data, isLoading } = useGetUser();
-  if (isLoading) {
-    return <Loading />;
-  }
+const Header = ({ data }) => {
   return (
     <StWrap>
       <StWrapFlex>
