@@ -32,20 +32,15 @@ const StFirstPageDiv = styled.div`
   ${flex({ direction: "column", justify: "flex-end" })}
   width: 100%;
   height: 100%;
-  background-size: contain;
-  background-image: url(${LoginImg});
   font-size: 20px;
   color: var(--white);
   text-align: center;
-  letter-spacing: -0.02em;
+  background-size: contain;
+  background-image: url(${LoginImg});
   .bigFont {
     font-weight: 700;
     font-size: 48px;
     margin-bottom: 13px;
-    opacity: 1;
-  }
-  & > Button {
-    margin: 25px 0 58px 0;
   }
   .gradient {
     ${flex({ direction: "column", justify: "flex-end" })}

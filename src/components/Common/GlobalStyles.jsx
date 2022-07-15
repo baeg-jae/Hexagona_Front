@@ -34,7 +34,6 @@ export const StWrapFlex = styled(StWrap)`
     margin-bottom: 6px;
   }
   .smallSpan {
-    font-weight: 400;
     font-size: 20px;
     line-height: 130%;
     margin-bottom: 42px;

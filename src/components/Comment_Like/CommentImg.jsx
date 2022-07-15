@@ -131,13 +131,11 @@ const StProfile = styled.div`
 
 const StTextDiv = styled.div`
   ${flex({ direction: "column", align: "flex-start" })}
-  letter-spacing: -0.02em;
   line-height: 130%;
   margin-left: 8px;
   margin-right: 180px;
   color: #fff;
   .titleText {
-    font-weight: 400;
     font-size: 13px;
   }
   .nameText {
@@ -148,7 +146,6 @@ const StTextDiv = styled.div`
 
 const BottomDiv = styled.div`
   ${flex({ direction: "column", align: "flex-start" })}
-  letter-spacing: -0.02em;
   margin: 0 0 20px 20px;
   color: var(--white);
   .titleText {

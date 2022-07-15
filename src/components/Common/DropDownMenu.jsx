@@ -147,7 +147,6 @@ const DropRow = styled.div`
     ${flex({ direction: "column" })}
     width: 89px;
     height: 31px;
-    letter-spacing: -0.02em;
     font-weight: 500;
     font-size: 14px;
     line-height: 17px;

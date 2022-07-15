@@ -74,7 +74,7 @@ const EmptyMission = ({ category, list }) => {
             key={i}
           />
         ) : (
-          <StWrap onClick={onClickedHandler}>
+          <StWrap onClick={onClickedHandler} key={i}>
             <StCircle>
               <StImg img={plus} />
             </StCircle>
@@ -108,7 +108,6 @@ const StWrap = styled.div`
       font-weight: 600;
       font-size: 24px;
       line-height: 29px;
-      letter-spacing: -0.02em;
       color: #727272;
     }
   }
