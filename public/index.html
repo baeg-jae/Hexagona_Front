@@ -13,16 +13,6 @@
     <link rel="apple-touch-icon" href="./images/logo.png" />
     <link rel="manifest" href="./manifest.json" />
     <title>갓생메이커</title>
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("./serviceworker.js")
-            .then((reg) => console.log("Success: ", reg.scope))
-            .catch((err) => console.log("Failure: ", err));
-        });
-      }
-    </script>
   </head>
   <body>
     <div id="root"></div>

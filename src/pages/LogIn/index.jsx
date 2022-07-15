@@ -15,7 +15,7 @@ const LogIn = () => {
           name="kakao"
           text="카카오 계정으로 시작하기"
         />
-        <SocialButton link="" name="naver" text="네이버 계정으로 시작하기" />
+        <SocialButton name="naver" text="네이버 계정으로 시작하기" />
         <SocialButton
           link={GOOGLE_AUTH_URL}
           name=""
