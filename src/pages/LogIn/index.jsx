@@ -41,6 +41,6 @@ const StFirstPageDiv = styled.div`
         ${flex({ direction: 'column', justify: 'flex-end' })}
         width: 100%;
         height: 50%;
-        background: linear-gradient(180deg, rgba(30, 5, 5, 0) -9.31%, var(--gradient) 82.46%);
+        background: linear-gradient(180deg, rgba(30, 5, 5, 0) -9.31%, var(--gradient) 62.46%);
     }
 `;
