@@ -74,10 +74,11 @@ const SignUpPage = () => {
     const foundSwears = badWords.filter((word) =>
       name.toLowerCase().includes(word.toLowerCase())
     );
+    console.log(foundSwears);
     if (foundSwears.length) {
       AlertComponent({
         title: "에러!",
-        text: "제대로 된 닉네임을 입력해주세요",
+        text: "제대로 된 닉네임을 입력해주세요. ",
         icon: "error",
       });
     } else {
@@ -144,9 +145,6 @@ const StWrap = styled.div`
   }
   & > Button {
     margin-bottom: 431px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    text-align: center;
     margin: 35px 0 58px 0;
   }
 
@@ -174,7 +172,6 @@ const StWrap = styled.div`
   }
 
   .inputCount {
-    font-weight: 400;
     font-size: 16px;
     color: #b7b7b7;
     margin-right: 20px;

@@ -121,37 +121,35 @@ const StProfile = styled.div`
 `;
 
 const StTextDiv = styled.div`
-    ${flex({ direction: 'column', align: 'flex-start' })}
-    letter-spacing: -0.02em;
-    line-height: 130%;
-    margin-left: 8px;
-    margin-right: 180px;
-    color: #fff;
-    .titleText {
-        font-weight: 400;
-        font-size: 13px;
-    }
-    .nameText {
-        font-weight: 700;
-        font-size: 15px;
-    }
+  ${flex({ direction: "column", align: "flex-start" })}
+  line-height: 130%;
+  margin-left: 8px;
+  margin-right: 180px;
+  color: #fff;
+  .titleText {
+    font-size: 13px;
+  }
+  .nameText {
+    font-weight: 700;
+    font-size: 15px;
+  }
 `;
 
 const BottomDiv = styled.div`
-    ${flex({ direction: 'column', align: 'flex-start' })}
-    letter-spacing: -0.02em;
-    margin: 0 0 20px 20px;
-    color: var(--white);
-    .titleText {
-        font-weight: 600;
-        font-size: 16px;
-        line-height: 19px;
-    }
-    .nameText {
-        font-weight: 600;
-        font-size: 24px;
-        line-height: 29px;
-    }
+  ${flex({ direction: "column", align: "flex-start" })}
+  margin: 0 0 20px 20px;
+  color: var(--white);
+  .titleText {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+  }
+  .nameText {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+  }
+
 `;
 
 const BottomWarp = styled.div`

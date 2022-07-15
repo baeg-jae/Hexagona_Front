@@ -15,12 +15,12 @@ const AddedMission = ({ missionContent, missionId }) => {
   return (
     <>
       {files !== undefined ? (
-        <AddPhoto />
+        <AddPhoto missionContent={missionContent} />
       ) : (
         <StWrap>
           <div className="innerDiv">
             <span>{missionContent}</span>
-            <label for="file">
+            <label htmlFor="file">
               <StImg img={Camera} />
             </label>
             <input type="file" id="file" onChange={saveFileImage} />
@@ -57,7 +57,6 @@ const StWrap = styled.div`
       font-weight: 600;
       font-size: 24px;
       line-height: 29px;
-      letter-spacing: -0.02em;
       color: #454545;
       white-space: pre-wrap;
     }

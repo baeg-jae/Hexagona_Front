@@ -34,7 +34,6 @@ const StWrap = styled.div`
       font-weight: 600;
       font-size: 24px;
       line-height: 29px;
-      letter-spacing: -0.02em;
       color: #454545;
       white-space: pre-wrap;
     }

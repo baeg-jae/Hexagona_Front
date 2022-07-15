@@ -42,7 +42,6 @@ const StWrapFlex = styled.div`
     color: #b9b9b9;
   }
   .smallText {
-    font-weight: 400;
     font-size: 12px;
     line-height: 130%;
   }

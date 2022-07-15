@@ -25,20 +25,20 @@ export const StInput = styled.input`
 `;
 
 export const StWrapFlex = styled(StWrap)`
-    ${flex({ direction: 'column' })}
-    color: #665547;
-    .bigSpan {
-        font-weight: 700;
-        font-size: 64px;
-        line-height: 130%;
-        margin-bottom: 6px;
-    }
-    .smallSpan {
-        font-weight: 400;
-        font-size: 20px;
-        line-height: 130%;
-        margin-bottom: 42px;
-    }
+  ${flex({ direction: "column" })}
+  color: #665547;
+  .bigSpan {
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 130%;
+    margin-bottom: 6px;
+  }
+  .smallSpan {
+    font-size: 20px;
+    line-height: 130%;
+    margin-bottom: 42px;
+  }
+
 `;
 
 export const fadeAnimation = keyframes`
