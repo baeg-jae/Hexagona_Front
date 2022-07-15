@@ -30,7 +30,7 @@ const LikeInfo = ({ postId }) => {
   return (
     <>
       {isFetching ? (
-        <Loading />
+        ""
       ) : (
         <StWrap>
           {picAmountHandler()}

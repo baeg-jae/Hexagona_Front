@@ -5,6 +5,7 @@ import useGetComment from "components/Hooks/Comment/useGetComment";
 import DropDownMenu from "components/Common/DropDownMenu";
 import LikeInfo from "./LikeInfo";
 import UserInfo from "components/Feed/UserInfo";
+import Loading from "pages/Status/Loading";
 
 const CommentLists = ({ postId }) => {
   const { data, isFetching } = useGetComment({ postId: postId });
@@ -13,7 +14,7 @@ const CommentLists = ({ postId }) => {
   return (
     <>
       {isFetching ? (
-        <></>
+        <Loading />
       ) : (
         <StWrap>
           <LikeInfo postId={postId} />

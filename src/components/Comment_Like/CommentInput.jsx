@@ -15,10 +15,18 @@ const CommentInput = ({ postId }) => {
   const { mutate } = useAddComment();
   const inputRef = useRef(null);
   const addComment = useCallback(() => {
-    mutate({
-      comment: comment,
-      postId: postId,
-    });
+    if (comment !== "") {
+      mutate({
+        comment: comment,
+        postId: postId,
+      });
+    } else {
+      AlertComponent({
+        icon: "error",
+        title: "에러!",
+        text: "제대로 된 댓글을 입력해주세요",
+      });
+    }
     inputRef.current.value = "";
   }, [comment, mutate, postId]);
 

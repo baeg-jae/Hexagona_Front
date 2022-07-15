@@ -49,7 +49,7 @@ const StFirstPageDiv = styled.div`
     background: linear-gradient(
       180deg,
       rgba(30, 5, 5, 0) -9.31%,
-      var(--gradient) 72.46%
+      var(--gradient) 62.46%
     );
   }
 `;

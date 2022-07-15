@@ -24,14 +24,22 @@ const EmptyMission = ({ category, list }) => {
   }, []);
 
   const onAddMissionHandler = useCallback(() => {
-    mutate({ missionContent: mission, category: category });
-    setClicked((value) => !value);
+    if (mission !== "") {
+      mutate({ missionContent: mission, category: category });
+      setClicked((value) => !value);
 
-    AlertComponent({
-      icon: "success",
-      title: `${mission}`,
-      text: "목표 생성 완료!",
-    });
+      AlertComponent({
+        icon: "success",
+        title: `${mission}`,
+        text: "목표 생성 완료!",
+      });
+    } else {
+      AlertComponent({
+        icon: "error",
+        title: "에러!",
+        text: "제대로 된 미션을 입력해주세요",
+      });
+    }
   }, [mutate, mission, category]);
 
   const bogusCheck = useCallback(() => {
