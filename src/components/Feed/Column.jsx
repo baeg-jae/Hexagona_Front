@@ -48,7 +48,7 @@ const Column = ({ data, isFetching }) => {
                 return v;
               })
               .map((v, i) => {
-                return i % 2 === 0
+                return i % 2 === 1
                   ? v.postContent
                       .toLowerCase()
                       .includes(keyword.toLowerCase()) && (
@@ -78,7 +78,7 @@ const Column = ({ data, isFetching }) => {
                 return v;
               })
               .map((v, i) => {
-                return i % 2 === 1
+                return i % 2 === 0
                   ? v.postContent
                       .toLowerCase()
                       .includes(keyword.toLowerCase()) && (

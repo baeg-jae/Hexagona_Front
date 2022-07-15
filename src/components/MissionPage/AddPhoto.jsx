@@ -1,10 +1,51 @@
+import { useMutation, useQueryClient } from "react-query";
+import { useParams } from "react-router-dom";
+import { useCallback } from "react";
+import AlertComponent from "components/Common/AlertComponent";
 import flex from "components/Common/flex";
-import styled from "@emotion/styled";
 import Camera from "assets/img/Camera.webp";
+import styled from "@emotion/styled";
+import apis from "shared/api/main";
 
-const AddPhoto = ({ missionContent }) => {
+const addPost = async (payload) => {
+  const addedData = await apis.addPost(payload);
+  return addedData;
+};
+
+const AddPhoto = ({ missionContent, files, missionId }) => {
+  const { category } = useParams();
+  const queryClient = useQueryClient();
+
+  const addTodoMutation = useMutation(addPost, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("post");
+
+      AlertComponent({
+        icon: "success",
+        text: "사진 추가에 성공했습니다.",
+      });
+    },
+    onError: (e) => {},
+  });
+
+  const onCreate = useCallback(() => {
+    const formData = new FormData();
+    const secondData = {
+      postContent: missionContent,
+      category: category,
+      missionId: missionId,
+    };
+
+    formData.append("file", files);
+    formData.append(
+      "data",
+      new Blob([JSON.stringify(secondData)], { type: "application/json" })
+    );
+    addTodoMutation.mutate(formData);
+  }, [addTodoMutation, category, files, missionContent, missionId]);
+
   return (
-    <StWrap>
+    <StWrap onClick={onCreate}>
       <div className="innerDiv">
         <span>{missionContent}</span>
         <StImg img={Camera} />
