@@ -1,17 +1,65 @@
+import {
+  CenterCardAnim,
+  RightCardAnim,
+  RightRightCardAnim,
+} from "components/Common/GlobalStyles";
+import { GOALSHOT_RANDOM_CARD } from "shared/data";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 
-const GoalShotCards = ({ data, count }) => {
+const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
+  const cardTrigger = () => {
+    if (chooseOne || chooseTwo) return true;
+  };
   return (
     <StCardContainer>
       {data !== undefined ? (
         <>
-          <StCard img={data[count - 1]?.photoUrl} differ />
-          <StCard img={data[count]?.photoUrl}>
-            <span className="category">{data[count]?.category}</span>
-            <span className="postContent">{data[count]?.postContent}</span>
-          </StCard>
-          <StCard img={data[count + 1]?.photoUrl} differ />
+          <StLeftCard />
+
+          {/* 좌측카드 */}
+          <StLeftCard
+            img={data[count - 1]?.photoUrl}
+            differ
+            flag={cardTrigger()}
+          />
+
+          {/* 중간카드 */}
+          {count === GOALSHOT_RANDOM_CARD ? (
+            <StLastCard flag={cardTrigger()}>
+              <span className="innerText">주어진 카드에 대해서</span>
+              <span className="innerText">모두 평가를 완료했습니다!</span>
+            </StLastCard>
+          ) : (
+            <StCard img={data[count]?.photoUrl} flag={cardTrigger()}>
+              <div className="gradient">
+                <span className="category">{data[count]?.category}</span>
+                <span className="postContent">{data[count]?.postContent}</span>
+              </div>
+            </StCard>
+          )}
+
+          {/* 우측카드 */}
+          {count === GOALSHOT_RANDOM_CARD - 1 ? (
+            <StLastCard differ flag={cardTrigger()} />
+          ) : (
+            <StRightCard
+              img={data[count + 1]?.photoUrl}
+              differ
+              flag={cardTrigger()}
+            />
+          )}
+
+          {/* 최우측카드 */}
+          {count === GOALSHOT_RANDOM_CARD - 2 ? (
+            <StLastLastCard differ flag={cardTrigger()} />
+          ) : (
+            <StRightRightCard
+              img={data[count + 2]?.photoUrl}
+              differ
+              flag={cardTrigger()}
+            />
+          )}
         </>
       ) : (
         <></>
@@ -42,6 +90,8 @@ const StCard = styled.div`
   filter: drop-shadow(0px 43px 40px rgba(0, 0, 0, 0.2));
   border-radius: 20px;
   margin-top: ${(props) => (props.differ ? "107px" : "57px")};
+  opacity: ${(props) => (props.differ ? "0.6" : "1")};
+  animation: ${(props) => props.flag && CenterCardAnim()} 1s ease;
   span {
     margin-left: 20px;
   }
@@ -59,4 +109,49 @@ const StCard = styled.div`
     color: #ffffff;
     margin-bottom: 5px;
   }
+  .gradient {
+    ${flex({ direction: "column", justify: "flex-end", align: "flex-start" })}
+    width: 100%;
+    height: 50%;
+    border-radius: 20px;
+    background: linear-gradient(
+      180deg,
+      rgba(30, 5, 5, 0) -9.31%,
+      var(--gradient)
+    );
+  }
+`;
+
+const StRightCard = styled(StCard)`
+  animation: ${(props) => props.flag && RightCardAnim()} 1s ease;
+`;
+
+const StLeftCard = styled(StCard)`
+  animation: ${(props) => props.flag && RightCardAnim()} 1s ease;
+`;
+
+const StRightRightCard = styled(StCard)`
+  animation: ${(props) => props.flag && RightRightCardAnim()} 1s ease;
+`;
+
+const StLastCard = styled.div`
+  ${flex({ direction: "column" })}
+  min-width: 285px;
+  height: 480px;
+  border-radius: 20px;
+  border: 1px solid black;
+  filter: drop-shadow(0px 43px 40px rgba(0, 0, 0, 0.2));
+  opacity: ${(props) => (props.differ ? "0.6" : "1")};
+  margin-top: ${(props) => (props.differ ? "107px" : "57px")};
+  animation: ${(props) => props.flag && RightCardAnim()} 1s ease;
+  .innerText {
+    color: #956c4a;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+  }
+`;
+
+const StLastLastCard = styled(StLastCard)`
+  animation: ${(props) => props.flag && RightRightCardAnim()} 1s ease;
 `;

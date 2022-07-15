@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import apis from "shared/api/main";
+import { useState, useCallback } from "react";
 import { useMutation, useQueryClient } from "react-query";
-import { useCallback } from "react";
+import AlertComponent from "components/Common/AlertComponent";
+import apis from "shared/api/main";
 
 const addPost = async (payload) => {
   const addedData = await apis.addPost(payload);
@@ -19,11 +19,13 @@ const AddPost = ({ missionId, postContent, category }) => {
   const addTodoMutation = useMutation(addPost, {
     onSuccess: () => {
       queryClient.invalidateQueries("post");
-      alert("사진 추가에 성공했습니다");
+
+      AlertComponent({
+        icon: "success",
+        text: "사진 추가에 성공했습니다.",
+      });
     },
-    onError: (e) => {
-      alert("사진추가 에러: " + e);
-    },
+    onError: (e) => {},
   });
 
   const onCreate = useCallback(() => {

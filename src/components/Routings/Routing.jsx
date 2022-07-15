@@ -1,8 +1,8 @@
-import { Routes, Route } from 'react-router-dom';
-import ProtectedRoutesNoLogin from './ProtectedNoLogin';
-import ProtectedRoutesYesLogin from './ProtectedYesLogin';
-import loadable from '@loadable/component';
-import Splash from 'pages/Status/Splash';
+import { Routes, Route } from "react-router-dom";
+import ProtectedRoutesNoLogin from "./ProtectedNoLogin";
+import ProtectedRoutesYesLogin from "./ProtectedYesLogin";
+import loadable from "@loadable/component";
+import Splash from "pages/Status/Splash";
 
 const Kakao = loadable(() => import("pages/SocialLogIn/Kakao"));
 const Google = loadable(() => import("pages/SocialLogIn/Google"));
@@ -34,7 +34,6 @@ const Routing = () => {
       <Route path="*" element={<Error />} />
     </Routes>
   );
-
 };
 
 export default Routing;

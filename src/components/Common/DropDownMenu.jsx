@@ -138,7 +138,7 @@ const DropRow = styled.div`
   box-shadow: 0px 2px 14px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
   padding: 4px 0px;
-  animation: ${dropBoxAnimation} 0.5s;
+  animation: ${dropBoxAnimation} 0.3s;
   div {
     width: 99px;
     border: 1px solid #f4f4f4;

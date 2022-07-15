@@ -2,12 +2,12 @@ import { MISSION_ADD_LENGTH } from "shared/data";
 import { useState, useCallback } from "react";
 import { badWords } from "shared/TextsData";
 import useAddMission from "components/Hooks/Mission/useAddMission";
+import AlertComponent from "components/Common/AlertComponent";
 import InputModal from "components/Common/InputModal";
 import AddedMission from "./AddedMission";
 import flex from "components/Common/flex";
 import plus from "assets/img/plus.png";
 import styled from "@emotion/styled";
-import Swal from "sweetalert2";
 
 const EmptyMission = ({ category, list }) => {
   const arr = [1, 2, 3, 4];
@@ -26,6 +26,12 @@ const EmptyMission = ({ category, list }) => {
   const onAddMissionHandler = useCallback(() => {
     mutate({ missionContent: mission, category: category });
     setClicked((value) => !value);
+
+    AlertComponent({
+      icon: "success",
+      title: `${mission}`,
+      text: "목표 생성 완료!",
+    });
   }, [mutate, mission, category]);
 
   const bogusCheck = useCallback(() => {
@@ -33,11 +39,10 @@ const EmptyMission = ({ category, list }) => {
       mission.toLowerCase().includes(word.toLowerCase())
     );
     if (foundSwears.length) {
-      Swal.fire({
+      AlertComponent({
+        icon: "error",
         title: "에러!",
         text: "제대로 된 미션을 입력해주세요",
-        icon: "error",
-        confirmButtonText: "Cool",
       });
     } else {
       onAddMissionHandler();

@@ -40,19 +40,14 @@ export const StWrapFlex = styled(StWrap)`
     margin-bottom: 42px;
   }
 `;
-export const scaleAnimation = keyframes`
-  50% {
-    transform: scale(1.05);
-  }
-`;
 
 export const fadeAnimation = keyframes`
  0% { 
-  background-color: rgba(0,0,0,1);
-  color: rgba(0,0,0,1);
-  opacity: 0; 
-}
-  100% { opacity: 1; }
+    opacity: 0; 
+  }
+  100% { 
+    opacity: 1; 
+  }
 `;
 
 export const dropBoxAnimation = keyframes`
@@ -62,4 +57,44 @@ export const dropBoxAnimation = keyframes`
   100% {  
     transform: translateX(0) scale(1); 
   }
+`;
+
+export const ButtonClicked = () => keyframes`
+  50% {  
+    transform: translateY(-20px); 
+}
+  100% {  
+    transform: translateY(0); 
+}
+`;
+
+export const CenterCardAnim = () => keyframes`
+  0% {  
+    transform: translateX(0) translateY(0);
+    opacity: 1;
+}
+  100% {  
+    transform: translateX(-290px) translateY(50px); 
+    opacity: 0.6;
+}
+`;
+
+export const RightCardAnim = () => keyframes`
+  0% {  
+    transform: translateX(0) translateY(0); 
+    opacity: 0.6;
+}
+  100% {  
+    transform: translateX(-290px) translateY(-50px); 
+    opacity: 1;
+}
+`;
+
+export const RightRightCardAnim = () => keyframes`
+  0% {  
+    transform: translateX(0); 
+}
+  100% {  
+    transform: translateX(-290px); 
+}
 `;

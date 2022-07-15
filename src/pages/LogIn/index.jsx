@@ -42,6 +42,7 @@ const StFirstPageDiv = styled.div`
     font-weight: 700;
     font-size: 48px;
     margin-bottom: 13px;
+    opacity: 1;
   }
   & > Button {
     margin: 25px 0 58px 0;
@@ -53,7 +54,7 @@ const StFirstPageDiv = styled.div`
     background: linear-gradient(
       180deg,
       rgba(30, 5, 5, 0) -9.31%,
-      var(--gradient) 40.46%
+      var(--gradient) 72.46%
     );
   }
 `;

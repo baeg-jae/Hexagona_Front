@@ -5,11 +5,9 @@ import useGetPostDetail from "components/Hooks/Detail/useGetPostDetail";
 import CommentInput from "components/Comment_Like/CommentInput";
 import CommentImg from "components/Comment_Like/CommentImg";
 import CommentLists from "components/Comment_Like/CommentLists";
-import loadable from "@loadable/component";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
-
-const Loading = loadable(() => import("pages/Status/Loading"));
+import SkeletonDetail from "components/Comment_Like/SkeletonDetail";
 
 const FeedDetail = () => {
   const { postId } = useParams();
@@ -20,7 +18,7 @@ const FeedDetail = () => {
   return (
     <StWrapFlex>
       {isFetching ? (
-        <Loading />
+        <SkeletonDetail />
       ) : (
         <>
           <StWrapComment>

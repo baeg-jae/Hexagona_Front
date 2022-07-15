@@ -44,7 +44,7 @@ const CommentImg = ({
         <></>
       ) : (
         <StWrapFlex img={img}>
-          <div className="gradient">
+          <div className="gradientTop">
             <HeaderDiv>
               <FlexRowDiv>
                 <StProfile img={profile} />
@@ -54,6 +54,8 @@ const CommentImg = ({
                 </StTextDiv>
               </FlexRowDiv>
             </HeaderDiv>
+          </div>
+          <div className="gradientBottom">
             <BottomWarp>
               <BottomDiv>
                 <span className="titleText">{getCategory}</span>
@@ -95,16 +97,19 @@ const StWrapFlex = styled.div`
   background-position: center;
   background-size: cover;
   border-radius: 20px;
-  .gradient {
+  .gradientTop {
+    ${flex({ direction: "column", align: "flex-start", justify: "flex-start" })}
+    width: 100%;
+    height: 440px;
+    border-radius: 20px;
+    background: linear-gradient(#252525 0.09%, rgba(0, 0, 0, 0) 40%);
+  }
+  .gradientBottom {
     ${flex({ direction: "column", align: "flex-start", justify: "flex-end" })}
     width: 100%;
     height: 440px;
     border-radius: 20px;
-    background: linear-gradient(
-      0.14deg,
-      #000000 0.09%,
-      rgba(0, 0, 0, 0) 32.15%
-    );
+    background: linear-gradient(0.14deg, #000000 0.09%, rgba(0, 0, 0, 0) 32%);
   }
 `;
 
@@ -130,7 +135,7 @@ const StTextDiv = styled.div`
   line-height: 130%;
   margin-left: 8px;
   margin-right: 180px;
-  color: #212121;
+  color: #fff;
   .titleText {
     font-weight: 400;
     font-size: 13px;
@@ -163,6 +168,7 @@ const BottomWarp = styled.div`
   width: 95%;
   .imgWrap {
     ${flex({ direction: "row" })}
+    margin-bottom: 20px;
   }
 `;
 
