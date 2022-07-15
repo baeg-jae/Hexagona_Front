@@ -28,7 +28,12 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
               img={data[count - 1]?.photoUrl}
               differ
               flag={cardTrigger()}
-            />
+            >
+              <div className="gradient">
+                <span className="category">{data[count]?.category}</span>
+                <span className="postContent">{data[count]?.postContent}</span>
+              </div>
+            </StLeftCard>
 
             {/* 중간카드 */}
             {count === GOALSHOT_RANDOM_CARD ? (
@@ -58,7 +63,14 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
                 img={data[count + 1]?.photoUrl}
                 differ
                 flag={cardTrigger()}
-              />
+              >
+                <div className="gradient">
+                  <span className="category">{data[count]?.category}</span>
+                  <span className="postContent">
+                    {data[count]?.postContent}
+                  </span>
+                </div>
+              </StRightCard>
             )}
 
             {/* 최우측카드 */}
