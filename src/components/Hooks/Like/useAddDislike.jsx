@@ -9,12 +9,10 @@ const useAddDislike = () => {
   const queryClient = useQueryClient();
 
   return useMutation(addDislike, {
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries("dislike");
     },
-    onError: (e) => {
-      alert(e.massage);
-    },
+    onError: (e) => {},
   });
 };
 

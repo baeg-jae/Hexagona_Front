@@ -1,7 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
+import AlertComponent from "components/Common/AlertComponent";
 import apis from "shared/api/main";
-import Swal from "sweetalert2";
-import { MODAL_TIME } from "shared/data";
 
 const updateProfile = async (payload) => {
   const updatePic = await apis.updateUserProfile(payload);
@@ -14,11 +13,9 @@ const useUpdateProfile = () => {
   return useMutation(updateProfile, {
     onSuccess: () => {
       queryClient.invalidateQueries("user");
-      Swal.fire({
+      AlertComponent({
         icon: "success",
         text: "프로필사진이 변경 되었습니다",
-        showConfirmButton: false,
-        timer: MODAL_TIME,
       });
     },
     onError: (e) => {},

@@ -3,13 +3,13 @@ import { useQueryClient, useMutation } from "react-query";
 import { useCallback, useState } from "react";
 import { SIGN_UP_MAX_LENGTH } from "shared/data";
 import { badWords } from "shared/TextsData";
+import useNewUserCheck from "components/Hooks/User/useNewUserCheck";
+import AlertComponent from "components/Common/AlertComponent";
 import flex from "components/Common/flex";
 import Button from "components/Common/Button";
 import IntroPage from "./IntroPage";
 import styled from "@emotion/styled";
 import apis from "shared/api/main";
-import Swal from "sweetalert2";
-import useNewUserCheck from "components/Hooks/User/useNewUserCheck";
 
 const __signup = async (payload) => {
   const data = await apis.signUp(payload);
@@ -34,20 +34,15 @@ const SignUpPage = () => {
       // 캐시에 있는 모든 쿼리를 무효화한다.
       queryClient.invalidateQueries("users");
       // 회원가입에 통과되면 화면전환
-      Swal.fire({
+      AlertComponent({
         icon: "success",
         title: "가입완료",
         text: "환영합니다",
-        showConfirmButton: false,
-        timer: 1500,
       });
 
       setFlag((value) => !value);
     },
-    onError: (error) => {
-      alert(`회원가입: ${error.message}`);
-    },
-    onSettled: () => {},
+    onError: (e) => {},
   });
 
   // 중복검사 mutation
@@ -59,17 +54,14 @@ const SignUpPage = () => {
         // 중복검사에 통과되면 회원가입을 진행한다
         userSignUpMutation.mutate({ nickname: name });
       } else {
-        Swal.fire({
+        AlertComponent({
+          icon: "error",
           title: "에러!",
           text: "중복된 아이디 입니다.",
-          icon: "error",
-          confirmButtonText: "Cool",
         });
       }
     },
-    onError: (error) => {
-      alert(`중복체크: ${error.message}`);
-    },
+    onError: (e) => {},
   });
 
   // 버튼 핸들러
@@ -83,11 +75,10 @@ const SignUpPage = () => {
       name.toLowerCase().includes(word.toLowerCase())
     );
     if (foundSwears.length) {
-      Swal.fire({
+      AlertComponent({
         title: "에러!",
         text: "제대로 된 닉네임을 입력해주세요",
         icon: "error",
-        confirmButtonText: "Cool",
       });
     } else {
       // 욕설탐지기에 안걸리면 실행

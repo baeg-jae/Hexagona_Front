@@ -4,10 +4,10 @@ import { useCallback } from "react";
 import { useState } from "react";
 import { useRef } from "react";
 import useAddComment from "components/Hooks/Comment/useAddComment";
+import AlertComponent from "components/Common/AlertComponent";
 import useGetUser from "components/Hooks/User/useGetUser";
 import styled from "@emotion/styled";
 import flex from "../Common/flex";
-import Swal from "sweetalert2";
 
 const CommentInput = ({ postId }) => {
   const { data, isFetching } = useGetUser();
@@ -27,11 +27,10 @@ const CommentInput = ({ postId }) => {
       comment.toLowerCase().includes(word.toLowerCase())
     );
     if (foundSwears.length) {
-      Swal.fire({
+      AlertComponent({
+        icon: "error",
         title: "에러!",
         text: "제대로 된 댓글을 입력해주세요",
-        icon: "error",
-        confirmButtonText: "Cool",
       });
     } else {
       addComment();
