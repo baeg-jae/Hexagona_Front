@@ -47,8 +47,15 @@ const Column = ({ data, isFetching }) => {
           {/* 카드 왼쪽 줄 */}
           <StRowFirst>
             {/* 내사진보기 */}
+
             {randomMyPost?.map((v, i) => {
-              return <StMyPage img={v.photoUrl} key={i} />;
+              return (
+                <StMyPage img={v.photoUrl} key={i}>
+                  <StMySpan>내 사진</StMySpan>
+                  <StMySpan>모아보기</StMySpan>
+                  <StMySpan small>총 32개의 사진</StMySpan>
+                </StMyPage>
+              );
             })}
             {/* 랜덤으로 아무사진이나 보기 */}
             {data
@@ -137,12 +144,25 @@ const StImgDiv = styled.div`
 `;
 
 const StMyPage = styled.div`
+  ${flex({ direction: "column" })}
   width: 166px;
   height: 225px;
   border-radius: 20px;
-  background-image: url(${(props) => props.img});
+  background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.6) 0%,
+      rgba(255, 255, 255, 0.6) 100%
+    ),
+    url(${(props) => props.img});
   background-position: center;
   background-size: cover;
+`;
+
+const StMySpan = styled.span`
+  font-weight: ${(props) => (props.small ? "400" : "700")};
+  font-size: ${(props) => (props.small ? "14px" : "16px")};
+  line-height: ${(props) => (props.small ? "16px" : "19px")};
+  color: #1c1c1c;
 `;
 
 const StRowFirst = styled.div`
@@ -185,6 +205,7 @@ const StImg = styled.div`
   background-position: center;
   background-size: cover;
 `;
+
 const StFixDiv = styled.div`
   ${flex({})}
   position: fixed;
