@@ -19,7 +19,6 @@ const AddPhoto = ({ missionContent, files, missionId }) => {
   const queryClient = useQueryClient();
   // const { data } = useGetPost();
 
-  console.log();
   const addTodoMutation = useMutation(addPost, {
     onSuccess: () => {
       queryClient.invalidateQueries("post");
