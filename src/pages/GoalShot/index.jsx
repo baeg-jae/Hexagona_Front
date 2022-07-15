@@ -9,7 +9,7 @@ import useGetGoalShot from "components/Hooks/GoalShot/useGetGoalShot";
 
 const GoalShot = () => {
   const [count, setCount] = useState(1);
-  const { data, isLoading } = useGetGoalShot();
+  const { data, isFetching } = useGetGoalShot();
   const [container, setContainer] = useState([]);
   const [chooseOne, isChooseOne] = useState(false);
   const [chooseTwo, isChooseTwo] = useState(false);
@@ -29,7 +29,7 @@ const GoalShot = () => {
   return (
     <>
       <StWrap>
-        {isLoading ? (
+        {isFetching ? (
           <>
             <SkeletonGoalShot />
           </>
