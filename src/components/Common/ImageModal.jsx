@@ -19,7 +19,7 @@ const ImageModal = ({
             <span className="missionTitle">{title}</span>
           </div>
           <input id="file" type="file" onChange={(e) => set(e.target.value)} />
-          <label for="file">
+          <label htmlFor="file">
             <StImg img={Upload} />
           </label>
           <FlexRowDiv>
