@@ -21,6 +21,7 @@ export const apis = {
 
   // post CRUD
   getPost: () => api.get("/api/posts"),
+  getMyPost: () => api.get("/api/posts/mypost"),
   getPostDetail: (payload) => api.get(`/api/post/${payload.postId}`, payload),
   addPost: (payload) => api.post("/api/post", payload),
   deletePost: (payload) => api.delete(`/api/post/${payload.postId}`),

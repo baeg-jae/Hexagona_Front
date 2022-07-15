@@ -1,19 +1,30 @@
 import { useNavigate } from "react-router-dom";
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import SkeletonFeed from "./SkeletonFeed";
 import styled from "@emotion/styled";
 import searchImg from "assets/img/Search.webp";
 import flex from "components/Common/flex";
+import GetMyPosts from "components/Hooks/User/GetMyPosts";
+import { shuffleArray } from "shared/shuffleArray";
 
 const Column = ({ data, isFetching }) => {
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState("");
+  const [myPostContainer, setMyPostContainer] = useState([]);
+  const myPosts = GetMyPosts(); // 내사진
   const onClickHandler = useCallback(
     (postId) => {
       navigate(`/detail/${postId}`);
     },
     [navigate]
   );
+  useEffect(() => {
+    setMyPostContainer(shuffleArray(myPosts));
+  }, [myPosts]);
+
+  const randomMyPost = myPostContainer?.filter((v, i) => {
+    return i === 0 ? v : "";
+  });
 
   return (
     <>
@@ -35,7 +46,11 @@ const Column = ({ data, isFetching }) => {
         <StWrap>
           {/* 카드 왼쪽 줄 */}
           <StRowFirst>
-            <StMyPage />
+            {/* 내사진보기 */}
+            {randomMyPost?.map((v, i) => {
+              return <StMyPage img={v.photoUrl} key={i} />;
+            })}
+            {/* 랜덤으로 아무사진이나 보기 */}
             {data
               ?.filter((v) => {
                 if (keyword === "") {
@@ -125,7 +140,9 @@ const StMyPage = styled.div`
   width: 166px;
   height: 225px;
   border-radius: 20px;
-  background-color: tomato;
+  background-image: url(${(props) => props.img});
+  background-position: center;
+  background-size: cover;
 `;
 
 const StRowFirst = styled.div`
