@@ -17,7 +17,7 @@ const AddDislikeButton = ({
   };
 
   const onDisLike = () => {
-    if (count > -1) {
+    if (count < data?.length) {
       isChooseOne(true);
       addDisLike();
     } else {

@@ -26,7 +26,10 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
 
           {/* 중간카드 */}
           {count === GOALSHOT_RANDOM_CARD ? (
-            <StLastCard flag={cardTrigger()} />
+            <StLastCard flag={cardTrigger()}>
+              <span className="innerText">주어진 카드에 대해서</span>
+              <span className="innerText">모두 평가를 완료했습니다!</span>
+            </StLastCard>
           ) : (
             <StCard img={data[count]?.photoUrl} flag={cardTrigger()}>
               <div className="gradient">
@@ -46,6 +49,7 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
               flag={cardTrigger()}
             />
           )}
+
           {/* 최우측카드 */}
           {count === GOALSHOT_RANDOM_CARD - 2 ? (
             <StLastLastCard differ flag={cardTrigger()} />
@@ -131,21 +135,25 @@ const StRightRightCard = styled(StCard)`
 `;
 
 const StLastCard = styled.div`
-  ${flex({
-    direction: "column",
-    justify: "flex-end",
-    align: "flex-start",
-  })}
+  ${flex({ direction: "column" })}
   min-width: 285px;
   height: 480px;
-  filter: drop-shadow(0px 43px 40px rgba(0, 0, 0, 0.2));
   border-radius: 20px;
+  border: 1px solid black;
+  filter: drop-shadow(0px 43px 40px rgba(0, 0, 0, 0.2));
   opacity: ${(props) => (props.differ ? "0.6" : "1")};
   margin-top: ${(props) => (props.differ ? "107px" : "57px")};
   animation: ${(props) => props.flag && RightCardAnim()} 1s ease;
-  background-color: tomato;
+  .innerText {
+    color: #956c4a;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+  }
 `;
 
 const StLastLastCard = styled(StLastCard)`
   animation: ${(props) => props.flag && RightRightCardAnim()} 1s ease;
 `;
+
+const StButton = styled.button``;
