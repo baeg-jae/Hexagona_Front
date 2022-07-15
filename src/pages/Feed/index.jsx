@@ -1,5 +1,5 @@
 import React from "react";
-import Column from "components/Feed/Column";
+import FeedContainer from "components/Feed/FeedContainer";
 import NavigatorBar from "components/Common/NavigatorBar";
 import useGetPost from "components/Hooks/useGetPost";
 
@@ -7,7 +7,7 @@ const Feed = () => {
   const { data, isFetching } = useGetPost();
   return (
     <>
-      <Column data={data} isFetching={isFetching} />
+      <FeedContainer data={data} isFetching={isFetching} />
       <NavigatorBar />
     </>
   );
