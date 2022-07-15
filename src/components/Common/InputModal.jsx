@@ -39,7 +39,7 @@ const InputModal = ({
 
 export default InputModal;
 
-const StModal = styled.button`
+const StModal = styled.div`
   ${flex({})}
   position: fixed;
   top: 0;
