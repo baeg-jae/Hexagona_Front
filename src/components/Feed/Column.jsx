@@ -61,7 +61,8 @@ const Column = ({ data, isFetching }) => {
                       />
                     )
                   : "";
-              })}
+              })
+              .reverse()}
           </StRowFirst>
 
           {/* 카드 오른쪽 줄 */}
@@ -91,7 +92,8 @@ const Column = ({ data, isFetching }) => {
                       />
                     )
                   : "";
-              })}
+              })
+              .reverse()}
           </StRowSecond>
         </StWrap>
       )}
