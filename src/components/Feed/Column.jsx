@@ -17,25 +17,25 @@ const Column = ({ data, isFetching }) => {
 
   return (
     <>
+      {/* 검색 */}
+      <StFixDiv>
+        <StSearchInputDiv>
+          <input
+            className="inputBox"
+            type="text"
+            placeholder="키워드를 입력해주세요."
+            onChange={(e) => setKeyword(e.target.value)}
+          />
+          <StImg img={searchImg} />
+        </StSearchInputDiv>
+      </StFixDiv>
       {isFetching ? (
         <SkeletonFeed data={data} />
       ) : (
         <StWrap>
-          {/* 검색 */}
-          <StFixDiv>
-            <StSearchInputDiv>
-              <input
-                className="inputBox"
-                type="text"
-                placeholder="키워드를 입력해주세요."
-                onChange={(e) => setKeyword(e.target.value)}
-              />
-              <StImg img={searchImg} />
-            </StSearchInputDiv>
-          </StFixDiv>
-
           {/* 카드 왼쪽 줄 */}
           <StRowFirst>
+            <StMyPage />
             {data
               ?.filter((v) => {
                 if (keyword === "") {
@@ -48,12 +48,8 @@ const Column = ({ data, isFetching }) => {
                 return v;
               })
               .map((v, i) => {
-                return i % 2 === 0 ? (
-                  i === 0 ? (
-                    // 내 사진 모아보기
-                    <StMyPage />
-                  ) : (
-                    v.postContent
+                return i % 2 === 0
+                  ? v.postContent
                       .toLowerCase()
                       .includes(keyword.toLowerCase()) && (
                       <StImgDiv
@@ -64,10 +60,7 @@ const Column = ({ data, isFetching }) => {
                         key={i}
                       />
                     )
-                  )
-                ) : (
-                  ""
-                );
+                  : "";
               })}
           </StRowFirst>
 
