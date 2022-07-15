@@ -22,6 +22,7 @@ const GoalShot = () => {
     return array;
   };
 
+  console.log(data?.length);
   useEffect(() => {
     setContainer(shuffleArray(data));
   }, [data]);

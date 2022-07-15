@@ -14,53 +14,68 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
   return (
     <StCardContainer>
       {data !== undefined ? (
-        <>
-          <StLeftCard />
+        data?.length < GOALSHOT_RANDOM_CARD ? (
+          <StLastCard flag={cardTrigger()}>
+            <span className="innerText">평가 하기에</span>
+            <span className="innerText">게시글이 부족합니다.</span>
+          </StLastCard>
+        ) : (
+          <>
+            <StLeftCard />
 
-          {/* 좌측카드 */}
-          <StLeftCard
-            img={data[count - 1]?.photoUrl}
-            differ
-            flag={cardTrigger()}
-          />
-
-          {/* 중간카드 */}
-          {count === GOALSHOT_RANDOM_CARD ? (
-            <StLastCard flag={cardTrigger()}>
-              <span className="innerText">주어진 카드에 대해서</span>
-              <span className="innerText">모두 평가를 완료했습니다!</span>
-            </StLastCard>
-          ) : (
-            <StCard img={data[count]?.photoUrl} flag={cardTrigger()}>
-              <div className="gradient">
-                <span className="category">{data[count]?.category}</span>
-                <span className="postContent">{data[count]?.postContent}</span>
-              </div>
-            </StCard>
-          )}
-
-          {/* 우측카드 */}
-          {count === GOALSHOT_RANDOM_CARD - 1 ? (
-            <StLastCard differ flag={cardTrigger()} />
-          ) : (
-            <StRightCard
-              img={data[count + 1]?.photoUrl}
+            {/* 좌측카드 */}
+            <StLeftCard
+              img={data[count - 1]?.photoUrl}
               differ
               flag={cardTrigger()}
             />
-          )}
 
-          {/* 최우측카드 */}
-          {count === GOALSHOT_RANDOM_CARD - 2 ? (
-            <StLastLastCard differ flag={cardTrigger()} />
-          ) : (
-            <StRightRightCard
-              img={data[count + 2]?.photoUrl}
-              differ
-              flag={cardTrigger()}
-            />
-          )}
-        </>
+            {/* 중간카드 */}
+            {count === GOALSHOT_RANDOM_CARD ? (
+              <StLastCard flag={cardTrigger()}>
+                <span className="innerText">주어진 카드에 대해서</span>
+                <span className="innerText">모두 평가를 완료했습니다!</span>
+              </StLastCard>
+            ) : (
+              <StCard img={data[count]?.photoUrl} flag={cardTrigger()}>
+                <div className="gradient">
+                  <span className="category">{data[count]?.category}</span>
+                  <span className="postContent">
+                    {data[count]?.postContent}
+                  </span>
+                </div>
+              </StCard>
+            )}
+
+            {/* 우측카드 */}
+            {count === GOALSHOT_RANDOM_CARD - 1 ? (
+              <StLastCard flag={cardTrigger()} differ>
+                <span className="innerText">주어진 카드에 대해서</span>
+                <span className="innerText">모두 평가를 완료했습니다!</span>
+              </StLastCard>
+            ) : (
+              <StRightCard
+                img={data[count + 1]?.photoUrl}
+                differ
+                flag={cardTrigger()}
+              />
+            )}
+
+            {/* 최우측카드 */}
+            {count === GOALSHOT_RANDOM_CARD - 2 ? (
+              <StLastLastCard flag={cardTrigger()} differ>
+                <span className="innerText">주어진 카드에 대해서</span>
+                <span className="innerText">모두 평가를 완료했습니다!</span>
+              </StLastLastCard>
+            ) : (
+              <StRightRightCard
+                img={data[count + 2]?.photoUrl}
+                differ
+                flag={cardTrigger()}
+              />
+            )}
+          </>
+        )
       ) : (
         <></>
       )}
