@@ -1,6 +1,6 @@
 import { KAKAO_AUTH_URL, GOOGLE_AUTH_URL } from "shared/socialAuth";
 import { SocialButton } from "components/SignIn/SocialButton";
-import LoginImg from "assets/img/LoginImg.png";
+import LoginImg from "assets/img/LoginImg.webp";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 

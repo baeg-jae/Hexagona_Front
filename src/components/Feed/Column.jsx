@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useCallback, useState } from "react";
 import SkeletonFeed from "./SkeletonFeed";
 import styled from "@emotion/styled";
-import searchImg from "assets/img/Search.png";
+import searchImg from "assets/img/Search.webp";
 import flex from "components/Common/flex";
 
 const Column = ({ data, isFetching }) => {

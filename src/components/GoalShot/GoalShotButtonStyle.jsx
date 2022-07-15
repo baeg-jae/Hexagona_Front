@@ -1,8 +1,8 @@
 import { ButtonClicked } from "components/Common/GlobalStyles";
 import flex from "components/Common/flex";
-import heart from "assets/img/heart.png";
+import heart from "assets/img/heart.webp";
 import styled from "@emotion/styled";
-import x from "assets/img/x.png";
+import x from "assets/img/x.webp";
 
 export const StButton = styled.button`
   ${flex({})}

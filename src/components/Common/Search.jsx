@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import flex from "./flex";
-import searchImg from "assets/img/Search.png";
+import searchImg from "assets/img/Search.webp";
 import { useState } from "react";
 
 const Search = ({ data }) => {

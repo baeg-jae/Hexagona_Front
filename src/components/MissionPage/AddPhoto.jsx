@@ -1,6 +1,6 @@
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
-import Camera from "assets/img/Camera.png";
+import Camera from "assets/img/Camera.webp";
 
 const AddPhoto = ({ missionContent }) => {
   return (

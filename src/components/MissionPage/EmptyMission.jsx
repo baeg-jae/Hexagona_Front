@@ -6,7 +6,7 @@ import AlertComponent from "components/Common/AlertComponent";
 import InputModal from "components/Common/InputModal";
 import AddedMission from "./AddedMission";
 import flex from "components/Common/flex";
-import plus from "assets/img/plus.png";
+import plus from "assets/img/plus.webp";
 import styled from "@emotion/styled";
 
 const EmptyMission = ({ category, list }) => {

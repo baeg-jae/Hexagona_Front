@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import flex from "components/Common/flex";
 import { FlexRowDiv } from "./GlobalStyles";
-import Upload from "assets/img/upload.png";
+import Upload from "assets/img/upload.webp";
 
 const ImageModal = ({
   set,

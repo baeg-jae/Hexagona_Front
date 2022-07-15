@@ -1,7 +1,7 @@
-import One from "assets/img/category1.png";
-import Two from "assets/img/category2.png";
-import Three from "assets/img/category3.png";
-import Four from "assets/img/category4.png";
+import One from "assets/img/category1.webp";
+import Two from "assets/img/category2.webp";
+import Three from "assets/img/category3.webp";
+import Four from "assets/img/category4.webp";
 
 export const handleButtonColor = (color) => {
   switch (color) {
