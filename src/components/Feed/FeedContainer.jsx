@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useCallback, useState } from "react";
+import { StWrap } from "./styles";
 import SkeletonFeed from "./SkeletonFeed";
-import styled from "@emotion/styled";
 import LeftFeed from "./LeftFeed";
 import RightFeed from "./RightFeed";
 import Search from "./Search";
@@ -40,11 +40,3 @@ const FeedContainer = ({ data, isFetching }) => {
 };
 
 export default FeedContainer;
-
-const StWrap = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: calc(100vh - 70px);
-  overflow: scroll;
-`;

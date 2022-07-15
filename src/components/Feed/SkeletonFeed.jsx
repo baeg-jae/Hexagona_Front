@@ -4,18 +4,15 @@ const SkeletonFeed = ({ data }) => {
   return (
     <StWrap>
       <StRowFirst>
+        <StMyPage />
         {data?.map((v, i) => {
           return i % 2 === 0 ? (
-            i === 0 ? (
-              <StMyPage key={i} />
-            ) : (
-              <StImgDiv
-                className="imgDiv"
-                coverImg={v?.photoUrl}
-                style={{ marginRight: "4.5px" }}
-                key={i}
-              />
-            )
+            <StImgDiv
+              className="imgDiv"
+              coverImg={v?.photoUrl}
+              style={{ marginRight: "4.5px" }}
+              key={i}
+            />
           ) : (
             ""
           );

@@ -57,3 +57,11 @@ export const StFixDiv = styled.div`
   background: #ffffff;
   box-shadow: 0px 12px 14px rgba(0, 0, 0, 0.1);
 `;
+
+export const StWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh - 70px);
+  overflow: scroll;
+`;
