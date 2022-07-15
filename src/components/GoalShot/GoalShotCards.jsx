@@ -155,5 +155,3 @@ const StLastCard = styled.div`
 const StLastLastCard = styled(StLastCard)`
   animation: ${(props) => props.flag && RightRightCardAnim()} 1s ease;
 `;
-
-const StButton = styled.button``;

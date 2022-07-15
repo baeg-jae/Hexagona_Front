@@ -1,8 +1,11 @@
 import styled from "@emotion/styled";
 import flex from "./flex";
 import searchImg from "assets/img/Search.png";
+import { useState } from "react";
 
-const Search = () => {
+const Search = ({ data }) => {
+  const [keyword, setKeyword] = useState("");
+
   return (
     <StWrap>
       <StSearchInputDiv>
@@ -10,6 +13,7 @@ const Search = () => {
           className="inputBox"
           type="text"
           placeholder="키워드를 입력해주세요."
+          onChange={(e) => setKeyword(e.target.value)}
         />
         <StImg img={searchImg} />
       </StSearchInputDiv>
