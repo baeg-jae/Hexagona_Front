@@ -150,6 +150,7 @@ const StSearchInputDiv = styled.div`
       outline: none;
     }
     &::placeholder {
+      font-weight: 400;
       font-size: 13px;
       line-height: 130%;
       color: #a3a3a3;

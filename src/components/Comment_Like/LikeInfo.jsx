@@ -2,10 +2,7 @@ import { useCallback } from "react";
 import useGetAllLIkes from "components/Hooks/Like/useGetAllLIkes";
 import styled from "@emotion/styled";
 import flex from "components/Common/flex";
-import loadable from "@loadable/component";
 import { LIKE_MAX_SHOW } from "shared/data";
-
-const Loading = loadable(() => import("pages/Status/Loading"));
 
 const LikeInfo = ({ postId }) => {
   const { data, isFetching } = useGetAllLIkes({ postId: Number(postId) });

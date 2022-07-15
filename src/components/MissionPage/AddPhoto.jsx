@@ -1,11 +1,12 @@
 import { useMutation, useQueryClient } from "react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useCallback } from "react";
 import AlertComponent from "components/Common/AlertComponent";
 import flex from "components/Common/flex";
 import Camera from "assets/img/Camera.webp";
 import styled from "@emotion/styled";
 import apis from "shared/api/main";
+import useGetPost from "components/Hooks/useGetPost";
 
 const addPost = async (payload) => {
   const addedData = await apis.addPost(payload);
@@ -14,8 +15,11 @@ const addPost = async (payload) => {
 
 const AddPhoto = ({ missionContent, files, missionId }) => {
   const { category } = useParams();
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const { data } = useGetPost();
 
+  console.log();
   const addTodoMutation = useMutation(addPost, {
     onSuccess: () => {
       queryClient.invalidateQueries("post");
@@ -24,6 +28,7 @@ const AddPhoto = ({ missionContent, files, missionId }) => {
         icon: "success",
         text: "사진 추가에 성공했습니다.",
       });
+      navigate(`/detail/${data[data?.length - 1]?.postId + 1}`);
     },
     onError: (e) => {},
   });

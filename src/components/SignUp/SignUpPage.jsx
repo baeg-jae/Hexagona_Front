@@ -74,7 +74,6 @@ const SignUpPage = () => {
     const foundSwears = badWords.filter((word) =>
       name.toLowerCase().includes(word.toLowerCase())
     );
-    console.log(foundSwears);
     if (foundSwears.length) {
       AlertComponent({
         title: "에러!",
