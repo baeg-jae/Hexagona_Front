@@ -7,7 +7,7 @@ const SkeletonFeed = ({ data }) => {
         {data?.map((v, i) => {
           return i % 2 === 0 ? (
             i === 0 ? (
-              <StMyPage />
+              <StMyPage key={i} />
             ) : (
               <StImgDiv
                 className="imgDiv"

@@ -26,6 +26,7 @@ const InputModal = ({
           />
           <FlexRowDiv>
             <StButton onClick={cancel}>{cancelTitle}</StButton>
+
             <StButton color="brown" onClick={confirm}>
               {confirmTitle}
             </StButton>

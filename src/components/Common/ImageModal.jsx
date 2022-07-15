@@ -36,7 +36,7 @@ const ImageModal = ({
 
 export default ImageModal;
 
-const StModal = styled.button`
+const StModal = styled.div`
   ${flex({})}
   position: fixed;
   top: 0;
