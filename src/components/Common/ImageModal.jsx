@@ -11,6 +11,9 @@ const ImageModal = ({
   cancelTitle,
   confirmTitle,
 }) => {
+  const saveFileImage = (e) => {
+    set(e.target.files[0]);
+  };
   return (
     <StModal>
       <div className="StInnerContainer">
@@ -18,7 +21,7 @@ const ImageModal = ({
           <div className="TextContainer">
             <span className="missionTitle">{title}</span>
           </div>
-          <input id="file" type="file" onChange={(e) => set(e.target.value)} />
+          <input type="file" id="file" onChange={saveFileImage} />
           <label htmlFor="file">
             <StImg img={Upload} />
           </label>

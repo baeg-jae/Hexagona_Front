@@ -8,7 +8,9 @@ const useImageHandler = () => {
 
   const onSendProfile = useCallback(() => {
     setProfileFlag((value) => !value);
-    mutate({ profile: profile });
+    const formData = new FormData();
+    formData.append("file", profile);
+    mutate(formData);
   }, [mutate, profile]);
 
   return {
