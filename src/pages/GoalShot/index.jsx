@@ -6,7 +6,6 @@ import GoalShotCards from "components/GoalShot/GoalShotCards";
 import SkeletonGoalShot from "components/GoalShot/SkeletonGoalShot";
 import NavigatorBar from "components/Common/NavigatorBar";
 import useGetGoalShot from "components/Hooks/GoalShot/useGetGoalShot";
-import { shuffleArray } from "shared/shuffleArray";
 
 const GoalShot = () => {
   const [count, setCount] = useState(1);
@@ -15,13 +14,21 @@ const GoalShot = () => {
   const [chooseOne, isChooseOne] = useState(false);
   const [chooseTwo, isChooseTwo] = useState(false);
 
+  const shuffleArray = (array) => {
+    for (let i = 0; i < array?.length; i++) {
+      let random = Math.floor(Math.random() * (i + 1));
+      [array[i], array[random]] = [array[random], array[i]];
+    }
+    return array;
+  };
+
   useEffect(() => {
     setContainer(shuffleArray(data));
   }, [data]);
 
   return (
     <>
-      <StWrap>
+      <StWrap className="main">
         {isFetching ? (
           <>
             <SkeletonGoalShot />
