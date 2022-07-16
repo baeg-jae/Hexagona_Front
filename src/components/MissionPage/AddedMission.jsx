@@ -15,7 +15,11 @@ const AddedMission = ({ missionContent, missionId }) => {
   return (
     <>
       {files !== undefined ? (
-        <AddPhoto missionContent={missionContent} />
+        <AddPhoto
+          missionContent={missionContent}
+          files={files}
+          missionId={missionId}
+        />
       ) : (
         <StWrap>
           <div className="innerDiv">

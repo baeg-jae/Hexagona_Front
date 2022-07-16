@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "@emotion/styled";
 import flex from "components/Common/flex";
 import { FlexRowDiv } from "./GlobalStyles";
@@ -11,6 +12,12 @@ const ImageModal = ({
   cancelTitle,
   confirmTitle,
 }) => {
+  const [fileImage, setFileImage] = useState();
+
+  const saveFileImage = (e) => {
+    setFileImage(URL.createObjectURL(e.target.files[0]));
+    set(e.target.files[0]);
+  };
   return (
     <StModal>
       <div className="StInnerContainer">
@@ -18,9 +25,13 @@ const ImageModal = ({
           <div className="TextContainer">
             <span className="missionTitle">{title}</span>
           </div>
-          <input id="file" type="file" onChange={(e) => set(e.target.value)} />
+          <input type="file" id="file" onChange={saveFileImage} />
           <label htmlFor="file">
-            <StImg img={Upload} />
+            {fileImage?.length ? (
+              <StImg img={fileImage} />
+            ) : (
+              <StImg img={Upload} small />
+            )}
           </label>
           <FlexRowDiv>
             <StButton onClick={cancel}>{cancelTitle}</StButton>
@@ -94,8 +105,9 @@ const StButton = styled.button`
 `;
 
 const StImg = styled.div`
-  width: 35.67px;
-  height: 30.99px;
+  width: ${(props) => (props.small ? "35.67px" : "100%")};
+  height: ${(props) => (props.small ? "30.99px" : "100%")};
+  border-radius: ${(props) => (props.small ? "0" : "100%")};
   background-image: url(${(props) => props.img});
   background-position: center;
   background-size: cover;

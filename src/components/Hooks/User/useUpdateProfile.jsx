@@ -11,12 +11,14 @@ const useUpdateProfile = () => {
   const queryClient = useQueryClient();
 
   return useMutation(updateProfile, {
-    onSuccess: () => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries("user");
-      AlertComponent({
-        icon: "success",
-        text: "프로필사진이 변경 되었습니다",
-      });
+      if (data.data === "") {
+        AlertComponent({
+          icon: "success",
+          text: "프로필사진이 변경 되었습니다",
+        });
+      }
     },
     onError: (e) => {},
   });

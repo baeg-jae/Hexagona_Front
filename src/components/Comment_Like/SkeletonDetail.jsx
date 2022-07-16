@@ -5,7 +5,7 @@ import { FlexRowDiv } from "components/Common/GlobalStyles";
 const SkeletonDetail = () => {
   return (
     <StWrapComment>
-      <StWrapFlex></StWrapFlex>
+      <StWrapFlex />
       <StReplyWrap></StReplyWrap>
       <FlexRowDiv>
         <StProfile />
@@ -34,11 +34,10 @@ const StWrapFlex = styled.div`
 `;
 
 const StReplyWrap = styled.div`
-  ${flex({})}
-  height: 140px;
+  width: 100%;
+  height: 170px;
   margin: 10px;
   margin-top: 35px;
-  background-color: var(--skeleton);
 `;
 
 const StProfile = styled.div`
