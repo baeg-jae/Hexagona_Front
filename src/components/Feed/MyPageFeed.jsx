@@ -1,11 +1,15 @@
 import { shuffleArray } from "shared/shuffleArray";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import GetMyPosts from "components/Hooks/User/GetMyPosts";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
+import { useCallback } from "react";
 const MyPageFeed = () => {
   const [myPostContainer, setMyPostContainer] = useState([]);
-  const myPosts = GetMyPosts(); // 내사진
+  const myPosts = GetMyPosts();
+  const navigate = useNavigate();
+
   useEffect(() => {
     setMyPostContainer(shuffleArray(myPosts));
   }, [myPosts]);
@@ -13,11 +17,15 @@ const MyPageFeed = () => {
   const randomMyPost = myPostContainer?.filter((v, i) => {
     return i === 0 ? v : "";
   });
+
+  const onClickHandler = useCallback(() => {
+    navigate("/myFeed");
+  }, [navigate]);
   return (
     <>
       {randomMyPost?.map((v, i) => {
         return (
-          <StMyPage img={v.photoUrl} key={i}>
+          <StMyPage img={v.photoUrl} key={i} onClick={onClickHandler}>
             <StMySpan>내 사진</StMySpan>
             <StMySpan>모아보기</StMySpan>
             <StMySpan small>총 32개의 사진</StMySpan>

@@ -1,0 +1,70 @@
+import { useNavigate } from "react-router-dom";
+import { useCallback, useState } from "react";
+import NavigatorBar from "components/Common/NavigatorBar";
+import Search from "components/Feed/Search";
+import GetMyPosts from "components/Hooks/User/GetMyPosts";
+import styled from "@emotion/styled";
+
+const MyFeed = () => {
+  const [keyword, setKeyword] = useState("");
+  const myPosts = GetMyPosts();
+  const navigate = useNavigate();
+  const onClickHandler = useCallback(
+    (postId) => {
+      navigate(`/detail/${postId}`);
+    },
+    [navigate]
+  );
+  console.log(myPosts);
+  return (
+    <>
+      <Search setKeyword={setKeyword} />
+      <StDiv>
+        {myPosts
+          ?.filter((v) => {
+            if (keyword === "") {
+              return v;
+            } else if (
+              v.postContent.toLowerCase().includes(keyword.toLowerCase())
+            ) {
+              return v;
+            }
+            return v;
+          })
+          .map((v, i) => {
+            return (
+              v.postContent.toLowerCase().includes(keyword.toLowerCase()) && (
+                <StImgDiv
+                  key={i}
+                  img={v.photoUrl}
+                  onClick={() => onClickHandler(v?.postId)}
+                />
+              )
+            );
+          })
+          .reverse()}
+      </StDiv>
+      <NavigatorBar />
+    </>
+  );
+};
+
+export default MyFeed;
+
+const StDiv = styled.div`
+  display: grid;
+  justify-content: center;
+  gap: 10px;
+  grid-template-columns: 166px 166px;
+  height: calc(100vh - 150px);
+  margin-top: 80px;
+  overflow-y: scroll;
+`;
+
+const StImgDiv = styled.div`
+  height: 225.72px;
+  border-radius: 20px;
+  background: url(${(props) => props.img});
+  background-position: center;
+  background-size: cover;
+`;
