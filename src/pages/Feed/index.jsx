@@ -6,10 +6,10 @@ import useGetPost from "components/Hooks/useGetPost";
 const Feed = () => {
   const { data, isFetching } = useGetPost();
   return (
-    <>
+    <div className="main">
       <FeedContainer data={data} isFetching={isFetching} />
       <NavigatorBar />
-    </>
+    </div>
   );
 };
 
