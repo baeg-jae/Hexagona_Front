@@ -28,7 +28,7 @@ const MyPageFeed = () => {
           <StMyPage img={v.photoUrl} key={i} onClick={onClickHandler}>
             <StMySpan>내 사진</StMySpan>
             <StMySpan>모아보기</StMySpan>
-            <StMySpan small>총 32개의 사진</StMySpan>
+            <StMySpan small>총 {myPosts?.length} 개의 사진</StMySpan>
           </StMyPage>
         );
       })}

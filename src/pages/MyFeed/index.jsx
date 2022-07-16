@@ -2,12 +2,12 @@ import { useNavigate } from "react-router-dom";
 import { useCallback, useState } from "react";
 import NavigatorBar from "components/Common/NavigatorBar";
 import Search from "components/Feed/Search";
-import GetMyPosts from "components/Hooks/User/GetMyPosts";
+import { useGetMyPosts } from "components/Hooks/User/GetMyPosts";
 import styled from "@emotion/styled";
 
 const MyFeed = () => {
   const [keyword, setKeyword] = useState("");
-  const myPosts = GetMyPosts();
+  const { data } = useGetMyPosts();
   const navigate = useNavigate();
   const onClickHandler = useCallback(
     (postId) => {
@@ -15,12 +15,11 @@ const MyFeed = () => {
     },
     [navigate]
   );
-  console.log(myPosts);
   return (
     <>
       <Search setKeyword={setKeyword} />
       <StDiv>
-        {myPosts
+        {data
           ?.filter((v) => {
             if (keyword === "") {
               return v;

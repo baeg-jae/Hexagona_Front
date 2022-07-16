@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import apis from "shared/api/main";
 
-const useGetMyPosts = () => {
+export const useGetMyPosts = () => {
   const fetcher = async () => {
     const { data } = await apis.getMyPost();
     return data;
