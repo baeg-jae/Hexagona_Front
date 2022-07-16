@@ -9,8 +9,16 @@ const useNicknameHandle = () => {
   const { mutate } = useUpdateNickname();
 
   const onSendNickname = useCallback(() => {
-    setNicknameFlag((value) => !value);
-    mutate({ nickname: nickname });
+    if (nickname !== "") {
+      setNicknameFlag((value) => !value);
+      mutate({ nickname: nickname });
+    } else {
+      AlertComponent({
+        icon: "error",
+        title: "에러!",
+        text: "제대로 된 닉네임을 입력해주세요",
+      });
+    }
   }, [mutate, nickname]);
 
   const bogusCheck = useCallback(() => {

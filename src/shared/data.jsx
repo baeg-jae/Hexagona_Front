@@ -5,3 +5,4 @@ export const MODAL_TIME = 1500;
 export const COMMENT_MAX_LENGTH = 100;
 export const MISSION_ADD_LENGTH = 20;
 export const GOALSHOT_RANDOM_CARD = 11;
+export const LIKE_MAX_SHOW = 5;

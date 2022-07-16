@@ -1,5 +1,5 @@
-import Swal from "sweetalert2";
 import { MODAL_TIME } from "shared/data";
+import Swal from "sweetalert2";
 
 const AlertComponent = ({ icon, title, text }) => {
   return Swal.fire({

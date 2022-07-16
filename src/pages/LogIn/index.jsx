@@ -21,26 +21,28 @@ const LogIn = () => {
 export default LogIn;
 
 const StFirstPageDiv = styled.div`
-    ${flex({ direction: 'column', justify: 'flex-end' })}
+  ${flex({ direction: "column", justify: "flex-end" })}
+  width: 100%;
+  height: 100%;
+  font-size: 20px;
+  color: var(--white);
+  text-align: center;
+  background-size: contain;
+  background-image: url(${LoginImg});
+  .bigFont {
+    font-weight: 700;
+    font-size: 48px;
+    margin-bottom: 13px;
+  }
+  .gradient {
+    ${flex({ direction: "column", justify: "flex-end" })}
     width: 100%;
-    height: 100%;
-    background-size: contain;
-    background-image: url(${LoginImg});
-    font-size: 20px;
-    color: var(--white);
-    text-align: center;
-    letter-spacing: -0.02em;
-    .bigFont {
-        font-weight: 700;
-        font-size: 48px;
-        margin-bottom: 13px;
-        opacity: 1;
-    }
+    height: 50%;
+    background: linear-gradient(
+      180deg,
+      rgba(30, 5, 5, 0) -9.31%,
+      var(--gradient) 62.46%
+    );
+  }
 
-    .gradient {
-        ${flex({ direction: 'column', justify: 'flex-end' })}
-        width: 100%;
-        height: 50%;
-        background: linear-gradient(180deg, rgba(30, 5, 5, 0) -9.31%, var(--gradient) 62.46%);
-    }
 `;

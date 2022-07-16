@@ -5,6 +5,7 @@ import useGetComment from "components/Hooks/Comment/useGetComment";
 import DropDownMenu from "components/Common/DropDownMenu";
 import LikeInfo from "./LikeInfo";
 import UserInfo from "components/Feed/UserInfo";
+import Loading from "pages/Status/Loading";
 
 const CommentLists = ({ postId }) => {
   const { data, isFetching } = useGetComment({ postId: postId });
@@ -13,7 +14,7 @@ const CommentLists = ({ postId }) => {
   return (
     <>
       {isFetching ? (
-        <></>
+        <Loading />
       ) : (
         <StWrap>
           <LikeInfo postId={postId} />
@@ -66,8 +67,6 @@ const StWrap = styled.div`
   margin-top: 35px;
 
   .emptySpan {
-    letter-spacing: -0.02em;
-    font-weight: 500;
     font-size: 14px;
     line-height: 130%;
     color: #a3a3a3;
@@ -87,14 +86,12 @@ const StReplyWrap = styled.div`
       line-height: 130%;
     }
     .replyDay {
-      font-weight: 400;
       font-size: 12px;
       line-height: 130%;
       color: #b4b4b4;
     }
   }
   .relyText {
-    font-weight: 400;
     font-size: 14px;
     line-height: 24px;
     margin-top: 3px;

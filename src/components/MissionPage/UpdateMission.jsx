@@ -1,6 +1,8 @@
 import { MISSION_ADD_LENGTH } from "shared/data";
 import { useState, useCallback } from "react";
+import { badWords } from "shared/TextsData";
 import useUpdateMission from "components/Hooks/Mission/useUpdateMission";
+import AlertComponent from "components/Common/AlertComponent";
 import InputModal from "components/Common/InputModal";
 import modify from "assets/img/modify.webp";
 import styled from "@emotion/styled";
@@ -18,15 +20,39 @@ const UpdateMission = ({ missionId }) => {
   }, []);
 
   const onUpdateHandler = useCallback(() => {
-    setFlag((value) => !value);
-    mutate({ missionId: missionId, missionContent: missionContent });
+    if (missionContent !== "") {
+      setFlag((value) => !value);
+      mutate({ missionId: missionId, missionContent: missionContent });
+    } else {
+      AlertComponent({
+        icon: "error",
+        title: "에러!",
+        text: "제대로 된 미션을 입력해주세요",
+      });
+    }
   }, [missionId, missionContent, mutate]);
+
+  const bogusCheck = useCallback(() => {
+    const foundSwears = badWords.filter((word) =>
+      missionContent.toLowerCase().includes(word.toLowerCase())
+    );
+    if (foundSwears.length) {
+      AlertComponent({
+        icon: "error",
+        title: "에러!",
+        text: "제대로 된 미션을 입력해주세요",
+      });
+    } else {
+      onUpdateHandler();
+    }
+  }, [missionContent, onUpdateHandler]);
+
   return (
     <>
       {flag ? (
         <InputModal
           set={setMissionContent}
-          confirm={onUpdateHandler}
+          confirm={bogusCheck}
           cancel={() => onCancelBtnHandler(setFlag)}
           title="미션 수정하기"
           cancelTitle="취소"

@@ -50,7 +50,6 @@ const StWrapFlex = styled(StWrap)`
     color: #956c4a;
   }
   .subTitle {
-    font-weight: 400;
     font-size: 15px;
     line-height: 140%;
   }

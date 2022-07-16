@@ -148,6 +148,7 @@ const StSearchInputDiv = styled.div`
             color: #a3a3a3;
         }
     }
+
 `;
 
 const StImg = styled.div`

@@ -3,6 +3,7 @@ import useGetAllLIkes from "components/Hooks/Like/useGetAllLIkes";
 import styled from "@emotion/styled";
 import flex from "components/Common/flex";
 import loadable from "@loadable/component";
+import { LIKE_MAX_SHOW } from "shared/data";
 
 const Loading = loadable(() => import("pages/Status/Loading"));
 
@@ -11,7 +12,7 @@ const LikeInfo = ({ postId }) => {
 
   const picAmountHandler = useCallback(() => {
     const arr = [1, 2, 3, 4, 5];
-    if (data?.length < 5) {
+    if (data?.length > LIKE_MAX_SHOW) {
       return arr.map((_, i) => {
         return (
           <div key={i}>
@@ -29,11 +30,15 @@ const LikeInfo = ({ postId }) => {
   return (
     <>
       {isFetching ? (
-        <Loading />
+        ""
       ) : (
         <StWrap>
           {picAmountHandler()}
-          <span>{data?.length - 5 < 1 ? "" : data?.length - 5}</span>
+          <span>
+            {data?.length - LIKE_MAX_SHOW < 1
+              ? ""
+              : `+${data?.length - LIKE_MAX_SHOW}`}
+          </span>
         </StWrap>
       )}
     </>

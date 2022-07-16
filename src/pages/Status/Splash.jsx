@@ -28,7 +28,6 @@ const StWrapFlex = styled(StWrap)`
     margin-bottom: 6px;
   }
   .smallSpan {
-    font-weight: 400;
     font-size: 20px;
     line-height: 130%;
     color: var(--gray);
