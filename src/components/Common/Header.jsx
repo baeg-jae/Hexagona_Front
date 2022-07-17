@@ -1,14 +1,16 @@
+import HeaderProfile from "components/MainPage/HeaderProfile";
 import DropDownMenu from "./DropDownMenu";
 import styled from "@emotion/styled";
 import flex from "./flex";
 
 const Header = ({ data }) => {
+  const profile_img = data?.profile_img;
   return (
     <StWrap className="main">
       <StWrapFlex>
         <HeaderWrap>
           <div className="LeftDiv">
-            <StProfileImgDiv pic={data?.profile_img} />
+            <HeaderProfile profile_img={profile_img} />
             <div className="textDiv">
               <span>갓생러 {data?.nickname}</span>
             </div>
@@ -57,13 +59,4 @@ const HeaderWrap = styled.div`
     margin-left: 12px;
     color: #4f514a;
   }
-`;
-
-const StProfileImgDiv = styled.div`
-  width: 56px;
-  height: 56px;
-  border-radius: 100px;
-  background-image: url(${(props) => props.pic});
-  background-size: cover;
-  background-position: center;
 `;

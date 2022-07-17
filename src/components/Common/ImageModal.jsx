@@ -1,8 +1,10 @@
+import { FlexRowDiv } from "./GlobalStyles";
 import { useState } from "react";
 import styled from "@emotion/styled";
 import flex from "components/Common/flex";
-import { FlexRowDiv } from "./GlobalStyles";
 import Upload from "assets/img/upload.webp";
+import { useDispatch } from "react-redux";
+import { addUserProfileTemp } from "redux/modules/user";
 
 const ImageModal = ({
   set,
@@ -13,9 +15,12 @@ const ImageModal = ({
   confirmTitle,
 }) => {
   const [fileImage, setFileImage] = useState();
+  const dispatch = useDispatch();
 
-  const saveFileImage = (e) => {
-    setFileImage(URL.createObjectURL(e.target.files[0]));
+  const saveFileImage = async (e) => {
+    const profilePicture = URL.createObjectURL(e.target.files[0]);
+    setFileImage(profilePicture);
+    dispatch(addUserProfileTemp({ profile: profilePicture }));
     set(e.target.files[0]);
   };
   return (

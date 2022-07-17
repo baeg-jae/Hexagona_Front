@@ -18,7 +18,7 @@ const useUpdateNickname = () => {
         return oldData;
       });
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries("user");
       AlertComponent({
         icon: "success",

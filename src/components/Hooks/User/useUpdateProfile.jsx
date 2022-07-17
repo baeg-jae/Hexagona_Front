@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from "react-query";
-import AlertComponent from "components/Common/AlertComponent";
 import apis from "shared/api/main";
 
 const updateProfile = async (payload) => {
@@ -13,12 +12,7 @@ const useUpdateProfile = () => {
   return useMutation(updateProfile, {
     onSuccess: (data) => {
       queryClient.invalidateQueries("user");
-      if (data.data === "") {
-        AlertComponent({
-          icon: "success",
-          text: "프로필사진이 변경 되었습니다",
-        });
-      }
+      return data;
     },
     onError: (e) => {},
   });

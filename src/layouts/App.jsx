@@ -2,31 +2,19 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import MobileFrame from "components/Common/MobileFrame";
 import Routing from "components/Routings/Routing";
 import styled from "@emotion/styled";
-import "./App.css";
-import { createContext, useState } from "react";
-import ReactSwitch from "react-switch";
+import { createContext } from "react";
 
 export const ThemeContext = createContext(null);
 
 function App() {
-  const [theme, setTheme] = useState("light");
-  const toggleTheme = () => {
-    setTheme((curr) => (curr === "light" ? "dark" : "light"));
-  };
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <Fullscreen className="App" id={theme}>
-        {/* <div className="switch">
-          <label>{theme === "light" ? "Light Mode" : "Dark Mode"}</label>
-          <ReactSwitch onChange={toggleTheme} checked={theme === "dark"} />
-        </div> */}
-        <Wrap>
-          <MobileFrame>
-            <Routing />
-          </MobileFrame>
-        </Wrap>
-      </Fullscreen>
-    </ThemeContext.Provider>
+    <Fullscreen>
+      <Wrap>
+        <MobileFrame>
+          <Routing />
+        </MobileFrame>
+      </Wrap>
+    </Fullscreen>
   );
 }
 
