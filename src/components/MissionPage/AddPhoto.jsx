@@ -20,9 +20,11 @@ const AddPhoto = ({ missionContent, files, missionId }) => {
   // const { data } = useGetPost();
 
   const addTodoMutation = useMutation(addPost, {
+    onMutate: () => {
+      navigate("/");
+    },
     onSuccess: () => {
       queryClient.invalidateQueries("post");
-
       AlertComponent({
         icon: "success",
         text: "사진 추가에 성공했습니다.",
