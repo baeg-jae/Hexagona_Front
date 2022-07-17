@@ -27,7 +27,12 @@ const AddedMission = ({ missionContent, missionId }) => {
             <label htmlFor="file">
               <StImg img={Camera} />
             </label>
-            <input type="file" id="file" onChange={saveFileImage} />
+            <input
+              type="file"
+              accept="image/*"
+              id="file"
+              onChange={saveFileImage}
+            />
 
             <FlexColumnDiv>
               <UpdateMission missionId={missionId} />

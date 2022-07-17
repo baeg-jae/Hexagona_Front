@@ -30,7 +30,12 @@ const ImageModal = ({
           <div className="TextContainer">
             <span className="missionTitle">{title}</span>
           </div>
-          <input type="file" id="file" onChange={saveFileImage} />
+          <input
+            type="file"
+            id="file"
+            accept="image/*"
+            onChange={saveFileImage}
+          />
           <label htmlFor="file">
             {fileImage?.length ? (
               <StImg img={fileImage} />
