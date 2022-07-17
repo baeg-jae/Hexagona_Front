@@ -11,6 +11,13 @@ const useUpdateNickname = () => {
   const queryClient = useQueryClient();
 
   return useMutation(addComment, {
+    onMutate: async (data) => {
+      await queryClient.cancelQueries("user");
+      queryClient.setQueryData("user", (oldData) => {
+        oldData.nickname = data.nickname;
+        return oldData;
+      });
+    },
     onSuccess: (data) => {
       queryClient.invalidateQueries("user");
       AlertComponent({
