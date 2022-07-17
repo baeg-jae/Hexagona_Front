@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useCallback, useState } from "react";
 import { StWrap } from "./styles";
-import SkeletonFeed from "./SkeletonFeed";
+import SkeletonFeed from "components/Skeletons/SkeletonFeed";
 import LeftFeed from "./LeftFeed";
 import RightFeed from "./RightFeed";
 import Search from "./Search";

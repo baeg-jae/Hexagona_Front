@@ -5,7 +5,7 @@ import NavigatorBar from "components/Common/NavigatorBar";
 import Header from "components/Common/Header";
 import loadable from "@loadable/component";
 import styled from "@emotion/styled";
-import SkeletonMain from "components/MainPage/SkeletonMain";
+import SkeletonMain from "components/Skeletons/SkeletonMain";
 
 const Main = loadable(() => import("./Main"));
 const HomeCategory = loadable(() => import("pages/HomeCategory"));
