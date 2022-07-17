@@ -1,21 +1,12 @@
-import { shuffleArray } from "shared/shuffleArray";
-import { useEffect, useState } from "react";
+import { useGetMyPosts } from "components/Hooks/User/GetMyPosts";
+import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import GetMyPosts from "components/Hooks/User/GetMyPosts";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
-import { useCallback } from "react";
-import { useGetMyPosts } from "components/Hooks/User/GetMyPosts";
 
 const MyPageFeed = () => {
   const navigate = useNavigate();
   const { data } = useGetMyPosts();
-  console.log(data);
-
-  const firstFile = data?.filter((v, i) => {
-    return i === 0 ? v : "";
-  });
-  console.log(firstFile);
 
   const onClickHandler = useCallback(() => {
     navigate("/myFeed");
