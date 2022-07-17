@@ -21,7 +21,7 @@ const AddPhoto = ({ missionContent, files, missionId }) => {
 
   const addTodoMutation = useMutation(addPost, {
     onMutate: () => {
-      navigate("/");
+      navigate("/loading");
     },
     onSuccess: () => {
       queryClient.invalidateQueries("post");
