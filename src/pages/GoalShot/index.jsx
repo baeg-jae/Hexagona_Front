@@ -3,7 +3,7 @@ import { GOALSHOT_RANDOM_CARD } from "shared/data";
 import { useEffect, useState } from "react";
 import GoalShotButtons from "components/GoalShot/GoalShotButtons";
 import GoalShotCards from "components/GoalShot/GoalShotCards";
-import SkeletonGoalShot from "components/GoalShot/SkeletonGoalShot";
+import SkeletonGoalShot from "components/Skeletons/SkeletonGoalShot";
 import NavigatorBar from "components/Common/NavigatorBar";
 import useGetGoalShot from "components/Hooks/GoalShot/useGetGoalShot";
 import { shuffleArray } from "shared/shuffleArray";

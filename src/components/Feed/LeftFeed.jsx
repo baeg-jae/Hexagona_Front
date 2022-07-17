@@ -8,7 +8,6 @@ const LeftFeed = ({ data, keyword, onClickHandler }) => {
       <StLeftRow>
         {/* 내사진보기 */}
         <MyPageFeed />
-        {/* 랜덤으로 아무사진이나 보기 */}
         {data
           ?.filter((v) => {
             if (keyword === "") {

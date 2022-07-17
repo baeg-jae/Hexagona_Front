@@ -1,109 +1,60 @@
 :root {
-    --primary: #2ec2b8;
-    --primary-hover: #20a097;
-    --font-main: #0f0f0f;
-    --gray: #555555;
-    --Line: #f4f4f4;
-    --purple: #8e44ad;
-    --yellow: #fff200;
-    --pink: #ffcccc;
-    --orange: #ff9f1a;
-    --white: #fff;
-    --black: #212121;
-    --blue: #4d7cfe;
-    --red: #e00303;
-    --brown: #665547;
-    --gradient: #1e1818;
-    --goalShotButton: #2c2825;
-    --skeleton: #e5e5e5;
+  --gray: #555555;
+  --white: #fff;
+  --black: #212121;
+  --brown: #665547;
+  --gradient: #1e1818;
+  --goalShotButton: #2c2825;
+  --skeleton: #e5e5e5;
 }
 
 .App {
-    font-family: 'Ubuntu', sans-serif;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    overflow-y: auto;
-}
-
-#light {
-    background-color: #f3ebf6;
-}
-
-#dark {
-    background-color: #46045e;
-}
-
-#light .main {
-    background-color: #fff;
-    color: #8c55aa;
-}
-
-#dark .main {
-    background-color: #38004c;
-    color: #ffffff;
-}
-
-.switch {
-    display: flex;
-    width: 100vw;
-    height: 100px;
-    justify-content: center;
-    align-items: center;
-}
-
-.switch label {
-    margin: 10px;
-}
-
-#light .switch label {
-    color: black;
-}
-
-#dark .switch label {
-    color: white;
+  font-family: "Ubuntu", sans-serif;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow-y: auto;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background: #151616;
-    font-family: roboto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: #151616;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 button {
-    border: none;
-    border-radius: 10px;
-    font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
 }
 
 button:disabled {
-    background-color: #d6d6d6;
+  background-color: #d6d6d6;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 a:visited {
-    color: inherit;
+  color: inherit;
 }
 
-input[type='file'] {
-    position: absolute;
-    width: 0;
-    height: 0;
-    padding: 0;
-    overflow: hidden;
-    border: 0;
+input[type="file"] {
+  position: absolute;
+  width: 0;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
 }

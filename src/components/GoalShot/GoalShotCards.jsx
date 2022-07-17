@@ -65,10 +65,8 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
                 flag={cardTrigger()}
               >
                 <div className="gradient">
-                  <span className="category">{data[count]?.category}</span>
-                  <span className="postContent">
-                    {data[count]?.postContent}
-                  </span>
+                  <span className="category"></span>
+                  <span className="postContent"></span>
                 </div>
               </StRightCard>
             )}
@@ -143,7 +141,7 @@ const StCard = styled.div`
     border-radius: 20px;
     background: linear-gradient(
       180deg,
-      rgba(30, 5, 5, 0) -9.31%,
+      rgba(30, 5, 5, 0) -2.31%,
       var(--gradient)
     );
   }

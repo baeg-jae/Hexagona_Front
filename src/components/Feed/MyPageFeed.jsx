@@ -5,33 +5,35 @@ import GetMyPosts from "components/Hooks/User/GetMyPosts";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 import { useCallback } from "react";
+import { useGetMyPosts } from "components/Hooks/User/GetMyPosts";
+
 const MyPageFeed = () => {
-  const [myPostContainer, setMyPostContainer] = useState([]);
-  const myPosts = GetMyPosts();
   const navigate = useNavigate();
+  const { data } = useGetMyPosts();
+  console.log(data);
 
-  useEffect(() => {
-    setMyPostContainer(shuffleArray(myPosts));
-  }, [myPosts]);
-
-  const randomMyPost = myPostContainer?.filter((v, i) => {
+  const firstFile = data?.filter((v, i) => {
     return i === 0 ? v : "";
   });
+  console.log(firstFile);
 
   const onClickHandler = useCallback(() => {
     navigate("/myFeed");
   }, [navigate]);
   return (
     <>
-      {randomMyPost?.map((v, i) => {
-        return (
-          <StMyPage img={v.photoUrl} key={i} onClick={onClickHandler}>
-            <StMySpan>내 사진</StMySpan>
-            <StMySpan>모아보기</StMySpan>
-            <StMySpan small>총 {myPosts?.length} 개의 사진</StMySpan>
-          </StMyPage>
-        );
-      })}
+      {data !== undefined ? (
+        <StMyPage img={data[0]?.photoUrl} onClick={onClickHandler}>
+          <StMySpan>내 사진</StMySpan>
+          <StMySpan>모아보기</StMySpan>
+          <StMySpan small>총 {data?.length} 개의 사진</StMySpan>
+        </StMyPage>
+      ) : (
+        <StSkeleton>
+          <StMySpan>내 사진</StMySpan>
+          <StMySpan>모아보기</StMySpan>
+        </StSkeleton>
+      )}
     </>
   );
 };
@@ -58,4 +60,13 @@ const StMySpan = styled.span`
   font-size: ${(props) => (props.small ? "14px" : "16px")};
   line-height: ${(props) => (props.small ? "16px" : "19px")};
   color: #1c1c1c;
+`;
+
+const StSkeleton = styled.div`
+  ${flex({ direction: "column" })}
+  width: 166px;
+  height: 225px;
+  border-radius: 20px;
+  background-color: gray;
+  opacity: 0.4;
 `;

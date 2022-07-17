@@ -5,7 +5,7 @@ import useGetMission from "components/Hooks/Mission/useGetMission";
 import EmptyMission from "components/MissionPage/EmptyMission";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
-import SkeletonMission from "components/MissionPage/SkeletonMission";
+import SkeletonMission from "components/Skeletons/SkeletonMission";
 
 const HomeCategory = () => {
   const { data, isLoading } = useGetMission();

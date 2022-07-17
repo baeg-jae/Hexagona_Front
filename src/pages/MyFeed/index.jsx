@@ -55,7 +55,6 @@ const StDiv = styled.div`
   justify-content: center;
   gap: 10px;
   grid-template-columns: 166px 166px;
-  height: calc(100vh - 150px);
   margin-top: 80px;
   overflow-y: scroll;
 `;
