@@ -4,6 +4,7 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Routing from "components/Routings/Routing";
 import styled from "@emotion/styled";
 import bg from "assets/img/BackgroundImg.webp";
+import GoogleForm from "./GoogleForm";
 
 function App() {
   const handleResize = () => {
@@ -21,6 +22,7 @@ function App() {
       <div className="wrap">
         <Routing />
       </div>
+      <GoogleForm />
     </Container>
   );
 }
