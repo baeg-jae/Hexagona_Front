@@ -2,13 +2,22 @@ import { FlexRowDiv } from "components/Common/GlobalStyles";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 
-const SkeletonCard = () => {
+const SkeletonCard = ({ data }) => {
+  console.log(data);
   return (
     <>
       <StCardContainer>
-        <StCard differ />
-        <StCard />
-        <StCard differ />
+        {data?.length < 10 ? (
+          <>
+            <StCard differ />
+            <StCard />
+            <StCard differ />
+          </>
+        ) : (
+          <>
+            <StCard />
+          </>
+        )}
       </StCardContainer>
       <FlexRowDiv style={{ gap: "16px" }}>
         <StButton />

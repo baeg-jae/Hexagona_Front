@@ -25,7 +25,7 @@ const GoalShot = () => {
       <StWrap className="main">
         {isFetching ? (
           <>
-            <SkeletonGoalShot />
+            <SkeletonGoalShot data={data} />
           </>
         ) : (
           <>
