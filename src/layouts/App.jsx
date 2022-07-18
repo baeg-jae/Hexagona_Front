@@ -1,48 +1,64 @@
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import MobileFrame from "components/Common/MobileFrame";
 import Routing from "components/Routings/Routing";
 import styled from "@emotion/styled";
-import { createContext } from "react";
-
-export const ThemeContext = createContext(null);
+import { useEffect } from "react";
 
 function App() {
+  const handleResize = () => {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  };
+  useEffect(() => {
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <Fullscreen>
-      <Wrap>
-        <MobileFrame>
-          <Routing />
-        </MobileFrame>
-      </Wrap>
-    </Fullscreen>
+    <Container>
+      <div className="wrap">
+        <Routing />
+      </div>
+    </Container>
   );
 }
 
 export default App;
 
-const Fullscreen = styled.div`
-  margin: auto;
-  /* margin-bottom: 30px; */
+// 웹뷰
+const Container = styled.div`
   display: flex;
-  ::-webkit-scrollbar {
-    display: none;
-  }
-  @media (max-width: 540px) {
-    justify-content: center;
-    overflow: hidden auto;
-  }
-  @media (max-width: 1579px) and (min-width: 541px) {
-    justify-content: flex-end;
-    overflow: hidden auto;
-  }
-  @media (min-width: 1580px) {
-    overflow: hidden auto;
-  }
-`;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  background-color: #f6f6f6;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  overflow: hidden;
 
-const Wrap = styled.div`
-  width: 100%;
-  max-height: 100%;
-  height: auto;
-  -webkit-overflow-scrolling: touch;
+  @media screen and (max-width: 1024px) {
+    background-image: none;
+  }
+
+  // 모바일 뷰
+  .wrap {
+    width: 100%;
+    max-width: 420px;
+    height: calc(var(--vh) * 100);
+    margin: 0 auto;
+    padding: 0 auto;
+    box-sizing: border-box;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+
+    @media screen and (min-width: 1024px) {
+      position: relative;
+      left: 11%;
+      top: 0%;
+      overflow: auto;
+    }
+  }
 `;

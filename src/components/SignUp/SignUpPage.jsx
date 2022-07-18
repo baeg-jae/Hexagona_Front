@@ -22,7 +22,7 @@ const __dupCheck = async (payload) => {
 };
 
 const SignUpPage = () => {
-  const [flag, setFlag] = useState();
+  const [flag, setFlag] = useState(false);
   const [name, setName] = useState("");
   const queryClient = useQueryClient();
   const onSkipHandler = useNewUserCheck();
@@ -124,7 +124,7 @@ const SignUpPage = () => {
           />
         </StWrap>
       ) : (
-        <IntroPage></IntroPage>
+        <IntroPage />
       )}
     </>
   );
