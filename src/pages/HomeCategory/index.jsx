@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import CategoryTop from "components/MissionPage/CategoryTop";
 import useGetMission from "components/Hooks/Mission/useGetMission";
 import EmptyMission from "components/MissionPage/EmptyMission";
@@ -26,6 +27,9 @@ const HomeCategory = () => {
         <SkeletonMission />
       ) : (
         <StWrap>
+          <Helmet>
+            <title>미션: 갓생메이커</title>
+          </Helmet>
           <StContainer>
             <CategoryTop />
             <EmptyMission category={category} list={list} />

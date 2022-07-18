@@ -1,5 +1,6 @@
 import { StWrap } from "components/Common/GlobalStyles";
 import { Routes, Route } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import useGetUser from "components/Hooks/User/useGetUser";
 import NavigatorBar from "components/Common/NavigatorBar";
 import Header from "components/Common/Header";
@@ -21,6 +22,9 @@ const Home = () => {
       ) : (
         <>
           <Header data={data} />
+          <Helmet>
+            <title>마이: 갓생메이커</title>
+          </Helmet>
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/:category" element={<HomeCategory />} />
