@@ -1,5 +1,6 @@
 import { FlexRowDiv } from "components/Common/GlobalStyles";
 import { useEffect } from "react";
+import { CARD_BUTTON_TIME } from "shared/data";
 import AddDislikeButton from "./AddDislikeButton";
 import AddLikeButton from "./AddLikeButton";
 
@@ -26,7 +27,7 @@ const GoalShotButtons = ({
         isChooseTwo(false);
         setCount((value) => value + 1);
       }
-    }, 1000);
+    }, CARD_BUTTON_TIME);
     return () => {
       clearTimeout(interval);
     };

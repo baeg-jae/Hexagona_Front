@@ -3,7 +3,7 @@ import {
   RightCardAnim,
   RightRightCardAnim,
 } from "components/Common/GlobalStyles";
-import { GOALSHOT_RANDOM_CARD } from "shared/data";
+import { GOALSHOT_RANDOM_CARD, CARD_ANIMATION_TIME } from "shared/data";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 
@@ -116,7 +116,8 @@ const StCard = styled.div`
   border-radius: 20px;
   margin-top: ${(props) => (props.differ ? "107px" : "57px")};
   opacity: ${(props) => (props.differ ? "0.6" : "1")};
-  animation: ${(props) => props.flag && CenterCardAnim()} 1s ease;
+  animation: ${(props) => props.flag && CenterCardAnim()}
+    ${CARD_ANIMATION_TIME}s ease;
   span {
     margin-left: 20px;
   }
@@ -148,15 +149,18 @@ const StCard = styled.div`
 `;
 
 const StRightCard = styled(StCard)`
-  animation: ${(props) => props.flag && RightCardAnim()} 1s ease;
+  animation: ${(props) => props.flag && RightCardAnim()} ${CARD_ANIMATION_TIME}s
+    ease;
 `;
 
 const StLeftCard = styled(StCard)`
-  animation: ${(props) => props.flag && RightCardAnim()} 1s ease;
+  animation: ${(props) => props.flag && RightCardAnim()} ${CARD_ANIMATION_TIME}s
+    ease;
 `;
 
 const StRightRightCard = styled(StCard)`
-  animation: ${(props) => props.flag && RightRightCardAnim()} 1s ease;
+  animation: ${(props) => props.flag && RightRightCardAnim()}
+    ${CARD_ANIMATION_TIME}s ease;
 `;
 
 const StLastCard = styled.div`
@@ -168,7 +172,8 @@ const StLastCard = styled.div`
   filter: drop-shadow(0px 43px 40px rgba(0, 0, 0, 0.2));
   opacity: ${(props) => (props.differ ? "0.6" : "1")};
   margin-top: ${(props) => (props.differ ? "107px" : "57px")};
-  animation: ${(props) => props.flag && RightCardAnim()} 1s ease;
+  animation: ${(props) => props.flag && RightCardAnim()} ${CARD_ANIMATION_TIME}s
+    ease;
   .innerText {
     color: #956c4a;
     font-weight: 700;
@@ -178,5 +183,6 @@ const StLastCard = styled.div`
 `;
 
 const StLastLastCard = styled(StLastCard)`
-  animation: ${(props) => props.flag && RightRightCardAnim()} 1s ease;
+  animation: ${(props) => props.flag && RightRightCardAnim()}
+    ${CARD_ANIMATION_TIME}s ease;
 `;
