@@ -6,7 +6,7 @@ import flex from "components/Common/flex";
 import Camera from "assets/img/Camera.webp";
 import styled from "@emotion/styled";
 import apis from "shared/api/main";
-// import useGetPost from "components/Hooks/useGetPost";
+import useGetPost from "components/Hooks/useGetPost";
 
 const addPost = async (payload) => {
   const addedData = await apis.addPost(payload);
@@ -17,7 +17,7 @@ const AddPhoto = ({ missionContent, files, missionId }) => {
   const { category } = useParams();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  // const { data } = useGetPost();
+  const { data } = useGetPost();
 
   const addTodoMutation = useMutation(addPost, {
     onMutate: () => {
@@ -29,8 +29,10 @@ const AddPhoto = ({ missionContent, files, missionId }) => {
         icon: "success",
         text: "사진 추가에 성공했습니다.",
       });
-      // navigate(`/detail/${data[data?.length - 1]?.postId + 1}`);
-      navigate(`/feed`);
+      if (data?.length !== undefined) {
+        navigate(`/detail/${data?.length + 1}`);
+      }
+      // navigate(`/feed`);
     },
     onError: (e) => {},
   });

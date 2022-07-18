@@ -6,7 +6,6 @@ const Main = () => {
   return (
     <div style={{ width: "100%" }}>
       <StFlexRowDiv className="main">
-        d
         <CategoryLink url="/home/exercise" picName="one" text="운동하기" />
         <CategoryLink url="/home/study" picName="two" text="학습" />
         <CategoryLink url="/home/life" picName="three" text="생활습관" />
