@@ -33,6 +33,7 @@ const Container = styled.div`
   align-items: center;
   height: 100%;
   background-color: #f6f6f6;
+  background-image: url("https://htmlcolorcodes.com/assets/images/colors/watermelon-pink-color-solid-background-1920x1080.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: bottom;
