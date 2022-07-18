@@ -6,3 +6,4 @@ export const COMMENT_MAX_LENGTH = 100;
 export const MISSION_ADD_LENGTH = 20;
 export const GOALSHOT_RANDOM_CARD = 11;
 export const LIKE_MAX_SHOW = 5;
+export const MOBILE_SIZE_WIDTH = 420;

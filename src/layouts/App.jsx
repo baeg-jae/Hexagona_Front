@@ -1,7 +1,9 @@
+import { MOBILE_SIZE_WIDTH } from "shared/data";
+import { useEffect } from "react";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Routing from "components/Routings/Routing";
 import styled from "@emotion/styled";
-import { useEffect } from "react";
+import bg from "assets/img/BackgroundImg.webp";
 
 function App() {
   const handleResize = () => {
@@ -33,10 +35,10 @@ const Container = styled.div`
   align-items: center;
   height: 100%;
   background-color: #f6f6f6;
-  background-image: url("https://htmlcolorcodes.com/assets/images/colors/watermelon-pink-color-solid-background-1920x1080.png");
+  background-image: url(${bg});
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: bottom;
+  background-position: center;
   overflow: hidden;
 
   @media screen and (max-width: 1024px) {
@@ -46,7 +48,7 @@ const Container = styled.div`
   // 모바일 뷰
   .wrap {
     width: 100%;
-    max-width: 420px;
+    max-width: ${MOBILE_SIZE_WIDTH}px;
     height: calc(var(--vh) * 100);
     margin: 0 auto;
     padding: 0 auto;
