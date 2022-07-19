@@ -6,6 +6,7 @@ import Splash from 'pages/Status/Splash';
 
 const Kakao = loadable(() => import('pages/SocialLogIn/Kakao'));
 const Google = loadable(() => import('pages/SocialLogIn/Google'));
+const Naver = loadable(() => import('pages/SocialLogIn/Naver'));
 const SignUp = loadable(() => import('pages/SignUp'));
 const LogIn = loadable(() => import('pages/LogIn'));
 const Error = loadable(() => import('pages/Status/Error'));
@@ -25,6 +26,7 @@ const Routing = () => {
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/oauth/kakao/callback" element={<Kakao />} />
                 <Route path="/oauth/google/callback" element={<Google />} />
+                <Route path="/oauth/naver/callback" element={<Naver />} />
             </Route>
             <Route element={<ProtectedRoutesNoLogin />}>
                 <Route path="/home/*" element={<Home />} />
