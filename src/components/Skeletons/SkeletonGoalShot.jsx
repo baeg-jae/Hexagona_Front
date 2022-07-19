@@ -3,7 +3,6 @@ import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 
 const SkeletonCard = ({ data }) => {
-  console.log(data);
   return (
     <>
       <StCardContainer>

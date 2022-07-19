@@ -1,6 +1,6 @@
 import { dropBoxAnimation, FlexRowDiv } from "./GlobalStyles";
 import { SIGN_UP_MAX_LENGTH } from "shared/data";
-import { useState, useCallback } from "react";
+import { useRef, useCallback } from "react";
 import useNicknameHandle from "components/Hooks/User/useNicknameHandle";
 import useImageHandler from "components/Hooks/useImageHandler";
 import useCommentDHandle from "components/Hooks/Comment/useCommentDHandle";
@@ -9,6 +9,7 @@ import InputModal from "components/Common/InputModal";
 import ImageModal from "./ImageModal";
 import styled from "@emotion/styled";
 import flex from "./flex";
+import useDetectClose from "components/Hooks/useDetectClose";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 
 const DropDownMenu = ({
@@ -21,7 +22,9 @@ const DropDownMenu = ({
   commentId,
   color,
 }) => {
-  const [flag, setFlag] = useState(false);
+  const dropDownRef = useRef(null);
+  console.log(dropDownRef);
+  const [isOpen, setIsOpen] = useDetectClose(dropDownRef, false);
   const { setNicknameFlag, nicknameFlag, setNickname, bogusCheck } =
     useNicknameHandle();
   const { setProfileFlag, profileFlag, setProfile, onSendProfile } =
@@ -33,8 +36,8 @@ const DropDownMenu = ({
   const { onDeleteDetail } = useDetailDHandle({ postId: postId });
 
   const onClickHandler = useCallback(() => {
-    setFlag((value) => !value);
-  }, []);
+    setIsOpen(!isOpen);
+  }, [isOpen, setIsOpen]);
 
   const SecondClickTypeHandler = useCallback(() => {
     switch (click2) {
@@ -93,10 +96,10 @@ const DropDownMenu = ({
       )}
 
       <StImgDiv onClick={onClickHandler}>
-        <StDotDiv color={color}>
+        <StDotDiv color={color} ref={dropDownRef}>
           <BiDotsVerticalRounded />
         </StDotDiv>
-        {flag ? (
+        {isOpen ? (
           <DropRow margin={margin}>
             <span onClick={() => FirstClickTypeHandler()}>{text}</span>
             {text2 !== undefined ? (
