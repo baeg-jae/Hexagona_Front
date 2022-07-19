@@ -1,7 +1,11 @@
-import React from "react";
+import WebTitle from "components/Common/WebTitle";
 
 const Chat = () => {
-  return <div>Chat</div>;
+  return (
+    <div>
+      <WebTitle text="채팅: 갓생메이커" />
+    </div>
+  );
 };
 
 export default Chat;
