@@ -62,7 +62,7 @@ const StWrap = styled.div`
     height: 100%;
     .missionContent {
       width: 168px;
-      margin-left: 0px;
+      margin-left: 40px;
       font-style: normal;
       font-weight: 600;
       font-size: 24px;

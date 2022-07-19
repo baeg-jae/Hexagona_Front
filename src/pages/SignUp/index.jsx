@@ -1,13 +1,11 @@
 import { StWrap } from "components/Common/GlobalStyles";
-import { Helmet } from "react-helmet";
 import SignUpPage from "components/SignUp/SignUpPage";
+import WebTitle from "components/Common/WebTitle";
 
 const SignUp = () => {
   return (
     <StWrap>
-      <Helmet>
-        <title>회원가입: 갓생메이커</title>
-      </Helmet>
+      <WebTitle text="회원가입: 갓생메이커" />
       <SignUpPage></SignUpPage>
     </StWrap>
   );

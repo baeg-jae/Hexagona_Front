@@ -72,7 +72,7 @@ const StWrap = styled.div`
   }
   .barLine {
     width: 300px;
-    border: 0.1px solid #eaeaea;
+    border: 1px solid #eaeaea;
     margin-bottom: 26px;
     margin-left: 10px;
   }
@@ -88,6 +88,6 @@ const StWrap = styled.div`
 const StBar = styled.div`
   position: absolute;
   left: -9px;
-  bottom: -13px;
+  bottom: -12.5px;
   width: ${(props) => (props.big ? `60px` : `40px`)};
 `;
