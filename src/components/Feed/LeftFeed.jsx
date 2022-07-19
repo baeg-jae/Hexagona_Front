@@ -31,8 +31,7 @@ const LeftFeed = ({ data, keyword, onClickHandler }) => {
                   />
                 )
               : "";
-          })
-          .reverse()}
+          })}
       </StLeftRow>
     </>
   );
