@@ -1,6 +1,6 @@
 import { dropBoxAnimation, FlexRowDiv } from "./GlobalStyles";
-import { SIGN_UP_MAX_LENGTH } from "shared/data";
-import { useState, useCallback } from "react";
+import { SIGN_UP_MAX_LENGTH, MISSION_ADD_LENGTH } from "shared/data";
+import { useRef, useCallback } from "react";
 import useNicknameHandle from "components/Hooks/User/useNicknameHandle";
 import useImageHandler from "components/Hooks/useImageHandler";
 import useCommentDHandle from "components/Hooks/Comment/useCommentDHandle";
@@ -9,7 +9,10 @@ import InputModal from "components/Common/InputModal";
 import ImageModal from "./ImageModal";
 import styled from "@emotion/styled";
 import flex from "./flex";
+import useDetectClose from "components/Hooks/useDetectClose";
 import { BiDotsVerticalRounded } from "react-icons/bi";
+import useMissionDHandle from "components/Hooks/Mission/useMissionDHandle";
+import useMissionUHandle from "components/Hooks/Mission/useMissionUHandle";
 
 const DropDownMenu = ({
   text,
@@ -20,44 +23,63 @@ const DropDownMenu = ({
   postId,
   commentId,
   color,
+  missionId,
 }) => {
-  const [flag, setFlag] = useState(false);
+  const dropDownRef = useRef(null);
+  const [isOpen, setIsOpen] = useDetectClose(dropDownRef, false);
+  // 닉네임 변경
   const { setNicknameFlag, nicknameFlag, setNickname, bogusCheck } =
     useNicknameHandle();
+  // 프사변경
   const { setProfileFlag, profileFlag, setProfile, onSendProfile } =
     useImageHandler();
-  const { onDelete } = useCommentDHandle({
+  // 댓글 삭제
+  const { onDeleteComment } = useCommentDHandle({
     postId: postId,
     commentId: commentId,
   });
+  // 게시물 삭제
   const { onDeleteDetail } = useDetailDHandle({ postId: postId });
 
+  // 미션 수정
+  const {
+    setMissionUFlag,
+    missionUFlag,
+    setMissionContent,
+    bogusCheckMission,
+  } = useMissionUHandle({ missionId: missionId });
+  // 미션 삭제
+  const { onDeleteMission } = useMissionDHandle({ missionId: missionId });
+
   const onClickHandler = useCallback(() => {
-    setFlag((value) => !value);
-  }, []);
-
-  const SecondClickTypeHandler = useCallback(() => {
-    switch (click2) {
-      case "nickname":
-        return setNicknameFlag((value) => !value);
-
-      default:
-        return;
-    }
-  }, [click2, setNicknameFlag]);
+    setIsOpen(!isOpen);
+  }, [isOpen, setIsOpen]);
 
   const FirstClickTypeHandler = useCallback(() => {
     switch (click) {
       case "image":
         return setProfileFlag((value) => !value);
       case "commentD":
-        return onDelete();
+        return onDeleteComment();
       case "detailD":
         return onDeleteDetail();
+      case "missionU":
+        return setMissionUFlag((value) => !value);
       default:
         return;
     }
-  }, [click, onDelete, onDeleteDetail, setProfileFlag]);
+  }, [click, onDeleteComment, onDeleteDetail, setProfileFlag, setMissionUFlag]);
+
+  const SecondClickTypeHandler = useCallback(() => {
+    switch (click2) {
+      case "nickname":
+        return setNicknameFlag((value) => !value);
+      case "missionD":
+        return onDeleteMission();
+      default:
+        return;
+    }
+  }, [click2, setNicknameFlag, onDeleteMission]);
 
   const onCancelBtnHandler = useCallback((setter) => {
     setter((value) => !value);
@@ -91,12 +113,25 @@ const DropDownMenu = ({
       ) : (
         <></>
       )}
-
+      {missionUFlag ? (
+        <InputModal
+          set={setMissionContent}
+          confirm={bogusCheckMission}
+          cancel={() => onCancelBtnHandler(setMissionUFlag)}
+          title="미션 수정하기"
+          cancelTitle="취소"
+          confirmTitle="변경하기"
+          placeholder="미션을 써주세요"
+          count={MISSION_ADD_LENGTH}
+        />
+      ) : (
+        <></>
+      )}
       <StImgDiv onClick={onClickHandler}>
-        <StDotDiv color={color}>
+        <StDotDiv color={color} ref={dropDownRef}>
           <BiDotsVerticalRounded />
         </StDotDiv>
-        {flag ? (
+        {isOpen ? (
           <DropRow margin={margin}>
             <span onClick={() => FirstClickTypeHandler()}>{text}</span>
             {text2 !== undefined ? (

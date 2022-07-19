@@ -4,11 +4,11 @@ import useDeleteComment from "./useDeleteComment";
 const useCommentDHandle = ({ commentId, postId }) => {
   const { mutate } = useDeleteComment();
 
-  const onDelete = useCallback(() => {
+  const onDeleteComment = useCallback(() => {
     mutate({ commentId: commentId, postId: Number(postId) });
   }, [mutate, commentId, postId]);
 
-  return { onDelete };
+  return { onDeleteComment };
 };
 
 export default useCommentDHandle;

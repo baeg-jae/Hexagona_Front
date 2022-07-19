@@ -1,8 +1,9 @@
+import { useGetMyPosts } from "components/Hooks/User/GetMyPosts";
 import { useNavigate } from "react-router-dom";
 import { useCallback, useState } from "react";
+import { Helmet } from "react-helmet";
 import NavigatorBar from "components/Common/NavigatorBar";
 import Search from "components/Feed/Search";
-import { useGetMyPosts } from "components/Hooks/User/GetMyPosts";
 import styled from "@emotion/styled";
 
 const MyFeed = () => {
@@ -17,6 +18,9 @@ const MyFeed = () => {
   );
   return (
     <>
+      <Helmet>
+        <title>내사진보기: 갓생메이커</title>
+      </Helmet>
       <Search setKeyword={setKeyword} />
       <StDiv>
         {data

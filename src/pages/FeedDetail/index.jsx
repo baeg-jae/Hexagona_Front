@@ -1,5 +1,6 @@
 import { StWrap } from "components/Common/GlobalStyles";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import NavigatorBar from "components/Common/NavigatorBar";
 import useGetPostDetail from "components/Hooks/Detail/useGetPostDetail";
 import CommentInput from "components/Comment_Like/CommentInput";
@@ -22,6 +23,9 @@ const FeedDetail = () => {
       ) : (
         <>
           <StWrapComment>
+            <Helmet>
+              <title>피드: 갓생메이커</title>
+            </Helmet>
             <CommentImg
               category={data?.category}
               postContent={data?.postContent}

@@ -16,11 +16,13 @@ const LogIn = () => {
             </div>
         </StFirstPageDiv>
     );
+
 };
 
 export default LogIn;
 
 const StFirstPageDiv = styled.div`
+
     ${flex({ direction: 'column', justify: 'flex-end' })}
     width: 100%;
     height: 100%;
@@ -40,4 +42,5 @@ const StFirstPageDiv = styled.div`
         height: 50%;
         background: linear-gradient(180deg, rgba(30, 5, 5, 0) -9.31%, var(--gradient) 62.46%);
     }
+
 `;

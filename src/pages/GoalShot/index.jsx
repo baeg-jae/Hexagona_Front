@@ -1,12 +1,13 @@
 import { StWrap } from "components/Common/GlobalStyles";
 import { GOALSHOT_RANDOM_CARD } from "shared/data";
 import { useEffect, useState } from "react";
+import { shuffleArray } from "shared/shuffleArray";
+import { Helmet } from "react-helmet";
 import GoalShotButtons from "components/GoalShot/GoalShotButtons";
 import GoalShotCards from "components/GoalShot/GoalShotCards";
 import SkeletonGoalShot from "components/Skeletons/SkeletonGoalShot";
 import NavigatorBar from "components/Common/NavigatorBar";
 import useGetGoalShot from "components/Hooks/GoalShot/useGetGoalShot";
-import { shuffleArray } from "shared/shuffleArray";
 
 const GoalShot = () => {
   const [count, setCount] = useState(1);
@@ -24,10 +25,14 @@ const GoalShot = () => {
       <StWrap className="main">
         {isFetching ? (
           <>
-            <SkeletonGoalShot />
+            <SkeletonGoalShot data={data} />
           </>
         ) : (
           <>
+            <Helmet>
+              <title>인증샷: 갓생메이커</title>
+            </Helmet>
+
             <GoalShotCards
               count={count}
               data={container?.slice(0, GOALSHOT_RANDOM_CARD)}

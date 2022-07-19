@@ -1,11 +1,9 @@
-import { FlexColumnDiv } from "components/Common/GlobalStyles";
 import { useState } from "react";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 import Camera from "assets/img/Camera.webp";
-import UpdateMission from "./UpdateMission";
-import DeleteMission from "./DeleteMission";
 import AddPhoto from "./AddPhoto";
+import DropDownMenu from "components/Common/DropDownMenu";
 
 const AddedMission = ({ missionContent, missionId }) => {
   const [files, setFiles] = useState();
@@ -23,7 +21,7 @@ const AddedMission = ({ missionContent, missionId }) => {
       ) : (
         <StWrap>
           <div className="innerDiv">
-            <span>{missionContent}</span>
+            <span className="missionContent">{missionContent}</span>
             <label htmlFor="file">
               <StImg img={Camera} />
             </label>
@@ -33,11 +31,14 @@ const AddedMission = ({ missionContent, missionId }) => {
               id="file"
               onChange={saveFileImage}
             />
-
-            <FlexColumnDiv>
-              <UpdateMission missionId={missionId} />
-              <DeleteMission missionId={missionId} />
-            </FlexColumnDiv>
+            <DropDownMenu
+              text="미션 수정"
+              text2="미션 삭제"
+              margin="40"
+              click="missionU"
+              click2="missionD"
+              missionId={missionId}
+            />
           </div>
         </StWrap>
       )}
@@ -56,12 +57,12 @@ const StWrap = styled.div`
   margin-bottom: 8px;
   border: none;
   .innerDiv {
-    ${flex({ justify: "space-between" })}
+    ${flex({ justify: "space-around" })}
     width: 100%;
     height: 100%;
-    span {
+    .missionContent {
       width: 168px;
-      margin-left: 40px;
+      margin-left: 0px;
       font-style: normal;
       font-weight: 600;
       font-size: 24px;

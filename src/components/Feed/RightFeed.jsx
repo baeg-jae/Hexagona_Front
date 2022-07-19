@@ -28,8 +28,7 @@ const RightFeed = ({ data, keyword, onClickHandler }) => {
                   />
                 )
               : "";
-          })
-          .reverse()}
+          })}
       </StRightRow>
     </>
   );

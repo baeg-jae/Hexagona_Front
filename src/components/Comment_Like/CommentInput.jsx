@@ -8,6 +8,7 @@ import AlertComponent from "components/Common/AlertComponent";
 import useGetUser from "components/Hooks/User/useGetUser";
 import styled from "@emotion/styled";
 import flex from "../Common/flex";
+import { MOBILE_SIZE_WIDTH } from "shared/data";
 
 const CommentInput = ({ postId }) => {
   const { data, isFetching } = useGetUser();
@@ -77,7 +78,7 @@ const StWrapFlex = styled.div`
   ${flex({})}
   position: fixed;
   top: calc(100% - 150px);
-  width: 100%;
+  width: ${MOBILE_SIZE_WIDTH};
   height: 92px;
   background-color: var(--white);
 `;
