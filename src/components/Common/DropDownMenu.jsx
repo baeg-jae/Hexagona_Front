@@ -1,5 +1,5 @@
 import { dropBoxAnimation, FlexRowDiv } from "./GlobalStyles";
-import { SIGN_UP_MAX_LENGTH } from "shared/data";
+import { SIGN_UP_MAX_LENGTH, MISSION_ADD_LENGTH } from "shared/data";
 import { useRef, useCallback } from "react";
 import useNicknameHandle from "components/Hooks/User/useNicknameHandle";
 import useImageHandler from "components/Hooks/useImageHandler";
@@ -12,6 +12,7 @@ import flex from "./flex";
 import useDetectClose from "components/Hooks/useDetectClose";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import useMissionDHandle from "components/Hooks/Mission/useMissionDHandle";
+import useMissionUHandle from "components/Hooks/Mission/useMissionUHandle";
 
 const DropDownMenu = ({
   text,
@@ -41,7 +42,12 @@ const DropDownMenu = ({
   const { onDeleteDetail } = useDetailDHandle({ postId: postId });
 
   // 미션 수정
-
+  const {
+    setMissionUFlag,
+    missionUFlag,
+    setMissionContent,
+    bogusCheckMission,
+  } = useMissionUHandle({ missionId: missionId });
   // 미션 삭제
   const { onDeleteMission } = useMissionDHandle({ missionId: missionId });
 
@@ -58,11 +64,11 @@ const DropDownMenu = ({
       case "detailD":
         return onDeleteDetail();
       case "missionU":
-        return;
+        return setMissionUFlag((value) => !value);
       default:
         return;
     }
-  }, [click, onDeleteComment, onDeleteDetail, setProfileFlag]);
+  }, [click, onDeleteComment, onDeleteDetail, setProfileFlag, setMissionUFlag]);
 
   const SecondClickTypeHandler = useCallback(() => {
     switch (click2) {
@@ -73,7 +79,7 @@ const DropDownMenu = ({
       default:
         return;
     }
-  }, [click2, setNicknameFlag]);
+  }, [click2, setNicknameFlag, onDeleteMission]);
 
   const onCancelBtnHandler = useCallback((setter) => {
     setter((value) => !value);
@@ -107,7 +113,20 @@ const DropDownMenu = ({
       ) : (
         <></>
       )}
-
+      {missionUFlag ? (
+        <InputModal
+          set={setMissionContent}
+          confirm={bogusCheckMission}
+          cancel={() => onCancelBtnHandler(setMissionUFlag)}
+          title="미션 수정하기"
+          cancelTitle="취소"
+          confirmTitle="변경하기"
+          placeholder="미션을 써주세요"
+          count={MISSION_ADD_LENGTH}
+        />
+      ) : (
+        <></>
+      )}
       <StImgDiv onClick={onClickHandler}>
         <StDotDiv color={color} ref={dropDownRef}>
           <BiDotsVerticalRounded />
