@@ -11,6 +11,7 @@ import styled from "@emotion/styled";
 import flex from "./flex";
 import useDetectClose from "components/Hooks/useDetectClose";
 import { BiDotsVerticalRounded } from "react-icons/bi";
+import useMissionDHandle from "components/Hooks/Mission/useMissionDHandle";
 
 const DropDownMenu = ({
   text,
@@ -21,46 +22,58 @@ const DropDownMenu = ({
   postId,
   commentId,
   color,
+  missionId,
 }) => {
   const dropDownRef = useRef(null);
-  console.log(dropDownRef);
   const [isOpen, setIsOpen] = useDetectClose(dropDownRef, false);
+  // 닉네임 변경
   const { setNicknameFlag, nicknameFlag, setNickname, bogusCheck } =
     useNicknameHandle();
+  // 프사변경
   const { setProfileFlag, profileFlag, setProfile, onSendProfile } =
     useImageHandler();
-  const { onDelete } = useCommentDHandle({
+  // 댓글 삭제
+  const { onDeleteComment } = useCommentDHandle({
     postId: postId,
     commentId: commentId,
   });
+  // 게시물 삭제
   const { onDeleteDetail } = useDetailDHandle({ postId: postId });
+
+  // 미션 수정
+
+  // 미션 삭제
+  const { onDeleteMission } = useMissionDHandle({ missionId: missionId });
 
   const onClickHandler = useCallback(() => {
     setIsOpen(!isOpen);
   }, [isOpen, setIsOpen]);
-
-  const SecondClickTypeHandler = useCallback(() => {
-    switch (click2) {
-      case "nickname":
-        return setNicknameFlag((value) => !value);
-
-      default:
-        return;
-    }
-  }, [click2, setNicknameFlag]);
 
   const FirstClickTypeHandler = useCallback(() => {
     switch (click) {
       case "image":
         return setProfileFlag((value) => !value);
       case "commentD":
-        return onDelete();
+        return onDeleteComment();
       case "detailD":
         return onDeleteDetail();
+      case "missionU":
+        return;
       default:
         return;
     }
-  }, [click, onDelete, onDeleteDetail, setProfileFlag]);
+  }, [click, onDeleteComment, onDeleteDetail, setProfileFlag]);
+
+  const SecondClickTypeHandler = useCallback(() => {
+    switch (click2) {
+      case "nickname":
+        return setNicknameFlag((value) => !value);
+      case "missionD":
+        return onDeleteMission();
+      default:
+        return;
+    }
+  }, [click2, setNicknameFlag]);
 
   const onCancelBtnHandler = useCallback((setter) => {
     setter((value) => !value);

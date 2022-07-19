@@ -99,6 +99,8 @@ const StCardContainer = styled.div`
   ${flex({ gap: "10px", align: "flex-start" })}
   width: 100%;
   height: 537px;
+  @media screen and (max-width: 1024px) {
+  }
 `;
 
 const StCard = styled.div`

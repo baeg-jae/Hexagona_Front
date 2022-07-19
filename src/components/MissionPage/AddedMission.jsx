@@ -6,6 +6,7 @@ import Camera from "assets/img/Camera.webp";
 import UpdateMission from "./UpdateMission";
 import DeleteMission from "./DeleteMission";
 import AddPhoto from "./AddPhoto";
+import DropDownMenu from "components/Common/DropDownMenu";
 
 const AddedMission = ({ missionContent, missionId }) => {
   const [files, setFiles] = useState();
@@ -23,7 +24,7 @@ const AddedMission = ({ missionContent, missionId }) => {
       ) : (
         <StWrap>
           <div className="innerDiv">
-            <span>{missionContent}</span>
+            <span className="missionContent">{missionContent}</span>
             <label htmlFor="file">
               <StImg img={Camera} />
             </label>
@@ -35,8 +36,14 @@ const AddedMission = ({ missionContent, missionId }) => {
             />
 
             <FlexColumnDiv>
-              <UpdateMission missionId={missionId} />
-              <DeleteMission missionId={missionId} />
+              <DropDownMenu
+                text="미션 수정"
+                text2="미션 삭제"
+                margin="40"
+                click="missionU"
+                click2="missionD"
+                missionId={missionId}
+              />
             </FlexColumnDiv>
           </div>
         </StWrap>
@@ -59,7 +66,7 @@ const StWrap = styled.div`
     ${flex({ justify: "space-between" })}
     width: 100%;
     height: 100%;
-    span {
+    .missionContent {
       width: 168px;
       margin-left: 40px;
       font-style: normal;

@@ -37,6 +37,10 @@ const StWrapFlex = styled.div`
   background-color: var(--white);
   border-top: 1px solid #e3e3e3;
 
+  @media screen and (max-width: 420px) {
+    width: 100%;
+  }
+
   span {
     font-weight: 500;
     font-size: 13px;
