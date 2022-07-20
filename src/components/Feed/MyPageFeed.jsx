@@ -36,6 +36,7 @@ const StMyPage = styled.div`
   width: 166px;
   height: 225px;
   border-radius: 20px;
+  margin-top: 10px;
   background: linear-gradient(
       90deg,
       rgba(255, 255, 255, 0.6) 0%,
