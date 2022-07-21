@@ -2,14 +2,6 @@ import styled from "@emotion/styled";
 import flex from "components/Common/flex";
 import { MOBILE_SIZE_WIDTH } from "shared/data";
 
-export const StRightRow = styled.div`
-  width: 166px;
-  margin-left: 5px;
-`;
-export const StLeftRow = styled(StRightRow)`
-  margin-top: 80px;
-`;
-
 export const StImgDiv = styled.div`
   width: 166px;
   height: 225px;
@@ -57,13 +49,4 @@ export const StFixDiv = styled.div`
   height: 77px;
   background: #ffffff;
   box-shadow: 0px 12px 14px rgba(0, 0, 0, 0.1);
-`;
-
-export const StWrap = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 166px;
-  height: calc(100vh - 70px);
-  overflow: scroll;
 `;
