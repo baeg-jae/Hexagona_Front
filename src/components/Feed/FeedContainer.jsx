@@ -38,17 +38,32 @@ const FeedContainer = () => {
         <Grid>
           <MyPageFeed />
           {data?.pages?.map((page) => {
-            return page?.data.map((todo, i) => {
-              return (
-                <StImgDiv
-                  className="imgDiv"
-                  onClick={() => onClickHandler(todo?.postId)}
-                  coverImg={todo?.photoUrl}
-                  style={{ marginRight: "4.5px" }}
-                  key={i}
-                />
-              );
-            });
+            return page?.data
+              .filter((v) => {
+                if (keyword === "") {
+                  return v;
+                } else if (
+                  v.postContent.toLowerCase().includes(keyword.toLowerCase())
+                ) {
+                  return v;
+                }
+                return v;
+              })
+              .map((v, i) => {
+                return (
+                  v.postContent
+                    .toLowerCase()
+                    .includes(keyword.toLowerCase()) && (
+                    <StImgDiv
+                      className="imgDiv"
+                      onClick={() => onClickHandler(v?.postId)}
+                      coverImg={v?.photoUrl}
+                      style={{ marginRight: "4.5px" }}
+                      key={i}
+                    />
+                  )
+                );
+              });
           })}
         </Grid>
         <div ref={ref} />
