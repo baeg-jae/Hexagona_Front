@@ -1,11 +1,12 @@
-import WebTitle from "components/Common/WebTitle";
+import Error from 'pages/Status/Error';
 
 const Chat = () => {
-  return (
-    <div>
-      <WebTitle text="채팅: 갓생메이커" />
-    </div>
-  );
+    return (
+        <div>
+            <Error />
+        </div>
+    );
+
 };
 
 export default Chat;
