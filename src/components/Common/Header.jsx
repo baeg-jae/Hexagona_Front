@@ -49,7 +49,6 @@ const HeaderWrap = styled.div`
 
   .LeftDiv {
     ${flex({})}
-    margin-left: 15px;
   }
   .textDiv {
     ${flex({ direction: "column", align: "flex-start" })}

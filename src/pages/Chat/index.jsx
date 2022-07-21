@@ -1,4 +1,3 @@
-import React from 'react';
 import Error from 'pages/Status/Error';
 
 const Chat = () => {
@@ -7,6 +6,7 @@ const Chat = () => {
             <Error />
         </div>
     );
+
 };
 
 export default Chat;

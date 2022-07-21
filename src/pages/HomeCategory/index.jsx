@@ -1,6 +1,5 @@
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import WebTitle from "components/Common/WebTitle";
 import CategoryTop from "components/MissionPage/CategoryTop";
 import useGetMission from "components/Hooks/Mission/useGetMission";
 import EmptyMission from "components/MissionPage/EmptyMission";
@@ -11,8 +10,6 @@ import SkeletonMission from "components/Skeletons/SkeletonMission";
 const HomeCategory = () => {
   const { data, isLoading } = useGetMission();
   const { category } = useParams();
-  useEffect(() => {}, [data]);
-
   const list = data
     ?.map((v) => {
       return category === v.category && v;
@@ -27,9 +24,7 @@ const HomeCategory = () => {
         <SkeletonMission />
       ) : (
         <StWrap>
-          <Helmet>
-            <title>미션: 갓생메이커</title>
-          </Helmet>
+          <WebTitle text="미션: 갓생메이커" />
           <StContainer>
             <CategoryTop />
             <EmptyMission category={category} list={list} />

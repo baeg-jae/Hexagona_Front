@@ -21,10 +21,8 @@ export const apis = {
 
   // post CRUD
   // getPost: () => api.get("/api/posts"),
-  getPostById: (payload) =>
-    api.get(
-      `/api/posts?page=${payload.page}&size=${payload.size}&sortBy=postId&isAsc=false`
-    ),
+  getPosts: (pageParam) =>
+    api.get(`/api/posts?page=${pageParam}&size=6&sortBy=postId&isAsc=false`),
   getMyPost: () => api.get("/api/posts/mypost"),
   getPostDetail: (payload) => api.get(`/api/post/${payload.postId}`, payload),
   addPost: (payload) => api.post("/api/post", payload),

@@ -1,15 +1,20 @@
-import { useQuery } from "react-query";
+import { useInfiniteQuery } from "react-query";
 import apis from "shared/api/main";
 
-const useGetPost = (payload) => {
-  const fetcher = async () => {
-    const { data } = await apis.getPostById(payload);
-    return data;
+const GetPost = () => {
+  const fetchData = async ({ pageParam = 0 }) => {
+    const { data } = await apis.getPosts(pageParam);
+
+    return { data, nextPage: pageParam + 1, currentPage: pageParam };
   };
 
-  return useQuery("posts", fetcher, {
-    refetchOnWindowFocus: "always",
+  const { data, fetchNextPage, status } = useInfiniteQuery("todo", fetchData, {
+    refetchOnWindowFocus: false,
+    getNextPageParam: (lastPage) => {
+      return lastPage.nextPage;
+    },
   });
+  return { data, fetchNextPage, status };
 };
 
-export default useGetPost;
+export default GetPost;

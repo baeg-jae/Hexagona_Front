@@ -1,7 +1,7 @@
 import { useGetMyPosts } from "components/Hooks/User/GetMyPosts";
 import { useNavigate } from "react-router-dom";
 import { useCallback, useState } from "react";
-import { Helmet } from "react-helmet";
+import WebTitle from "components/Common/WebTitle";
 import NavigatorBar from "components/Common/NavigatorBar";
 import Search from "components/Feed/Search";
 import styled from "@emotion/styled";
@@ -18,35 +18,35 @@ const MyFeed = () => {
   );
   return (
     <>
-      <Helmet>
-        <title>내사진보기: 갓생메이커</title>
-      </Helmet>
+      <WebTitle text="내사진보기: 갓생메이커" />
       <Search setKeyword={setKeyword} />
-      <StDiv>
-        {data
-          ?.filter((v) => {
-            if (keyword === "") {
+      <StScrollWrapper>
+        <StDiv>
+          {data
+            ?.filter((v) => {
+              if (keyword === "") {
+                return v;
+              } else if (
+                v.postContent.toLowerCase().includes(keyword.toLowerCase())
+              ) {
+                return v;
+              }
               return v;
-            } else if (
-              v.postContent.toLowerCase().includes(keyword.toLowerCase())
-            ) {
-              return v;
-            }
-            return v;
-          })
-          .map((v, i) => {
-            return (
-              v.postContent.toLowerCase().includes(keyword.toLowerCase()) && (
-                <StImgDiv
-                  key={i}
-                  img={v.photoUrl}
-                  onClick={() => onClickHandler(v?.postId)}
-                />
-              )
-            );
-          })
-          .reverse()}
-      </StDiv>
+            })
+            .map((v, i) => {
+              return (
+                v.postContent.toLowerCase().includes(keyword.toLowerCase()) && (
+                  <StImgDiv
+                    key={i}
+                    img={v.photoUrl}
+                    onClick={() => onClickHandler(v?.postId)}
+                  />
+                )
+              );
+            })
+            .reverse()}
+        </StDiv>
+      </StScrollWrapper>
       <NavigatorBar />
     </>
   );
@@ -69,4 +69,17 @@ const StImgDiv = styled.div`
   background: url(${(props) => props.img});
   background-position: center;
   background-size: cover;
+`;
+
+const StScrollWrapper = styled.div`
+  width: 100%;
+  height: calc(100vh - 70px);
+  overflow-y: scroll;
+`;
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-left: 30px;
+  margin-top: 70px;
 `;

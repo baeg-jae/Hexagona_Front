@@ -8,10 +8,12 @@ import loadable from '@loadable/component';
 import styled from '@emotion/styled';
 import SkeletonMain from 'components/Skeletons/SkeletonMain';
 
+
 const Main = loadable(() => import('./Main'));
 const HomeCategory = loadable(() => import('pages/HomeCategory'));
 
 const Home = () => {
+
     const { data, isLoading } = useGetUser();
     return (
         <StCalculatedWrap className="main">
