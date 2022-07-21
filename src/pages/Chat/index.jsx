@@ -1,7 +1,12 @@
-import React from "react";
+import React from 'react';
+import Error from 'pages/Status/Error';
 
 const Chat = () => {
-  return <div>Chat</div>;
+    return (
+        <div>
+            <Error />
+        </div>
+    );
 };
 
 export default Chat;
