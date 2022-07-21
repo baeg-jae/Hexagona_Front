@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 
 const SkeletonFeed = ({ data }) => {
+  console.log(data);
   return (
     <StWrap>
       <StRowFirst>

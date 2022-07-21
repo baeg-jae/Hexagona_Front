@@ -62,7 +62,8 @@ export const StFixDiv = styled.div`
 export const StWrap = styled.div`
   display: flex;
   justify-content: center;
-  width: 100%;
+  flex-wrap: wrap;
+  width: 166px;
   height: calc(100vh - 70px);
   overflow: scroll;
 `;

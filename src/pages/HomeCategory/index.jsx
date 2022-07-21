@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import WebTitle from "components/Common/WebTitle";
 import CategoryTop from "components/MissionPage/CategoryTop";
@@ -11,8 +10,6 @@ import SkeletonMission from "components/Skeletons/SkeletonMission";
 const HomeCategory = () => {
   const { data, isLoading } = useGetMission();
   const { category } = useParams();
-  useEffect(() => {}, [data]);
-
   const list = data
     ?.map((v) => {
       return category === v.category && v;
