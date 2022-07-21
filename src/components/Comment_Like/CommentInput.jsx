@@ -9,12 +9,15 @@ import useGetUser from "components/Hooks/User/useGetUser";
 import styled from "@emotion/styled";
 import flex from "../Common/flex";
 import { MOBILE_SIZE_WIDTH } from "shared/data";
+import { useEffect } from "react";
 
 const CommentInput = ({ postId }) => {
   const { data, isFetching } = useGetUser();
   const [comment, setComment] = useState("");
   const { mutate } = useAddComment();
   const inputRef = useRef(null);
+  const buttonRef = useRef(null);
+  const [doubleClick, setDoubleClick] = useState(false);
   const addComment = useCallback(() => {
     if (comment !== "") {
       mutate({
@@ -32,6 +35,8 @@ const CommentInput = ({ postId }) => {
   }, [comment, mutate, postId]);
 
   const bogusCheck = useCallback(() => {
+    buttonRef.current.disabled = true;
+    setDoubleClick(true);
     const foundSwears = badWordsComment.filter((word) =>
       comment.toLowerCase().includes(word.toLowerCase())
     );
@@ -45,6 +50,17 @@ const CommentInput = ({ postId }) => {
       addComment();
     }
   }, [comment, addComment]);
+
+  useEffect(() => {
+    const interval = setTimeout(() => {
+      if (doubleClick) {
+        buttonRef.current.disabled = false;
+      }
+    }, 1000);
+    return () => {
+      clearTimeout(interval);
+    };
+  }, [doubleClick]);
 
   return (
     <StWrapFlex>
@@ -62,7 +78,11 @@ const CommentInput = ({ postId }) => {
               maxLength={COMMENT_MAX_LENGTH}
               ref={inputRef}
             />
-            <button className="commentButton" onClick={bogusCheck}>
+            <button
+              className="commentButton"
+              onClick={bogusCheck}
+              ref={buttonRef}
+            >
               게시
             </button>
           </StDiv>
