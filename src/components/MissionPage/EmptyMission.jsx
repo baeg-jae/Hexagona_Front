@@ -104,7 +104,7 @@ const StWrap = styled.div`
   height: 105px;
   background: #ffffff;
   border: 1px dashed #e0e0e0;
-  border-radius: 20px;
+  border-radius: 4px;
   margin-bottom: 8px;
   .innerDiv {
     ${flex({ align: "flex-end" })}

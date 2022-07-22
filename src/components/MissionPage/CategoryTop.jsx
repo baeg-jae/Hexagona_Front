@@ -71,10 +71,9 @@ const StWrap = styled.div`
     }
   }
   .barLine {
-    width: 300px;
+    width: 345px;
     border: 1px solid #eaeaea;
     margin-bottom: 26px;
-    margin-left: 10px;
   }
 
   .active {
