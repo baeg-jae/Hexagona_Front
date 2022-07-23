@@ -97,3 +97,27 @@ export const RightRightCardAnim = () => keyframes`
     transform: translateX(-290px); 
 }
 `;
+
+export const SurveyAnim = () => keyframes`
+  0% {  
+    transform: translateY(-5PX); 
+}
+50%{
+  transform: translateY(0); 
+}
+  100% {  
+    transform: translateY(-5px); 
+}
+`;
+
+export const SurveyAnim2 = () => keyframes`
+  0% {  
+    transform: translateX(-1PX); 
+}
+50%{
+  transform: translateX(1px); 
+}
+  100% {  
+    transform: translateX(-1px); 
+}
+`;

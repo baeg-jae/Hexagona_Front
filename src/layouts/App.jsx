@@ -31,6 +31,7 @@ export default App;
 
 // 웹뷰
 const Container = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
