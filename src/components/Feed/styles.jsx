@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import flex from "components/Common/flex";
-import { MOBILE_SIZE_WIDTH } from "shared/data";
 
 export const StImgDiv = styled.div`
   width: 166px;
@@ -45,7 +44,7 @@ export const StImg = styled.div`
 export const StFixDiv = styled.div`
   ${flex({})}
   position: fixed;
-  width: ${MOBILE_SIZE_WIDTH}px;
+  width: 100%;
   height: 77px;
   background: #ffffff;
   box-shadow: 0px 12px 14px rgba(0, 0, 0, 0.1);
