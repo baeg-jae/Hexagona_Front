@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useCallback } from "react";
 import AlertComponent from "components/Common/AlertComponent";
 import flex from "components/Common/flex";
-import Camera from "assets/img/Camera.webp";
+import Camera from "assets/img/Camera2.webp";
 import styled from "@emotion/styled";
 import apis from "shared/api/main";
 
@@ -64,8 +64,8 @@ const StWrap = styled.div`
   ${flex({ justify: "space-between" })}
   width: 345px;
   height: 105px;
-  background: #f9f9f9;
-  border-radius: 20px;
+  background: #454545;
+  border-radius: 4px;
   margin-bottom: 8px;
   border: none;
   .innerDiv {
@@ -79,7 +79,7 @@ const StWrap = styled.div`
       font-weight: 600;
       font-size: 24px;
       line-height: 29px;
-      color: #454545;
+      color: #ffffff;
       white-space: pre-wrap;
     }
   }

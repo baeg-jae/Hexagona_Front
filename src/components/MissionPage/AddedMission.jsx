@@ -21,7 +21,7 @@ const AddedMission = ({ missionContent, missionId }) => {
       ) : (
         <StWrap>
           <div className="innerDiv">
-            <span className="missionContent">{missionContent}</span>
+            <span className="missionSpan">{missionContent}</span>
             <label htmlFor="file">
               <StImg img={Camera} />
             </label>
@@ -53,15 +53,15 @@ const StWrap = styled.div`
   width: 345px;
   height: 105px;
   background: #f9f9f9;
-  border-radius: 20px;
+  border-radius: 4px;
   margin-bottom: 8px;
   border: none;
   .innerDiv {
     ${flex({ justify: "space-around" })}
     width: 100%;
     height: 100%;
-    .missionContent {
-      width: 168px;
+    .missionSpan {
+      width: 65%;
       margin-left: 40px;
       font-style: normal;
       font-weight: 600;
