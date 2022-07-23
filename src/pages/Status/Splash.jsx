@@ -37,7 +37,7 @@ const Splash = () => {
         <Swiper
           slidesPerView={1}
           spaceBetween={30}
-          // autoplay={{ delay: AUTO_PLAY_TIME }}
+          autoplay={{ delay: AUTO_PLAY_TIME }}
           loop={true}
           pagination={{
             clickable: true,
