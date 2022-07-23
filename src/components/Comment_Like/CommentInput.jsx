@@ -114,8 +114,8 @@ const StProfile = styled.div`
 
 const StDiv = styled.div`
   ${flex({ justify: "space-around" })}
-  width: 274px;
-  height: 48px;
+  width: 287px;
+  height: 40px;
   margin-left: 12px;
   border: 1px solid #bfbfbf;
   border-radius: 55px;
@@ -129,7 +129,7 @@ const StDiv = styled.div`
       outline: none;
     }
     &::placeholder {
-      font-size: 13px;
+      font-size: 11px;
     }
   }
   .commentButton {
@@ -138,6 +138,6 @@ const StDiv = styled.div`
     font-size: 14px;
     line-height: 20px;
     color: #4876ef;
-    margin-right: 20px;
+    margin-right: 15px;
   }
 `;
