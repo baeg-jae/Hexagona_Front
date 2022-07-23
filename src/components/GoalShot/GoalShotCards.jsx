@@ -8,6 +8,7 @@ import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 
 const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
+  console.log(count, GOALSHOT_RANDOM_CARD);
   const cardTrigger = () => {
     if (chooseOne || chooseTwo) return true;
   };
@@ -58,6 +59,19 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
                 <span className="innerText">주어진 카드에 대해서</span>
                 <span className="innerText">모두 평가를 완료했습니다!</span>
               </StLastCard>
+            ) : count === GOALSHOT_RANDOM_CARD ? (
+              <StRightCard
+                img={data[count + 1]?.photoUrl}
+                differ
+                flag={cardTrigger()}
+              >
+                <div>
+                  <span className="category">{data[count + 1]?.category}</span>
+                  <span className="postContent">
+                    {data[count + 1]?.postContent}
+                  </span>
+                </div>
+              </StRightCard>
             ) : (
               <StRightCard
                 img={data[count + 1]?.photoUrl}
@@ -65,8 +79,10 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
                 flag={cardTrigger()}
               >
                 <div className="gradient">
-                  <span className="category"></span>
-                  <span className="postContent"></span>
+                  <span className="category">{data[count + 1]?.category}</span>
+                  <span className="postContent">
+                    {data[count + 1]?.postContent}
+                  </span>
                 </div>
               </StRightCard>
             )}

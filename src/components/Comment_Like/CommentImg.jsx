@@ -24,7 +24,7 @@ const CommentImg = ({
   const [like, setLike] = useState(false);
   const getCategory = useCategory({ category });
   const { mutate } = useAddLike();
-  const { data, isLoading } = useGetIfLiked({ postId: Number(postId) });
+  const { data, isFetching } = useGetIfLiked({ postId: Number(postId) });
   const userInfo = UserInfo();
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const CommentImg = ({
 
   return (
     <>
-      {isLoading ? (
+      {isFetching ? (
         <Loading />
       ) : (
         <StWrapFlex img={img}>

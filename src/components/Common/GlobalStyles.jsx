@@ -59,11 +59,16 @@ export const dropBoxAnimation = keyframes`
 `;
 
 export const ButtonClicked = () => keyframes`
-  50% {  
-    transform: translateY(-20px); 
+  0% {  
+    transform: translateY(0);
+    opacity : 1;
+} 
+50% {  
+    transform: translateY(-250px) translateX(20px) rotate(360deg) scale(10); 
 }
   100% {  
-    transform: translateY(0); 
+    transform: translateY(0) ; 
+    opacity : 0;
 }
 `;
 
@@ -73,7 +78,7 @@ export const CenterCardAnim = () => keyframes`
     opacity: 1;
 }
   100% {  
-    transform: translateX(-290px) translateY(50px); 
+    transform: translateX(-295px) translateY(50px); 
     opacity: 0.6;
 }
 `;
@@ -84,7 +89,7 @@ export const RightCardAnim = () => keyframes`
     opacity: 0.6;
 }
   100% {  
-    transform: translateX(-290px) translateY(-50px); 
+    transform: translateX(-295px) translateY(-50px); 
     opacity: 1;
 }
 `;
@@ -94,7 +99,7 @@ export const RightRightCardAnim = () => keyframes`
     transform: translateX(0); 
 }
   100% {  
-    transform: translateX(-290px); 
+    transform: translateX(-295px); 
 }
 `;
 
