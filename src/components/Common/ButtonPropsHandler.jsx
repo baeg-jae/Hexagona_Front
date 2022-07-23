@@ -7,6 +7,11 @@ import Pic1 from "assets/img/main_t1.webp";
 import Pic2 from "assets/img/main_t2.webp";
 import Pic3 from "assets/img/main_t3.webp";
 
+import Splash1 from "assets/img/splash_01.webp";
+import Splash2 from "assets/img/splash_02.webp";
+import Splash3 from "assets/img/splash_03.webp";
+import Splash4 from "assets/img/splash_04.webp";
+
 export const handleMainTutorial = (img) => {
   switch (img) {
     case "one":
@@ -15,6 +20,21 @@ export const handleMainTutorial = (img) => {
       return Pic2;
     case "three":
       return Pic3;
+    default:
+      return;
+  }
+};
+
+export const handleSplashTutorial = (img) => {
+  switch (img) {
+    case "one":
+      return Splash2;
+    case "two":
+      return Splash1;
+    case "three":
+      return Splash3;
+    case "four":
+      return Splash4;
     default:
       return;
   }

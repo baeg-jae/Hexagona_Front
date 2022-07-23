@@ -37,15 +37,15 @@
 
 span.swiper-pagination-bullet.swiper-pagination-bullet-active {
   background-color: var(--goalShotButton);
-  width: 20px;
-  height: 20px;
+  width: 10px;
+  height: 10px;
 }
 
 /* target all bullets */
 .swiper-pagination-bullet {
   background-color: var(--brown);
-  width: 20px;
-  height: 20px;
+  width: 10px;
+  height: 10px;
 }
 
 .swiper-button-prev,
