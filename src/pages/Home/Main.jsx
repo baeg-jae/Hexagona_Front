@@ -7,20 +7,17 @@ import MainTutorial from "components/Tutorial/MainTutorial";
 import { useEffect } from "react";
 
 const Main = () => {
-  const [flag, setFlag] = useState();
-  const tutorial = localStorage.getItem("tutorial");
+  const [flag, setFlag] = useState(false);
 
+  // 튜토리얼 - 새 유저에게만 한번 보여주는 로직
   const onTutorialMain = () => {
     setFlag((value) => !value);
   };
   useEffect(() => {
-    if (tutorial === null) {
-      setFlag(true);
-    }
-    if (!flag) {
+    if (flag) {
       localStorage.setItem("tutorial", false);
     }
-  }, [flag, tutorial]);
+  }, [flag]);
 
   return (
     <div style={{ width: "100%" }}>
