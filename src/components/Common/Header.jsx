@@ -16,7 +16,7 @@ const Header = ({ data }) => {
             </div>
           </div>
           <DropDownMenu
-            text="사진 변경"
+            text="프로필사진 변경"
             text2="닉네임 변경"
             margin="40"
             click2="nickname"

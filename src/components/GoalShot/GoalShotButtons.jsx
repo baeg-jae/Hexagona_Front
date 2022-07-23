@@ -18,7 +18,6 @@ const GoalShotButtons = ({
     if (data?.length < 11) return true;
     return false;
   };
-  console.log(data?.length);
   useEffect(() => {
     const interval = setTimeout(() => {
       if (chooseOne) {

@@ -3,6 +3,23 @@ import Two from "assets/img/category2.webp";
 import Three from "assets/img/category3.webp";
 import Four from "assets/img/category4.webp";
 
+import Pic1 from "assets/img/main_t1.webp";
+import Pic2 from "assets/img/main_t2.webp";
+import Pic3 from "assets/img/main_t3.webp";
+
+export const handleMainTutorial = (img) => {
+  switch (img) {
+    case "one":
+      return Pic1;
+    case "two":
+      return Pic2;
+    case "three":
+      return Pic3;
+    default:
+      return;
+  }
+};
+
 export const handleButtonColor = (color) => {
   switch (color) {
     case "kakao":
