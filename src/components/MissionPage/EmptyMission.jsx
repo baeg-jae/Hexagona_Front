@@ -8,6 +8,7 @@ import AddedMission from "./AddedMission";
 import flex from "components/Common/flex";
 import plus from "assets/img/plus.webp";
 import styled from "@emotion/styled";
+import Button from "components/Common/Button";
 
 const EmptyMission = ({ category, list }) => {
   const arr = [1, 2, 3, 4];
@@ -82,16 +83,28 @@ const EmptyMission = ({ category, list }) => {
             key={i}
           />
         ) : (
-          <StWrap onClick={onClickedHandler} key={i}>
-            <StCircle>
-              <StImg img={plus} />
-            </StCircle>
-            <div className="innerDiv">
-              <span>목표를 생성해주세요.</span>
-            </div>
-          </StWrap>
+          <></>
         );
       })}
+      {list?.length < 1 ? (
+        <StWrap onClick={onClickedHandler}>
+          <StCircle>
+            <StImg img={plus} />
+          </StCircle>
+          <div className="innerDiv">
+            <span>목표를 생성해주세요.</span>
+          </div>
+        </StWrap>
+      ) : (
+        <></>
+      )}
+      <StMissionBtn>
+        <Button
+          theme="dark"
+          text="새로운 목표 추가하기"
+          click={onClickedHandler}
+        />
+      </StMissionBtn>
     </>
   );
 };
@@ -136,4 +149,8 @@ const StImg = styled.div`
   background-image: url(${(props) => props.img});
   background-size: cover;
   background-position: center;
+`;
+const StMissionBtn = styled.div`
+  position: absolute;
+  bottom: 10%;
 `;
