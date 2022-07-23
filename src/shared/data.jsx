@@ -9,3 +9,4 @@ export const LIKE_MAX_SHOW = 5;
 export const MOBILE_SIZE_WIDTH = 420;
 export const CARD_ANIMATION_TIME = 0.5;
 export const CARD_BUTTON_TIME = 500;
+export const AUTO_PLAY_TIME = 3000;

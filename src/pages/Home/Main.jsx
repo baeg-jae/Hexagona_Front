@@ -4,12 +4,24 @@ import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 import { useState } from "react";
 import MainTutorial from "components/Tutorial/MainTutorial";
+import { useEffect } from "react";
 
 const Main = () => {
-  const [flag, setFlag] = useState(false);
+  const [flag, setFlag] = useState();
+  const tutorial = localStorage.getItem("tutorial");
+
   const onTutorialMain = () => {
     setFlag((value) => !value);
   };
+  useEffect(() => {
+    if (tutorial === null) {
+      setFlag(true);
+    }
+    if (!flag) {
+      localStorage.setItem("tutorial", false);
+    }
+  }, [flag, tutorial]);
+
   return (
     <div style={{ width: "100%" }}>
       <StFlexRowDiv className="main">
