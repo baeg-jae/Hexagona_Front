@@ -1,5 +1,5 @@
 import { MISSION_ADD_LENGTH } from "shared/data";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { badWords } from "shared/TextsData";
 import useAddMission from "components/Hooks/Mission/useAddMission";
 import AlertComponent from "components/Common/AlertComponent";
@@ -8,12 +8,26 @@ import AddedMission from "./AddedMission";
 import flex from "components/Common/flex";
 import plus from "assets/img/plus.webp";
 import styled from "@emotion/styled";
+import Button from "components/Common/Button";
+import JoyrideContainer from "components/Tutorial/JoyrideContainer";
+import { missionOne } from "shared/tutorialData";
 
 const EmptyMission = ({ category, list }) => {
   const arr = [1, 2, 3, 4];
   const [mission, setMission] = useState("");
   const [clicked, setClicked] = useState(false);
   const { mutate } = useAddMission();
+
+  const [isShowTutorial, setIsShowTutorial] = useState(false);
+
+  const tutorial = localStorage.getItem("tutorial-mission");
+
+  useEffect(() => {
+    if (tutorial === null) {
+      setIsShowTutorial(true);
+      localStorage.setItem("tutorial-mission", false);
+    }
+  }, [tutorial]);
 
   const onClickedHandler = useCallback(() => {
     setClicked((value) => !value);
@@ -82,16 +96,33 @@ const EmptyMission = ({ category, list }) => {
             key={i}
           />
         ) : (
-          <StWrap onClick={onClickedHandler} key={i}>
-            <StCircle>
-              <StImg img={plus} />
-            </StCircle>
-            <div className="innerDiv">
-              <span>목표를 생성해주세요.</span>
-            </div>
-          </StWrap>
+          <></>
         );
       })}
+      {list?.length < 1 ? (
+        <StWrap onClick={onClickedHandler} className="mission_one">
+          <StCircle>
+            <StImg img={plus} />
+          </StCircle>
+          <div className="innerDiv">
+            <span>목표를 생성해주세요.</span>
+          </div>
+        </StWrap>
+      ) : (
+        <></>
+      )}
+      <StMissionBtn className="mission_two">
+        <Button
+          theme="dark"
+          text="새로운 목표 추가하기"
+          click={onClickedHandler}
+        />
+      </StMissionBtn>
+      <JoyrideContainer
+        run={isShowTutorial}
+        setRun={setIsShowTutorial}
+        steps={missionOne}
+      />
     </>
   );
 };
@@ -104,7 +135,7 @@ const StWrap = styled.div`
   height: 105px;
   background: #ffffff;
   border: 1px dashed #e0e0e0;
-  border-radius: 20px;
+  border-radius: 4px;
   margin-bottom: 8px;
   .innerDiv {
     ${flex({ align: "flex-end" })}
@@ -136,4 +167,8 @@ const StImg = styled.div`
   background-image: url(${(props) => props.img});
   background-size: cover;
   background-position: center;
+`;
+const StMissionBtn = styled.div`
+  position: absolute;
+  bottom: 10%;
 `;

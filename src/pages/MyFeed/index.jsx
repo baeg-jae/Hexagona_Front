@@ -59,13 +59,13 @@ const StDiv = styled.div`
   justify-content: center;
   gap: 10px;
   grid-template-columns: 166px 166px;
-  margin-top: 80px;
+  margin-top: 90px;
   overflow-y: scroll;
 `;
 
 const StImgDiv = styled.div`
   height: 225.72px;
-  border-radius: 20px;
+  border-radius: 4px;
   background: url(${(props) => props.img});
   background-position: center;
   background-size: cover;
@@ -75,11 +75,4 @@ const StScrollWrapper = styled.div`
   width: 100%;
   height: calc(100vh - 70px);
   overflow-y: scroll;
-`;
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin-left: 30px;
-  margin-top: 70px;
 `;

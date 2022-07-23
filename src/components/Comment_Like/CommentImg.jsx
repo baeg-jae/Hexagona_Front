@@ -24,7 +24,7 @@ const CommentImg = ({
   const [like, setLike] = useState(false);
   const getCategory = useCategory({ category });
   const { mutate } = useAddLike();
-  const { data, isLoading } = useGetIfLiked({ postId: Number(postId) });
+  const { data, isFetching } = useGetIfLiked({ postId: Number(postId) });
   const userInfo = UserInfo();
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const CommentImg = ({
 
   return (
     <>
-      {isLoading ? (
+      {isFetching ? (
         <Loading />
       ) : (
         <StWrapFlex img={img}>
@@ -96,19 +96,19 @@ const StWrapFlex = styled.div`
   background-image: url(${(props) => props.img});
   background-position: center;
   background-size: cover;
-  border-radius: 20px;
+  border-radius: 4px;
   .gradientTop {
     ${flex({ direction: "column", align: "flex-start", justify: "flex-start" })}
     width: 100%;
     height: 440px;
-    border-radius: 20px;
+    border-radius: 4px;
     background: linear-gradient(#252525 0.09%, rgba(0, 0, 0, 0) 40%);
   }
   .gradientBottom {
     ${flex({ direction: "column", align: "flex-start", justify: "flex-end" })}
     width: 100%;
     height: 440px;
-    border-radius: 20px;
+    border-radius: 4px;
     background: linear-gradient(0.14deg, #000000 0.09%, rgba(0, 0, 0, 0) 32%);
   }
 `;

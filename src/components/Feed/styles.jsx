@@ -8,7 +8,7 @@ export const StImgDiv = styled.div`
   background-image: url(${(props) => props.coverImg});
   background-size: cover;
   background-position: center;
-  border-radius: 20px;
+  border-radius: 4px;
   margin-top: 10px;
 `;
 

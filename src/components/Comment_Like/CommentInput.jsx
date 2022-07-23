@@ -9,12 +9,15 @@ import useGetUser from "components/Hooks/User/useGetUser";
 import styled from "@emotion/styled";
 import flex from "../Common/flex";
 import { MOBILE_SIZE_WIDTH } from "shared/data";
+import { useEffect } from "react";
 
 const CommentInput = ({ postId }) => {
   const { data, isFetching } = useGetUser();
   const [comment, setComment] = useState("");
   const { mutate } = useAddComment();
   const inputRef = useRef(null);
+  const buttonRef = useRef(null);
+  const [doubleClick, setDoubleClick] = useState(false);
   const addComment = useCallback(() => {
     if (comment !== "") {
       mutate({
@@ -32,6 +35,8 @@ const CommentInput = ({ postId }) => {
   }, [comment, mutate, postId]);
 
   const bogusCheck = useCallback(() => {
+    buttonRef.current.disabled = true;
+    setDoubleClick(true);
     const foundSwears = badWordsComment.filter((word) =>
       comment.toLowerCase().includes(word.toLowerCase())
     );
@@ -45,6 +50,17 @@ const CommentInput = ({ postId }) => {
       addComment();
     }
   }, [comment, addComment]);
+
+  useEffect(() => {
+    const interval = setTimeout(() => {
+      if (doubleClick) {
+        buttonRef.current.disabled = false;
+      }
+    }, 1000);
+    return () => {
+      clearTimeout(interval);
+    };
+  }, [doubleClick]);
 
   return (
     <StWrapFlex>
@@ -62,7 +78,11 @@ const CommentInput = ({ postId }) => {
               maxLength={COMMENT_MAX_LENGTH}
               ref={inputRef}
             />
-            <button className="commentButton" onClick={bogusCheck}>
+            <button
+              className="commentButton"
+              onClick={bogusCheck}
+              ref={buttonRef}
+            >
               게시
             </button>
           </StDiv>
@@ -94,8 +114,8 @@ const StProfile = styled.div`
 
 const StDiv = styled.div`
   ${flex({ justify: "space-around" })}
-  width: 274px;
-  height: 48px;
+  width: 287px;
+  height: 40px;
   margin-left: 12px;
   border: 1px solid #bfbfbf;
   border-radius: 55px;
@@ -109,7 +129,7 @@ const StDiv = styled.div`
       outline: none;
     }
     &::placeholder {
-      font-size: 13px;
+      font-size: 11px;
     }
   }
   .commentButton {
@@ -118,6 +138,6 @@ const StDiv = styled.div`
     font-size: 14px;
     line-height: 20px;
     color: #4876ef;
-    margin-right: 20px;
+    margin-right: 15px;
   }
 `;

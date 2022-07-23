@@ -84,5 +84,5 @@ const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin-left: 30px;
-  margin-top: 70px;
+  margin-top: 80px;
 `;

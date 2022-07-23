@@ -1,27 +1,27 @@
-import styled from '@emotion/styled';
-import { keyframes } from '@emotion/react';
-import flex from './flex';
-import './font.css';
+import styled from "@emotion/styled";
+import { keyframes } from "@emotion/react";
+import flex from "./flex";
+import "./font.css";
 
 export const FlexRowDiv = styled.div`
-    ${flex({})}
+  ${flex({})}
 `;
 
 export const FlexColumnDiv = styled.div`
-    ${flex({ direction: 'column' })}
+  ${flex({ direction: "column" })}
 `;
 
 export const StWrap = styled.div`
-    width: 100%;
-    height: 100vh;
+  width: 100%;
+  height: 100vh;
 `;
 
 export const StInput = styled.input`
+  font-size: 16px;
+  &::placeholder {
+    color: #b7b7b7;
     font-size: 16px;
-    &::placeholder {
-        color: #b7b7b7;
-        font-size: 16px;
-    }
+  }
 `;
 
 export const StWrapFlex = styled(StWrap)`
@@ -38,7 +38,6 @@ export const StWrapFlex = styled(StWrap)`
     line-height: 130%;
     margin-bottom: 42px;
   }
-
 `;
 
 export const fadeAnimation = keyframes`
@@ -60,11 +59,16 @@ export const dropBoxAnimation = keyframes`
 `;
 
 export const ButtonClicked = () => keyframes`
-  50% {  
-    transform: translateY(-20px); 
+  0% {  
+    transform: translateY(0);
+    opacity : 1;
+} 
+50% {  
+    transform: translateY(-250px) translateX(20px) rotate(360deg) scale(10); 
 }
   100% {  
-    transform: translateY(0); 
+    transform: translateY(0) ; 
+    opacity : 0;
 }
 `;
 
@@ -74,7 +78,7 @@ export const CenterCardAnim = () => keyframes`
     opacity: 1;
 }
   100% {  
-    transform: translateX(-290px) translateY(50px); 
+    transform: translateX(-295px) translateY(50px); 
     opacity: 0.6;
 }
 `;
@@ -85,7 +89,7 @@ export const RightCardAnim = () => keyframes`
     opacity: 0.6;
 }
   100% {  
-    transform: translateX(-290px) translateY(-50px); 
+    transform: translateX(-295px) translateY(-50px); 
     opacity: 1;
 }
 `;
@@ -95,6 +99,30 @@ export const RightRightCardAnim = () => keyframes`
     transform: translateX(0); 
 }
   100% {  
-    transform: translateX(-290px); 
+    transform: translateX(-295px); 
+}
+`;
+
+export const SurveyAnim = () => keyframes`
+  0% {  
+    transform: translateY(-5PX); 
+}
+50%{
+  transform: translateY(0); 
+}
+  100% {  
+    transform: translateY(-5px); 
+}
+`;
+
+export const SurveyAnim2 = () => keyframes`
+  0% {  
+    transform: translateX(-1PX); 
+}
+50%{
+  transform: translateX(1px); 
+}
+  100% {  
+    transform: translateX(-1px); 
 }
 `;

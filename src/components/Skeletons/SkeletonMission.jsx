@@ -25,9 +25,6 @@ const SkeletonMission = () => {
           </div>
         </StWrapOne>
         <StWrapTwo></StWrapTwo>
-        <StWrapTwo></StWrapTwo>
-        <StWrapTwo></StWrapTwo>
-        <StWrapTwo></StWrapTwo>
       </StContainer>
     </StWrap>
   );
@@ -55,7 +52,7 @@ const StWrapTwo = styled.div`
   height: 105px;
   background-color: var(--skeleton);
   border: 1px dashed #e0e0e0;
-  border-radius: 20px;
+  border-radius: 4px;
   margin-bottom: 8px;
 `;
 

@@ -1,15 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 import Camera from "assets/img/Camera.webp";
 import AddPhoto from "./AddPhoto";
 import DropDownMenu from "components/Common/DropDownMenu";
+import JoyrideContainer from "components/Tutorial/JoyrideContainer";
+import { missionTwo } from "shared/tutorialData";
 
 const AddedMission = ({ missionContent, missionId }) => {
   const [files, setFiles] = useState();
   const saveFileImage = (e) => {
     setFiles(e.target.files[0]);
   };
+
+  const [isShowTutorial, setIsShowTutorial] = useState(false);
+
+  const tutorial = localStorage.getItem("tutorial-missionConfirm");
+
+  useEffect(() => {
+    if (tutorial === null) {
+      setIsShowTutorial(true);
+      localStorage.setItem("tutorial-missionConfirm", false);
+    }
+  }, [tutorial]);
+
   return (
     <>
       {files !== undefined ? (
@@ -19,9 +33,9 @@ const AddedMission = ({ missionContent, missionId }) => {
           missionId={missionId}
         />
       ) : (
-        <StWrap>
+        <StWrap className="mission_one">
           <div className="innerDiv">
-            <span className="missionContent">{missionContent}</span>
+            <span className="missionSpan">{missionContent}</span>
             <label htmlFor="file">
               <StImg img={Camera} />
             </label>
@@ -40,6 +54,11 @@ const AddedMission = ({ missionContent, missionId }) => {
               missionId={missionId}
             />
           </div>
+          <JoyrideContainer
+            run={isShowTutorial}
+            setRun={setIsShowTutorial}
+            steps={missionTwo}
+          />
         </StWrap>
       )}
     </>
@@ -53,15 +72,15 @@ const StWrap = styled.div`
   width: 345px;
   height: 105px;
   background: #f9f9f9;
-  border-radius: 20px;
+  border-radius: 4px;
   margin-bottom: 8px;
   border: none;
   .innerDiv {
     ${flex({ justify: "space-around" })}
     width: 100%;
     height: 100%;
-    .missionContent {
-      width: 168px;
+    .missionSpan {
+      width: 65%;
       margin-left: 40px;
       font-style: normal;
       font-weight: 600;

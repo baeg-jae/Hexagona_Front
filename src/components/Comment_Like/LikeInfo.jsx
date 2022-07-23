@@ -17,6 +17,8 @@ const LikeInfo = ({ postId }) => {
           </div>
         );
       });
+    } else if (data?.length === 0) {
+      return <span style={{ opacity: "0" }}>근영님바보</span>;
     } else {
       return data?.map((v, i) => {
         return <StImg img={v.profile_img} key={i} />;
@@ -27,7 +29,7 @@ const LikeInfo = ({ postId }) => {
   return (
     <>
       {isFetching ? (
-        ""
+        <span style={{ opacity: "0" }}>근영님바보</span>
       ) : (
         <StWrap>
           {picAmountHandler()}

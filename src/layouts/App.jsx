@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Routing from "components/Routings/Routing";
 import styled from "@emotion/styled";
-import bg from "assets/img/BackgroundImg.webp";
+import bg from "assets/img/WebBG.webp";
 import GoogleForm from "./GoogleForm";
 
 function App() {
@@ -31,16 +31,18 @@ export default App;
 
 // 웹뷰
 const Container = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   height: 100%;
-  background-color: #f6f6f6;
+  background-color: #fff;
   background-image: url(${bg});
-  background-size: cover;
+  background-size: contain;
+  background-position-x: -100px;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position-y: 130px;
   overflow: hidden;
 
   @media screen and (max-width: 1024px) {

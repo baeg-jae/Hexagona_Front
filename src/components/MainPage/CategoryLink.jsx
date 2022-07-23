@@ -27,7 +27,6 @@ const StCategoryDiv = styled.div`
   width: 345px;
   height: 140px;
   margin-bottom: 8px;
-  border-radius: 11px;
   background-size: cover;
   background-position: center;
   background-image: url(${(props) => handlePictureProps(props.pic)});

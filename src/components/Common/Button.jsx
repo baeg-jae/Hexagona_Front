@@ -19,6 +19,7 @@ const Btn = styled.button`
   font-size: 16px;
   line-height: 130%;
   background-color: ${(props) =>
-    props.theme === "dark" ? "#956C4A" : "var(--white)"};
-  color: ${(props) => (props.theme === "dark" ? "var(--white)" : "#4C525C")};
+    props.theme === "dark" ? "#956C4A" : "#1E1919"};
+  color: ${(props) =>
+    props.theme === "dark" ? "var(--white)" : "var(--white)"};
 `;

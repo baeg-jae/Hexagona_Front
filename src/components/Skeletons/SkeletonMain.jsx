@@ -45,7 +45,7 @@ const StCategoryDiv = styled.div`
   width: 345px;
   height: 140px;
   margin-bottom: 8px;
-  border-radius: 11px;
+  border-radius: 4px;
   background-color: var(--skeleton);
 `;
 
