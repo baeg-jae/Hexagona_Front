@@ -29,7 +29,7 @@ const StWrapFlex = styled.div`
   width: 325px;
   height: 440px;
   margin-top: 59px;
-  border-radius: 20px;
+  border-radius: 4px;
   background-color: var(--skeleton);
 `;
 

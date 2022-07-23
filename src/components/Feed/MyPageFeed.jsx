@@ -35,7 +35,7 @@ const StMyPage = styled.div`
   ${flex({ direction: "column" })}
   width: 166px;
   height: 225px;
-  border-radius: 20px;
+  border-radius: 4px;
   margin-top: 10px;
   background: linear-gradient(
       90deg,
@@ -58,7 +58,7 @@ const StSkeleton = styled.div`
   ${flex({ direction: "column" })}
   width: 166px;
   height: 225px;
-  border-radius: 20px;
+  border-radius: 4px;
   background-color: gray;
   opacity: 0.4;
 `;

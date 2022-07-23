@@ -49,7 +49,7 @@ const StWrap = styled.div`
 const StImgDiv = styled.div`
   width: 166px;
   height: 225px;
-  border-radius: 20px;
+  border-radius: 4px;
   margin-top: 10px;
   background-color: var(--skeleton);
 `;
@@ -57,7 +57,7 @@ const StImgDiv = styled.div`
 const StMyPage = styled.div`
   width: 166px;
   height: 225px;
-  border-radius: 20px;
+  border-radius: 4px;
   background-color: var(--skeleton);
 `;
 
