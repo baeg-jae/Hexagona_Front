@@ -8,12 +8,12 @@ import { mainSteps } from "shared/tutorialData";
 const Main = () => {
   const [isShowTutorial, setIsShowTutorial] = useState(false);
 
-  const tutorial = localStorage.getItem("tutorial");
+  const tutorial = localStorage.getItem("tutorial-main");
 
   useEffect(() => {
     if (tutorial === null) {
       setIsShowTutorial(true);
-      // localStorage.setItem("tutorial", false);
+      localStorage.setItem("tutorial-main", false);
     }
   }, [tutorial]);
 

@@ -1,11 +1,13 @@
 import { useMutation, useQueryClient } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
-import { useCallback } from "react";
+import { useCallback, useState, useEffect } from "react";
 import AlertComponent from "components/Common/AlertComponent";
 import flex from "components/Common/flex";
 import Camera from "assets/img/Camera2.webp";
 import styled from "@emotion/styled";
 import apis from "shared/api/main";
+import JoyrideContainer from "components/Tutorial/JoyrideContainer";
+import { missionThree } from "shared/tutorialData";
 
 const addPost = async (payload) => {
   const addedData = await apis.addPost(payload);
@@ -16,6 +18,17 @@ const AddPhoto = ({ missionContent, files, missionId }) => {
   const { category } = useParams();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+
+  const [isShowTutorial, setIsShowTutorial] = useState(false);
+
+  const tutorial = localStorage.getItem("tutorial-photo");
+
+  useEffect(() => {
+    if (tutorial === null) {
+      setIsShowTutorial(true);
+      localStorage.setItem("tutorial-photo", false);
+    }
+  }, [tutorial]);
 
   const addTodoMutation = useMutation(addPost, {
     onMutate: () => {
@@ -49,11 +62,16 @@ const AddPhoto = ({ missionContent, files, missionId }) => {
   }, [addTodoMutation, category, files, missionContent, missionId]);
 
   return (
-    <StWrap onClick={onCreate}>
+    <StWrap onClick={onCreate} className="mission_one">
       <div className="innerDiv">
         <span>{missionContent}</span>
         <StImg img={Camera} />
       </div>
+      <JoyrideContainer
+        run={isShowTutorial}
+        setRun={setIsShowTutorial}
+        steps={missionThree}
+      />
     </StWrap>
   );
 };

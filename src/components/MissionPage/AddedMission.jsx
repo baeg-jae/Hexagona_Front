@@ -1,15 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 import Camera from "assets/img/Camera.webp";
 import AddPhoto from "./AddPhoto";
 import DropDownMenu from "components/Common/DropDownMenu";
+import JoyrideContainer from "components/Tutorial/JoyrideContainer";
+import { missionTwo } from "shared/tutorialData";
 
 const AddedMission = ({ missionContent, missionId }) => {
   const [files, setFiles] = useState();
   const saveFileImage = (e) => {
     setFiles(e.target.files[0]);
   };
+
+  const [isShowTutorial, setIsShowTutorial] = useState(false);
+
+  const tutorial = localStorage.getItem("tutorial-missionConfirm");
+
+  useEffect(() => {
+    if (tutorial === null) {
+      setIsShowTutorial(true);
+      localStorage.setItem("tutorial-missionConfirm", false);
+    }
+  }, [tutorial]);
+
   return (
     <>
       {files !== undefined ? (
@@ -19,7 +33,7 @@ const AddedMission = ({ missionContent, missionId }) => {
           missionId={missionId}
         />
       ) : (
-        <StWrap>
+        <StWrap className="mission_one">
           <div className="innerDiv">
             <span className="missionSpan">{missionContent}</span>
             <label htmlFor="file">
@@ -40,6 +54,11 @@ const AddedMission = ({ missionContent, missionId }) => {
               missionId={missionId}
             />
           </div>
+          <JoyrideContainer
+            run={isShowTutorial}
+            setRun={setIsShowTutorial}
+            steps={missionTwo}
+          />
         </StWrap>
       )}
     </>
