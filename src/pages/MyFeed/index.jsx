@@ -76,10 +76,3 @@ const StScrollWrapper = styled.div`
   height: calc(100vh - 70px);
   overflow-y: scroll;
 `;
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin-left: 30px;
-  margin-top: 70px;
-`;

@@ -8,6 +8,8 @@ import WebTitle from "components/Common/WebTitle";
 import LoginImg from "assets/img/LoginImg.webp";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
+import { SPLASH_FADE_ANIMATION } from "shared/data";
+import { fadeAnimation } from "components/Common/GlobalStyles";
 
 const LogIn = () => {
   return (
@@ -47,6 +49,7 @@ const StFirstPageDiv = styled.div`
   text-align: center;
   background-size: contain;
   background-image: url(${LoginImg});
+  animation: ${fadeAnimation} ${SPLASH_FADE_ANIMATION}s ease;
   .bigFont {
     font-weight: 700;
     font-size: 48px;
