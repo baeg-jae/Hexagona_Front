@@ -17,7 +17,6 @@ import "swiper/css/pagination";
 import "./styles.css";
 
 const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
-  console.log(count, GOALSHOT_RANDOM_CARD);
   const cardTrigger = () => {
     if (chooseOne || chooseTwo) return true;
   };

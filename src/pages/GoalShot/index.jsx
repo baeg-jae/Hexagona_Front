@@ -1,7 +1,5 @@
 import { StWrap } from "components/Common/GlobalStyles";
-import { GOALSHOT_RANDOM_CARD } from "shared/data";
-import { useEffect, useState } from "react";
-import { shuffleArray } from "shared/shuffleArray";
+import { useState } from "react";
 import GoalShotButtons from "components/GoalShot/GoalShotButtons";
 import GoalShotCards from "components/GoalShot/GoalShotCards";
 import SkeletonGoalShot from "components/Skeletons/SkeletonGoalShot";
@@ -12,13 +10,9 @@ import WebTitle from "components/Common/WebTitle";
 const GoalShot = () => {
   const [count, setCount] = useState(1);
   const { data, isFetching } = useGetGoalShot();
-  const [container, setContainer] = useState([]);
   const [chooseOne, isChooseOne] = useState(false);
   const [chooseTwo, isChooseTwo] = useState(false);
-
-  useEffect(() => {
-    setContainer(shuffleArray(data));
-  }, [data]);
+  console.log(data);
 
   return (
     <>
@@ -32,7 +26,7 @@ const GoalShot = () => {
             <WebTitle text="인증샷: 갓생메이커" />
             <GoalShotCards
               count={count}
-              data={container?.slice(0, GOALSHOT_RANDOM_CARD)}
+              data={data}
               chooseOne={chooseOne}
               chooseTwo={chooseTwo}
               isChooseOne={isChooseOne}
@@ -41,7 +35,7 @@ const GoalShot = () => {
             <GoalShotButtons
               count={count}
               setCount={setCount}
-              data={container?.slice(0, GOALSHOT_RANDOM_CARD)}
+              data={data}
               chooseOne={chooseOne}
               chooseTwo={chooseTwo}
               isChooseOne={isChooseOne}
