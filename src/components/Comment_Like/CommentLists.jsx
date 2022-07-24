@@ -77,7 +77,7 @@ const StReplyWrap = styled.div`
   margin-top: 30px;
   white-space: wrap;
   .reply {
-    width: 280px;
+    width: calc(100% - 50px);
     .replyUser {
       ${flex({ justify: "space-between" })}
       font-weight: 700;
