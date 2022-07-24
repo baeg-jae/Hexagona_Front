@@ -16,7 +16,7 @@ export const StButton = styled.button`
   border: 1px solid #f5f0f0;
   box-shadow: 6px 11px 17px rgba(0, 0, 0, 0.13);
   border-radius: 48.0529px;
-  animation: ${(props) => props.flag && ButtonClicked()} 1s ease;
+  animation: ${(props) => props.flag && ButtonClicked()} 0.8s ease;
   &:disabled {
     background-color: inherit;
   }

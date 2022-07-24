@@ -15,7 +15,7 @@ const GoalShotButtons = ({
 }) => {
   const disableHandler = () => {
     if (chooseOne || chooseTwo) return true;
-    if (data?.length < 11) return true;
+    // if (data?.length < 11) return true;
     return false;
   };
   useEffect(() => {

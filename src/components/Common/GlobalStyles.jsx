@@ -59,16 +59,50 @@ export const dropBoxAnimation = keyframes`
 `;
 
 export const ButtonClicked = () => keyframes`
-  0% {  
-    transform: translateY(0);
-    opacity : 1;
+  /* 0% {  
+    transform: translateY(0) translateX(0);
+} 
+10% {  
+    transform: translateY(-150px) translateX(-80px);
+} 
+20% {  
+    transform: translateY(-200px)  translateX(0);
+} 
+30% {  
+    transform: translateY(-170px) translateX(80px);
+} 
+40% {  
+    transform: translateY(-120px)  translateX(110px);
 } 
 50% {  
-    transform: translateY(-250px) translateX(20px) rotate(360deg) scale(10); 
+    transform: translateY(-70px) translateX(80px); 
 }
-  100% {  
-    transform: translateY(0) ; 
-    opacity : 0;
+60%{
+  transform: translateY(-150px) translateX(0px); 
+}
+70%{
+  transform: translateY(-220px) translateX(70px); 
+}
+80%{
+  transform: translateY(-300px) translateX(130px) rotate(360deg); 
+  opacity: 0.7;
+}
+90%{
+  transform: translateY(-400px) translateX(300px); 
+  opacity: 0;
+}
+100% {  
+    transform: translateY(0);
+    opacity: 1;
+} */
+0%{
+  transform: translateY(0);
+}
+50%{
+  transform: translateY(-400px) rotateY(360deg) scale(1.5);
+}
+100%{
+  transform: translateY(0);
 }
 `;
 
