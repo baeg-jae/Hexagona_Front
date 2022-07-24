@@ -4,19 +4,19 @@ import Splash1 from "assets/img/splash_01.webp";
 
 const Chats = () => {
   const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const onClickChatRoomHandler = () => {};
   return (
     <>
       {arr.map((v, i) => {
         return (
-          <StChat key={i}>
+          <StChat key={i} onClick={onClickChatRoomHandler}>
             <div className="Chats_firstRow">
               <div className="Chats_Profile" />
-              <div className="Chats_Name">jane S.</div>
+              <div className="Chats_Name">백재님</div>
             </div>
             <div className="Chat_secondRow">
-              Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is
-              simplyLorem Ipsum is simply dummy text of the printing Lorem Ipsum
-              is simply
+              채팅에 꼭 성공 합시당.채팅에 꼭 성공 합시당.채팅에 꼭 성공
+              합시당.채팅에 꼭 성공 합시당.채팅에 꼭 성공 합시당
             </div>
           </StChat>
         );
@@ -32,6 +32,10 @@ const StChat = styled.div`
   width: 339px;
   height: 109px;
   border-bottom: 1px solid #e9e9e9;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
   .Chats_firstRow {
     ${flex({ justify: "flex-start" })}
     width: 100%;
