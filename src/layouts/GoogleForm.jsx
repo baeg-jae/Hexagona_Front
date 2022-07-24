@@ -29,6 +29,7 @@ const StWrap = styled.div`
   position: fixed;
   bottom: 10%;
   right: 10%;
+  cursor: pointer;
   @media screen and (max-width: 1024px) {
     display: none;
   }

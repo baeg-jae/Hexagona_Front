@@ -33,7 +33,7 @@ const FeedContainer = () => {
 
   return (
     <>
-      <Search setKeyword={setKeyword} />
+      <Search setKeyword={setKeyword} text="키워드를 입력해주세요." />
       <StScrollWrapper>
         <Grid>
           <MyPageFeed />
