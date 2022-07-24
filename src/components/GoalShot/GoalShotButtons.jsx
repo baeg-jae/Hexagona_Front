@@ -38,18 +38,18 @@ const GoalShotButtons = ({
     };
   }, [chooseOne, chooseTwo, setCount, isChooseOne, isChooseTwo]);
 
-  const onClickBtnHanlder = () => {
+  const onClickBtnHandler = () => {
     navigate("/feed");
   };
 
   return (
     <FlexRowDiv style={{ gap: "16px" }}>
-      {data?.length < GOALSHOT_RANDOM_CARD ? (
+      {data?.length < GOALSHOT_RANDOM_CARD || count === GOALSHOT_RANDOM_CARD ? (
         <StButtonDiv>
           <Button
             theme="dark"
             text="다른 이들의 미션 인증샷 보러가기"
-            click={onClickBtnHanlder}
+            click={onClickBtnHandler}
           />
         </StButtonDiv>
       ) : (

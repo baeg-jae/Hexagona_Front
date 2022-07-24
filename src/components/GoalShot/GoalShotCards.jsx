@@ -10,10 +10,9 @@ import Smile from "assets/img/smile.webp";
 import Sad from "assets/img/sad.webp";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Pagination } from "swiper";
+import { Pagination } from "swiper";
 
 import "swiper/css";
-import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "./styles.css";
 
@@ -84,10 +83,15 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
 
             {/* 중간카드 */}
             {count === GOALSHOT_RANDOM_CARD ? (
-              <StLastCard flag={cardTrigger()}>
-                <StEmoji smile />
-                <span className="innerText">오늘의 평가가</span>
-                <span className="innerText">끝이 났어요!</span>
+              <StLastCard flag={cardTrigger()} dashed>
+                <StEmoji mar />
+                <div className="innerTextDiv">
+                  <span className="innerText">평가하기에</span>
+                  <span className="innerText">게시물이 부족합니다</span>
+                </div>
+                <span className="smallText">
+                  다른 이들의 미션을 둘러보러갈까요?
+                </span>
               </StLastCard>
             ) : (
               <StCard img={data[count]?.photoUrl} flag={cardTrigger()}>
@@ -102,9 +106,15 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
 
             {/* 우측카드 */}
             {count === GOALSHOT_RANDOM_CARD - 1 ? (
-              <StLastCard flag={cardTrigger()} differ>
-                <span className="innerText">주어진 카드에 대해서</span>
-                <span className="innerText">모두 평가를 완료했습니다!</span>
+              <StLastCard flag={cardTrigger()} dashed>
+                <StEmoji mar />
+                <div className="innerTextDiv">
+                  <span className="innerText">평가하기에</span>
+                  <span className="innerText">게시물이 부족합니다</span>
+                </div>
+                <span className="smallText">
+                  다른 이들의 미션을 둘러보러갈까요?
+                </span>
               </StLastCard>
             ) : count === GOALSHOT_RANDOM_CARD ? (
               <StRightCard
@@ -219,6 +229,7 @@ const StEmoji = styled.div`
   background-image: url(${(props) => (props.smile ? `${Smile}` : `${Sad}`)});
   background-position: center;
   background-size: cover;
+  margin-top: ${(props) => props.mar && "120px"};
 `;
 
 const StRightCard = styled(StCard)`
@@ -243,9 +254,10 @@ const StLastCard = styled.div`
   border-radius: 20px;
   filter: drop-shadow(0px 43px 40px rgba(0, 0, 0, 0.2));
   opacity: ${(props) => (props.differ ? "0.6" : "1")};
-  margin-top: 160px;
+  margin-top: ${(props) => (props.dashed ? "57px" : "160px")};
   animation: ${(props) => props.flag && RightCardAnim()} ${CARD_ANIMATION_TIME}s
     ease;
+  border: 1px ${(props) => (props.dashed ? "dashed" : "none")} #cccccc;
   .innerTextDiv {
     ${flex({ direction: "column" })}
     margin-top: 28px;
