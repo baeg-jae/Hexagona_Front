@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import NavigatorBar from "components/Common/NavigatorBar";
-import flex from "components/Common/flex";
 import ChatInput from "components/Chat/ChatInput";
 import { StWrap } from "components/Common/GlobalStyles";
 import Splash1 from "assets/img/splash_01.webp";
