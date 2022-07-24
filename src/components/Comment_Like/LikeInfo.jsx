@@ -48,8 +48,9 @@ export default LikeInfo;
 
 const StWrap = styled.div`
   ${flex({ justify: "flex-start" })}
-  width: 100%;
-  margin-left: 50px;
+  width: calc(100% - 32px);
+  margin-top: 9px;
+  margin-left: 8px;
 `;
 
 const StImg = styled.div`

@@ -10,11 +10,12 @@ import Smile from "assets/img/smile.webp";
 import Sad from "assets/img/sad.webp";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper";
+import { Pagination, Autoplay } from "swiper";
 
 import "swiper/css";
 import "swiper/css/pagination";
 import "./styles.css";
+import "swiper/css/autoplay";
 import GetTodayLikes from "components/Hooks/Like/useTodayLikes";
 
 const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
@@ -42,7 +43,9 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
                 pagination={{
                   clickable: true,
                 }}
-                modules={[Pagination]}
+                loop={true}
+                modules={[Pagination, Autoplay]}
+                autoplay={{ delay: 1000 }}
                 className="mySwiper"
               >
                 {todayLikes?.map((v, i) => {
@@ -73,7 +76,7 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
 
             {/* 중간카드 */}
             {count === GOALSHOT_RANDOM_CARD ? (
-              <StLastCard flag={cardTrigger()} dashed>
+              <StLastCard flag={cardTrigger()} dashed center>
                 <StEmoji mar />
                 <div className="innerTextDiv">
                   <span className="innerText">평가하기에</span>
@@ -242,12 +245,13 @@ const StLastCard = styled.div`
   min-width: 285px;
   height: 480px;
   border-radius: 20px;
-  filter: drop-shadow(0px 43px 40px rgba(0, 0, 0, 0.2));
   opacity: ${(props) => (props.differ ? "0.6" : "1")};
-  margin-top: ${(props) => (props.dashed ? "57px" : "160px")};
+  margin-top: ${(props) => (props.center ? "57px" : "107px")};
   animation: ${(props) => props.flag && RightCardAnim()} ${CARD_ANIMATION_TIME}s
     ease;
   border: 1px ${(props) => (props.dashed ? "dashed" : "none")} #cccccc;
+  background: ${(props) =>
+    props.center ? "linear-gradient(0deg, #f9f9f9, #f9f9f9)" : "none"};
   .innerTextDiv {
     ${flex({ direction: "column" })}
     margin-top: 28px;

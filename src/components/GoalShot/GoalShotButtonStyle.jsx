@@ -13,7 +13,6 @@ export const StButton = styled.button`
     props.red
       ? `linear-gradient(180deg, #FF0000 0%, #FF6B00 100%)`
       : `linear-gradient(180deg, #FFf 0%, #FFf 100%)`};
-  border: 1px solid #f5f0f0;
   box-shadow: 6px 11px 17px rgba(0, 0, 0, 0.13);
   border-radius: 48.0529px;
   animation: ${(props) => props.flag && ButtonClicked()} 0.8s ease;

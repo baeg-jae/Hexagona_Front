@@ -15,8 +15,6 @@
   text-shadow: none !important;
 }
 
-@media screen and (max-width: 1024px) {
-  .swiper-pagination-bullet {
-    display: none;
-  }
+.swiper-pagination-bullet {
+  display: none;
 }

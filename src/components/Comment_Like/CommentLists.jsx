@@ -43,7 +43,7 @@ const CommentLists = ({ postId }) => {
                           />
                         )}
                       </div>
-                      <div className="replyDay">{v.createdAtDateOnly}</div>
+                      <div className="replyDay">dd{v.createdAtDateOnly}</div>
                     </div>
                     <div className="replyText">{v.comment}</div>
                   </div>
@@ -63,8 +63,6 @@ const StWrap = styled.div`
   ${flex({ direction: "column", justify: "flex-start" })}
   width: 100%;
   height: 140px;
-  margin-top: 35px;
-
   .emptySpan {
     font-size: 14px;
     line-height: 130%;
@@ -75,6 +73,8 @@ const StWrap = styled.div`
 const StReplyWrap = styled.div`
   ${flex({ justify: "flex-start", direction: "row", align: "flex-start" })}
   margin: 10px;
+  width: calc(100% - 32px);
+  margin-top: 30px;
   white-space: wrap;
   .reply {
     width: 280px;
@@ -90,7 +90,7 @@ const StReplyWrap = styled.div`
       color: #b4b4b4;
     }
   }
-  .relyText {
+  .replyText {
     font-size: 14px;
     line-height: 24px;
     margin-top: 3px;

@@ -90,7 +90,7 @@ const StWrapFlex = styled.div`
     direction: "column",
     justify: "space-between",
   })}
-  width: 325px;
+  width: calc(100% - 32px);
   height: 440px;
   margin-top: 59px;
   background-image: url(${(props) => props.img});
