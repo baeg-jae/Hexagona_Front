@@ -1,8 +1,0 @@
-{
-  "entry": ["src/main.ts", "src/pages/**/*.{js,ts}"],
-  "extensions": [".ts", ".js"],
-  "ignorePatterns": ["**/node_modules/**", "private/**"],
-  "ignoreUnresolved": ["some-npm-dependency"],
-  "ignoreUnimported": ["src/i18n/locales/en.ts", "src/i18n/locales/nl.ts"],
-  "ignoreUnused": ["bcrypt", "create-emotion"]
-}

@@ -15,8 +15,10 @@ import { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "./styles.css";
+import GetTodayLikes from "components/Hooks/Like/useTodayLikes";
 
 const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
+  const todayLikes = GetTodayLikes();
   const cardTrigger = () => {
     if (chooseOne || chooseTwo) return true;
   };
@@ -43,24 +45,13 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
                 modules={[Pagination]}
                 className="mySwiper"
               >
-                <SwiperSlide>
-                  <StEmoji />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <StEmoji smile />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <StEmoji />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <StEmoji smile />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <StEmoji />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <StEmoji smile />
-                </SwiperSlide>
+                {todayLikes?.map((v, i) => {
+                  return (
+                    <SwiperSlide key={i}>
+                      <StTodayLIked img={v.photoUrl} />
+                    </SwiperSlide>
+                  );
+                })}
               </Swiper>
             </div>
           </StLastCard>
@@ -284,4 +275,10 @@ const StLastCard = styled.div`
 const StLastLastCard = styled(StLastCard)`
   animation: ${(props) => props.flag && RightRightCardAnim()}
     ${CARD_ANIMATION_TIME}s ease;
+`;
+
+const StTodayLIked = styled(StEmoji)`
+  width: 100%;
+  height: 100%;
+  background-image: url(${(props) => props.img});
 `;

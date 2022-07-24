@@ -12,8 +12,6 @@ const GoalShot = () => {
   const { data, isFetching } = useGetGoalShot();
   const [chooseOne, isChooseOne] = useState(false);
   const [chooseTwo, isChooseTwo] = useState(false);
-  console.log(data);
-
   return (
     <>
       <StWrap className="main">
