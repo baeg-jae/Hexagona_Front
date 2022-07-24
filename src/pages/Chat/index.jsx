@@ -25,7 +25,7 @@ export default Chat;
 
 const StLists = styled.div`
   width: 100%;
-  height: 654px;
+  height: calc(100vh - 144px);
   margin-top: 80px;
   overflow: scroll;
   .Chats {
