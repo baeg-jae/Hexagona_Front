@@ -59,16 +59,14 @@ export const dropBoxAnimation = keyframes`
 `;
 
 export const ButtonClicked = () => keyframes`
-  0% {  
-    transform: translateY(0);
-    opacity : 1;
-} 
-50% {  
-    transform: translateY(-250px) translateX(20px) rotate(360deg) scale(10); 
+0%{
+  transform: translateY(0);
 }
-  100% {  
-    transform: translateY(0) ; 
-    opacity : 0;
+50%{
+  transform: translateY(-400px) rotateY(360deg) scale(1.5);
+}
+100%{
+  transform: translateY(0);
 }
 `;
 
@@ -124,5 +122,15 @@ export const SurveyAnim2 = () => keyframes`
 }
   100% {  
     transform: translateX(-1px); 
+}
+`;
+
+export const SkeletonAnim = () => keyframes`
+  0% {  
+  background-color: hsl(200, 20%, 70%);
+}
+
+  100% { 
+    background-color: hsl(200, 20%, 95%); 
 }
 `;

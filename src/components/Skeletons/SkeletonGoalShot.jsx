@@ -1,27 +1,38 @@
 import { FlexRowDiv } from "components/Common/GlobalStyles";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
+import { SkeletonAnim } from "components/Common/GlobalStyles";
+import useGetGoalShot from "components/Hooks/GoalShot/useGetGoalShot";
+import loadable from "@loadable/component";
 
-const SkeletonCard = ({ data }) => {
+const Loading = loadable(() => import("pages/Status/Loading"));
+
+const SkeletonCard = () => {
+  const { data } = useGetGoalShot;
+  console.log(data);
   return (
     <>
       <StCardContainer>
-        {data?.length < 10 ? (
-          <>
-            <StCard differ />
-            <StCard />
-            <StCard differ />
-          </>
+        {data === undefined ? (
+          <Loading />
         ) : (
           <>
+            <StCard differ />
             <StCard />
+            <StCard differ />
           </>
         )}
       </StCardContainer>
-      <FlexRowDiv style={{ gap: "16px" }}>
-        <StButton />
-        <StButton />
-      </FlexRowDiv>
+      {data === undefined ? (
+        <></>
+      ) : (
+        <>
+          <FlexRowDiv style={{ gap: "16px" }}>
+            <StButton />
+            <StButton />
+          </FlexRowDiv>
+        </>
+      )}
     </>
   );
 };
@@ -45,6 +56,7 @@ const StCard = styled.div`
   background-color: var(--skeleton);
   border-radius: 20px;
   margin-top: ${(props) => (props.differ ? "107px" : "57px")};
+  animation: ${SkeletonAnim} 0.5s linear infinite alternate;
 `;
 
 const StButton = styled.button`
@@ -53,5 +65,6 @@ const StButton = styled.button`
   height: 95.38px;
   margin-top: 63px;
   border: 1px solid var(--skeleton);
+  animation: ${SkeletonAnim} 0.5s linear infinite alternate;
   border-radius: 48.0529px;
 `;

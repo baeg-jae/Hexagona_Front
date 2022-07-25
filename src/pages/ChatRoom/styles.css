@@ -1,0 +1,17 @@
+#other .message-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: rgb(17, 13, 51);
+  margin-left: 10px;
+}
+
+#you .message-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f8f8;
+  margin-right: 10px;
+}

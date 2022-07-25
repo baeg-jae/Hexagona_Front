@@ -4,6 +4,7 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Routing from "components/Routings/Routing";
 import styled from "@emotion/styled";
 import bg from "assets/img/WebBG.webp";
+import col from "assets/img/col.webp";
 import GoogleForm from "./GoogleForm";
 
 function App() {
@@ -63,9 +64,14 @@ const Container = styled.div`
 
     @media screen and (min-width: 1024px) {
       position: relative;
-      left: 11%;
+      left: 15%;
       top: 0%;
       overflow: auto;
+    }
+    @media screen and (min-height: 1000px) {
+      background-image: url(${col});
+      background-size: contain;
+      background-repeat: no-repeat;
     }
   }
 `;

@@ -3,13 +3,12 @@ import flex from "components/Common/flex";
 import { MOBILE_SIZE_WIDTH } from "shared/data";
 
 export const StImgDiv = styled.div`
-  width: 166px;
   height: 225px;
   background-image: url(${(props) => props.coverImg});
   background-size: cover;
   background-position: center;
   border-radius: 4px;
-  margin-top: 10px;
+  margin: 5px;
 `;
 
 export const StSearchInputDiv = styled.div`

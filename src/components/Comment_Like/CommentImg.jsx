@@ -10,7 +10,6 @@ import DropDownMenu from "components/Common/DropDownMenu";
 import useGetIfLiked from "components/Hooks/Like/useGetIfLiked";
 import UserInfo from "components/Feed/UserInfo";
 import { useEffect } from "react";
-import Loading from "pages/Status/Loading";
 
 const CommentImg = ({
   category,
@@ -41,7 +40,7 @@ const CommentImg = ({
   return (
     <>
       {isFetching ? (
-        <Loading />
+        ""
       ) : (
         <StWrapFlex img={img}>
           <div className="gradientTop">
@@ -90,7 +89,7 @@ const StWrapFlex = styled.div`
     direction: "column",
     justify: "space-between",
   })}
-  width: 325px;
+  width: calc(100% - 32px);
   height: 440px;
   margin-top: 59px;
   background-image: url(${(props) => props.img});
