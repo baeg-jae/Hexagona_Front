@@ -7,14 +7,14 @@ const SkeletonMain = () => {
     <div className="main">
       <StWrap>
         <StWrapFlex>
-          <HeaderWrap></HeaderWrap>
+          <HeaderWrap />
         </StWrapFlex>
       </StWrap>
       <StFlexRowDiv>
-        <StCategoryDiv></StCategoryDiv>
-        <StCategoryDiv></StCategoryDiv>
-        <StCategoryDiv></StCategoryDiv>
-        <StCategoryDiv></StCategoryDiv>
+        <StCategoryDiv />
+        <StCategoryDiv />
+        <StCategoryDiv />
+        <StCategoryDiv />
       </StFlexRowDiv>
     </div>
   );

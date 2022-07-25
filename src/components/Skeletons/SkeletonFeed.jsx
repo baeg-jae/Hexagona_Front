@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { SkeletonAnim } from "components/Common/GlobalStyles";
 
-const SkeletonFeed = ({ data }) => {
+const SkeletonFeed = () => {
   return <StImgDiv className="imgDiv" style={{ marginRight: "4.5px" }} />;
 };
 

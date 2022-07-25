@@ -6,10 +6,10 @@ const SkeletonDetail = () => {
   return (
     <StWrapComment>
       <StWrapFlex />
-      <StReplyWrap></StReplyWrap>
+      <StReplyWrap />
       <StFlex>
         <StProfile />
-        <StDiv></StDiv>
+        <StDiv />
       </StFlex>
     </StWrapComment>
   );
