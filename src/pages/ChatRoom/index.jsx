@@ -1,15 +1,15 @@
-import styled from "@emotion/styled";
-import NavigatorBar from "components/Common/NavigatorBar";
-import Search from "components/Feed/Search";
-import flex from "components/Common/flex";
+// import styled from '@emotion/styled';
+// import NavigatorBar from 'components/Common/NavigatorBar';
+// import flex from 'components/Common/flex';
+// import Chatting from 'components/Chat/Chatting';
 
-const ChatRoom = () => {
-  return (
-    <>
-      채팅방
-      <NavigatorBar />
-    </>
-  );
-};
+// const ChatRoom = () => {
+//     return (
+//         <>
+//             <Chatting />
+//             <NavigatorBar />
+//         </>
+//     );
+// };
 
-export default ChatRoom;
+// export default ChatRoom;
