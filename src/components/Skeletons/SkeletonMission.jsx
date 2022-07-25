@@ -1,5 +1,7 @@
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
+import { SkeletonAnim } from "components/Common/GlobalStyles";
+
 const SkeletonMission = () => {
   return (
     <StWrap>
@@ -51,6 +53,7 @@ const StWrapTwo = styled.div`
   width: 345px;
   height: 105px;
   background-color: var(--skeleton);
+  animation: ${SkeletonAnim} 0.5s linear infinite alternate;
   border: 1px dashed #e0e0e0;
   border-radius: 4px;
   margin-bottom: 8px;

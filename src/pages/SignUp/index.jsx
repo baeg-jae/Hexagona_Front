@@ -6,7 +6,7 @@ const SignUp = () => {
   return (
     <StWrap>
       <WebTitle text="회원가입: 갓생메이커" />
-      <SignUpPage></SignUpPage>
+      <SignUpPage />
     </StWrap>
   );
 };

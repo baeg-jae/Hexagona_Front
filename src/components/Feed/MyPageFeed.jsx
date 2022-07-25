@@ -3,6 +3,7 @@ import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
+import { SkeletonAnim } from "components/Common/GlobalStyles";
 
 const MyPageFeed = () => {
   const navigate = useNavigate();
@@ -33,10 +34,10 @@ export default MyPageFeed;
 
 const StMyPage = styled.div`
   ${flex({ direction: "column" })}
-  width: 166px;
+  width: 97%;
   height: 225px;
   border-radius: 4px;
-  margin-top: 10px;
+  margin: 10px 5px 5px 5px;
   background: linear-gradient(
       90deg,
       rgba(255, 255, 255, 0.6) 0%,
@@ -56,9 +57,10 @@ const StMySpan = styled.span`
 
 const StSkeleton = styled.div`
   ${flex({ direction: "column" })}
-  width: 166px;
+  width: 97%;
   height: 225px;
   border-radius: 4px;
-  background-color: gray;
-  opacity: 0.4;
+  margin: 10px 5px 5px 5px;
+  background-color: var(--skeleton);
+  animation: ${SkeletonAnim} 0.5s linear infinite alternate;
 `;

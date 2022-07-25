@@ -8,7 +8,6 @@ import AlertComponent from "components/Common/AlertComponent";
 import useGetUser from "components/Hooks/User/useGetUser";
 import styled from "@emotion/styled";
 import flex from "../Common/flex";
-import { MOBILE_SIZE_WIDTH } from "shared/data";
 import { useEffect } from "react";
 
 const CommentInput = ({ postId }) => {
@@ -95,12 +94,15 @@ const CommentInput = ({ postId }) => {
 export default CommentInput;
 
 const StWrapFlex = styled.div`
-  ${flex({})}
+  ${flex({ justify: "flex-start" })}
   position: fixed;
   top: calc(100% - 150px);
-  width: ${MOBILE_SIZE_WIDTH};
+  width: calc(100% - 32px);
   height: 92px;
   background-color: var(--white);
+  @media screen and (min-width: 420px) {
+    width: 420px;
+  }
 `;
 
 const StProfile = styled.div`
@@ -110,21 +112,23 @@ const StProfile = styled.div`
   background-position: center;
   background-size: cover;
   border-radius: 100%;
+  margin-left: 16px;
 `;
 
 const StDiv = styled.div`
   ${flex({ justify: "space-around" })}
-  width: 287px;
+  width: calc(100% - 90px);
   height: 40px;
   margin-left: 12px;
   border: 1px solid #bfbfbf;
   border-radius: 55px;
   .commentInput {
+    width: calc(100% - 100px);
     border: none;
     background-color: transparent;
     white-space: normal;
     text-align: justify;
-    margin-left: 20px;
+    margin-left: 10px;
     &:focus {
       outline: none;
     }

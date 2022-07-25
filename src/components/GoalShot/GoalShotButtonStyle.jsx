@@ -8,15 +8,13 @@ export const StButton = styled.button`
   ${flex({})}
   width: 95.38px;
   height: 95.38px;
-  margin-top: 63px;
   background: ${(props) =>
     props.red
       ? `linear-gradient(180deg, #FF0000 0%, #FF6B00 100%)`
       : `linear-gradient(180deg, #FFf 0%, #FFf 100%)`};
-  border: 1px solid #f5f0f0;
   box-shadow: 6px 11px 17px rgba(0, 0, 0, 0.13);
   border-radius: 48.0529px;
-  animation: ${(props) => props.flag && ButtonClicked()} 1s ease;
+  animation: ${(props) => props.flag && ButtonClicked()} 0.8s ease;
   &:disabled {
     background-color: inherit;
   }

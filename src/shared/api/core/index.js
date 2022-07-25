@@ -7,7 +7,6 @@ const api = axios.create({
 api.interceptors.request.use(
   (data) => {
     data.headers.Authorization = localStorage.getItem("Authorization");
-
     return data;
   },
   (error) => {

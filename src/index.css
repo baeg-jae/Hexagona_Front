@@ -8,17 +8,6 @@
   --skeleton: #e5e5e5;
 }
 
-.App {
-  font-family: "Ubuntu", sans-serif;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  overflow-y: auto;
-}
-
 body {
   margin: 0;
   padding: 0;
