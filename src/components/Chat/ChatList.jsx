@@ -1,16 +1,16 @@
 import styled from '@emotion/styled';
 import flex from 'components/Common/flex';
 import Splash1 from 'assets/img/splash_01.webp';
-import NewLikeImg from './NewLikeImg'
+import NewLikeImg from './NewLikeImg';
 import useGetUser from 'components/Hooks/User/useGetUser';
 
 const Chats = () => {
-    const {data} = useGetUser()
+    const { data } = useGetUser();
     const onClickChatRoomHandler = () => {};
-   
+
     return (
         <>
-        <NewLikeImg/>
+            <NewLikeImg />
             {data.userId.map((_, i) => {
                 return (
                     <StChat key={i} onClick={onClickChatRoomHandler}>
