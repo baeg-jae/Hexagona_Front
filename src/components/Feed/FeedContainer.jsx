@@ -4,17 +4,15 @@ import { useCallback, useState, useEffect } from "react";
 import useGetPost from "components/Hooks/useGetPost";
 import Search from "./Search";
 import { StImgDiv } from "./styles";
-import loadable from "@loadable/component";
-
 import styled from "@emotion/styled";
 import MyPageFeed from "./MyPageFeed";
-const Loading = loadable(() => import("pages/Status/Loading"));
+import SkeletonFeed from "components/Skeletons/SkeletonFeed";
 
 const FeedContainer = () => {
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState("");
   const { ref, inView } = useInView();
-  const { data, fetchNextPage, status } = useGetPost();
+  const { data, fetchNextPage, isFetchingNextPage } = useGetPost();
 
   const onClickHandler = useCallback(
     (postId) => {
@@ -28,8 +26,6 @@ const FeedContainer = () => {
       fetchNextPage();
     }
   }, [fetchNextPage, inView]);
-
-  if (status === "loading") return <Loading />;
 
   return (
     <>
@@ -65,6 +61,9 @@ const FeedContainer = () => {
                 );
               });
           })}
+
+          {/* 무한스크롤 스켈레톤 */}
+          {isFetchingNextPage === true && <SkeletonFeed />}
         </Grid>
         <div ref={ref} />
       </StScrollWrapper>
@@ -83,6 +82,5 @@ const StScrollWrapper = styled.div`
 const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin-left: 30px;
-  margin-top: 80px;
+  margin: 80px 16px 0 16px;
 `;

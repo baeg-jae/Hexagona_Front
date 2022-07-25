@@ -64,5 +64,12 @@ const StFirstPageDiv = styled.div`
       rgba(30, 5, 5, 0) -9.31%,
       var(--gradient) 62.46%
     );
+    @media screen and (min-width: 1024px) {
+      background: linear-gradient(
+        180deg,
+        rgba(30, 5, 5, 0) -9.31%,
+        var(--gradient) 42.46%
+      );
+    }
   }
 `;

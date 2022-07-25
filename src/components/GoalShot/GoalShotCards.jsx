@@ -76,7 +76,7 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
 
             {/* 중간카드 */}
             {count === GOALSHOT_RANDOM_CARD ? (
-              <StLastCard flag={cardTrigger()} dashed center>
+              <StLastCard flag={cardTrigger()} dashed bg center>
                 <StEmoji mar />
                 <div className="innerTextDiv">
                   <span className="innerText">평가하기에</span>
@@ -99,7 +99,7 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
 
             {/* 우측카드 */}
             {count === GOALSHOT_RANDOM_CARD - 1 ? (
-              <StLastCard flag={cardTrigger()} dashed>
+              <StLastCard flag={cardTrigger()} dashed bg>
                 <StEmoji mar />
                 <div className="innerTextDiv">
                   <span className="innerText">평가하기에</span>
@@ -164,8 +164,9 @@ export default GoalShotCards;
 const StCardContainer = styled.div`
   ${flex({ gap: "10px", align: "flex-start" })}
   width: 100%;
-  height: 537px;
+  height: 600px;
   @media screen and (max-width: 1024px) {
+    overflow: hidden;
   }
 `;
 
@@ -180,7 +181,6 @@ const StCard = styled.div`
   background-image: url(${(props) => props.img});
   background-position: center;
   background-size: cover;
-  filter: drop-shadow(0px 43px 40px rgba(0, 0, 0, 0.2));
   border-radius: 20px;
   margin-top: ${(props) => (props.differ ? "107px" : "57px")};
   opacity: ${(props) => (props.differ ? "0.6" : "1")};
@@ -251,7 +251,7 @@ const StLastCard = styled.div`
     ease;
   border: 1px ${(props) => (props.dashed ? "dashed" : "none")} #cccccc;
   background: ${(props) =>
-    props.center ? "linear-gradient(0deg, #f9f9f9, #f9f9f9)" : "none"};
+    props.bg ? "linear-gradient(0deg, #f9f9f9, #f9f9f9)" : "none"};
   .innerTextDiv {
     ${flex({ direction: "column" })}
     margin-top: 28px;

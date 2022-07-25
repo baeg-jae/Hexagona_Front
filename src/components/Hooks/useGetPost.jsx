@@ -8,13 +8,17 @@ const GetPost = () => {
     return { data, nextPage: pageParam + 1, currentPage: pageParam };
   };
 
-  const { data, fetchNextPage, status } = useInfiniteQuery("todo", fetchData, {
-    refetchOnWindowFocus: false,
-    getNextPageParam: (lastPage) => {
-      return lastPage.nextPage;
-    },
-  });
-  return { data, fetchNextPage, status };
+  const { data, fetchNextPage, status, isFetchingNextPage } = useInfiniteQuery(
+    "todo",
+    fetchData,
+    {
+      refetchOnWindowFocus: false,
+      getNextPageParam: (lastPage) => {
+        return lastPage.nextPage;
+      },
+    }
+  );
+  return { data, fetchNextPage, status, isFetchingNextPage };
 };
 
 export default GetPost;

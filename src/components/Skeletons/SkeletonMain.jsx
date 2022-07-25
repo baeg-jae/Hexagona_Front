@@ -1,5 +1,6 @@
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
+import { SkeletonAnim } from "components/Common/GlobalStyles";
 
 const SkeletonMain = () => {
   return (
@@ -47,6 +48,7 @@ const StCategoryDiv = styled.div`
   margin-bottom: 8px;
   border-radius: 4px;
   background-color: var(--skeleton);
+  animation: ${SkeletonAnim} 0.5s linear infinite alternate;
 `;
 
 const StFlexRowDiv = styled.div`

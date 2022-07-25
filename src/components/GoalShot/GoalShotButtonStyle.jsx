@@ -8,7 +8,6 @@ export const StButton = styled.button`
   ${flex({})}
   width: 95.38px;
   height: 95.38px;
-  margin-top: 63px;
   background: ${(props) =>
     props.red
       ? `linear-gradient(180deg, #FF0000 0%, #FF6B00 100%)`

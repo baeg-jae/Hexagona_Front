@@ -8,7 +8,6 @@ import AlertComponent from "components/Common/AlertComponent";
 import useGetUser from "components/Hooks/User/useGetUser";
 import styled from "@emotion/styled";
 import flex from "../Common/flex";
-import { MOBILE_SIZE_WIDTH } from "shared/data";
 import { useEffect } from "react";
 
 const CommentInput = ({ postId }) => {

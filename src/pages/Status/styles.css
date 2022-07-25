@@ -41,6 +41,10 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
   height: 10px;
 }
 
+span.swiper-pagination-bullet {
+  display: none;
+}
+
 /* target all bullets */
 .swiper-pagination-bullet {
   background-color: var(--brown);

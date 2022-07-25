@@ -6,6 +6,7 @@ import SkeletonGoalShot from "components/Skeletons/SkeletonGoalShot";
 import NavigatorBar from "components/Common/NavigatorBar";
 import useGetGoalShot from "components/Hooks/GoalShot/useGetGoalShot";
 import WebTitle from "components/Common/WebTitle";
+import styled from "@emotion/styled";
 
 const GoalShot = () => {
   const [count, setCount] = useState(1);
@@ -14,10 +15,10 @@ const GoalShot = () => {
   const [chooseTwo, isChooseTwo] = useState(false);
   return (
     <>
-      <StWrap className="main">
+      <StDiv>
         {isFetching ? (
           <>
-            <SkeletonGoalShot data={data} />
+            <SkeletonGoalShot />
           </>
         ) : (
           <>
@@ -41,10 +42,15 @@ const GoalShot = () => {
             />
           </>
         )}
-      </StWrap>
+      </StDiv>
       <NavigatorBar />
     </>
   );
 };
 
 export default GoalShot;
+
+const StDiv = styled(StWrap)`
+  overflow-y: scroll;
+  overflow-x: hidden;
+`;
