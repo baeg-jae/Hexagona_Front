@@ -13,6 +13,7 @@ import "swiper/css/autoplay";
 const TodayLiked = ({ userData }) => {
   const todayLikes = GetTodayLikes();
   const { mutate } = useCreateChatRoom();
+  console.log(todayLikes);
 
   const onClickHandler = (opponentId) => {
     //  유저정보가 없을경우
@@ -44,7 +45,6 @@ const TodayLiked = ({ userData }) => {
   return (
     <Swiper
       slidesPerView={3}
-      spaceBetween={30}
       pagination={{
         clickable: true,
       }}
@@ -53,13 +53,21 @@ const TodayLiked = ({ userData }) => {
       autoplay={{ delay: 1000 }}
       className="mySwiper"
     >
-      {todayLikes?.map((v, i) => {
-        return (
-          <SwiperSlide key={i} onClick={() => onClickHandler(v.userId)}>
-            <StTodayLIked img={v.photoUrl} />
+      {todayLikes !== undefined ? (
+        todayLikes?.map((v, i) => {
+          return (
+            <SwiperSlide key={i} onClick={() => onClickHandler(v.userId)}>
+              <StTodayLIked img={v.photoUrl} />
+            </SwiperSlide>
+          );
+        })
+      ) : (
+        <>
+          <SwiperSlide>
+            <StSkeleton />
           </SwiperSlide>
-        );
-      })}
+        </>
+      )}
     </Swiper>
   );
 };
@@ -73,4 +81,11 @@ const StTodayLIked = styled.div`
   background-image: url(${(props) => props.img});
   background-position: center;
   background-size: cover;
+`;
+
+const StSkeleton = styled.div`
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  background: var(--skeleton);
 `;

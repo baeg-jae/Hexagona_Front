@@ -216,7 +216,7 @@ const StRightRightCard = styled(StCard)`
 
 const StLastCard = styled.div`
   ${flex({ direction: "column", justify: "flex-start" })}
-  min-width: 285px;
+  width: 100%;
   height: 480px;
   border-radius: 20px;
   opacity: ${(props) => (props.differ ? "0.6" : "1")};
@@ -243,10 +243,7 @@ const StLastCard = styled.div`
     margin-top: 20px;
   }
   .likedPicsDiv {
-    ${flex({ gap: "10px", justify: "flex-start" })}
     width: 100%;
-    overflow: scroll;
-    white-space: nowrap;
   }
 `;
 

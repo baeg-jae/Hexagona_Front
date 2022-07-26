@@ -13,6 +13,7 @@ const AddedMission = ({ missionContent, missionId }) => {
     setFiles(e.target.files[0]);
   };
 
+  console.log(missionId);
   const [isShowTutorial, setIsShowTutorial] = useState(false);
 
   const tutorial = localStorage.getItem("tutorial-missionConfirm");
