@@ -1,7 +1,6 @@
-import api from './core';
+import api from "./core";
 
 export const apis = {
-
   // user
   getUser: () => api.get("/user/auth"),
   signUp: (payload) => api.put("/user/update/nickname", payload),
@@ -50,11 +49,11 @@ export const apis = {
 
   // goal shot
   getGoalShot: () => api.get("/api/posts/goalShot"),
-      //chat
-    getChatListSetting: (payload) => api.get(`/chat/room/${payload.userId}`),
-    getChatSetting: (payload) => api.get(`/chat/roomlist/${payload.userId}/chatRoom/${payload.chatRoomId}`),
-    createChatRoom: (payload) => api.post('/chat/room', payload),
-
+  //chat
+  getChatListSetting: (payload) => api.get(`/chat/room/${payload.userId}`),
+  getChatSetting: (payload) =>
+    api.get(`/chat/roomlist/${payload.userId}/chatRoom/${payload.chatRoomId}`),
+  createChatRoom: (payload) => api.post("/chat/room", payload),
 };
 
 export default apis;

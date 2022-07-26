@@ -9,17 +9,9 @@ import styled from "@emotion/styled";
 import Smile from "assets/img/smile.webp";
 import Sad from "assets/img/sad.webp";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay } from "swiper";
-
-import "swiper/css";
-import "swiper/css/pagination";
-import "./styles.css";
-import "swiper/css/autoplay";
-import GetTodayLikes from "components/Hooks/Like/useTodayLikes";
+import TodayLiked from "components/Chat/TodayLiked";
 
 const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
-  const todayLikes = GetTodayLikes();
   const cardTrigger = () => {
     if (chooseOne || chooseTwo) return true;
   };
@@ -37,25 +29,7 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
               이런 인증샷들을 좋아요 누르셨네요!
             </span>
             <div className="likedPicsDiv">
-              <Swiper
-                slidesPerView={3}
-                spaceBetween={30}
-                pagination={{
-                  clickable: true,
-                }}
-                loop={true}
-                modules={[Pagination, Autoplay]}
-                autoplay={{ delay: 1000 }}
-                className="mySwiper"
-              >
-                {todayLikes?.map((v, i) => {
-                  return (
-                    <SwiperSlide key={i}>
-                      <StTodayLIked img={v.photoUrl} />
-                    </SwiperSlide>
-                  );
-                })}
-              </Swiper>
+              <TodayLiked />
             </div>
           </StLastCard>
         ) : (
@@ -279,10 +253,4 @@ const StLastCard = styled.div`
 const StLastLastCard = styled(StLastCard)`
   animation: ${(props) => props.flag && RightRightCardAnim()}
     ${CARD_ANIMATION_TIME}s ease;
-`;
-
-const StTodayLIked = styled(StEmoji)`
-  width: 100%;
-  height: 100%;
-  background-image: url(${(props) => props.img});
 `;
