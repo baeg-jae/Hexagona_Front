@@ -1,5 +1,7 @@
 import { useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import useGetChatSetting from "components/Hooks/ChatList/useGetChatSetting";
 import Stomp from "stompjs";
 import SockJS from "sockjs-client";
 import flex from "components/Common/flex";
@@ -11,6 +13,13 @@ const ChatSubscribe = () => {
   const { chatRoomId } = useParams();
   const SockJs = new SockJS(`${process.env.REACT_APP_SERVER}/ws-stomp`);
   const StompClient = Stomp.over(SockJs);
+  const { userId } = useSelector((state) => state.userReducer);
+
+  // 이전 채팅 메시지 가져오는 query
+  const { data } = useGetChatSetting({
+    userId: userId,
+    chatRoomId: chatRoomId,
+  });
 
   const wsSubscribe = useCallback(() => {
     StompClient.connect(
@@ -52,7 +61,8 @@ const ChatSubscribe = () => {
 
   useEffect(() => {
     wsSubscribe();
-    return () => wsDisconnect();
+    // 메모: disconnect 잠깐 봉인
+    // return () => wsDisconnect();
   }, [wsSubscribe, wsDisconnect]);
 
   // 채팅 재연결 코드
@@ -61,8 +71,8 @@ const ChatSubscribe = () => {
     <>
       <StHeader>
         <BackButton />
-        <StOtherProfile img={temp} />
-        <StOtherName>김갓생</StOtherName>
+        <StOtherProfile img={data?.otherProfileImg} />
+        <StOtherName>{data?.otherNickName}</StOtherName>
       </StHeader>
     </>
   );
