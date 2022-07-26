@@ -8,6 +8,8 @@ import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 import BackButton from "components/Common/BackButton";
 import temp from "assets/img/Moon.webp";
+import StChatContainer from "./StChatContainer";
+import { FlexColumnDiv } from "components/Common/GlobalStyles";
 
 const ChatSubscribe = () => {
   const { chatRoomId } = useParams();
@@ -68,13 +70,17 @@ const ChatSubscribe = () => {
   // 채팅 재연결 코드
 
   return (
-    <>
+    <FlexColumnDiv>
       <StHeader>
         <BackButton />
         <StOtherProfile img={data?.otherProfileImg} />
         <StOtherName>{data?.otherNickName}</StOtherName>
       </StHeader>
-    </>
+      <StBody>
+        <StChatContainer />
+        <StInputDiv></StInputDiv>
+      </StBody>
+    </FlexColumnDiv>
   );
 };
 
@@ -89,6 +95,12 @@ const StHeader = styled.div`
   border-bottom: 1px solid #dadada;
 `;
 
+const StBody = styled.div`
+  ${flex({ direction: "column", justify: "space-between" })}
+  width: 100%;
+  height: calc(100vh - 200px);
+`;
+
 const StOtherProfile = styled.div`
   width: 24px;
   height: 24px;
@@ -97,6 +109,18 @@ const StOtherProfile = styled.div`
   background-image: url(${(data) => data.img});
   background-size: cover;
   background-position: center;
+`;
+
+const StInputDiv = styled.div`
+  position: fixed;
+  width: calc(100% - 32px);
+  height: 50px;
+  top: calc(100vh - 118px);
+  background-color: yellow;
+
+  @media screen and (min-width: 420px) {
+    width: 384px;
+  }
 `;
 
 const StOtherName = styled.span`
