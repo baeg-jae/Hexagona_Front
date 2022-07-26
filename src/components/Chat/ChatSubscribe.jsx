@@ -5,6 +5,7 @@ import SockJS from "sockjs-client";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 import BackButton from "components/Common/BackButton";
+import temp from "assets/img/Moon.webp";
 
 const ChatSubscribe = () => {
   const { chatRoomId } = useParams();
@@ -60,6 +61,8 @@ const ChatSubscribe = () => {
     <>
       <StHeader>
         <BackButton />
+        <StOtherProfile img={temp} />
+        <StOtherName>김갓생</StOtherName>
       </StHeader>
     </>
   );
@@ -71,4 +74,25 @@ const StHeader = styled.div`
   ${flex({ justify: "flex-start" })}
   width: 100%;
   height: 49px;
+  margin-top: 44px;
+  border-top: 1px solid #dadada;
+  border-bottom: 1px solid #dadada;
+`;
+
+const StOtherProfile = styled.div`
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
+  margin-left: 14px;
+  background-image: url(${(data) => data.img});
+  background-size: cover;
+  background-position: center;
+`;
+
+const StOtherName = styled.span`
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 130%;
+  margin-left: 8px;
+  color: #212121;
 `;
