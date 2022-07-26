@@ -1,22 +1,24 @@
-const ADD_OTHER_PIC = "chat/ADD_OTHER_PIC";
+const ADD_CHAT_MSG = "chat/ADD_CHAT_MSG";
 
-export const getUser = (payload) => ({
-  type: ADD_OTHER_PIC,
+export const addChat = (payload) => ({
+  type: ADD_CHAT_MSG,
   payload,
 });
 
 // 초기값
 const initialState = {
   otherPic: "",
+  message: [],
 };
 
 export default function chatReducer(state = initialState, { payload, type }) {
+  console.log(payload, type);
   switch (type) {
-    case ADD_OTHER_PIC:
+    case ADD_CHAT_MSG:
+      console.log(payload);
       return {
         ...state,
-        isLogin: payload,
-        newUser: payload.newUser,
+        message: [...state.message, payload],
       };
 
     default:

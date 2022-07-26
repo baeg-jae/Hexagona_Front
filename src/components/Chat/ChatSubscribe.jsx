@@ -1,6 +1,6 @@
 import { useEffect, useCallback, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useGetChatSetting from "components/Hooks/ChatList/useGetChatSetting";
 import Stomp from "stompjs";
 import SockJS from "sockjs-client";
@@ -10,14 +10,17 @@ import BackButton from "components/Common/BackButton";
 import StChatContainer from "./StChatContainer";
 import { FlexColumnDiv } from "components/Common/GlobalStyles";
 import { useRef } from "react";
+import { addChat } from "redux/modules/chat";
 
 const ChatSubscribe = () => {
   const { chatRoomId } = useParams();
   const SockJs = new SockJS(`${process.env.REACT_APP_SERVER}/ws-stomp`);
   const StompClient = Stomp.over(SockJs);
   const { userId } = useSelector((state) => state.userReducer);
-  const [message, setMessage] = useState("");
+  const [messageData, setMessage] = useState("");
   const inputRef = useRef();
+  const dispatch = useDispatch();
+  const { message } = useSelector((state) => state.chatReducer);
 
   // 지금 쓰는 채팅 가져오기
   const addMessage = (e) => {
@@ -37,16 +40,18 @@ const ChatSubscribe = () => {
         StompClient.subscribe(`/sub/chat/room/${chatRoomId}`, (message) => {
           const data = JSON.parse(message.body);
           // 리덕스에 채팅 메시지 배열 보내는곳
+          dispatch(addChat(data));
         });
       },
       (e) => {
         console.log(e);
       }
     );
-  }, [StompClient, chatRoomId]);
+  }, [StompClient, chatRoomId, dispatch]);
 
   // 0. stomp에 waitforConnect 추가 -> 자동으로 재연결 해주는친구
   // disconnect 할때, 구독한것도 취소해줘야하고, 자동연결도 cleanup 해줘야한다.
+  console.log(StompClient.ws.readyState);
   const waitForConnect = useCallback(
     (ws, callback) => {
       setTimeout(() => {
@@ -55,12 +60,11 @@ const ChatSubscribe = () => {
         } else {
           waitForConnect(ws, callback);
         }
-      }, 0.1);
+      }, 100);
     },
     [StompClient.ws.readyState]
   );
 
-  // 채팅 재연결 코드
   const wsDisconnect = useCallback(() => {
     StompClient.disconnect(() => {
       // 구독할떄 콘솔보면 id:sub-0 가 이래서 비구독은 아래처럼
@@ -73,11 +77,11 @@ const ChatSubscribe = () => {
     wsSubscribe();
     // 메모: disconnect 잠깐 봉인
     // return () => wsDisconnect();
-  }, [wsSubscribe, wsDisconnect]);
+  }, []);
 
   // 버튼으로 채팅 보내기
   const SendMessage = () => {
-    if (message === "") {
+    if (messageData === "") {
       // 빈 메시지 칸 처리
       return;
     }
@@ -85,7 +89,7 @@ const ChatSubscribe = () => {
       userId: userId,
       chatRoomId: chatRoomId,
       modifiedAt: "2022-07-24T11:12:42.032",
-      message: message,
+      message: messageData,
     };
 
     waitForConnect(StompClient, () => {
@@ -102,9 +106,9 @@ const ChatSubscribe = () => {
         <StOtherName>{data?.otherNickName}</StOtherName>
       </StHeader>
       <StBody>
-        <StChatContainer />
+        <StChatContainer chats={data?.chatMessageDataList} />
         <StInputDiv>
-          <StMyProfile img={data?.otherProfileImg} />
+          <StMyProfile img={message} />
           <StDiv>
             <input
               type="text"
