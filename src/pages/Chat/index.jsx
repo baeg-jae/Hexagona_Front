@@ -23,7 +23,7 @@ const Chat = () => {
         </div>
         <StLikeTitle>Chatting</StLikeTitle>
         {/* props로 유저 정보를 넘겨줍니다. */}
-        <ChatList userData={data} />
+        <ChatList />
       </>
       <NavigatorBar />
     </StCalculatedWrap>

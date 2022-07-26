@@ -2,17 +2,21 @@ import styled from "@emotion/styled";
 import flex from "components/Common/flex";
 import useGetChatListSetting from "components/Hooks/ChatList/useGetChatListSetting";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-const ChatList = ({ userData }) => {
+const ChatList = () => {
   const { userId } = useSelector((state) => state.userReducer);
-
   const { data } = useGetChatListSetting({ userId: userId });
-  const onClickChatRoomHandler = () => {};
+  const navigate = useNavigate();
+
+  const onClickChatRoomHandler = (RoomId) => {
+    if (data.chatRoomList !== undefined) navigate(`/chat/${RoomId}`);
+  };
   return (
     <StChatWrap>
       {data?.chatRoomList?.map((v, i) => {
         return (
-          <StChat onClick={onClickChatRoomHandler} key={i}>
+          <StChat onClick={() => onClickChatRoomHandler(v.chatRoomId)} key={i}>
             <StChatHeader>
               <StChatHeaderImg otherProfileImg={v.otherProfileImg} />
               <span>{v.otherNickName}</span>
