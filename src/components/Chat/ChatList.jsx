@@ -1,79 +1,55 @@
-import styled from "@emotion/styled";
-import flex from "components/Common/flex";
-import Splash1 from "assets/img/splash_01.webp";
-import NewLikeImg from "./NewLikeImg";
-import useGetUser from "components/Hooks/User/useGetUser";
+import styled from '@emotion/styled';
+import flex from 'components/Common/flex';
+import useGetChatListSetting from 'components/Hooks/ChatList/useGetChatListSetting';
 
-const Chats = () => {
-  const { data } = useGetUser();
-  const onClickChatRoomHandler = () => {};
-
-  return (
-    <>
-      <NewLikeImg />
-      {data.userId.map((_, i) => {
-        return (
-          <StChat key={i} onClick={onClickChatRoomHandler}>
-            <div className="Chats_firstRow">
-              <div className="Chats_Profile" />
-              <div className="Chats_Name">백재님</div>
-            </div>
-            <div className="Chat_secondRow">
-              채팅에 꼭 성공 합시당.채팅에 꼭 성공 합시당.채팅에 꼭 성공
-              합시당.채팅에 꼭 성공 합시당.채팅에 꼭 성공 합시당 채팅에 꼭 성공
-              합시당.채팅에 꼭 성공 합시당.채팅에 꼭 성공 합시당.채팅에 꼭 성공
-              합시당.채팅에 꼭 성공 합시당 채팅에 꼭 성공 합시당.채팅에 꼭 성공
-              합시당.채팅에 꼭 성공 합시당.채팅에 꼭 성공 합시당.채팅에 꼭 성공
-              합시당 채팅에 꼭 성공 합시당.채팅에 꼭 성공 합시당.채팅에 꼭 성공
-              합시당.채팅에 꼭 성공 합시당.채팅에 꼭 성공 합시당 채팅에 꼭 성공
-              합시당.채팅에 꼭 성공 합시당.채팅에 꼭 성공 합시당.채팅에 꼭 성공
-              합시당.채팅에 꼭 성공 합시당 채팅에 꼭 성공 합시당.채팅에 꼭 성공
-              합시당.채팅에 꼭 성공 합시당.채팅에 꼭 성공 합시당.채팅에 꼭 성공
-              합시당
-            </div>
-          </StChat>
-        );
-      })}
-    </>
-  );
+const ChatList = () => {
+    const { data } = useGetChatListSetting();
+    const onClickChatRoomHandler = () => {};
+    console.log(data);
+    return (
+        <StChatWrap>
+            <StChat onClick={onClickChatRoomHandler}>
+                <StChatHeader>
+                    <StChatHeaderImg otherProfileImg={data?.otherProfileImg} />
+                    <span>{data?.otherNickName}</span>
+                </StChatHeader>
+                <StChatDec>{data?.lastChat}</StChatDec>
+            </StChat>
+        </StChatWrap>
+    );
 };
 
-export default Chats;
-
+export default ChatList;
+const StChatWrap = styled.div`
+    ${flex({ direction: 'column', justify: 'flex-start' })}
+`;
 const StChat = styled.div`
-  ${flex({ direction: "column", align: "flex-start" })}
-  width: 339px;
-  height: 109px;
-  border-bottom: 1px solid #e9e9e9;
-  cursor: pointer;
-  &:hover {
-    opacity: 0.8;
-  }
-  .Chats_firstRow {
-    ${flex({ justify: "flex-start" })}
+    ${flex({ direction: 'column', justify: 'flex-start' })}
+    width: calc(100% - 32px);
+    height: 81px;
+    margin-top: 18px;
+    border-bottom: 1px solid #e9e9e9;
+    background-color: tomato;
+`;
+const StChatHeader = styled.div`
     width: 100%;
-    .Chats_Profile {
-      width: 45px;
-      height: 45px;
-      border-radius: 100%;
-      background-image: url(${Splash1});
-      background-size: cover;
-      background-position: center;
+    ${flex({ direction: 'row', justify: 'flex-start' })}
+    .span {
+        font-size: 18px;
     }
-    .Chats_Name {
-      font-weight: 600;
-      font-size: 18px;
-      line-height: 100%;
-      color: #393939;
-      margin-left: 5px;
-    }
-  }
-  .Chat_secondRow {
-    width: 339px;
-    margin-top: 8px;
+`;
+const StChatHeaderImg = styled.div`
+    width: 45px;
+    height: 45px;
+    background-image: url(${(data) => data.profile_img});
+    background-size: cover;
+    background-position: center;
+    margin-right: 9px;
+`;
+const StChatDec = styled.div`
+    margin-top: 7.8px;
+    width: 97%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    word-break: break-all;
-  }
 `;
