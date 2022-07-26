@@ -1,8 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import Stomp from "stompjs";
 import SockJS from "sockjs-client";
-import { useCallback } from "react";
+import flex from "components/Common/flex";
+import styled from "@emotion/styled";
+import BackButton from "components/Common/BackButton";
 
 const ChatSubscribe = () => {
   const { chatRoomId } = useParams();
@@ -15,6 +17,7 @@ const ChatSubscribe = () => {
       () => {
         StompClient.subscribe(`/sub/chat/room/${chatRoomId}`, (message) => {
           const data = JSON.parse(message.body);
+          // 리덕스에 채팅 메시지 배열 보내는곳
         });
       },
       (e) => {
@@ -23,16 +26,49 @@ const ChatSubscribe = () => {
     );
   }, [StompClient, chatRoomId]);
 
+  // 0. stomp에 waitforConnect 추가 -> 자동으로 재연결 해주는친구
+  // disconnect 할때, 구독한것도 취소해줘야하고, 자동연결도 cleanup 해줘야한다.
+  const waitForConnect = useCallback(
+    (ws, callback) => {
+      setTimeout(() => {
+        if (StompClient.ws.readyState === 1) {
+          callback();
+        } else {
+          waitForConnect(ws, callback);
+        }
+      }, 0.1);
+    },
+    [StompClient.ws.readyState]
+  );
+
   const wsDisconnect = useCallback(() => {
-    StompClient.disconnect();
-  }, [StompClient]);
+    StompClient.disconnect(() => {
+      // 구독할떄 콘솔보면 id:sub-0 가 이래서 비구독은 아래처럼
+      StompClient.unsubscribe("sub-0");
+      clearTimeout(waitForConnect);
+    });
+  }, [StompClient, waitForConnect]);
 
   useEffect(() => {
     wsSubscribe();
     return () => wsDisconnect();
   }, [wsSubscribe, wsDisconnect]);
 
-  return <div></div>;
+  // 채팅 재연결 코드
+
+  return (
+    <>
+      <StHeader>
+        <BackButton />
+      </StHeader>
+    </>
+  );
 };
 
 export default ChatSubscribe;
+
+const StHeader = styled.div`
+  ${flex({ justify: "flex-start" })}
+  width: 100%;
+  height: 49px;
+`;

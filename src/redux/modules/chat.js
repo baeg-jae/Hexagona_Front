@@ -1,5 +1,3 @@
-import apis from "shared/api/main";
-
 const ADD_OTHER_PIC = "chat/ADD_OTHER_PIC";
 
 export const getUser = (payload) => ({
