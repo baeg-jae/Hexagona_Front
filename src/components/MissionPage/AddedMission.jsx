@@ -45,14 +45,16 @@ const AddedMission = ({ missionContent, missionId }) => {
               id="file"
               onChange={saveFileImage}
             />
-            <DropDownMenu
-              text="미션 수정"
-              text2="미션 삭제"
-              margin="40"
-              click="missionU"
-              click2="missionD"
-              missionId={missionId}
-            />
+            <div style={{ marginRight: "20px" }}>
+              <DropDownMenu
+                text="미션 수정"
+                text2="미션 삭제"
+                margin="40"
+                click="missionU"
+                click2="missionD"
+                missionId={missionId}
+              />
+            </div>
           </div>
           <JoyrideContainer
             run={isShowTutorial}

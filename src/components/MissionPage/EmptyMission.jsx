@@ -90,10 +90,9 @@ const EmptyMission = ({ category, list }) => {
       {arr.map((_, i) => {
         return list[i] !== undefined ? (
           <AddedMission
+            key={i}
             missionContent={list[i].missionContent}
             missionId={list[i].missionId}
-            index={list[i]}
-            key={i}
           />
         ) : (
           <></>
