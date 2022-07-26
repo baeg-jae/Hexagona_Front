@@ -9,7 +9,6 @@ const Loading = loadable(() => import("pages/Status/Loading"));
 
 const SkeletonCard = () => {
   const { data } = useGetGoalShot;
-  console.log(data);
   return (
     <>
       <StCardContainer>

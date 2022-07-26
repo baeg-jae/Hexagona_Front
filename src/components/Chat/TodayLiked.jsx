@@ -13,7 +13,6 @@ import "swiper/css/autoplay";
 const TodayLiked = ({ userData }) => {
   const todayLikes = GetTodayLikes();
   const { mutate } = useCreateChatRoom();
-  console.log(todayLikes);
 
   const onClickHandler = (opponentId) => {
     //  유저정보가 없을경우
@@ -48,7 +47,6 @@ const TodayLiked = ({ userData }) => {
       pagination={{
         clickable: true,
       }}
-      loop={true}
       modules={[Pagination, Autoplay]}
       autoplay={{ delay: 1000 }}
       className="mySwiper"
