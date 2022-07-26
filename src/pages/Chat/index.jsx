@@ -5,6 +5,7 @@ import NavigatorBar from "components/Common/NavigatorBar";
 import Search from "components/Feed/Search";
 import TodayLiked from "components/Chat/TodayLiked";
 import useGetUser from "components/Hooks/User/useGetUser";
+import ChatList from "components/Chat/ChatList";
 
 const Chat = () => {
   const { data } = useGetUser();
@@ -21,6 +22,8 @@ const Chat = () => {
           <TodayLiked userData={data} />
         </div>
         <StLikeTitle>Chatting</StLikeTitle>
+        {/* props로 유저 정보를 넘겨줍니다. */}
+        <ChatList userData={data} />
       </>
       <NavigatorBar />
     </StCalculatedWrap>
@@ -31,7 +34,6 @@ export default Chat;
 
 const StCalculatedWrap = styled(StWrap)`
   height: calc(100vh - 60px);
-  overflow-y: scroll;
 `;
 
 const StLikeTitle = styled.div`

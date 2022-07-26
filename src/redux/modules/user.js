@@ -1,8 +1,10 @@
 import api from "shared/api/core";
+import apis from "shared/api/main";
 
 const USER_LOGIN = "user/USER_LOGIN";
 const USER_PROFILETEMP = "user/USER_PROFILETEMP";
 const USER_PROFILE = "user/USER_PROFILE";
+const GET_USER = "user/GET_USER";
 
 const userLogin = (payload) => ({ type: USER_LOGIN, payload });
 export const addUserProfileTemp = (payload) => ({
@@ -13,6 +15,17 @@ export const addUserProfile = (payload) => ({
   type: USER_PROFILE,
   payload,
 });
+
+const getUser = (payload) => ({
+  type: GET_USER,
+  payload,
+});
+
+// Get 로그인 한 유저정보
+export const __getUser = () => async (dispatch) => {
+  const data = await apis.getUser();
+  dispatch(getUser(data.data));
+};
 
 // 카카오 로그인
 export const __kakaoSignIn = (code) => async (dispatch) => {
@@ -47,6 +60,8 @@ export const __naverSignIn = (code, state) => async (dispatch) => {
 
 // 초기값
 const initialState = {
+  userId: 0,
+  nickname: "",
   isLogin: false,
   newUser: true,
   profileTempImg: "",
@@ -71,6 +86,12 @@ export default function userReducer(state = initialState, { payload, type }) {
       return {
         ...state,
         profileImg: payload.profileImg,
+      };
+    case GET_USER:
+      return {
+        ...state,
+        nickname: payload.nickname,
+        userId: payload.userId,
       };
     default:
       return state;

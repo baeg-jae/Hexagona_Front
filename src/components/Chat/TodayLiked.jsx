@@ -64,6 +64,12 @@ const TodayLiked = ({ userData }) => {
           <SwiperSlide>
             <StSkeleton />
           </SwiperSlide>
+          <SwiperSlide>
+            <StSkeleton />
+          </SwiperSlide>
+          <SwiperSlide>
+            <StSkeleton />
+          </SwiperSlide>
         </>
       )}
     </Swiper>

@@ -16,9 +16,7 @@ const useCreateChatRoom = () => {
       if (data !== undefined) navigate(`/chat/${data.data.chatRoomId}`);
       return data;
     },
-    onError: (e) => {
-      console.log(e);
-    },
+    onError: (e) => {},
   });
 };
 
