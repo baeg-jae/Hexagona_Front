@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Stomp from "stompjs";
@@ -22,7 +22,24 @@ const ChatSubscribe = () => {
   const messageScroll = useRef();
   const inputRef = useRef();
   const dispatch = useDispatch();
-  const wsSubscribe = useCallback(() => {
+
+  // 시간 "2022-07-24T11:12:42.032",
+  //2022-6-27T6:43:17.032
+  const time =
+    new Date(Date.now()).getFullYear() +
+    "-" +
+    (new Date(Date.now()).getMonth() + 1) +
+    "-" +
+    new Date(Date.now()).getDate() +
+    "T" +
+    new Date(Date.now()).getHours() +
+    ":" +
+    new Date(Date.now()).getMinutes() +
+    ":" +
+    new Date(Date.now()).getSeconds() +
+    ".032";
+
+  const wsSubscribe = () => {
     StompClient.connect(
       {},
       () => {
@@ -36,37 +53,33 @@ const ChatSubscribe = () => {
         console.log(e);
       }
     );
-  }, [StompClient, chatRoomId]);
+  };
 
-  // 0. stomp에 waitforConnect 추가 -> 자동으로 재연결 해주는친구
   // disconnect 할때, 구독한것도 취소해줘야하고, 자동연결도 cleanup 해줘야한다.
-  const waitForConnect = useCallback(
-    (ws, callback) => {
-      setTimeout(() => {
-        if (StompClient.ws.readyState === 1) {
-          callback();
-        } else {
-          waitForConnect(ws, callback);
-        }
-      }, 1000);
-    },
-    [StompClient.ws.readyState]
-  );
+  const waitForConnect = (ws, callback) => {
+    setTimeout(() => {
+      if (StompClient.ws.readyState === 1) {
+        callback();
+      } else {
+        waitForConnect(ws, callback);
+      }
+    }, 0.1);
+  };
 
-  const wsDisconnect = useCallback(() => {
+  const wsDisconnect = () => {
     StompClient.disconnect(() => {
       // 구독할떄 콘솔보면 id:sub-0 가 이래서 비구독은 아래처럼
       StompClient.unsubscribe("sub-0");
       clearTimeout(waitForConnect);
     });
-  }, [StompClient, waitForConnect]);
+  };
 
   useEffect(() => {
     // 옛날 채팅 보여주기
     dispatch(__prevPostChat({ userId: userId, chatRoomId: chatRoomId }));
     wsSubscribe();
     // 오류: disconnect할때 오류있음 가끔
-    // return () => wsDisconnect();
+    return () => wsDisconnect();
   }, []);
 
   // 버튼으로 채팅 보내기
@@ -78,12 +91,12 @@ const ChatSubscribe = () => {
     const data = {
       userId: userId,
       chatRoomId: chatRoomId,
-      modifiedAt: "2022-07-24T11:12:42.032",
+      modifiedAt: time,
       message: messageData,
     };
 
     waitForConnect(StompClient, () => {
-      StompClient.send(`/pub/templates/chat/message`, {}, JSON.stringify(data));
+      StompClient.send(`/pub/templates/chat/message`, {}, JSON.stringify(data)); // 여기서 에러
     });
     inputRef.current.value = "";
   };
