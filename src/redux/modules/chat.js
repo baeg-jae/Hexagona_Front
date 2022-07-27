@@ -1,26 +1,29 @@
-const ADD_CHAT_MSG = "chat/ADD_CHAT_MSG";
+import apis from "shared/api/main";
 
-export const addChat = (payload) => ({
-  type: ADD_CHAT_MSG,
-  payload,
-});
+const PREV_POST_CHAT = "chat/PREV_POST_CHAT";
+
+export function prevPostChat(payload) {
+  return { type: PREV_POST_CHAT, payload };
+}
 
 // 초기값
-const initialState = {
-  otherPic: "",
-  message: [],
+const initialState = {};
+
+export const __prevPostChat = (payload) => {
+  return async function (dispatch) {
+    try {
+      const loadData = await apis.getChatSetting(payload);
+      // console.log(loadData);
+      dispatch(prevPostChat(loadData.data));
+    } catch (error) {}
+  };
 };
 
 export default function chatReducer(state = initialState, { payload, type }) {
-  console.log(payload, type);
   switch (type) {
-    case ADD_CHAT_MSG:
-      console.log(payload);
-      return {
-        ...state,
-        message: [...state.message, payload],
-      };
-
+    case PREV_POST_CHAT: {
+      return { post_list: payload };
+    }
     default:
       return state;
   }

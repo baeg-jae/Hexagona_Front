@@ -117,7 +117,7 @@ const StSkeleton = styled(StDupModel)`
 
 const StEmptyLiked = styled(StDupModel)`
   ${flex({ direction: "column" })}
-  width: 100vw;
+  width: 100%;
   height: 150px;
   margin-top: 35px;
   cursor: pointer;
