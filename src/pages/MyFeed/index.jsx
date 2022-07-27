@@ -65,7 +65,7 @@ const StDiv = styled.div`
 
 const StImgDiv = styled.div`
   height: 225.72px;
-  border-radius: 4px;
+  border-radius: 16px;
   background: url(${(props) => props.img});
   background-position: center;
   background-size: cover;

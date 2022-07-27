@@ -46,7 +46,7 @@ const StCategoryDiv = styled.div`
   width: 345px;
   height: 140px;
   margin-bottom: 8px;
-  border-radius: 4px;
+  border-radius: 16px;
   background-color: var(--skeleton);
   animation: ${SkeletonAnim} 0.5s linear infinite alternate;
 `;
