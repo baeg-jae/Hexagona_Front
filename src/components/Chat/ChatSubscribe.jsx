@@ -1,57 +1,46 @@
-import { useEffect, useCallback, useState } from "react";
+import { useEffect, useCallback, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import useGetChatSetting from "components/Hooks/ChatList/useGetChatSetting";
 import Stomp from "stompjs";
 import SockJS from "sockjs-client";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 import BackButton from "components/Common/BackButton";
-import StChatContainer from "./StChatContainer";
 import { FlexColumnDiv } from "components/Common/GlobalStyles";
-import { useRef } from "react";
-import { addChat } from "redux/modules/chat";
+import { __prevPostChat } from "redux/modules/chat";
+import useGetUser from "components/Hooks/User/useGetUser";
 
 const ChatSubscribe = () => {
   const { chatRoomId } = useParams();
+  const { data } = useGetUser();
   const SockJs = new SockJS(`${process.env.REACT_APP_SERVER}/ws-stomp`);
   const StompClient = Stomp.over(SockJs);
-  const { userId } = useSelector((state) => state.userReducer);
+  const { userId, nickname } = useSelector((state) => state.userReducer);
+  const { post_list } = useSelector((state) => state.chatReducer);
   const [messageData, setMessage] = useState("");
+  const [publicChats, setPublicChats] = useState([]);
+  const messageScroll = useRef();
   const inputRef = useRef();
   const dispatch = useDispatch();
-  const { message } = useSelector((state) => state.chatReducer);
-
-  // 지금 쓰는 채팅 가져오기
-  const addMessage = (e) => {
-    setMessage(e.target.value);
-  };
-
-  // 이전 채팅 메시지 가져오는 query
-  const { data } = useGetChatSetting({
-    userId: userId,
-    chatRoomId: chatRoomId,
-  });
-
   const wsSubscribe = useCallback(() => {
     StompClient.connect(
       {},
       () => {
-        StompClient.subscribe(`/sub/chat/room/${chatRoomId}`, (message) => {
-          const data = JSON.parse(message.body);
-          // 리덕스에 채팅 메시지 배열 보내는곳
-          dispatch(addChat(data));
+        StompClient.subscribe(`/sub/chat/room/${chatRoomId}`, (data) => {
+          // 로직
+          const response = JSON.parse(data.body);
+          console.log(response);
+          setPublicChats([publicChats, ...response]);
         });
       },
       (e) => {
         console.log(e);
       }
     );
-  }, [StompClient, chatRoomId, dispatch]);
+  }, [StompClient, chatRoomId]);
 
   // 0. stomp에 waitforConnect 추가 -> 자동으로 재연결 해주는친구
   // disconnect 할때, 구독한것도 취소해줘야하고, 자동연결도 cleanup 해줘야한다.
-  console.log(StompClient.ws.readyState);
   const waitForConnect = useCallback(
     (ws, callback) => {
       setTimeout(() => {
@@ -60,7 +49,7 @@ const ChatSubscribe = () => {
         } else {
           waitForConnect(ws, callback);
         }
-      }, 100);
+      }, 1000);
     },
     [StompClient.ws.readyState]
   );
@@ -74,8 +63,10 @@ const ChatSubscribe = () => {
   }, [StompClient, waitForConnect]);
 
   useEffect(() => {
+    // 옛날 채팅 보여주기
+    dispatch(__prevPostChat({ userId: userId, chatRoomId: chatRoomId }));
     wsSubscribe();
-    // 메모: disconnect 잠깐 봉인
+    // 오류: disconnect할때 오류있음 가끔
     // return () => wsDisconnect();
   }, []);
 
@@ -98,17 +89,54 @@ const ChatSubscribe = () => {
     inputRef.current.value = "";
   };
 
+  // 지금 쓰는 채팅 가져오기
+  const addMessage = (e) => {
+    setMessage(e.target.value);
+  };
+
+  // 채팅 스크롤 관리
+  const scrollToBottom = () => {
+    if (messageScroll.current) {
+      messageScroll.current.scrollTop = messageScroll.current.scrollHeight;
+    }
+  };
+  useEffect(() => {
+    scrollToBottom();
+  }, [post_list]);
+
   return (
     <FlexColumnDiv>
       <StHeader>
         <BackButton />
-        <StOtherProfile img={data?.otherProfileImg} />
-        <StOtherName>{data?.otherNickName}</StOtherName>
+        <StOtherProfile img={post_list?.otherProfileImg} />
+        <StOtherName>{post_list?.otherNickName}</StOtherName>
       </StHeader>
       <StBody>
-        <StChatContainer chats={data?.chatMessageDataList} />
+        <StWrap ref={messageScroll}>
+          {post_list?.chatMessageDataList?.map((v, i) => {
+            return v.userNickname === nickname ? (
+              <StFlexRow key={i}>
+                <StChatContentContainer me>
+                  <StChatContent me>{v.message}</StChatContent>
+                </StChatContentContainer>
+                <StMyProfile img={data?.profile_img} />
+              </StFlexRow>
+            ) : (
+              <StFlexRow key={i}>
+                <StMyProfile img={post_list?.otherProfileImg} />
+                <StChatContentContainer>
+                  <StChatContent>{v.message}</StChatContent>
+                </StChatContentContainer>
+              </StFlexRow>
+            );
+          })}
+          {
+            // 내가 현재 보내는 채팅 목록
+            // 유저 분류
+          }
+        </StWrap>
         <StInputDiv>
-          <StMyProfile img={message} />
+          <StMyProfile img={data?.profile_img} />
           <StDiv>
             <input
               type="text"
@@ -116,6 +144,7 @@ const ChatSubscribe = () => {
               placeholder="메세지를  입력해주세요."
               onChange={addMessage}
               ref={inputRef}
+              maxLength={250}
             />
             <button className="commentButton" onClick={SendMessage}>
               게시
@@ -158,6 +187,9 @@ const StMyProfile = styled(StOtherProfile)`
   width: 40px;
   height: 40px;
   margin-left: 0px;
+  background-image: url(${(data) => data.img});
+  background-size: cover;
+  background-position: center;
 `;
 
 const StInputDiv = styled.div`
@@ -209,4 +241,35 @@ const StDiv = styled.div`
     color: #4876ef;
     margin-right: 15px;
   }
+`;
+
+const StWrap = styled.div`
+  ${flex({ direction: "column", justify: "flex-start" })}
+  width: calc(100% - 32px);
+  height: calc(var(--vh) * 70);
+  border: 1px solid black;
+  margin-top: 31px;
+  overflow-y: scroll;
+`;
+
+const StChatContentContainer = styled.div`
+  ${flex({ direction: "column" })}
+  width: 277px;
+  padding: 10px;
+  background: ${(props) => (props.me ? "#f8f8f8" : "#55977A")};
+  border-radius: ${(props) =>
+    props.me ? "30px 30px 0 30px" : "30px 30px 30px 0"};
+  margin: 10px;
+`;
+
+const StChatContent = styled.span`
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 28px;
+  color: ${(props) => (props.me ? "#393939" : "#fff")};
+`;
+
+const StFlexRow = styled.div`
+  ${flex({ justify: "space-evenly", align: "flex-end" })}
+  width: 100%;
 `;
