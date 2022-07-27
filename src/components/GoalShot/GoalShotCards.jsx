@@ -216,7 +216,7 @@ const StRightRightCard = styled(StCard)`
 
 const StLastCard = styled.div`
   ${flex({ direction: "column", justify: "flex-start" })}
-  width: 100%;
+  min-width: 285px;
   height: 480px;
   border-radius: 20px;
   opacity: ${(props) => (props.differ ? "0.6" : "1")};
