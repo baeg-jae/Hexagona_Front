@@ -27,17 +27,16 @@ const ChatSubscribe = () => {
       {},
       () => {
         StompClient.subscribe(`/sub/chat/room/${chatRoomId}`, (data) => {
-          // 로직
-          const response = JSON.parse(data);
-          console.log(response);
-          setPublicChats([publicChats, ...response]);
+          const response = JSON.parse(data.body);
+          // 내가 보낸채팅, 상대가 보낸 채팅을 response로 받아서 state 배열 관리
+          setPublicChats((list) => [...list, response]);
         });
       },
       (e) => {
         console.log(e);
       }
     );
-  }, [StompClient, chatRoomId, publicChats]);
+  }, [StompClient, chatRoomId]);
 
   // 0. stomp에 waitforConnect 추가 -> 자동으로 재연결 해주는친구
   // disconnect 할때, 구독한것도 취소해줘야하고, 자동연결도 cleanup 해줘야한다.
@@ -102,7 +101,7 @@ const ChatSubscribe = () => {
   };
   useEffect(() => {
     scrollToBottom();
-  }, [post_list]);
+  }, [post_list, publicChats]);
 
   return (
     <FlexColumnDiv>
@@ -113,26 +112,45 @@ const ChatSubscribe = () => {
       </StHeader>
       <StBody>
         <StWrap ref={messageScroll}>
-          {post_list?.chatMessageDataList?.map((v, i) => {
-            return v.userNickname === nickname ? (
-              <StFlexRow key={i}>
-                <StChatContentContainer me>
-                  <StChatContent me>{v.message}</StChatContent>
-                </StChatContentContainer>
-                <StMyProfile img={data?.profile_img} />
-              </StFlexRow>
-            ) : (
-              <StFlexRow key={i}>
-                <StMyProfile img={post_list?.otherProfileImg} />
-                <StChatContentContainer>
-                  <StChatContent>{v.message}</StChatContent>
-                </StChatContentContainer>
-              </StFlexRow>
-            );
-          })}
           {
-            // 내가 현재 보내는 채팅 목록
-            // 유저 분류
+            // 내가 예전에 주고받은 채팅 기록
+            post_list?.chatMessageDataList?.map((v, i) => {
+              return v.userNickname === nickname ? (
+                <StFlexRow key={i}>
+                  <StChatContentContainer me>
+                    <StChatContent me>{v.message}</StChatContent>
+                  </StChatContentContainer>
+                  <StMyProfile img={data?.profile_img} />
+                </StFlexRow>
+              ) : (
+                <StFlexRow key={i}>
+                  <StMyProfile img={post_list?.otherProfileImg} />
+                  <StChatContentContainer>
+                    <StChatContent>{v.message}</StChatContent>
+                  </StChatContentContainer>
+                </StFlexRow>
+              );
+            })
+          }
+          {
+            // 내가 현재 보내고 받는 실시간 채팅 목록
+            publicChats?.map((v, i) => {
+              return v.userId === userId ? (
+                <StFlexRow key={i}>
+                  <StChatContentContainer me>
+                    <StChatContent me>{v.message}</StChatContent>
+                  </StChatContentContainer>
+                  <StMyProfile img={data?.profile_img} />
+                </StFlexRow>
+              ) : (
+                <StFlexRow key={i}>
+                  <StMyProfile img={post_list?.otherProfileImg} />
+                  <StChatContentContainer>
+                    <StChatContent>{v.message}</StChatContent>
+                  </StChatContentContainer>
+                </StFlexRow>
+              );
+            })
           }
         </StWrap>
         <StInputDiv>
