@@ -28,7 +28,7 @@ const ChatSubscribe = () => {
       () => {
         StompClient.subscribe(`/sub/chat/room/${chatRoomId}`, (data) => {
           // 로직
-          const response = JSON.parse(data.body);
+          const response = JSON.parse(data);
           console.log(response);
           setPublicChats([publicChats, ...response]);
         });
@@ -37,7 +37,7 @@ const ChatSubscribe = () => {
         console.log(e);
       }
     );
-  }, [StompClient, chatRoomId]);
+  }, [StompClient, chatRoomId, publicChats]);
 
   // 0. stomp에 waitforConnect 추가 -> 자동으로 재연결 해주는친구
   // disconnect 할때, 구독한것도 취소해줘야하고, 자동연결도 cleanup 해줘야한다.
@@ -247,7 +247,6 @@ const StWrap = styled.div`
   ${flex({ direction: "column", justify: "flex-start" })}
   width: calc(100% - 32px);
   height: calc(var(--vh) * 70);
-  border: 1px solid black;
   margin-top: 31px;
   overflow-y: scroll;
 `;
