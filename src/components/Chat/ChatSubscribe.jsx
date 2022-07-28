@@ -81,7 +81,7 @@ const ChatSubscribe = () => {
     // 이전 채팅 보여주기
     dispatch(__prevPostChat({ userId: userId, chatRoomId: chatRoomId }));
     // 연결도 끊어지면 다시 되게
-    waitForConnect(StompClient, wsSubscribe());
+    wsSubscribe();
     return () => wsDisconnect();
     // 디펜던시 주면 안됌
   }, []);
@@ -138,14 +138,13 @@ const ChatSubscribe = () => {
           {
             // 내가 예전에 주고받은 채팅 기록
             post_list?.chatMessageDataList?.map((v, i) => {
-              console.log(v);
               return v.userNickname === nickname ? (
                 <StFlexRow key={i}>
                   <FlexColumnDiv>
                     <StChatContentContainer me>
                       <StChatContent me>{v.message}</StChatContent>
                     </StChatContentContainer>
-                    <StTime me>{v.modifiedAt}</StTime>
+                    <StTime me>{v.messageModifiedAt}</StTime>
                   </FlexColumnDiv>
                   <StMyProfile img={data?.profile_img} />
                 </StFlexRow>
@@ -156,7 +155,7 @@ const ChatSubscribe = () => {
                     <StChatContentContainer>
                       <StChatContent>{v.message}</StChatContent>
                     </StChatContentContainer>
-                    <StTime>{v.modifiedAt}</StTime>
+                    <StTime>{v.messageModifiedAt}</StTime>
                   </FlexColumnDiv>
                 </StFlexRow>
               );
@@ -171,7 +170,7 @@ const ChatSubscribe = () => {
                     <StChatContentContainer me>
                       <StChatContent me>{v.message}</StChatContent>
                     </StChatContentContainer>
-                    <StTime me>{v.modifiedAt}</StTime>
+                    <StTime me>{v.messageModifiedAt}</StTime>
                   </FlexColumnDiv>
                   <StMyProfile img={data?.profile_img} />
                 </StFlexRow>
@@ -182,7 +181,7 @@ const ChatSubscribe = () => {
                     <StChatContentContainer>
                       <StChatContent>{v.message}</StChatContent>
                     </StChatContentContainer>
-                    <StTime>{v.modifiedAt}</StTime>
+                    <StTime>{v.messageModifiedAt}</StTime>
                   </FlexColumnDiv>
                 </StFlexRow>
               );
