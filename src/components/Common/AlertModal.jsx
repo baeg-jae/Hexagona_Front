@@ -4,16 +4,29 @@ import { useEffect } from "react";
 import { ALERT_MODAL_ICON, ALERT_MODAL_POPUP } from "shared/data";
 import { alertIconHandler } from "./ButtonPropsHandler";
 import { alertModalAnim, alertModalIconAnim } from "./GlobalStyles";
+import { useDispatch } from "react-redux";
+import {
+  MissionAddModalError,
+  MissionAddModalSuccess,
+} from "redux/modules/modal";
 
-const AlertModal = ({ title, icon, set }) => {
+const AlertModal = ({ title, icon, type }) => {
+  const dispatch = useDispatch();
   useEffect(() => {
     const timeout = setTimeout(() => {
-      set((value) => !value);
+      switch (type) {
+        case "missionAddError":
+          return dispatch(MissionAddModalError(false));
+        case "missionAddSuccess":
+          return dispatch(MissionAddModalSuccess(false));
+        default:
+          return;
+      }
     }, 1500);
     return () => {
       clearTimeout(timeout);
     };
-  }, [set]);
+  }, [dispatch, type]);
 
   return (
     <StModal>

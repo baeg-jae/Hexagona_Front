@@ -258,8 +258,3 @@ const StLastCard = styled.div`
     width: 100%;
   }
 `;
-
-const StLastLastCard = styled(StLastCard)`
-  animation: ${(props) => props.flag && RightRightCardAnim()}
-    ${CARD_ANIMATION_TIME}s ease;
-`;

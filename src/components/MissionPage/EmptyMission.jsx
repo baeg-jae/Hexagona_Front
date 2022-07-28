@@ -2,7 +2,6 @@ import { MISSION_ADD_LENGTH } from "shared/data";
 import { useState, useCallback, useEffect } from "react";
 import { badWords } from "shared/TextsData";
 import useAddMission from "components/Hooks/Mission/useAddMission";
-import AlertComponent from "components/Common/AlertComponent";
 import InputModal from "components/Common/InputModal";
 import AddedMission from "./AddedMission";
 import flex from "components/Common/flex";
@@ -11,15 +10,18 @@ import styled from "@emotion/styled";
 import Button from "components/Common/Button";
 import JoyrideContainer from "components/Tutorial/JoyrideContainer";
 import { missionOne } from "shared/tutorialData";
-import AlertModal from "components/Common/AlertModal";
+import { useDispatch } from "react-redux";
+import {
+  MissionAddModalError,
+  MissionAddModalSuccess,
+} from "redux/modules/modal";
 
 const EmptyMission = ({ category, list }) => {
   const arr = [1, 2, 3, 4];
   const [mission, setMission] = useState("");
   const [clicked, setClicked] = useState(false);
+  const dispatch = useDispatch();
   const { mutate } = useAddMission();
-  const [errorFlag, setErrorFlag] = useState(false);
-  const [successFlag, setSuccessFlag] = useState(false);
 
   const [isShowTutorial, setIsShowTutorial] = useState(false);
 
@@ -44,45 +46,25 @@ const EmptyMission = ({ category, list }) => {
     if (mission !== "") {
       mutate({ missionContent: mission, category: category });
       setClicked((value) => !value);
-      setSuccessFlag(true);
+      dispatch(MissionAddModalSuccess(true));
     } else {
-      setErrorFlag(true);
+      dispatch(MissionAddModalError(true));
     }
-  }, [mutate, mission, category]);
+  }, [mutate, mission, category, dispatch]);
 
   const bogusCheck = useCallback(() => {
     const foundSwears = badWords.filter((word) =>
       mission.toLowerCase().includes(word.toLowerCase())
     );
     if (foundSwears.length) {
-      setErrorFlag(true);
+      dispatch(MissionAddModalError(true));
     } else {
       onAddMissionHandler();
     }
-  }, [mission, onAddMissionHandler]);
+  }, [mission, onAddMissionHandler, dispatch]);
 
   return (
     <>
-      {/* 목표 등록 성공 모달 */}
-      {successFlag ? (
-        <AlertModal
-          title="목표 등록 성공!"
-          icon="confirm"
-          set={setSuccessFlag}
-        />
-      ) : (
-        <></>
-      )}
-      {/* 목표 등록 에러 모달 */}
-      {errorFlag ? (
-        <AlertModal
-          title="제대로 된 목표를 입력해 주세요"
-          icon="cancel"
-          set={setErrorFlag}
-        />
-      ) : (
-        <></>
-      )}
       {/* 목표 등록 인풋 모달 */}
       {clicked ? (
         <InputModal

@@ -4,11 +4,11 @@ import { useCallback } from "react";
 import { useState } from "react";
 import { useRef } from "react";
 import useAddComment from "components/Hooks/Comment/useAddComment";
-import AlertComponent from "components/Common/AlertComponent";
 import useGetUser from "components/Hooks/User/useGetUser";
 import styled from "@emotion/styled";
 import flex from "../Common/flex";
 import { useEffect } from "react";
+import AlertModal from "components/Common/AlertModal";
 
 const CommentInput = ({ postId }) => {
   const { data, isFetching } = useGetUser();
@@ -17,6 +17,7 @@ const CommentInput = ({ postId }) => {
   const inputRef = useRef(null);
   const buttonRef = useRef(null);
   const [doubleClick, setDoubleClick] = useState(false);
+  const [errorFlag, setErrorFlag] = useState(false);
   const addComment = useCallback(() => {
     if (comment !== "") {
       mutate({
@@ -24,11 +25,7 @@ const CommentInput = ({ postId }) => {
         postId: postId,
       });
     } else {
-      AlertComponent({
-        icon: "error",
-        title: "에러!",
-        text: "제대로 된 댓글을 입력해주세요",
-      });
+      setErrorFlag(true);
     }
     inputRef.current.value = "";
   }, [comment, mutate, postId]);
@@ -40,11 +37,7 @@ const CommentInput = ({ postId }) => {
       comment.toLowerCase().includes(word.toLowerCase())
     );
     if (foundSwears.length) {
-      AlertComponent({
-        icon: "error",
-        title: "에러!",
-        text: "제대로 된 댓글을 입력해주세요",
-      });
+      setErrorFlag(true);
     } else {
       addComment();
     }
@@ -67,6 +60,11 @@ const CommentInput = ({ postId }) => {
         <></>
       ) : (
         <>
+          {errorFlag ? (
+            <AlertModal title="제대로 된 댓글을 입력해주세요." icon="cancel" />
+          ) : (
+            <></>
+          )}
           <StProfile profile_img={data?.profile_img} />
           <StDiv>
             <input
