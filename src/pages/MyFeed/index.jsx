@@ -12,7 +12,7 @@ const MyFeed = () => {
   const navigate = useNavigate();
   const onClickHandler = useCallback(
     (postId) => {
-      navigate(`/detail/${postId}`);
+      navigate(`/feed/${postId}`);
     },
     [navigate]
   );

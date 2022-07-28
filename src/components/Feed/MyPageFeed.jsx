@@ -10,7 +10,7 @@ const MyPageFeed = () => {
   const { data } = useGetMyPosts();
 
   const onClickHandler = useCallback(() => {
-    navigate("/myFeed");
+    navigate("/feed/myFeed");
   }, [navigate]);
   return (
     <>

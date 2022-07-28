@@ -34,9 +34,8 @@ const Routing = () => {
         <Route path="/home/*" element={<Home />} />
         <Route path="/feed" element={<Feed />} />
         <Route path="/goalshot" element={<GoalShot />} />
-        <Route path="/feed/:id" element={<FeedDetail />} />
-        <Route path="/detail/:postId" element={<FeedDetail />} />
-        <Route path="/MyFeed" element={<MyFeed />} />
+        <Route path="/feed/:postId" element={<FeedDetail />} />
+        <Route path="/feed/MyFeed" element={<MyFeed />} />
         <Route path="/chat" element={<Chat />} />
         <Route path="/loading" element={<LoadingMission />} />
         <Route path="/chat/:chatRoomId" element={<ChatRoom />} />
