@@ -1,6 +1,10 @@
 import { useMutation, useQueryClient } from "react-query";
-import AlertComponent from "components/Common/AlertComponent";
 import apis from "shared/api/main";
+import { useDispatch } from "react-redux";
+import {
+  UserProfileModalDupError,
+  UserProfileModalSuccess,
+} from "redux/modules/modal";
 
 const addComment = async (payload) => {
   const updateNickname = await apis.updateUserNickname(payload);
@@ -9,6 +13,7 @@ const addComment = async (payload) => {
 
 const useUpdateNickname = () => {
   const queryClient = useQueryClient();
+  const dispatch = useDispatch();
 
   return useMutation(addComment, {
     onMutate: async (data) => {
@@ -20,16 +25,10 @@ const useUpdateNickname = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries("user");
-      AlertComponent({
-        icon: "success",
-        text: "닉네임이 변경 되었습니다",
-      });
+      dispatch(UserProfileModalSuccess(true));
     },
-    onError: (e) => {
-      AlertComponent({
-        icon: "error",
-        text: "닉네임이 중복 되었습니다",
-      });
+    onError: () => {
+      dispatch(UserProfileModalDupError(true));
     },
   });
 };

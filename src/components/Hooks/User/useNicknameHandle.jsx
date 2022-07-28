@@ -1,11 +1,13 @@
 import { useState, useCallback } from "react";
 import { badWords } from "shared/TextsData";
 import useUpdateNickname from "components/Hooks/User/useUpdateNickname";
-import AlertComponent from "components/Common/AlertComponent";
+import { useDispatch } from "react-redux";
+import { UserProfileModalError } from "redux/modules/modal";
 
 const useNicknameHandle = () => {
   const [nicknameFlag, setNicknameFlag] = useState(false);
   const [nickname, setNickname] = useState("");
+  const dispatch = useDispatch();
   const { mutate } = useUpdateNickname();
 
   const onSendNickname = useCallback(() => {
@@ -13,28 +15,20 @@ const useNicknameHandle = () => {
       setNicknameFlag((value) => !value);
       mutate({ nickname: nickname });
     } else {
-      AlertComponent({
-        icon: "error",
-        title: "에러!",
-        text: "제대로 된 닉네임을 입력해주세요",
-      });
+      dispatch(UserProfileModalError(true));
     }
-  }, [mutate, nickname]);
+  }, [mutate, nickname, dispatch]);
 
   const bogusCheck = useCallback(() => {
     const foundSwears = badWords.filter((word) =>
       nickname.toLowerCase().includes(word.toLowerCase())
     );
     if (foundSwears.length) {
-      AlertComponent({
-        icon: "error",
-        title: "에러!",
-        text: "제대로 된 닉네임을 입력해주세요",
-      });
+      dispatch(UserProfileModalError(true));
     } else {
       onSendNickname();
     }
-  }, [nickname, onSendNickname]);
+  }, [nickname, onSendNickname, dispatch]);
 
   return {
     setNicknameFlag,

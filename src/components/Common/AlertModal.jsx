@@ -8,6 +8,11 @@ import { useDispatch } from "react-redux";
 import {
   MissionAddModalError,
   MissionAddModalSuccess,
+  MissionDeleteModalSuccess,
+  MissionEditModalSuccess,
+  UserProfileModalDupError,
+  UserProfileModalError,
+  UserProfileModalSuccess,
 } from "redux/modules/modal";
 
 const AlertModal = ({ title, icon, type }) => {
@@ -19,6 +24,16 @@ const AlertModal = ({ title, icon, type }) => {
           return dispatch(MissionAddModalError(false));
         case "missionAddSuccess":
           return dispatch(MissionAddModalSuccess(false));
+        case "missionEditSuccess":
+          return dispatch(MissionEditModalSuccess(false));
+        case "missionDeleteSuccess":
+          return dispatch(MissionDeleteModalSuccess(false));
+        case "userProfileSuccess":
+          return dispatch(UserProfileModalSuccess(false));
+        case "userProfileError":
+          return dispatch(UserProfileModalError(false));
+        case "userProfileDupError":
+          return dispatch(UserProfileModalDupError(false));
         default:
           return;
       }

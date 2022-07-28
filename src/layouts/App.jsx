@@ -6,13 +6,9 @@ import styled from "@emotion/styled";
 import bg from "assets/img/WebBG.webp";
 import col from "assets/img/col.webp";
 import GoogleForm from "./GoogleForm";
-import { useSelector } from "react-redux";
-import AlertModal from "components/Common/AlertModal";
+import GlobalModal from "./GlobalModal";
 
 function App() {
-  const { MissionError, MissionSuccess } = useSelector(
-    (state) => state.modalReducer
-  );
   const handleResize = () => {
     const vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
@@ -26,21 +22,7 @@ function App() {
   return (
     <Container>
       <div className="wrap">
-        {/* 모달세트 -> 곧 컴포로 돌려버릴 예정 */}
-        {MissionError && (
-          <AlertModal
-            title="제대로 된 목표를 입력해 주세요."
-            icon="cancel"
-            type="missionAddError"
-          />
-        )}
-        {MissionSuccess && (
-          <AlertModal
-            title="목표 추가에 성공하였습니다."
-            icon="confirm"
-            type="missionAddSuccess"
-          />
-        )}
+        <GlobalModal />
         <Routing />
       </div>
       <GoogleForm />

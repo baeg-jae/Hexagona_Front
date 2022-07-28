@@ -2,22 +2,21 @@ import { useState, useCallback } from "react";
 import { badWords } from "shared/TextsData";
 import AlertComponent from "components/Common/AlertComponent";
 import useUpdateMission from "./useUpdateMission";
+import { useDispatch } from "react-redux";
+import { MissionAddModalError } from "redux/modules/modal";
 
 const useMissionUHandle = ({ missionId }) => {
   const [missionUFlag, setMissionUFlag] = useState(false);
   const [missionContent, setMissionContent] = useState("");
   const { mutate } = useUpdateMission();
+  const dispatch = useDispatch();
 
   const onSendUpdatedMission = useCallback(() => {
     if (missionContent !== "") {
       setMissionUFlag((value) => !value);
       mutate({ missionContent: missionContent, missionId: missionId });
     } else {
-      AlertComponent({
-        icon: "error",
-        title: "에러!",
-        text: "제대로 된 목표를 입력해주세요",
-      });
+      dispatch(MissionAddModalError(true));
     }
   }, [mutate, missionContent, missionId]);
 
@@ -26,11 +25,7 @@ const useMissionUHandle = ({ missionId }) => {
       missionContent.toLowerCase().includes(word.toLowerCase())
     );
     if (foundSwears.length) {
-      AlertComponent({
-        icon: "error",
-        title: "에러!",
-        text: "제대로 된 목표를 입력해주세요",
-      });
+      dispatch(MissionAddModalError(true));
     } else {
       onSendUpdatedMission();
     }

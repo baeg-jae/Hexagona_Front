@@ -158,9 +158,9 @@ export const alertModalAnim = keyframes`
 
 export const alertModalIconAnim = keyframes`
  0% { 
-  transform: rotateY(0) translateY(0);
+  transform: rotateY(0);
 }
   100% {  
-    transform: rotateY(360deg) translateY(-10px); 
+    transform: rotateY(360deg); 
   }
 `;

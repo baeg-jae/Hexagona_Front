@@ -1,6 +1,8 @@
 import { useMutation, useQueryClient } from "react-query";
 import AlertComponent from "components/Common/AlertComponent";
 import apis from "shared/api/main";
+import { useDispatch } from "react-redux";
+import { MissionDeleteModalSuccess } from "redux/modules/modal";
 
 const deleteMission = async (payload) => {
   const deleteMissionDB = await apis.deleteTodo(payload);
@@ -8,17 +10,15 @@ const deleteMission = async (payload) => {
 };
 
 const useUpdateMission = () => {
+  const dispatch = useDispatch();
   const queryClient = useQueryClient();
 
   return useMutation(deleteMission, {
     onSuccess: () => {
       queryClient.invalidateQueries("todos");
-      AlertComponent({
-        icon: "success",
-        text: "목표가 삭제 되었습니다",
-      });
+      dispatch(MissionDeleteModalSuccess(true));
     },
-    onError: (e) => {},
+    onError: () => {},
   });
 };
 

@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addUserProfile } from "redux/modules/user";
 import useUpdateProfile from "components/Hooks/User/useUpdateProfile";
-import AlertComponent from "components/Common/AlertComponent";
+import { UserProfileModalSuccess } from "redux/modules/modal";
 
 const useImageHandler = () => {
   const [profileFlag, setProfileFlag] = useState(false);
@@ -17,10 +17,8 @@ const useImageHandler = () => {
     formData.append("file", profile);
     dispatch(addUserProfile({ profileImg: profileTempImg }));
     mutate(formData);
-    AlertComponent({
-      icon: "success",
-      text: "프로필사진이 변경 되었습니다",
-    });
+    // 모달
+    dispatch(UserProfileModalSuccess(true));
   }, [mutate, profile, dispatch, profileTempImg]);
 
   return {
