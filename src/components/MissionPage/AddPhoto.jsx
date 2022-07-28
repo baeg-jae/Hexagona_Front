@@ -40,7 +40,7 @@ const AddPhoto = ({ missionContent, files, missionId }) => {
         icon: "success",
         text: "사진 추가에 성공했습니다.",
       });
-      navigate(`/detail/${data?.data?.postId}`);
+      navigate(`/feed/${data?.data?.postId}`);
     },
     onError: (e) => {},
   });
