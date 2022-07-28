@@ -8,7 +8,8 @@ import useGetUser from "components/Hooks/User/useGetUser";
 import styled from "@emotion/styled";
 import flex from "../Common/flex";
 import { useEffect } from "react";
-import AlertModal from "components/Common/AlertModal";
+import { useDispatch } from "react-redux";
+import { CommentAddError } from "redux/modules/modal";
 
 const CommentInput = ({ postId }) => {
   const { data, isFetching } = useGetUser();
@@ -17,7 +18,7 @@ const CommentInput = ({ postId }) => {
   const inputRef = useRef(null);
   const buttonRef = useRef(null);
   const [doubleClick, setDoubleClick] = useState(false);
-  const [errorFlag, setErrorFlag] = useState(false);
+  const dispatch = useDispatch();
   const addComment = useCallback(() => {
     if (comment !== "") {
       mutate({
@@ -25,10 +26,10 @@ const CommentInput = ({ postId }) => {
         postId: postId,
       });
     } else {
-      setErrorFlag(true);
+      dispatch(CommentAddError(true));
     }
     inputRef.current.value = "";
-  }, [comment, mutate, postId]);
+  }, [comment, mutate, postId, dispatch]);
 
   const bogusCheck = useCallback(() => {
     buttonRef.current.disabled = true;
@@ -37,11 +38,11 @@ const CommentInput = ({ postId }) => {
       comment.toLowerCase().includes(word.toLowerCase())
     );
     if (foundSwears.length) {
-      setErrorFlag(true);
+      dispatch(CommentAddError(true));
     } else {
       addComment();
     }
-  }, [comment, addComment]);
+  }, [comment, addComment, dispatch]);
 
   useEffect(() => {
     const interval = setTimeout(() => {
@@ -60,11 +61,6 @@ const CommentInput = ({ postId }) => {
         <></>
       ) : (
         <>
-          {errorFlag ? (
-            <AlertModal title="제대로 된 댓글을 입력해주세요." icon="cancel" />
-          ) : (
-            <></>
-          )}
           <StProfile profile_img={data?.profile_img} />
           <StDiv>
             <input

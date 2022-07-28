@@ -1,13 +1,14 @@
 import { useMutation, useQueryClient } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { useCallback, useState, useEffect } from "react";
-import AlertComponent from "components/Common/AlertComponent";
 import flex from "components/Common/flex";
 import Camera from "assets/img/Camera2.webp";
 import styled from "@emotion/styled";
 import apis from "shared/api/main";
 import JoyrideContainer from "components/Tutorial/JoyrideContainer";
 import { missionThree } from "shared/tutorialData";
+import { useDispatch } from "react-redux";
+import { MissionPhotoModalSuccess } from "redux/modules/modal";
 
 const addPost = async (payload) => {
   const addedData = await apis.addPost(payload);
@@ -18,6 +19,7 @@ const AddPhoto = ({ missionContent, files, missionId }) => {
   const { category } = useParams();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const dispatch = useDispatch();
 
   const [isShowTutorial, setIsShowTutorial] = useState(false);
 
@@ -36,10 +38,7 @@ const AddPhoto = ({ missionContent, files, missionId }) => {
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries("post");
-      AlertComponent({
-        icon: "success",
-        text: "사진 추가에 성공했습니다.",
-      });
+      dispatch(MissionPhotoModalSuccess(true));
       navigate(`/feed/${data?.data?.postId}`);
     },
     onError: (e) => {},

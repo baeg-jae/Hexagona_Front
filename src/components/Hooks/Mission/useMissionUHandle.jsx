@@ -1,6 +1,5 @@
 import { useState, useCallback } from "react";
 import { badWords } from "shared/TextsData";
-import AlertComponent from "components/Common/AlertComponent";
 import useUpdateMission from "./useUpdateMission";
 import { useDispatch } from "react-redux";
 import { MissionAddModalError } from "redux/modules/modal";
@@ -18,7 +17,7 @@ const useMissionUHandle = ({ missionId }) => {
     } else {
       dispatch(MissionAddModalError(true));
     }
-  }, [mutate, missionContent, missionId]);
+  }, [mutate, missionContent, missionId, dispatch]);
 
   const bogusCheckMission = useCallback(() => {
     const foundSwears = badWords.filter((word) =>
@@ -29,7 +28,7 @@ const useMissionUHandle = ({ missionId }) => {
     } else {
       onSendUpdatedMission();
     }
-  }, [missionContent, onSendUpdatedMission]);
+  }, [missionContent, onSendUpdatedMission, dispatch]);
 
   return {
     setMissionUFlag,

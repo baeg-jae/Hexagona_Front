@@ -4,7 +4,7 @@ import useCreateChatRoom from "components/Hooks/ChatList/useCreateChatRoom";
 import Swal from "sweetalert2";
 import flex from "components/Common/flex";
 import { HiCursorClick } from "react-icons/hi";
-
+import { useDispatch } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper";
 import "swiper/css";
@@ -12,11 +12,12 @@ import "swiper/css/pagination";
 import "../GoalShot/styles.css";
 import "swiper/css/autoplay";
 import { useNavigate } from "react-router-dom";
+import { ChatJoinModal } from "redux/modules/modal";
 
 const TodayLiked = ({ userData }) => {
   const todayLikes = GetTodayLikes();
   const { mutate } = useCreateChatRoom();
-
+  const dispatch = useDispatch();
   const onClickHandler = (opponentId) => {
     //  유저정보가 없을경우
     if (userData === undefined) return;
@@ -26,20 +27,10 @@ const TodayLiked = ({ userData }) => {
     }
     // 채팅이 진행되면 확인버튼을 올려준다
     else {
-      Swal.fire({
-        title: "채팅을 하시겠습니까?",
-        icon: "question",
-        showCancelButton: true,
-        confirmButtonColor: "#43e63e",
-        cancelButtonColor: "#d33",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          //  확인버튼이 눌리면 채팅방 생성 진행
-          mutate({
-            senderId: userData.userId,
-            receiverId: opponentId,
-          });
-        }
+      dispatch(ChatJoinModal(true));
+      mutate({
+        senderId: userData.userId,
+        receiverId: opponentId,
       });
     }
   };

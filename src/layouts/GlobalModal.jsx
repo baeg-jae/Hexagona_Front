@@ -10,6 +10,12 @@ const GlobalModal = () => {
     UserChangeDupError,
     MissionEditSuccess,
     MissionDeleteSuccess,
+    MissionPhotoSuccess,
+    CommentAddSuccess,
+    CommentAddError,
+    CommentDeleteSuccess,
+    PostDeleteSuccess,
+    ChatJoinAlert,
   } = useSelector((state) => state.modalReducer);
   return (
     <>
@@ -42,7 +48,13 @@ const GlobalModal = () => {
           type="missionDeleteSuccess"
         />
       )}
-
+      {MissionPhotoSuccess && (
+        <AlertModal
+          title="목표 인증에 성공하였습니다."
+          icon="confirm"
+          type="missionPhotoSuccess"
+        />
+      )}
       {/* 유저 정보 수정 관련 모달 */}
       {UserChangeError && (
         <AlertModal
@@ -63,6 +75,43 @@ const GlobalModal = () => {
           title="변경에 성공 하였습니다."
           icon="confirm"
           type="userProfileSuccess"
+        />
+      )}
+      {/* 댓글 & 게시글 관련 모달 */}
+      {CommentAddSuccess && (
+        <AlertModal
+          title="댓글 추가에 성공 하였습니다."
+          icon="confirm"
+          type="commentAddSuccess"
+        />
+      )}
+      {CommentAddError && (
+        <AlertModal
+          title="제대로된 댓글을 달아주세요."
+          icon="cancel"
+          type="CommentAddError"
+        />
+      )}
+      {CommentDeleteSuccess && (
+        <AlertModal
+          title="댓글 삭제에 성공 하였습니다."
+          icon="confirm"
+          type="commentDeleteSuccess"
+        />
+      )}
+      {PostDeleteSuccess && (
+        <AlertModal
+          title="게시글 삭제에 성공 하였습니다."
+          icon="confirm"
+          type="postDeleteSuccess"
+        />
+      )}
+      {/* 채팅 관련 모달 */}
+      {ChatJoinAlert && (
+        <AlertModal
+          title="채팅방에 입장합니다."
+          icon="confirm"
+          type="chatJoinAlert"
         />
       )}
     </>

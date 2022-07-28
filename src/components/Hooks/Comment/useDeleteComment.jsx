@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
-import AlertComponent from "components/Common/AlertComponent";
+import { useDispatch } from "react-redux";
+import { CommentDeleteSuccess } from "redux/modules/modal";
 import apis from "shared/api/main";
 
 const deleteComment = async (payload) => {
@@ -9,14 +10,12 @@ const deleteComment = async (payload) => {
 
 const useDeleteComment = () => {
   const queryClient = useQueryClient();
+  const dispatch = useDispatch();
 
   return useMutation(deleteComment, {
     onSuccess: () => {
       queryClient.invalidateQueries("comment");
-      AlertComponent({
-        icon: "success",
-        text: "댓글이 삭제 되었습니다",
-      });
+      dispatch(CommentDeleteSuccess(true));
     },
     onError: () => {},
   });

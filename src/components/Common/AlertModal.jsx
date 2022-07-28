@@ -6,10 +6,16 @@ import { alertIconHandler } from "./ButtonPropsHandler";
 import { alertModalAnim, alertModalIconAnim } from "./GlobalStyles";
 import { useDispatch } from "react-redux";
 import {
+  ChatJoinModal,
+  CommentAddError,
+  CommentAddSuccess,
+  CommentDeleteSuccess,
   MissionAddModalError,
   MissionAddModalSuccess,
   MissionDeleteModalSuccess,
   MissionEditModalSuccess,
+  MissionPhotoModalSuccess,
+  PostDeleteSuccess,
   UserProfileModalDupError,
   UserProfileModalError,
   UserProfileModalSuccess,
@@ -28,12 +34,24 @@ const AlertModal = ({ title, icon, type }) => {
           return dispatch(MissionEditModalSuccess(false));
         case "missionDeleteSuccess":
           return dispatch(MissionDeleteModalSuccess(false));
+        case "missionPhotoSuccess":
+          return dispatch(MissionPhotoModalSuccess(false));
         case "userProfileSuccess":
           return dispatch(UserProfileModalSuccess(false));
         case "userProfileError":
           return dispatch(UserProfileModalError(false));
         case "userProfileDupError":
           return dispatch(UserProfileModalDupError(false));
+        case "commentAddSuccess":
+          return dispatch(CommentAddSuccess(false));
+        case "CommentAddError":
+          return dispatch(CommentAddError(false));
+        case "commentDeleteSuccess":
+          return dispatch(CommentDeleteSuccess(false));
+        case "postDeleteSuccess":
+          return dispatch(PostDeleteSuccess(false));
+        case "chatJoinAlert":
+          return dispatch(ChatJoinModal(false));
         default:
           return;
       }
