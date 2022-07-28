@@ -40,6 +40,30 @@ export const StWrapFlex = styled(StWrap)`
   }
 `;
 
+export const StInputDivGlobal = styled.div`
+  ${flex({ justify: "space-around" })}
+  width: 83%;
+  height: 40px;
+  margin-left: 12px;
+  border: 1px solid var(--gray-5);
+  border-radius: 55px;
+  .commentInput {
+    width: calc(100% - 100px);
+    border: none;
+    margin-left: 10px;
+    &:focus {
+      outline: none;
+    }
+  }
+  .commentButton {
+    background-color: transparent;
+    font-weight: 700;
+    line-height: 20px;
+    color: #4876ef;
+    margin-right: 15px;
+  }
+`;
+
 export const fadeAnimation = keyframes`
  0% { 
     opacity: 0; 
@@ -136,10 +160,7 @@ export const SkeletonAnim = () => keyframes`
 `;
 
 export const gradientFade = keyframes`
- 0% { 
-    opacity: 0; 
-  }
-  99%{
+  0%,50%{
     opacity: 0;
   }
   100% { 

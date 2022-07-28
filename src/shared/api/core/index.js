@@ -9,9 +9,7 @@ api.interceptors.request.use(
     data.headers.Authorization = localStorage.getItem("Authorization");
     return data;
   },
-  (error) => {
-    alert("api.interceptors.request 에러: " + error);
-  }
+  () => {}
 );
 
 api.interceptors.response.use(

@@ -1,23 +1,22 @@
 import { COMMENT_MAX_LENGTH } from "shared/data";
 import { badWordsComment } from "shared/TextsData";
-import { useCallback } from "react";
-import { useState } from "react";
-import { useRef } from "react";
+import { useCallback, useState, useRef, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { CommentAddError } from "redux/modules/modal";
+import { BUTTON_CLICK_OFFSET } from "shared/data";
 import useAddComment from "components/Hooks/Comment/useAddComment";
 import useGetUser from "components/Hooks/User/useGetUser";
 import styled from "@emotion/styled";
 import flex from "../Common/flex";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { CommentAddError } from "redux/modules/modal";
+import { StInputDivGlobal } from "components/Common/GlobalStyles";
 
 const CommentInput = ({ postId }) => {
-  const { data, isFetching } = useGetUser();
+  const { data } = useGetUser();
   const [comment, setComment] = useState("");
-  const { mutate } = useAddComment();
   const inputRef = useRef(null);
   const buttonRef = useRef(null);
   const [doubleClick, setDoubleClick] = useState(false);
+  const { mutate } = useAddComment();
   const dispatch = useDispatch();
   const addComment = useCallback(() => {
     if (comment !== "") {
@@ -45,11 +44,12 @@ const CommentInput = ({ postId }) => {
   }, [comment, addComment, dispatch]);
 
   useEffect(() => {
+    // 버튼 더블클릭 방지
     const interval = setTimeout(() => {
       if (doubleClick) {
         buttonRef.current.disabled = false;
       }
-    }, 1000);
+    }, `${BUTTON_CLICK_OFFSET}`);
     return () => {
       clearTimeout(interval);
     };
@@ -57,30 +57,20 @@ const CommentInput = ({ postId }) => {
 
   return (
     <StWrapFlex>
-      {isFetching ? (
-        <></>
-      ) : (
-        <>
-          <StProfile profile_img={data?.profile_img} />
-          <StDiv>
-            <input
-              type="text"
-              className="commentInput"
-              placeholder="인증샷에 대한 감상평을 남겨주세요."
-              onChange={(e) => setComment(e.target.value)}
-              maxLength={COMMENT_MAX_LENGTH}
-              ref={inputRef}
-            />
-            <button
-              className="commentButton"
-              onClick={bogusCheck}
-              ref={buttonRef}
-            >
-              게시
-            </button>
-          </StDiv>
-        </>
-      )}
+      <StProfile profile_img={data?.profile_img} />
+      <StInputDivGlobal>
+        <input
+          type="text"
+          className="commentInput"
+          placeholder="인증샷에 대한 감상평을 남겨주세요."
+          onChange={(e) => setComment(e.target.value)}
+          maxLength={COMMENT_MAX_LENGTH}
+          ref={inputRef}
+        />
+        <button className="commentButton" onClick={bogusCheck} ref={buttonRef}>
+          게시
+        </button>
+      </StInputDivGlobal>
     </StWrapFlex>
   );
 };
@@ -106,36 +96,4 @@ const StProfile = styled.div`
   background-position: center;
   background-size: cover;
   border-radius: 100%;
-  margin-left: 16px;
-`;
-
-const StDiv = styled.div`
-  ${flex({ justify: "space-around" })}
-  width: calc(100% - 90px);
-  height: 40px;
-  margin-left: 12px;
-  border: 1px solid #bfbfbf;
-  border-radius: 55px;
-  .commentInput {
-    width: calc(100% - 100px);
-    border: none;
-    background-color: transparent;
-    white-space: normal;
-    text-align: justify;
-    margin-left: 10px;
-    &:focus {
-      outline: none;
-    }
-    &::placeholder {
-      font-size: 11px;
-    }
-  }
-  .commentButton {
-    background-color: transparent;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 20px;
-    color: #4876ef;
-    margin-right: 15px;
-  }
 `;

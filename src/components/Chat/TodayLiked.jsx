@@ -1,43 +1,54 @@
 import GetTodayLikes from "components/Hooks/Like/useTodayLikes";
-import styled from "@emotion/styled";
 import useCreateChatRoom from "components/Hooks/ChatList/useCreateChatRoom";
 import flex from "components/Common/flex";
+import styled from "@emotion/styled";
+import { useNavigate } from "react-router-dom";
+import { ChatJoinModal } from "redux/modules/modal";
 import { HiCursorClick } from "react-icons/hi";
 import { useDispatch } from "react-redux";
+import loadable from "@loadable/component";
+
+// swiper
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "../GoalShot/styles.css";
 import "swiper/css/autoplay";
-import { useNavigate } from "react-router-dom";
-import { ChatJoinModal } from "redux/modules/modal";
+import { CARD_BUTTON_TIME } from "shared/data";
+import { useCallback } from "react";
+
+const Loading = loadable(() => import("pages/Status/Loading"));
 
 const TodayLiked = ({ userData }) => {
   const todayLikes = GetTodayLikes();
   const { mutate } = useCreateChatRoom();
   const dispatch = useDispatch();
-  const onClickHandler = (opponentId) => {
-    //  유저정보가 없을경우
-    if (userData === undefined) return;
-    // 나와의 채팅 불가
-    if (userData.userId === opponentId) {
-      alert("나와는 대화할수 없습니다.");
-    }
-    // 채팅이 진행되면 확인버튼을 올려준다
-    else {
-      dispatch(ChatJoinModal(true));
-      mutate({
-        senderId: userData.userId,
-        receiverId: opponentId,
-      });
-    }
-  };
-
   const navigate = useNavigate();
-  const onMoveToGoalShot = () => {
+
+  const onClickHandler = useCallback(
+    (opponentId) => {
+      //  유저정보가 없을경우
+      if (userData === undefined) return;
+      // 나와의 채팅 불가
+      if (userData.userId === opponentId) {
+        alert("나와는 대화할수 없습니다.");
+      }
+      // 채팅이 진행되면 확인버튼을 올려준다
+      else {
+        dispatch(ChatJoinModal(true));
+        mutate({
+          senderId: userData.userId,
+          receiverId: opponentId,
+        });
+      }
+    },
+    [dispatch, mutate, userData]
+  );
+
+  const onMoveToGoalShot = useCallback(() => {
     navigate("/goalshot");
-  };
+  }, [navigate]);
 
   return (
     <>
@@ -53,11 +64,8 @@ const TodayLiked = ({ userData }) => {
       ) : (
         <Swiper
           slidesPerView={3}
-          pagination={{
-            clickable: true,
-          }}
           modules={[Pagination, Autoplay]}
-          autoplay={{ delay: 1000 }}
+          autoplay={{ delay: `${CARD_BUTTON_TIME}` }}
           className="mySwiper"
         >
           {todayLikes !== undefined ? (
@@ -69,17 +77,7 @@ const TodayLiked = ({ userData }) => {
               );
             })
           ) : (
-            <>
-              <SwiperSlide>
-                <StSkeleton />
-              </SwiperSlide>
-              <SwiperSlide>
-                <StSkeleton />
-              </SwiperSlide>
-              <SwiperSlide>
-                <StSkeleton />
-              </SwiperSlide>
-            </>
+            <Loading />
           )}
         </Swiper>
       )}
@@ -101,13 +99,8 @@ const StTodayLIked = styled(StDupModel)`
   background-size: cover;
 `;
 
-const StSkeleton = styled(StDupModel)`
-  background: var(--skeleton);
-`;
-
 const StEmptyLiked = styled(StDupModel)`
   ${flex({ direction: "column" })}
-  width: 100%;
   height: 150px;
   margin-top: 35px;
   cursor: pointer;
@@ -115,13 +108,11 @@ const StEmptyLiked = styled(StDupModel)`
     font-weight: 700;
     font-size: 24px;
     line-height: 29px;
-    color: #956c4a;
+    color: var(--brown-3);
   }
   .confirm {
     margin-top: 10px;
     font-size: 18px;
-    color: #292e41;
-  }
-  .clickIcon {
+    color: var(--black);
   }
 `;

@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { FlexColumnDiv } from "components/Common/GlobalStyles";
+import {
+  FlexColumnDiv,
+  StInputDivGlobal,
+} from "components/Common/GlobalStyles";
 import { __prevPostChat } from "redux/modules/chat";
 import Stomp from "stompjs";
 import SockJS from "sockjs-client";
@@ -169,7 +172,7 @@ const ChatSubscribe = () => {
         </StWrap>
         <StInputDiv>
           <StMyProfile img={data?.profile_img} />
-          <StDiv>
+          <StInputDivGlobal>
             <input
               type="text"
               className="commentInput"
@@ -181,7 +184,7 @@ const ChatSubscribe = () => {
             <button className="commentButton" onClick={SendMessage}>
               게시
             </button>
-          </StDiv>
+          </StInputDivGlobal>
         </StInputDiv>
       </StBody>
     </FlexColumnDiv>
@@ -239,30 +242,6 @@ const StOtherName = styled.span`
   line-height: 130%;
   margin-left: 8px;
   color: var(--black);
-`;
-
-const StDiv = styled.div`
-  ${flex({ justify: "space-around" })}
-  width: 83%;
-  height: 40px;
-  margin-left: 12px;
-  border: 1px solid var(--gray-5);
-  border-radius: 55px;
-  .commentInput {
-    width: calc(100% - 100px);
-    border: none;
-    margin-left: 10px;
-    &:focus {
-      outline: none;
-    }
-  }
-  .commentButton {
-    background-color: transparent;
-    font-weight: 700;
-    line-height: 20px;
-    color: #4876ef;
-    margin-right: 15px;
-  }
 `;
 
 const StWrap = styled.div`

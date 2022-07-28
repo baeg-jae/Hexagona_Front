@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import flex from "components/Common/flex";
 import useGetChatListSetting from "components/Hooks/ChatList/useGetChatListSetting";
+import { useCallback } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -9,9 +10,12 @@ const ChatList = ({ keyword }) => {
   const { data } = useGetChatListSetting({ userId: userId });
   const navigate = useNavigate();
 
-  const onClickChatRoomHandler = (RoomId) => {
-    if (data.chatRoomList !== undefined) navigate(`/chat/${RoomId}`);
-  };
+  const onClickChatRoomHandler = useCallback(
+    (RoomId) => {
+      if (data.chatRoomList !== undefined) navigate(`/chat/${RoomId}`);
+    },
+    [data.chatRoomList, navigate]
+  );
   return (
     <StChatWrap>
       {data?.chatRoomList?.map((v, i) => {
