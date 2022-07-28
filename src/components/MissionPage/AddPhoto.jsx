@@ -9,6 +9,7 @@ import JoyrideContainer from "components/Tutorial/JoyrideContainer";
 import { missionThree } from "shared/tutorialData";
 import { useDispatch } from "react-redux";
 import { MissionPhotoModalSuccess } from "redux/modules/modal";
+import { StImg } from "components/Common/GlobalStyles";
 
 const addPost = async (payload) => {
   const addedData = await apis.addPost(payload);
@@ -81,31 +82,19 @@ const StWrap = styled.div`
   ${flex({ justify: "space-between" })}
   width: 345px;
   height: 105px;
-  background: #454545;
+  background: var(--gray-7);
   border-radius: 4px;
   margin-bottom: 8px;
-  border: none;
   .innerDiv {
     ${flex({ justify: "space-between" })}
     width: 100%;
-    height: 100%;
     span {
       width: 65%;
       margin-left: 40px;
-      font-style: normal;
       font-weight: 600;
       font-size: 24px;
-      line-height: 29px;
-      color: #ffffff;
+      color: var(--white);
       white-space: pre-wrap;
     }
   }
-`;
-const StImg = styled.div`
-  width: 50.33px;
-  height: 43.72px;
-  margin-right: 19.67px;
-  background-image: url(${(props) => props.img});
-  background-size: cover;
-  background-position: center;
 `;

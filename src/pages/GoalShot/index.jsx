@@ -2,11 +2,13 @@ import { StWrap } from "components/Common/GlobalStyles";
 import { useState } from "react";
 import GoalShotButtons from "components/GoalShot/GoalShotButtons";
 import GoalShotCards from "components/GoalShot/GoalShotCards";
-import SkeletonGoalShot from "components/Skeletons/SkeletonGoalShot";
 import NavigatorBar from "components/Common/NavigatorBar";
 import useGetGoalShot from "components/Hooks/GoalShot/useGetGoalShot";
 import WebTitle from "components/Common/WebTitle";
 import styled from "@emotion/styled";
+import loadable from "@loadable/component";
+
+const Loading = loadable(() => import("pages/Status/Loading"));
 
 const GoalShot = () => {
   const [count, setCount] = useState(1);
@@ -18,7 +20,7 @@ const GoalShot = () => {
       <StDiv>
         {isFetching ? (
           <>
-            <SkeletonGoalShot />
+            <Loading />
           </>
         ) : (
           <>

@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 import { useCallback, useState, useEffect } from "react";
+import { StImgDiv } from "./styles";
 import useGetPost from "components/Hooks/useGetPost";
 import Search from "./Search";
-import { StImgDiv } from "./styles";
 import styled from "@emotion/styled";
 import MyPageFeed from "./MyPageFeed";
 import SkeletonFeed from "components/Skeletons/SkeletonFeed";

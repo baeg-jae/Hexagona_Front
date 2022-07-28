@@ -45,10 +45,8 @@ export default CategoryTop;
 
 const StWrap = styled.div`
   ${flex({ direction: "column" })}
-  width: 100%;
   .categoryDiv {
     ${flex({ justify: "flex-start" })}
-    width: 100%;
     .innerDiv {
       ${flex({ direction: "column" })}
       margin-left: 32px;
@@ -57,11 +55,9 @@ const StWrap = styled.div`
       }
       .linkTag {
         position: relative;
-        font-weight: 500;
         font-size: 13px;
-        line-height: 130%;
-        color: #b7b7b7;
-        margin-bottom: 10px;
+        color: var(--gray-5);
+        margin-bottom: 11px;
       }
     }
     .innerCategory {
@@ -72,14 +68,14 @@ const StWrap = styled.div`
   }
   .barLine {
     width: 345px;
-    border: 1px solid #eaeaea;
+    border: 1px solid var(--gray-3);
     margin-bottom: 26px;
   }
 
   .active {
-    color: #212121 !important;
+    color: var(--black) !important;
     div {
-      border: 1px solid black;
+      border: 1px solid var(--black);
     }
   }
 `;

@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { handlePictureProps } from "components/Common/ButtonPropsHandler";
-import flex from "components/Common/flex";
-import styled from "@emotion/styled";
 import {
   categoryBGColorHandler,
   categoryTextColorHandler,
 } from "components/Common/ButtonPropsHandler";
+import flex from "components/Common/flex";
+import styled from "@emotion/styled";
 
 const CategoryLink = ({ url, picName, text }) => {
   return (
@@ -33,14 +33,13 @@ const StCategoryDiv = styled.div`
   border-radius: 16px;
   .innerText {
     position: absolute;
-    bottom: 0%;
-    left: 0%;
+    bottom: 0;
+    left: 0;
     padding: 7px 25px;
     margin: 0 0 11px 16px;
     border-radius: 82px;
     font-weight: 700;
     font-size: 18px;
-    line-height: 130%;
     background-color: ${(props) => categoryBGColorHandler(props.pic)};
     color: ${(props) => categoryTextColorHandler(props.pic)};
   }

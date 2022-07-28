@@ -14,7 +14,7 @@ const useUpdateProfile = () => {
       queryClient.invalidateQueries("user");
       return data;
     },
-    onError: (e) => {},
+    onError: () => {},
   });
 };
 

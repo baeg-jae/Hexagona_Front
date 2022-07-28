@@ -80,7 +80,7 @@ const EmptyMission = ({ category, list }) => {
       ) : (
         <></>
       )}
-      {arr.map((_, i) => {
+      {arr.map((v, i) => {
         return list[i] !== undefined ? (
           <AddedMission
             key={i}
@@ -125,21 +125,18 @@ const StWrap = styled.div`
   ${flex({ justify: "flex-start" })}
   width: 345px;
   height: 105px;
-  background: #ffffff;
-  border: 1px dashed #e0e0e0;
+  background: var(--white);
+  border: 1px dashed var(--gray-5);
   border-radius: 16px;
   margin-bottom: 8px;
   .innerDiv {
     ${flex({ align: "flex-end" })}
     height: 100%;
     span {
-      margin-left: 31px;
-      margin-bottom: 24px;
-      font-style: normal;
+      margin: 0 0 24px 31px;
       font-weight: 600;
       font-size: 24px;
-      line-height: 29px;
-      color: #727272;
+      color: var(--gray-7);
     }
   }
 `;
@@ -148,7 +145,7 @@ const StCircle = styled.div`
   ${flex({})}
   width: 66px;
   height: 66px;
-  border: 1px solid #d9d9d9;
+  border: 1px solid var(--gray-3);
   border-radius: 94px;
   margin-left: 29px;
 `;

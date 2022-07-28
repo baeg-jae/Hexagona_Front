@@ -6,7 +6,6 @@ const useGetChatListSetting = (payload) => {
     const { data } = await apis.getChatListSetting(payload);
     return data;
   };
-
   return useQuery("chatList", fetcher);
 };
 

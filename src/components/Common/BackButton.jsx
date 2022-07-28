@@ -1,15 +1,12 @@
 import { MdArrowBackIosNew } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
+import useBack from "components/Hooks/useBack";
 
 const BackButton = () => {
-  const navigate = useNavigate();
-  const onBackHandler = () => {
-    navigate(-1);
-  };
+  const back = useBack();
   return (
-    <StWrap onClick={onBackHandler}>
+    <StWrap onClick={back}>
       <MdArrowBackIosNew />
     </StWrap>
   );

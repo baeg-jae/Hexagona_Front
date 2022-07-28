@@ -13,7 +13,7 @@ const useAddLike = () => {
       queryClient.invalidateQueries("like");
       return data;
     },
-    onError: (e) => {},
+    onError: () => {},
   });
 };
 

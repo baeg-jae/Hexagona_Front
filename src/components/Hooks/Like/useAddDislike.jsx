@@ -12,7 +12,7 @@ const useAddDislike = () => {
     onSuccess: () => {
       queryClient.invalidateQueries("dislike");
     },
-    onError: (e) => {},
+    onError: () => {},
   });
 };
 

@@ -17,7 +17,7 @@ const useAddComment = () => {
       queryClient.invalidateQueries("comment");
       dispatch(CommentAddSuccess(true));
     },
-    onError: (e) => {},
+    onError: () => {},
   });
 };
 

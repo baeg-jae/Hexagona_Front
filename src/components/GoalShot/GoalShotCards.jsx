@@ -8,13 +8,14 @@ import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 import Smile from "assets/img/smile.webp";
 import Sad from "assets/img/sad.webp";
-
 import TodayLiked from "components/Chat/TodayLiked";
+import { useCallback } from "react";
 
 const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
-  const cardTrigger = () => {
+  const cardTrigger = useCallback(() => {
     if (chooseOne || chooseTwo) return true;
-  };
+  }, [chooseOne, chooseTwo]);
+
   return (
     <StCardContainer>
       {data !== undefined ? (
@@ -31,6 +32,7 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
           </StLastCard>
         ) : (
           <>
+            {/* 최좌측카드 */}
             <StLeftCard />
 
             {/* 좌측카드 */}
@@ -149,7 +151,6 @@ export default GoalShotCards;
 
 const StCardContainer = styled.div`
   ${flex({ gap: "10px", align: "flex-start" })}
-  width: 100%;
   height: 600px;
   @media screen and (max-width: 1024px) {
     overflow: hidden;
@@ -178,15 +179,11 @@ const StCard = styled.div`
   .postContent {
     font-weight: 600;
     font-size: 24px;
-    line-height: 29px;
-    color: #ffffff;
+    color: var(--white);
     margin-bottom: 21px;
   }
   .category {
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 19px;
-    color: #ffffff;
+    color: var(--white);
     margin-bottom: 5px;
   }
   .gradient {
@@ -194,11 +191,7 @@ const StCard = styled.div`
     width: 100%;
     height: 50%;
     border-radius: 20px;
-    background: linear-gradient(
-      180deg,
-      rgba(30, 5, 5, 0) -2.31%,
-      var(--gradient)
-    );
+    background: linear-gradient(180deg, rgba(30, 5, 5, 0) -2%, var(--gradient));
   }
 `;
 
@@ -243,15 +236,13 @@ const StLastCard = styled.div`
     margin-top: 28px;
   }
   .innerText {
-    color: #404040;
+    color: var(--black);
     font-weight: 600;
     font-size: 24px;
-    line-height: 29px;
   }
   .smallText {
     font-size: 14px;
-    line-height: 17px;
-    color: #939393;
+    color: var(--gray-7);
     margin-top: 20px;
   }
   .likedPicsDiv {

@@ -6,6 +6,7 @@ import AddPhoto from "./AddPhoto";
 import DropDownMenu from "components/Common/DropDownMenu";
 import JoyrideContainer from "components/Tutorial/JoyrideContainer";
 import { missionTwo } from "shared/tutorialData";
+import { StImg } from "components/Common/GlobalStyles";
 
 const AddedMission = ({ missionContent, missionId }) => {
   const [files, setFiles] = useState();
@@ -80,24 +81,13 @@ const StWrap = styled.div`
   .innerDiv {
     ${flex({ justify: "space-around" })}
     width: 100%;
-    height: 100%;
     .missionSpan {
       width: 65%;
       margin-left: 40px;
-      font-style: normal;
       font-weight: 600;
       font-size: 24px;
-      line-height: 29px;
-      color: #454545;
+      color: var(--gary-7);
       white-space: pre-wrap;
     }
   }
-`;
-const StImg = styled.div`
-  width: 50.33px;
-  height: 43.72px;
-  margin-right: 19.67px;
-  background-image: url(${(props) => props.img});
-  background-size: cover;
-  background-position: center;
 `;

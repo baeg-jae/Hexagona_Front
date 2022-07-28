@@ -1,5 +1,4 @@
 import { FlexColumnDiv } from "./GlobalStyles";
-import { MOBILE_SIZE_WIDTH } from "shared/data";
 import { NavLink } from "react-router-dom";
 import styled from "@emotion/styled";
 import flex from "./flex";
@@ -31,7 +30,7 @@ const StWrapFlex = styled.div`
   ${flex({ justify: "space-evenly" })}
   position: fixed;
   bottom: 0;
-  width: ${MOBILE_SIZE_WIDTH}px;
+  width: 420px;
   height: 68px;
   text-align: center;
   background-color: var(--white);

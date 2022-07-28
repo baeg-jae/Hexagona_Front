@@ -43,6 +43,6 @@ const StLikeTitle = styled.div`
   font-weight: 700;
   font-size: 18px;
   line-height: 28px;
-  color: #393939;
+  color: var(--gray-10);
   margin: 20px 0 0 19px;
 `;

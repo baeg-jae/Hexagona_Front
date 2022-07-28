@@ -166,17 +166,23 @@ const ChatSubscribe = () => {
             publicChats?.map((v, i) => {
               return v.userId === userId ? (
                 <StFlexRow key={i}>
-                  <StChatContentContainer me>
-                    <StChatContent me>{v.message}</StChatContent>
-                  </StChatContentContainer>
+                  <FlexColumnDiv>
+                    <StChatContentContainer me>
+                      <StChatContent me>{v.message}</StChatContent>
+                    </StChatContentContainer>
+                    <StTime me>{v.modifiedAt}</StTime>
+                  </FlexColumnDiv>
                   <StMyProfile img={data?.profile_img} />
                 </StFlexRow>
               ) : (
                 <StFlexRow key={i}>
                   <StMyProfile img={post_list?.otherProfileImg} />
-                  <StChatContentContainer>
-                    <StChatContent>{v.message}</StChatContent>
-                  </StChatContentContainer>
+                  <FlexColumnDiv>
+                    <StChatContentContainer>
+                      <StChatContent>{v.message}</StChatContent>
+                    </StChatContentContainer>
+                    <StTime>{v.modifiedAt}</StTime>
+                  </FlexColumnDiv>
                 </StFlexRow>
               );
             })

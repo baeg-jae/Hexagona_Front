@@ -5,13 +5,13 @@ import Joyride from "react-joyride";
 const JoyrideContainer = ({ run, steps, page }) => {
   // 스타일 옵션
   const defaultOptions = {
-    arrowColor: "#fff",
-    backgroundColor: "#fff",
+    arrowColor: "var(--white)",
+    backgroundColor: "var(--white)",
     beaconSize: 36,
     overlayColor: "rgba(0, 0, 0, 0.5)",
     primaryColor: " var(--brown)",
     spotlightShadow: "0 0 15px rgba(0, 0, 0, 0.5)",
-    textColor: "#333",
+    textColor: "var(--black)",
     width: undefined,
     zIndex: 100,
   };
