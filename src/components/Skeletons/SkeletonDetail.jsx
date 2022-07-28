@@ -3,33 +3,33 @@ import styled from "@emotion/styled";
 import { SkeletonAnim } from "components/Common/GlobalStyles";
 
 const SkeletonDetail = () => {
-  return (
-    <StWrapComment>
-      <StDetail>
-        <StWrapFlex />
-        <StReplyWrap />
-        <StFlex>
-          <StProfile />
-          <StDiv />
-        </StFlex>
-      </StDetail>
+    return (
+        <StWrapComment>
+            <StDetail>
+                <StWrapFlex />
+                <StReplyWrap />
+                <StFlex>
+                    <StProfile />
+                    <StDiv />
+                </StFlex>
+            </StDetail>
 
-      <StNavBar />
-    </StWrapComment>
-  );
+            <StNavBar />
+        </StWrapComment>
+    );
 };
 
 export default SkeletonDetail;
 
 const StWrapComment = styled.div`
-  ${flex({ direction: "column" })}
-  width: 100%;
-  height: 100%;
+    ${flex({ direction: 'column' })}
+    width: calc(100% - 32px);
+    height: 100%;
 `;
 const StDetail = styled.div`
-  ${flex({ direction: "column", justify: "space-between" })}
-  width: 100%;
-  height: 100%;
+    ${flex({ direction: 'column', justify: 'space-between' })}
+    width: 100%;
+    height: 100%;
 `;
 
 const StWrapFlex = styled.div`
@@ -67,10 +67,10 @@ const StDiv = styled.div`
 `;
 
 const StFlex = styled.div`
-  ${flex({})}
-  width: calc(100% - 32px);
-  margin-bottom: 20px;
-  margin-right: 16px;
+    ${flex({})}
+    top: calc(100% - 150px);
+    width: calc(100% - 32px);
+    margin-bottom: 20px;
 `;
 
 const StNavBar = styled.div`
