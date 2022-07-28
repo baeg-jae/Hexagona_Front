@@ -38,6 +38,7 @@ export default ChatList;
 const StChatWrap = styled.div`
   ${flex({ direction: "column", justify: "flex-start" })}
 `;
+
 const StChat = styled.div`
   ${flex({ direction: "column", justify: "flex-start" })}
   width: calc(100% - 32px);

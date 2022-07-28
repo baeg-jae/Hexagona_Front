@@ -33,7 +33,7 @@
 }
 
 span.swiper-pagination-bullet.swiper-pagination-bullet-active {
-  background-color: var(--goalShotButton);
+  background-color: var(--gray-10);
   width: 10px;
   height: 10px;
 }

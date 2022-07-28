@@ -83,6 +83,6 @@ const StWrapFlex = styled(StWrap)`
   .smallSpan {
     font-size: 20px;
     line-height: 130%;
-    color: var(--gray);
+    color: var(--gray-7);
   }
 `;
