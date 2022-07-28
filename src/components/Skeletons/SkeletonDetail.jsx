@@ -72,7 +72,7 @@ const StDiv = styled.div`
 
 const StFlex = styled.div`
   ${flex({})}
-  width: 100%;
+  width: calc(100% - 32px);
   margin-bottom: 20px;
   margin-right: 16px;
 `;
