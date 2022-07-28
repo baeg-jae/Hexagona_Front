@@ -4,7 +4,7 @@ import WebTitle from "components/Common/WebTitle";
 
 const Feed = () => {
   return (
-    <div className="main">
+    <div>
       <WebTitle text="피드: 갓생메이커" />
       <FeedContainer />
       <NavigatorBar />

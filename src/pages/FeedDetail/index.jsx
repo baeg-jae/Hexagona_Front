@@ -17,7 +17,7 @@ const FeedDetail = () => {
   });
 
   return (
-    <StWrapFlex className="main">
+    <StWrapFlex>
       {isFetching ? (
         <SkeletonDetail />
       ) : (

@@ -19,7 +19,7 @@ const Main = () => {
 
   return (
     <div style={{ width: "100%" }}>
-      <StFlexRowDiv className="main">
+      <StFlexRowDiv>
         <div className="main_one">
           <div className="main_two">
             <CategoryLink url="/home/exercise " picName="one" text="운동하기" />

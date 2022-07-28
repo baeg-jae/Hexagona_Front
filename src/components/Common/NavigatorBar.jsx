@@ -6,13 +6,13 @@ import flex from "./flex";
 
 const NavigatorBar = () => {
   return (
-    <StWrapFlex className="main">
+    <StWrapFlex>
       <NavLink to={"/home"}>
         <span>마이</span>
       </NavLink>
       <NavLink to={"/goalshot"}>
         <FlexColumnDiv>
-          <span className="smallText">인증샷</span>
+          <span>인증샷</span>
         </FlexColumnDiv>
       </NavLink>
       <NavLink to={"/feed"}>
@@ -35,8 +35,7 @@ const StWrapFlex = styled.div`
   height: 68px;
   text-align: center;
   background-color: var(--white);
-  border-top: 1px solid #e3e3e3;
-  z-index: 1;
+  border-top: 1px solid var(--gray-1);
   @media screen and (max-width: 420px) {
     width: 100%;
   }
@@ -45,16 +44,11 @@ const StWrapFlex = styled.div`
     font-weight: 500;
     font-size: 13px;
     line-height: 130%;
-    color: #b9b9b9;
-  }
-  .smallText {
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 130%;
+    color: var(--gray-5);
   }
   .active {
     span {
-      color: #212121 !important;
+      color: var(--black);
     }
   }
 `;

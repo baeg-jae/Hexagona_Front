@@ -3,7 +3,7 @@ import { StWrapFlex } from "components/Common/GlobalStyles";
 
 const LoadingMission = () => {
   return (
-    <StWrapFlex className="main">
+    <StWrapFlex>
       <MutatingDots color="var(--black)" height={100} width={100} />
     </StWrapFlex>
   );

@@ -92,12 +92,12 @@ const StModal = styled.div`
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 2;
+  z-index: 5;
   .StInnerContainer {
     ${flex({})}
     width: 320px;
     height: 251px;
-    background: #ffffff;
+    background: var(--white);
     border-radius: 8px;
     animation: ${alertModalAnim} ${ALERT_MODAL_POPUP}s ease;
     .InfoContainer {
@@ -109,8 +109,7 @@ const StModal = styled.div`
       .alertTitle {
         font-weight: 700;
         font-size: 18px;
-        line-height: 22px;
-        color: #292e41;
+        color: var(--black);
         margin: 24px 0;
       }
     }
@@ -120,7 +119,6 @@ const StModal = styled.div`
 const StIcon = styled.div`
   width: 70px;
   height: 70px;
-  border-radius: 100%;
   background-image: url(${(props) => alertIconHandler(props.name)});
   background-position: center;
   background-size: cover;

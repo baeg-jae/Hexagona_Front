@@ -1,4 +1,3 @@
-import React from "react";
 import { useReactPWAInstall } from "react-pwa-install";
 import icon from "assets/img/logo.webp";
 import Button from "./Button";

@@ -120,6 +120,12 @@ const ChatSubscribe = () => {
     scrollToBottom();
   }, [post_list, publicChats]);
 
+  const onKeyPress = (e) => {
+    if (e.key == "Enter") {
+      SendMessage();
+    }
+  };
+
   return (
     <FlexColumnDiv>
       <StHeader>
@@ -134,17 +140,23 @@ const ChatSubscribe = () => {
             post_list?.chatMessageDataList?.map((v, i) => {
               return v.userNickname === nickname ? (
                 <StFlexRow key={i}>
-                  <StChatContentContainer me>
-                    <StChatContent me>{v.message}</StChatContent>
-                  </StChatContentContainer>
+                  <FlexColumnDiv>
+                    <StChatContentContainer me>
+                      <StChatContent me>{v.message}</StChatContent>
+                    </StChatContentContainer>
+                    <StTime me>{v.modifiedAt}</StTime>
+                  </FlexColumnDiv>
                   <StMyProfile img={data?.profile_img} />
                 </StFlexRow>
               ) : (
                 <StFlexRow key={i}>
                   <StMyProfile img={post_list?.otherProfileImg} />
-                  <StChatContentContainer>
-                    <StChatContent>{v.message}</StChatContent>
-                  </StChatContentContainer>
+                  <FlexColumnDiv>
+                    <StChatContentContainer>
+                      <StChatContent>{v.message}</StChatContent>
+                    </StChatContentContainer>
+                    <StTime>{v.modifiedAt}</StTime>
+                  </FlexColumnDiv>
                 </StFlexRow>
               );
             })
@@ -180,6 +192,7 @@ const ChatSubscribe = () => {
               onChange={addMessage}
               ref={inputRef}
               maxLength={250}
+              onKeyPress={onKeyPress}
             />
             <button className="commentButton" onClick={SendMessage}>
               게시
@@ -213,7 +226,7 @@ const StOtherProfile = styled.div`
   height: 32px;
   border-radius: 100%;
   margin-left: 14px;
-  background-image: url(${(data) => data.img});
+  background-image: url(${(props) => props.img});
   background-size: cover;
   background-position: center;
 `;
@@ -222,7 +235,7 @@ const StMyProfile = styled(StOtherProfile)`
   width: 40px;
   height: 40px;
   margin-left: 0px;
-  background-image: url(${(data) => data.img});
+  background-image: url(${(props) => props.img});
 `;
 
 const StInputDiv = styled.div`
@@ -259,7 +272,7 @@ const StChatContentContainer = styled.div`
   background: ${(props) => (props.me ? "var(--gray-1)" : "var(--green)")};
   border-radius: ${(props) =>
     props.me ? "30px 30px 0 30px" : "30px 30px 30px 0"};
-  margin: 10px;
+  margin: 10px 10px 5px 10px;
 `;
 
 const StChatContent = styled.span`
@@ -270,4 +283,12 @@ const StChatContent = styled.span`
 
 const StFlexRow = styled.div`
   ${flex({ justify: "space-evenly", align: "flex-end" })}
+`;
+
+const StTime = styled.span`
+  display: flex;
+  justify-content: ${(props) => (props.me ? "flex-end" : "flex-start")};
+  width: 100%;
+  font-size: 10px;
+  margin: ${(props) => (props.me ? "0 16px 0 0" : "0 0 0 16px")};
 `;

@@ -2,12 +2,10 @@ import One from "assets/img/category1.webp";
 import Two from "assets/img/category2.webp";
 import Three from "assets/img/category3.webp";
 import Four from "assets/img/category4.webp";
-
 import Splash1 from "assets/img/splash_01.webp";
 import Splash2 from "assets/img/splash_02.webp";
 import Splash3 from "assets/img/splash_03.webp";
 import Splash4 from "assets/img/splash_04.webp";
-
 import Cancel from "assets/img/cancel.webp";
 import Confirm from "assets/img/confirm.webp";
 

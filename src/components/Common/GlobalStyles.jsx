@@ -24,6 +24,17 @@ export const StInput = styled.input`
   }
 `;
 
+export const StButton = styled.button`
+  width: 131.94px;
+  height: 48px;
+  border-radius: 8px;
+  margin: 0 4.06px 0 4.06px;
+  border: 1px solid ${(props) => (props.color === "brown" ? "none" : "#CACDD3")};
+  background-color: ${(props) =>
+    props.color === "brown" ? "#956C4A" : "var(--white)"};
+  color: ${(props) => (props.color === "brown" ? "#fff" : "#4C525C")};
+`;
+
 export const StWrapFlex = styled(StWrap)`
   ${flex({ direction: "column" })}
   color: #665547;
@@ -61,6 +72,48 @@ export const StInputDivGlobal = styled.div`
     line-height: 20px;
     color: #4876ef;
     margin-right: 15px;
+  }
+`;
+
+export const StModalGlobal = styled.div`
+  ${flex({})}
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  .StInnerContainer {
+    ${flex({})}
+    width: 320px;
+    height: 383px;
+    background: var(--white);
+    border-radius: 8px;
+    .InfoContainer {
+      ${flex({
+        direction: "column",
+      })}
+      width: 272px;
+      .TextContainer {
+        ${flex({ justify: "flex-start" })}
+        width: 100%;
+        .missionTitle {
+          font-weight: 700;
+          font-size: 18px;
+          color: var(--black);
+          margin-bottom: 24px;
+        }
+      }
+      label {
+        ${flex({})}
+        width: 193px;
+        height: 193px;
+        border: 1px solid var(--gray-3);
+        border-radius: 100%;
+        margin-bottom: 24px;
+      }
+    }
   }
 `;
 

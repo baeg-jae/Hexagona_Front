@@ -6,7 +6,7 @@ import WebTitle from "components/Common/WebTitle";
 const Error = () => {
   const back = useBack();
   return (
-    <StWrapFlex className="main">
+    <StWrapFlex>
       <WebTitle text="에러: 갓생메이커" />
       <span className="bigSpan">앗!</span>
       <span className="smallSpan">오류가 발생했어요. </span>
