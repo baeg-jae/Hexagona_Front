@@ -4,11 +4,11 @@ export const mainSteps = [
     locale: { skip: <strong aria-label="skip">SKIP</strong> },
     content: (
       <div>
-        <strong>[미션 등록하기]</strong>
+        <strong>[목표 등록하기]</strong>
         <br />
         <span>총 4개의 카테고리가 있습니다</span>
         <br />
-        <span>내가 오늘 하루 수행할 미션을</span>
+        <span>내가 오늘 하루 수행할 목표를</span>
         <br />
         <span>추가해주세요</span>
       </div>
@@ -22,7 +22,7 @@ export const mainSteps = [
     locale: { skip: <strong aria-label="skip">SKIP</strong> },
     content: (
       <div>
-        <strong>[미션 등록하기]</strong>
+        <strong>[목표 등록하기]</strong>
         <br />
         <span>카테고리를 한번 클릭해 볼까요?</span>
       </div>
@@ -39,7 +39,7 @@ export const missionOne = [
     locale: { skip: <strong aria-label="skip">SKIP</strong> },
     content: (
       <div>
-        <strong>[미션 등록하기]</strong>
+        <strong>[목표 등록하기]</strong>
         <br />
         <span>목표를 추가하는 버튼은 여기에요!</span>
         <br />
@@ -58,7 +58,7 @@ export const missionOne = [
     locale: { skip: <strong aria-label="skip">SKIP</strong> },
     content: (
       <div>
-        <strong>[미션 등록하기]</strong>
+        <strong>[목표 등록하기]</strong>
         <br />
         <span>이 아래 버튼으로도 추가할수 있어요!</span>
         <br />

@@ -48,7 +48,7 @@ const GoalShotButtons = ({
         <StButtonDiv>
           <Button
             theme="dark"
-            text="다른 이들의 미션 인증샷 보러가기"
+            text="다른 사람들의 목표 인증 보러가기"
             click={onClickBtnHandler}
           />
         </StButtonDiv>

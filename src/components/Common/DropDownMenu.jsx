@@ -41,14 +41,14 @@ const DropDownMenu = ({
   // 게시물 삭제
   const { onDeleteDetail } = useDetailDHandle({ postId: postId });
 
-  // 미션 수정
+  // 목표 수정
   const {
     setMissionUFlag,
     missionUFlag,
     setMissionContent,
     bogusCheckMission,
   } = useMissionUHandle({ missionId: missionId });
-  // 미션 삭제
+  // 목표 삭제
   const { onDeleteMission } = useMissionDHandle({ missionId: missionId });
 
   const onClickHandler = useCallback(() => {
@@ -118,10 +118,10 @@ const DropDownMenu = ({
           set={setMissionContent}
           confirm={bogusCheckMission}
           cancel={() => onCancelBtnHandler(setMissionUFlag)}
-          title="미션 수정하기"
+          title="목표 수정하기"
           cancelTitle="취소"
           confirmTitle="변경하기"
-          placeholder="미션을 써주세요"
+          placeholder="목표를 써주세요"
           count={MISSION_ADD_LENGTH}
         />
       ) : (

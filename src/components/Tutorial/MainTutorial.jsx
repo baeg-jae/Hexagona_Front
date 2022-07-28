@@ -46,7 +46,7 @@ const MainTutorial = ({ set }) => {
           <SwiperSlide className="slider">
             <StImgDiv pic="three" />
             <span>각 카테고리를 선택해서</span>
-            <span>미션 등록하는 페이지로 이동합니다.</span>
+            <span>목표를 등록하는 페이지로 이동합니다.</span>
           </SwiperSlide>
         </Swiper>
       </div>

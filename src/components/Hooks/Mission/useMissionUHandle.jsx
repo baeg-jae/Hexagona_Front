@@ -16,7 +16,7 @@ const useMissionUHandle = ({ missionId }) => {
       AlertComponent({
         icon: "error",
         title: "에러!",
-        text: "제대로 된 미션을 입력해주세요",
+        text: "제대로 된 목표를 입력해주세요",
       });
     }
   }, [mutate, missionContent, missionId]);
@@ -29,7 +29,7 @@ const useMissionUHandle = ({ missionId }) => {
       AlertComponent({
         icon: "error",
         title: "에러!",
-        text: "제대로 된 미션을 입력해주세요",
+        text: "제대로 된 목표를 입력해주세요",
       });
     } else {
       onSendUpdatedMission();

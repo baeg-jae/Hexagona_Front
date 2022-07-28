@@ -15,7 +15,7 @@ const useUpdateMission = () => {
       queryClient.invalidateQueries("todos");
       AlertComponent({
         icon: "success",
-        text: "미션이 삭제 되었습니다",
+        text: "목표가 삭제 되었습니다",
       });
     },
     onError: (e) => {},

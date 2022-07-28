@@ -146,3 +146,21 @@ export const gradientFade = keyframes`
     opacity: 1; 
   }
 `;
+
+export const alertModalAnim = keyframes`
+ 0% { 
+  transform: scale(0);
+}
+  100% {  
+    transform: scale(1); 
+  }
+`;
+
+export const alertModalIconAnim = keyframes`
+ 0% { 
+  transform: rotateY(0) translateY(0);
+}
+  100% {  
+    transform: rotateY(360deg) translateY(-10px); 
+  }
+`;

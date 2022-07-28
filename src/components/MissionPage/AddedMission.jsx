@@ -47,8 +47,8 @@ const AddedMission = ({ missionContent, missionId }) => {
             />
             <div style={{ marginRight: "20px" }}>
               <DropDownMenu
-                text="미션 수정"
-                text2="미션 삭제"
+                text="목표 수정"
+                text2="목표 삭제"
                 margin="40"
                 click="missionU"
                 click2="missionD"

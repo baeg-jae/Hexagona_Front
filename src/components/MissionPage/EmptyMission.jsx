@@ -11,12 +11,15 @@ import styled from "@emotion/styled";
 import Button from "components/Common/Button";
 import JoyrideContainer from "components/Tutorial/JoyrideContainer";
 import { missionOne } from "shared/tutorialData";
+import AlertModal from "components/Common/AlertModal";
 
 const EmptyMission = ({ category, list }) => {
   const arr = [1, 2, 3, 4];
   const [mission, setMission] = useState("");
   const [clicked, setClicked] = useState(false);
   const { mutate } = useAddMission();
+  const [errorFlag, setErrorFlag] = useState(false);
+  const [successFlag, setSuccessFlag] = useState(false);
 
   const [isShowTutorial, setIsShowTutorial] = useState(false);
 
@@ -41,18 +44,9 @@ const EmptyMission = ({ category, list }) => {
     if (mission !== "") {
       mutate({ missionContent: mission, category: category });
       setClicked((value) => !value);
-
-      AlertComponent({
-        icon: "success",
-        title: `${mission}`,
-        text: "목표 생성 완료!",
-      });
+      setSuccessFlag(true);
     } else {
-      AlertComponent({
-        icon: "error",
-        title: "에러!",
-        text: "제대로 된 미션을 입력해주세요",
-      });
+      setErrorFlag(true);
     }
   }, [mutate, mission, category]);
 
@@ -61,11 +55,7 @@ const EmptyMission = ({ category, list }) => {
       mission.toLowerCase().includes(word.toLowerCase())
     );
     if (foundSwears.length) {
-      AlertComponent({
-        icon: "error",
-        title: "에러!",
-        text: "제대로 된 미션을 입력해주세요",
-      });
+      setErrorFlag(true);
     } else {
       onAddMissionHandler();
     }
@@ -73,6 +63,27 @@ const EmptyMission = ({ category, list }) => {
 
   return (
     <>
+      {/* 목표 등록 성공 모달 */}
+      {successFlag ? (
+        <AlertModal
+          title="목표 등록 성공!"
+          icon="confirm"
+          set={setSuccessFlag}
+        />
+      ) : (
+        <></>
+      )}
+      {/* 목표 등록 에러 모달 */}
+      {errorFlag ? (
+        <AlertModal
+          title="제대로 된 목표를 입력해 주세요"
+          icon="cancel"
+          set={setErrorFlag}
+        />
+      ) : (
+        <></>
+      )}
+      {/* 목표 등록 인풋 모달 */}
       {clicked ? (
         <InputModal
           set={setMission}

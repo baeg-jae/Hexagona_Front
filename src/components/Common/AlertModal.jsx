@@ -1,18 +1,26 @@
 import styled from "@emotion/styled";
 import flex from "components/Common/flex";
+import { useEffect } from "react";
+import { ALERT_MODAL_ICON, ALERT_MODAL_POPUP } from "shared/data";
 import { alertIconHandler } from "./ButtonPropsHandler";
-import { FlexRowDiv } from "./GlobalStyles";
+import { alertModalAnim, alertModalIconAnim } from "./GlobalStyles";
 
-const AlertModal = ({ title, ConfirmText, icon }) => {
+const AlertModal = ({ title, icon, set }) => {
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      set((value) => !value);
+    }, 1500);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [set]);
+
   return (
     <StModal>
       <div className="StInnerContainer">
         <div className="InfoContainer">
           <StIcon name={icon} />
           <span className="alertTitle">{title}</span>
-          <FlexRowDiv>
-            <StButton color="brown">{ConfirmText}</StButton>
-          </FlexRowDiv>
         </div>
       </div>
     </StModal>
@@ -36,6 +44,7 @@ const StModal = styled.div`
     height: 251px;
     background: #ffffff;
     border-radius: 8px;
+    animation: ${alertModalAnim} ${ALERT_MODAL_POPUP}s ease;
     .InfoContainer {
       ${flex({
         direction: "column",
@@ -53,17 +62,6 @@ const StModal = styled.div`
   }
 `;
 
-const StButton = styled.button`
-  width: 131.94px;
-  height: 48px;
-  border-radius: 8px;
-  margin: 0 4.06px 0 4.06px;
-  border: 1px solid ${(props) => (props.color === "brown" ? "none" : "#CACDD3")};
-  background-color: ${(props) =>
-    props.color === "brown" ? "#956C4A" : "var(--white)"};
-  color: ${(props) => (props.color === "brown" ? "#fff" : "#4C525C")};
-`;
-
 const StIcon = styled.div`
   width: 70px;
   height: 70px;
@@ -71,4 +69,5 @@ const StIcon = styled.div`
   background-image: url(${(props) => alertIconHandler(props.name)});
   background-position: center;
   background-size: cover;
+  animation: ${alertModalIconAnim} ${ALERT_MODAL_ICON}s ease;
 `;
