@@ -12,6 +12,7 @@ export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id
 //Naver
 const NAVER_CLIENT_ID = process.env.REACT_APP_NAVER_CLIENTID;
 const NAVER_REDIRECT_URI = 'https://godlife.netlify.app/oauth/naver/callback';
+
 const STATE_STRING = process.env.REACT_APP_STATE_STRING;
 
 export const NAVER_AUTH_URL = `https://nid.naver.com/oauth2.0/authorize?client_id=${NAVER_CLIENT_ID}&redirect_uri=${NAVER_REDIRECT_URI}&response_type=code&state=${STATE_STRING}`;
