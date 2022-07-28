@@ -13,7 +13,6 @@ export const __prevPostChat = (payload) => {
   return async function (dispatch) {
     try {
       const loadData = await apis.getChatSetting(payload);
-      // console.log(loadData);
       dispatch(prevPostChat(loadData.data));
     } catch (error) {}
   };

@@ -26,7 +26,7 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
               <span className="innerText">게시물이 부족합니다</span>
             </div>
             <span className="smallText">
-              다른 이들의 미션을 둘러보러갈까요?
+              다른 이들의 게시물을 둘러보러갈까요?
             </span>
           </StLastCard>
         ) : (
@@ -257,9 +257,4 @@ const StLastCard = styled.div`
   .likedPicsDiv {
     width: 100%;
   }
-`;
-
-const StLastLastCard = styled(StLastCard)`
-  animation: ${(props) => props.flag && RightRightCardAnim()}
-    ${CARD_ANIMATION_TIME}s ease;
 `;

@@ -2,33 +2,12 @@ import One from "assets/img/category1.webp";
 import Two from "assets/img/category2.webp";
 import Three from "assets/img/category3.webp";
 import Four from "assets/img/category4.webp";
-
-import Pic1 from "assets/img/main_t1.webp";
-import Pic2 from "assets/img/main_t2.webp";
-import Pic3 from "assets/img/main_t3.webp";
-
 import Splash1 from "assets/img/splash_01.webp";
 import Splash2 from "assets/img/splash_02.webp";
 import Splash3 from "assets/img/splash_03.webp";
 import Splash4 from "assets/img/splash_04.webp";
-
-import Warning from "assets/img/warning.webp";
 import Cancel from "assets/img/cancel.webp";
 import Confirm from "assets/img/confirm.webp";
-import Question from "assets/img/question.webp";
-
-export const handleMainTutorial = (img) => {
-  switch (img) {
-    case "one":
-      return Pic1;
-    case "two":
-      return Pic2;
-    case "three":
-      return Pic3;
-    default:
-      return;
-  }
-};
 
 export const handleSplashTutorial = (img) => {
   switch (img) {
@@ -148,10 +127,6 @@ export const alertIconHandler = (text) => {
       return Confirm;
     case "cancel":
       return Cancel;
-    case "question":
-      return Question;
-    case "warning":
-      return Warning;
     default:
       return;
   }

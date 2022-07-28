@@ -4,7 +4,7 @@ import { SkeletonAnim } from "components/Common/GlobalStyles";
 
 const SkeletonMain = () => {
   return (
-    <div className="main">
+    <div>
       <StWrap>
         <StWrapFlex>
           <HeaderWrap />

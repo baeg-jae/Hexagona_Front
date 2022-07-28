@@ -6,6 +6,7 @@ import styled from "@emotion/styled";
 import bg from "assets/img/WebBG.webp";
 import col from "assets/img/col.webp";
 import GoogleForm from "./GoogleForm";
+import GlobalModal from "./GlobalModal";
 
 function App() {
   const handleResize = () => {
@@ -21,6 +22,7 @@ function App() {
   return (
     <Container>
       <div className="wrap">
+        <GlobalModal />
         <Routing />
       </div>
       <GoogleForm />

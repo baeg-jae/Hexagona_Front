@@ -1,18 +1,81 @@
 import styled from "@emotion/styled";
 import flex from "components/Common/flex";
+import { useEffect } from "react";
+import { ALERT_MODAL_ICON, ALERT_MODAL_POPUP } from "shared/data";
 import { alertIconHandler } from "./ButtonPropsHandler";
-import { FlexRowDiv } from "./GlobalStyles";
+import { alertModalAnim, alertModalIconAnim } from "./GlobalStyles";
+import { useDispatch } from "react-redux";
+import {
+  ChatJoinModal,
+  CommentAddError,
+  CommentAddSuccess,
+  CommentDeleteSuccess,
+  MissionAddModalError,
+  MissionAddModalSuccess,
+  MissionDeleteModalSuccess,
+  MissionEditModalSuccess,
+  MissionPhotoModalSuccess,
+  PostDeleteSuccess,
+  SignUpDup,
+  SignUpError,
+  SignUpSuccess,
+  UserProfileModalDupError,
+  UserProfileModalError,
+  UserProfileModalSuccess,
+} from "redux/modules/modal";
 
-const AlertModal = ({ title, ConfirmText, icon }) => {
+const AlertModal = ({ title, icon, type }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      switch (type) {
+        case "missionAddError":
+          return dispatch(MissionAddModalError(false));
+        case "missionAddSuccess":
+          return dispatch(MissionAddModalSuccess(false));
+        case "missionEditSuccess":
+          return dispatch(MissionEditModalSuccess(false));
+        case "missionDeleteSuccess":
+          return dispatch(MissionDeleteModalSuccess(false));
+        case "missionPhotoSuccess":
+          return dispatch(MissionPhotoModalSuccess(false));
+        case "userProfileSuccess":
+          return dispatch(UserProfileModalSuccess(false));
+        case "userProfileError":
+          return dispatch(UserProfileModalError(false));
+        case "userProfileDupError":
+          return dispatch(UserProfileModalDupError(false));
+        case "commentAddSuccess":
+          return dispatch(CommentAddSuccess(false));
+        case "CommentAddError":
+          return dispatch(CommentAddError(false));
+        case "commentDeleteSuccess":
+          return dispatch(CommentDeleteSuccess(false));
+        case "postDeleteSuccess":
+          return dispatch(PostDeleteSuccess(false));
+        case "chatJoinAlert":
+          return dispatch(ChatJoinModal(false));
+        case "signUpSuccess":
+          return dispatch(SignUpSuccess(false));
+        case "signUpError":
+          return dispatch(SignUpError(false));
+        case "signUpDup":
+          return dispatch(SignUpDup(false));
+        default:
+          return;
+      }
+    }, 1500);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [dispatch, type]);
+
   return (
     <StModal>
       <div className="StInnerContainer">
         <div className="InfoContainer">
           <StIcon name={icon} />
           <span className="alertTitle">{title}</span>
-          <FlexRowDiv>
-            <StButton color="brown">{ConfirmText}</StButton>
-          </FlexRowDiv>
         </div>
       </div>
     </StModal>
@@ -29,13 +92,14 @@ const StModal = styled.div`
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 2;
+  z-index: 5;
   .StInnerContainer {
     ${flex({})}
     width: 320px;
     height: 251px;
-    background: #ffffff;
+    background: var(--white);
     border-radius: 8px;
+    animation: ${alertModalAnim} ${ALERT_MODAL_POPUP}s ease;
     .InfoContainer {
       ${flex({
         direction: "column",
@@ -45,30 +109,18 @@ const StModal = styled.div`
       .alertTitle {
         font-weight: 700;
         font-size: 18px;
-        line-height: 22px;
-        color: #292e41;
+        color: var(--black);
         margin: 24px 0;
       }
     }
   }
 `;
 
-const StButton = styled.button`
-  width: 131.94px;
-  height: 48px;
-  border-radius: 8px;
-  margin: 0 4.06px 0 4.06px;
-  border: 1px solid ${(props) => (props.color === "brown" ? "none" : "#CACDD3")};
-  background-color: ${(props) =>
-    props.color === "brown" ? "#956C4A" : "var(--white)"};
-  color: ${(props) => (props.color === "brown" ? "#fff" : "#4C525C")};
-`;
-
 const StIcon = styled.div`
   width: 70px;
   height: 70px;
-  border-radius: 100%;
   background-image: url(${(props) => alertIconHandler(props.name)});
   background-position: center;
   background-size: cover;
+  animation: ${alertModalIconAnim} ${ALERT_MODAL_ICON}s ease;
 `;

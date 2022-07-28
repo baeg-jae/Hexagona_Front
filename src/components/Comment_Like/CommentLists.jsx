@@ -43,9 +43,9 @@ const CommentLists = ({ postId }) => {
                           />
                         )}
                       </div>
-                      <div className="replyDay">dd{v.createdAtDateOnly}</div>
+                      <div className="replyDay">{v.createdAtDateOnly}</div>
                     </div>
-                    <div className="replyText">{v.comment}</div>
+                    <div>{v.comment}</div>
                   </div>
                 </StReplyWrap>
               );
@@ -64,36 +64,27 @@ const StWrap = styled.div`
   width: 100%;
   height: 140px;
   .emptySpan {
-    font-size: 14px;
     line-height: 130%;
-    color: #a3a3a3;
+    color: var(--gray-5);
   }
 `;
 
 const StReplyWrap = styled.div`
   ${flex({ justify: "flex-start", direction: "row", align: "flex-start" })}
-  margin: 10px;
   width: calc(100% - 32px);
-  margin-top: 30px;
-  white-space: wrap;
+  margin-top: 15px;
+  line-height: 130%;
+  border-bottom: 1px solid var(--gray-1);
   .reply {
     width: calc(100% - 50px);
     .replyUser {
       ${flex({ justify: "space-between" })}
       font-weight: 700;
-      font-size: 14px;
-      line-height: 130%;
     }
     .replyDay {
       font-size: 12px;
-      line-height: 130%;
-      color: #b4b4b4;
+      color: var(--gray-5);
     }
-  }
-  .replyText {
-    font-size: 14px;
-    line-height: 24px;
-    margin-top: 3px;
   }
 `;
 
@@ -104,5 +95,5 @@ const StProfile = styled.div`
   background-size: cover;
   background-position: center;
   background-image: url(${(props) => props.img});
-  margin-right: 7px;
+  margin-right: 8px;
 `;

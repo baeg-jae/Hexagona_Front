@@ -1,16 +1,18 @@
 import { dropBoxAnimation, FlexRowDiv } from "./GlobalStyles";
 import { SIGN_UP_MAX_LENGTH, MISSION_ADD_LENGTH } from "shared/data";
 import { useRef, useCallback } from "react";
+import { BiDotsVerticalRounded } from "react-icons/bi";
+import styled from "@emotion/styled";
+import flex from "./flex";
+
+import useDetectClose from "components/Hooks/useDetectClose";
+import InputModal from "components/Common/InputModal";
+import ImageModal from "./ImageModal";
+
 import useNicknameHandle from "components/Hooks/User/useNicknameHandle";
 import useImageHandler from "components/Hooks/useImageHandler";
 import useCommentDHandle from "components/Hooks/Comment/useCommentDHandle";
 import useDetailDHandle from "components/Hooks/Detail/useDetailDHandle";
-import InputModal from "components/Common/InputModal";
-import ImageModal from "./ImageModal";
-import styled from "@emotion/styled";
-import flex from "./flex";
-import useDetectClose from "components/Hooks/useDetectClose";
-import { BiDotsVerticalRounded } from "react-icons/bi";
 import useMissionDHandle from "components/Hooks/Mission/useMissionDHandle";
 import useMissionUHandle from "components/Hooks/Mission/useMissionUHandle";
 
@@ -40,15 +42,14 @@ const DropDownMenu = ({
   });
   // 게시물 삭제
   const { onDeleteDetail } = useDetailDHandle({ postId: postId });
-
-  // 미션 수정
+  // 목표 수정
   const {
     setMissionUFlag,
     missionUFlag,
     setMissionContent,
     bogusCheckMission,
   } = useMissionUHandle({ missionId: missionId });
-  // 미션 삭제
+  // 목표 삭제
   const { onDeleteMission } = useMissionDHandle({ missionId: missionId });
 
   const onClickHandler = useCallback(() => {
@@ -118,10 +119,10 @@ const DropDownMenu = ({
           set={setMissionContent}
           confirm={bogusCheckMission}
           cancel={() => onCancelBtnHandler(setMissionUFlag)}
-          title="미션 수정하기"
+          title="목표 수정하기"
           cancelTitle="취소"
           confirmTitle="변경하기"
-          placeholder="미션을 써주세요"
+          placeholder="목표를 써주세요"
           count={MISSION_ADD_LENGTH}
         />
       ) : (
@@ -176,7 +177,7 @@ const DropRow = styled.div`
   animation: ${dropBoxAnimation} 0.3s;
   div {
     width: 99px;
-    border: 1px solid #f4f4f4;
+    border: 1px solid var(--gray-1);
   }
   span {
     ${flex({ direction: "column" })}
@@ -184,7 +185,6 @@ const DropRow = styled.div`
     height: 31px;
     font-weight: 500;
     font-size: 14px;
-    line-height: 17px;
-    color: #5b5b5b;
+    color: var(--gray-7);
   }
 `;

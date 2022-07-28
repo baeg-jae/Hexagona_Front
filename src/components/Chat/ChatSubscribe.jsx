@@ -1,30 +1,31 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  FlexColumnDiv,
+  StInputDivGlobal,
+} from "components/Common/GlobalStyles";
+import { __prevPostChat } from "redux/modules/chat";
 import Stomp from "stompjs";
 import SockJS from "sockjs-client";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 import BackButton from "components/Common/BackButton";
-import { FlexColumnDiv } from "components/Common/GlobalStyles";
-import { __prevPostChat } from "redux/modules/chat";
 import useGetUser from "components/Hooks/User/useGetUser";
 
 const ChatSubscribe = () => {
-  const { chatRoomId } = useParams();
-  const { data } = useGetUser();
   const SockJs = new SockJS(`${process.env.REACT_APP_SERVER}/ws-stomp`);
   const StompClient = Stomp.over(SockJs);
+  const { chatRoomId } = useParams();
+  const { data } = useGetUser();
   const { userId, nickname } = useSelector((state) => state.userReducer);
   const { post_list } = useSelector((state) => state.chatReducer);
   const [messageData, setMessage] = useState("");
   const [publicChats, setPublicChats] = useState([]);
   const messageScroll = useRef();
-  const inputRef = useRef();
   const dispatch = useDispatch();
+  const inputRef = useRef();
 
-  // 시간 "2022-07-24T11:12:42.032",
-  //2022-6-27T6:43:17.032
   const time =
     new Date(Date.now()).getFullYear() +
     "-" +
@@ -50,13 +51,13 @@ const ChatSubscribe = () => {
           setPublicChats((list) => [...list, response]);
         });
       },
-      (e) => {
-        console.log(e);
+      () => {
+        //에러검사
       }
     );
   };
 
-  // disconnect 할때, 구독한것도 취소해줘야하고, 자동연결도 cleanup 해줘야한다.
+  // 자동 재연결
   const waitForConnect = (ws, callback) => {
     setTimeout(() => {
       if (StompClient.ws.readyState === 1) {
@@ -67,6 +68,7 @@ const ChatSubscribe = () => {
     }, 0.1);
   };
 
+  // disconnect
   const wsDisconnect = () => {
     StompClient.disconnect(() => {
       // 구독할떄 콘솔보면 id:sub-0 가 이래서 비구독은 아래처럼
@@ -76,17 +78,17 @@ const ChatSubscribe = () => {
   };
 
   useEffect(() => {
-    // 옛날 채팅 보여주기
+    // 이전 채팅 보여주기
     dispatch(__prevPostChat({ userId: userId, chatRoomId: chatRoomId }));
+    // 연결도 끊어지면 다시 되게
     waitForConnect(StompClient, wsSubscribe());
-    // 오류: disconnect할때 오류있음 가끔
     return () => wsDisconnect();
+    // 디펜던시 주면 안됌
   }, []);
 
-  // 버튼으로 채팅 보내기
+  // 채팅 보내기
   const SendMessage = () => {
     if (messageData === "") {
-      // 빈 메시지 칸 처리
       return;
     }
     const data = {
@@ -95,15 +97,14 @@ const ChatSubscribe = () => {
       modifiedAt: time,
       message: messageData,
     };
-
     waitForConnect(StompClient, () => {
-      StompClient.debug = null;
-      StompClient.send(`/pub/templates/chat/message`, {}, JSON.stringify(data)); // 여기서 에러
+      StompClient.debug = null; // console 안보기
+      StompClient.send(`/pub/templates/chat/message`, {}, JSON.stringify(data));
     });
     inputRef.current.value = "";
   };
 
-  // 지금 쓰는 채팅 가져오기
+  // onChange
   const addMessage = (e) => {
     setMessage(e.target.value);
   };
@@ -114,9 +115,16 @@ const ChatSubscribe = () => {
       messageScroll.current.scrollTop = messageScroll.current.scrollHeight;
     }
   };
+
   useEffect(() => {
     scrollToBottom();
   }, [post_list, publicChats]);
+
+  const onKeyPress = (e) => {
+    if (e.key == "Enter") {
+      SendMessage();
+    }
+  };
 
   return (
     <FlexColumnDiv>
@@ -132,17 +140,23 @@ const ChatSubscribe = () => {
             post_list?.chatMessageDataList?.map((v, i) => {
               return v.userNickname === nickname ? (
                 <StFlexRow key={i}>
-                  <StChatContentContainer me>
-                    <StChatContent me>{v.message}</StChatContent>
-                  </StChatContentContainer>
+                  <FlexColumnDiv>
+                    <StChatContentContainer me>
+                      <StChatContent me>{v.message}</StChatContent>
+                    </StChatContentContainer>
+                    <StTime me>{v.modifiedAt}</StTime>
+                  </FlexColumnDiv>
                   <StMyProfile img={data?.profile_img} />
                 </StFlexRow>
               ) : (
                 <StFlexRow key={i}>
                   <StMyProfile img={post_list?.otherProfileImg} />
-                  <StChatContentContainer>
-                    <StChatContent>{v.message}</StChatContent>
-                  </StChatContentContainer>
+                  <FlexColumnDiv>
+                    <StChatContentContainer>
+                      <StChatContent>{v.message}</StChatContent>
+                    </StChatContentContainer>
+                    <StTime>{v.modifiedAt}</StTime>
+                  </FlexColumnDiv>
                 </StFlexRow>
               );
             })
@@ -170,7 +184,7 @@ const ChatSubscribe = () => {
         </StWrap>
         <StInputDiv>
           <StMyProfile img={data?.profile_img} />
-          <StDiv>
+          <StInputDivGlobal>
             <input
               type="text"
               className="commentInput"
@@ -178,11 +192,12 @@ const ChatSubscribe = () => {
               onChange={addMessage}
               ref={inputRef}
               maxLength={250}
+              onKeyPress={onKeyPress}
             />
             <button className="commentButton" onClick={SendMessage}>
               게시
             </button>
-          </StDiv>
+          </StInputDivGlobal>
         </StInputDiv>
       </StBody>
     </FlexColumnDiv>
@@ -196,8 +211,8 @@ const StHeader = styled.div`
   width: 100%;
   height: 49px;
   margin-top: 44px;
-  border-top: 1px solid #dadada;
-  border-bottom: 1px solid #dadada;
+  border-top: 1px solid var(--gray-3);
+  border-bottom: 1px solid var(--gray-3);
 `;
 
 const StBody = styled.div`
@@ -207,11 +222,11 @@ const StBody = styled.div`
 `;
 
 const StOtherProfile = styled.div`
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   border-radius: 100%;
   margin-left: 14px;
-  background-image: url(${(data) => data.img});
+  background-image: url(${(props) => props.img});
   background-size: cover;
   background-position: center;
 `;
@@ -220,18 +235,15 @@ const StMyProfile = styled(StOtherProfile)`
   width: 40px;
   height: 40px;
   margin-left: 0px;
-  background-image: url(${(data) => data.img});
-  background-size: cover;
-  background-position: center;
+  background-image: url(${(props) => props.img});
 `;
 
 const StInputDiv = styled.div`
-  ${flex({ justify: "flex-start" })}
+  ${flex({})}
   position: fixed;
   width: calc(100% - 32px);
   height: 50px;
   top: calc(100vh - 118px);
-
   @media screen and (min-width: 420px) {
     width: 384px;
   }
@@ -242,38 +254,7 @@ const StOtherName = styled.span`
   font-size: 15px;
   line-height: 130%;
   margin-left: 8px;
-  color: #212121;
-`;
-
-const StDiv = styled.div`
-  ${flex({ justify: "space-around" })}
-  width: 100%;
-  height: 40px;
-  margin-left: 12px;
-  border: 1px solid #bfbfbf;
-  border-radius: 55px;
-  .commentInput {
-    width: calc(100% - 100px);
-    border: none;
-    background-color: transparent;
-    white-space: normal;
-    text-align: justify;
-    margin-left: 10px;
-    &:focus {
-      outline: none;
-    }
-    &::placeholder {
-      font-size: 11px;
-    }
-  }
-  .commentButton {
-    background-color: transparent;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 20px;
-    color: #4876ef;
-    margin-right: 15px;
-  }
+  color: var(--black);
 `;
 
 const StWrap = styled.div`
@@ -288,20 +269,26 @@ const StChatContentContainer = styled.div`
   ${flex({ direction: "column" })}
   width: 277px;
   padding: 10px;
-  background: ${(props) => (props.me ? "#f8f8f8" : "#55977A")};
+  background: ${(props) => (props.me ? "var(--gray-1)" : "var(--green)")};
   border-radius: ${(props) =>
     props.me ? "30px 30px 0 30px" : "30px 30px 30px 0"};
-  margin: 10px;
+  margin: 10px 10px 5px 10px;
 `;
 
 const StChatContent = styled.span`
   font-weight: 600;
-  font-size: 14px;
   line-height: 28px;
-  color: ${(props) => (props.me ? "#393939" : "#fff")};
+  color: ${(props) => (props.me ? "var(--gray-10)" : "var(--white)")};
 `;
 
 const StFlexRow = styled.div`
   ${flex({ justify: "space-evenly", align: "flex-end" })}
+`;
+
+const StTime = styled.span`
+  display: flex;
+  justify-content: ${(props) => (props.me ? "flex-end" : "flex-start")};
   width: 100%;
+  font-size: 10px;
+  margin: ${(props) => (props.me ? "0 16px 0 0" : "0 0 0 16px")};
 `;

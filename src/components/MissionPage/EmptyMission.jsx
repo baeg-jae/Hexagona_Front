@@ -2,7 +2,6 @@ import { MISSION_ADD_LENGTH } from "shared/data";
 import { useState, useCallback, useEffect } from "react";
 import { badWords } from "shared/TextsData";
 import useAddMission from "components/Hooks/Mission/useAddMission";
-import AlertComponent from "components/Common/AlertComponent";
 import InputModal from "components/Common/InputModal";
 import AddedMission from "./AddedMission";
 import flex from "components/Common/flex";
@@ -11,11 +10,17 @@ import styled from "@emotion/styled";
 import Button from "components/Common/Button";
 import JoyrideContainer from "components/Tutorial/JoyrideContainer";
 import { missionOne } from "shared/tutorialData";
+import { useDispatch } from "react-redux";
+import {
+  MissionAddModalError,
+  MissionAddModalSuccess,
+} from "redux/modules/modal";
 
 const EmptyMission = ({ category, list }) => {
   const arr = [1, 2, 3, 4];
   const [mission, setMission] = useState("");
   const [clicked, setClicked] = useState(false);
+  const dispatch = useDispatch();
   const { mutate } = useAddMission();
 
   const [isShowTutorial, setIsShowTutorial] = useState(false);
@@ -41,38 +46,26 @@ const EmptyMission = ({ category, list }) => {
     if (mission !== "") {
       mutate({ missionContent: mission, category: category });
       setClicked((value) => !value);
-
-      AlertComponent({
-        icon: "success",
-        title: `${mission}`,
-        text: "목표 생성 완료!",
-      });
+      dispatch(MissionAddModalSuccess(true));
     } else {
-      AlertComponent({
-        icon: "error",
-        title: "에러!",
-        text: "제대로 된 미션을 입력해주세요",
-      });
+      dispatch(MissionAddModalError(true));
     }
-  }, [mutate, mission, category]);
+  }, [mutate, mission, category, dispatch]);
 
   const bogusCheck = useCallback(() => {
     const foundSwears = badWords.filter((word) =>
       mission.toLowerCase().includes(word.toLowerCase())
     );
     if (foundSwears.length) {
-      AlertComponent({
-        icon: "error",
-        title: "에러!",
-        text: "제대로 된 미션을 입력해주세요",
-      });
+      dispatch(MissionAddModalError(true));
     } else {
       onAddMissionHandler();
     }
-  }, [mission, onAddMissionHandler]);
+  }, [mission, onAddMissionHandler, dispatch]);
 
   return (
     <>
+      {/* 목표 등록 인풋 모달 */}
       {clicked ? (
         <InputModal
           set={setMission}

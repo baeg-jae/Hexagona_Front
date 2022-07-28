@@ -24,6 +24,17 @@ export const StInput = styled.input`
   }
 `;
 
+export const StButton = styled.button`
+  width: 131.94px;
+  height: 48px;
+  border-radius: 8px;
+  margin: 0 4.06px 0 4.06px;
+  border: 1px solid ${(props) => (props.color === "brown" ? "none" : "#CACDD3")};
+  background-color: ${(props) =>
+    props.color === "brown" ? "#956C4A" : "var(--white)"};
+  color: ${(props) => (props.color === "brown" ? "#fff" : "#4C525C")};
+`;
+
 export const StWrapFlex = styled(StWrap)`
   ${flex({ direction: "column" })}
   color: #665547;
@@ -37,6 +48,72 @@ export const StWrapFlex = styled(StWrap)`
     font-size: 20px;
     line-height: 130%;
     margin-bottom: 42px;
+  }
+`;
+
+export const StInputDivGlobal = styled.div`
+  ${flex({ justify: "space-around" })}
+  width: 83%;
+  height: 40px;
+  margin-left: 12px;
+  border: 1px solid var(--gray-5);
+  border-radius: 55px;
+  .commentInput {
+    width: calc(100% - 100px);
+    border: none;
+    margin-left: 10px;
+    &:focus {
+      outline: none;
+    }
+  }
+  .commentButton {
+    background-color: transparent;
+    font-weight: 700;
+    line-height: 20px;
+    color: #4876ef;
+    margin-right: 15px;
+  }
+`;
+
+export const StModalGlobal = styled.div`
+  ${flex({})}
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  .StInnerContainer {
+    ${flex({})}
+    width: 320px;
+    height: 383px;
+    background: var(--white);
+    border-radius: 8px;
+    .InfoContainer {
+      ${flex({
+        direction: "column",
+      })}
+      width: 272px;
+      .TextContainer {
+        ${flex({ justify: "flex-start" })}
+        width: 100%;
+        .missionTitle {
+          font-weight: 700;
+          font-size: 18px;
+          color: var(--black);
+          margin-bottom: 24px;
+        }
+      }
+      label {
+        ${flex({})}
+        width: 193px;
+        height: 193px;
+        border: 1px solid var(--gray-3);
+        border-radius: 100%;
+        margin-bottom: 24px;
+      }
+    }
   }
 `;
 
@@ -136,13 +213,28 @@ export const SkeletonAnim = () => keyframes`
 `;
 
 export const gradientFade = keyframes`
- 0% { 
-    opacity: 0; 
-  }
-  99%{
+  0%,50%{
     opacity: 0;
   }
   100% { 
     opacity: 1; 
+  }
+`;
+
+export const alertModalAnim = keyframes`
+ 0% { 
+  transform: scale(0);
+}
+  100% {  
+    transform: scale(1); 
+  }
+`;
+
+export const alertModalIconAnim = keyframes`
+ 0% { 
+  transform: rotateY(0);
+}
+  100% {  
+    transform: rotateY(360deg); 
   }
 `;

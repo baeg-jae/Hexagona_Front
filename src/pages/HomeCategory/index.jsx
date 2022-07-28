@@ -24,7 +24,7 @@ const HomeCategory = () => {
         <SkeletonMission />
       ) : (
         <StWrap>
-          <WebTitle text="미션: 갓생메이커" />
+          <WebTitle text="목표: 갓생메이커" />
           <StContainer>
             <CategoryTop />
             <EmptyMission category={category} list={list} />
