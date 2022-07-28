@@ -134,3 +134,15 @@ export const SkeletonAnim = () => keyframes`
     background-color: hsl(200, 20%, 95%); 
 }
 `;
+
+export const gradientFade = keyframes`
+ 0% { 
+    opacity: 0; 
+  }
+  99%{
+    opacity: 0;
+  }
+  100% { 
+    opacity: 1; 
+  }
+`;
