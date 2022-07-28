@@ -20,17 +20,14 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
       {data !== undefined ? (
         data?.length < GOALSHOT_RANDOM_CARD ? (
           <StLastCard flag={cardTrigger()}>
-            <StEmoji smile />
+            <StEmoji sad mar />
             <div className="innerTextDiv">
-              <span className="innerText">오늘의 평가가</span>
-              <span className="innerText">끝이 났어요!</span>
+              <span className="innerText">평가하기에</span>
+              <span className="innerText">게시물이 부족합니다</span>
             </div>
             <span className="smallText">
-              이런 인증샷들을 좋아요 누르셨네요!
+              다른 이들의 미션을 둘러보러갈까요?
             </span>
-            <div className="likedPicsDiv">
-              <TodayLiked />
-            </div>
           </StLastCard>
         ) : (
           <>
@@ -51,14 +48,17 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
             {/* 중간카드 */}
             {count === GOALSHOT_RANDOM_CARD ? (
               <StLastCard flag={cardTrigger()} dashed bg center>
-                <StEmoji mar />
+                <StEmoji smile />
                 <div className="innerTextDiv">
-                  <span className="innerText">평가하기에</span>
-                  <span className="innerText">게시물이 부족합니다</span>
+                  <span className="innerText">오늘의 평가가</span>
+                  <span className="innerText">끝이 났어요!</span>
                 </div>
                 <span className="smallText">
-                  다른 이들의 미션을 둘러보러갈까요?
+                  이런 인증샷들을 좋아요 누르셨네요!
                 </span>
+                <div className="likedPicsDiv">
+                  <TodayLiked />
+                </div>
               </StLastCard>
             ) : (
               <StCard img={data[count]?.photoUrl} flag={cardTrigger()}>
@@ -74,14 +74,17 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
             {/* 우측카드 */}
             {count === GOALSHOT_RANDOM_CARD - 1 ? (
               <StLastCard flag={cardTrigger()} dashed bg>
-                <StEmoji mar />
+                <StEmoji smile />
                 <div className="innerTextDiv">
-                  <span className="innerText">평가하기에</span>
-                  <span className="innerText">게시물이 부족합니다</span>
+                  <span className="innerText">오늘의 평가가</span>
+                  <span className="innerText">끝이 났어요!</span>
                 </div>
                 <span className="smallText">
-                  다른 이들의 미션을 둘러보러갈까요?
+                  이런 인증샷들을 좋아요 누르셨네요!
                 </span>
+                <div className="likedPicsDiv">
+                  <TodayLiked />
+                </div>
               </StLastCard>
             ) : count === GOALSHOT_RANDOM_CARD ? (
               <StRightCard
@@ -113,10 +116,19 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
 
             {/* 최우측카드 */}
             {count === GOALSHOT_RANDOM_CARD - 2 ? (
-              <StLastLastCard flag={cardTrigger()} differ>
-                <span className="innerText">주어진 카드에 대해서</span>
-                <span className="innerText">모두 평가를 완료했습니다!</span>
-              </StLastLastCard>
+              <StLastCard flag={cardTrigger()} dashed bg>
+                <StEmoji smile />
+                <div className="innerTextDiv">
+                  <span className="innerText">오늘의 평가가</span>
+                  <span className="innerText">끝이 났어요!</span>
+                </div>
+                <span className="smallText">
+                  이런 인증샷들을 좋아요 누르셨네요!
+                </span>
+                <div className="likedPicsDiv">
+                  <TodayLiked />
+                </div>
+              </StLastCard>
             ) : (
               <StRightRightCard
                 img={data[count + 2]?.photoUrl}
@@ -196,7 +208,7 @@ const StEmoji = styled.div`
   background-image: url(${(props) => (props.smile ? `${Smile}` : `${Sad}`)});
   background-position: center;
   background-size: cover;
-  margin-top: ${(props) => props.mar && "120px"};
+  margin-top: ${(props) => (props.mar ? "120px" : "15px")};
 `;
 
 const StRightCard = styled(StCard)`
@@ -216,7 +228,7 @@ const StRightRightCard = styled(StCard)`
 
 const StLastCard = styled.div`
   ${flex({ direction: "column", justify: "flex-start" })}
-  width: 100%;
+  min-width: 285px;
   height: 480px;
   border-radius: 20px;
   opacity: ${(props) => (props.differ ? "0.6" : "1")};

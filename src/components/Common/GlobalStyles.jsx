@@ -127,7 +127,7 @@ export const SurveyAnim2 = () => keyframes`
 
 export const SkeletonAnim = () => keyframes`
   0% {  
-  background-color: hsl(200, 20%, 70%);
+  background-color: #e9e9e9;
 }
 
   100% { 

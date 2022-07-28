@@ -4,7 +4,7 @@ import useGetChatListSetting from "components/Hooks/ChatList/useGetChatListSetti
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const ChatList = () => {
+const ChatList = ({ keyword }) => {
   const { userId } = useSelector((state) => state.userReducer);
   const { data } = useGetChatListSetting({ userId: userId });
   const navigate = useNavigate();
@@ -16,13 +16,18 @@ const ChatList = () => {
     <StChatWrap>
       {data?.chatRoomList?.map((v, i) => {
         return (
-          <StChat onClick={() => onClickChatRoomHandler(v.chatRoomId)} key={i}>
-            <StChatHeader>
-              <StChatHeaderImg otherProfileImg={v.otherProfileImg} />
-              <span>{v.otherNickName}</span>
-            </StChatHeader>
-            <StChatDec>{v.lastChat}</StChatDec>
-          </StChat>
+          v.otherNickName.toLowerCase().includes(keyword.toLowerCase()) && (
+            <StChat
+              onClick={() => onClickChatRoomHandler(v.chatRoomId)}
+              key={i}
+            >
+              <StChatHeader>
+                <StChatHeaderImg otherProfileImg={v.otherProfileImg} />
+                <span>{v.otherNickName}</span>
+              </StChatHeader>
+              <StChatDec>{v.lastChat}</StChatDec>
+            </StChat>
+          )
         );
       })}
     </StChatWrap>

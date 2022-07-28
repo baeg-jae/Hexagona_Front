@@ -55,7 +55,7 @@ const StWrapTwo = styled.div`
   background-color: var(--skeleton);
   animation: ${SkeletonAnim} 0.5s linear infinite alternate;
   border: 1px dashed #e0e0e0;
-  border-radius: 4px;
+  border-radius: 16px;
   margin-bottom: 8px;
 `;
 

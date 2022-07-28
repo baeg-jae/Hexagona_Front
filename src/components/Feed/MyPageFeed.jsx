@@ -10,7 +10,7 @@ const MyPageFeed = () => {
   const { data } = useGetMyPosts();
 
   const onClickHandler = useCallback(() => {
-    navigate("/myFeed");
+    navigate("/feed/myFeed");
   }, [navigate]);
   return (
     <>
@@ -36,7 +36,7 @@ const StMyPage = styled.div`
   ${flex({ direction: "column" })}
   width: 97%;
   height: 225px;
-  border-radius: 4px;
+  border-radius: 16px;
   margin: 10px 5px 5px 5px;
   background: linear-gradient(
       90deg,
@@ -59,7 +59,7 @@ const StSkeleton = styled.div`
   ${flex({ direction: "column" })}
   width: 97%;
   height: 225px;
-  border-radius: 4px;
+  border-radius: 16px;
   margin: 10px 5px 5px 5px;
   background-color: var(--skeleton);
   animation: ${SkeletonAnim} 0.5s linear infinite alternate;

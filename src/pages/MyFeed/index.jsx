@@ -12,7 +12,7 @@ const MyFeed = () => {
   const navigate = useNavigate();
   const onClickHandler = useCallback(
     (postId) => {
-      navigate(`/detail/${postId}`);
+      navigate(`/feed/${postId}`);
     },
     [navigate]
   );
@@ -58,14 +58,14 @@ const StDiv = styled.div`
   display: grid;
   justify-content: center;
   gap: 10px;
-  grid-template-columns: 166px 166px;
-  margin-top: 90px;
+  grid-template-columns: 1fr 1fr;
+  margin: 80px 16px 0 16px;
   overflow-y: scroll;
 `;
 
 const StImgDiv = styled.div`
   height: 225.72px;
-  border-radius: 4px;
+  border-radius: 16px;
   background: url(${(props) => props.img});
   background-position: center;
   background-size: cover;

@@ -30,6 +30,7 @@ const StCategoryDiv = styled.div`
   background-size: cover;
   background-position: center;
   background-image: url(${(props) => handlePictureProps(props.pic)});
+  border-radius: 16px;
   .innerText {
     position: absolute;
     bottom: 0%;

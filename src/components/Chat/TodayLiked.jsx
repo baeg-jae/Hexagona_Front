@@ -102,7 +102,7 @@ export default TodayLiked;
 const StDupModel = styled.div`
   width: 100%;
   height: 100%;
-  border-radius: 4px;
+  border-radius: 16px;
 `;
 
 const StTodayLIked = styled(StDupModel)`

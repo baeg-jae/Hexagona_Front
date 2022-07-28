@@ -95,19 +95,19 @@ const StWrapFlex = styled.div`
   background-image: url(${(props) => props.img});
   background-position: center;
   background-size: cover;
-  border-radius: 4px;
+  border-radius: 16px;
   .gradientTop {
     ${flex({ direction: "column", align: "flex-start", justify: "flex-start" })}
     width: 100%;
     height: 440px;
-    border-radius: 4px;
+    border-radius: 16px;
     background: linear-gradient(#252525 0.09%, rgba(0, 0, 0, 0) 40%);
   }
   .gradientBottom {
     ${flex({ direction: "column", align: "flex-start", justify: "flex-end" })}
     width: 100%;
     height: 440px;
-    border-radius: 4px;
+    border-radius: 16px;
     background: linear-gradient(0.14deg, #000000 0.09%, rgba(0, 0, 0, 0) 32%);
   }
 `;

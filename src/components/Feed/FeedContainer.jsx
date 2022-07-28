@@ -16,7 +16,7 @@ const FeedContainer = () => {
 
   const onClickHandler = useCallback(
     (postId) => {
-      navigate(`/detail/${postId}`);
+      navigate(`/feed/${postId}`);
     },
     [navigate]
   );

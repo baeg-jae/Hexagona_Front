@@ -54,9 +54,6 @@ const StOutDiv = styled.div`
         direction: "column",
       })}
       width: 100%;
-      & > Button {
-        margin-top: 50px;
-      }
       overflow-y: scroll;
     }
     .smallSpan {
