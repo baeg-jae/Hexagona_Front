@@ -3,13 +3,14 @@ import { useQueryClient, useMutation } from "react-query";
 import { useCallback, useState } from "react";
 import { SIGN_UP_MAX_LENGTH } from "shared/data";
 import { badWords } from "shared/TextsData";
+import { useDispatch } from "react-redux";
 import useNewUserCheck from "components/Hooks/User/useNewUserCheck";
-import AlertComponent from "components/Common/AlertComponent";
 import flex from "components/Common/flex";
 import Button from "components/Common/Button";
 import IntroPage from "./IntroPage";
 import styled from "@emotion/styled";
 import apis from "shared/api/main";
+import { SignUpDup, SignUpError, SignUpSuccess } from "redux/modules/modal";
 
 const __signup = async (payload) => {
   const data = await apis.signUp(payload);
@@ -25,6 +26,7 @@ const SignUpPage = () => {
   const [flag, setFlag] = useState(false);
   const [name, setName] = useState("");
   const queryClient = useQueryClient();
+  const dispatch = useDispatch();
   const onSkipHandler = useNewUserCheck();
 
   // 회원가입 mutation
@@ -34,15 +36,10 @@ const SignUpPage = () => {
       // 캐시에 있는 모든 쿼리를 무효화한다.
       queryClient.invalidateQueries("users");
       // 회원가입에 통과되면 화면전환
-      AlertComponent({
-        icon: "success",
-        title: "가입완료",
-        text: "환영합니다",
-      });
-
+      dispatch(SignUpSuccess(true));
       setFlag((value) => !value);
     },
-    onError: (e) => {},
+    onError: () => {},
   });
 
   // 중복검사 mutation
@@ -54,14 +51,10 @@ const SignUpPage = () => {
         // 중복검사에 통과되면 회원가입을 진행한다
         userSignUpMutation.mutate({ nickname: name });
       } else {
-        AlertComponent({
-          icon: "error",
-          title: "에러!",
-          text: "중복된 아이디 입니다.",
-        });
+        dispatch(SignUpDup(true));
       }
     },
-    onError: (e) => {},
+    onError: () => {},
   });
 
   // 버튼 핸들러
@@ -75,16 +68,12 @@ const SignUpPage = () => {
       name.toLowerCase().includes(word.toLowerCase())
     );
     if (foundSwears.length) {
-      AlertComponent({
-        title: "에러!",
-        text: "제대로 된 닉네임을 입력해주세요. ",
-        icon: "error",
-      });
+      dispatch(SignUpError(true));
     } else {
       // 욕설탐지기에 안걸리면 실행
       onClickBtnHandler();
     }
-  }, [name, onClickBtnHandler]);
+  }, [name, onClickBtnHandler, dispatch]);
 
   // 버튼 disable Handler
   const onDisableHandler = useCallback(() => {

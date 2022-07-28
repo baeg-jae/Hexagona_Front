@@ -16,6 +16,9 @@ import {
   MissionEditModalSuccess,
   MissionPhotoModalSuccess,
   PostDeleteSuccess,
+  SignUpDup,
+  SignUpError,
+  SignUpSuccess,
   UserProfileModalDupError,
   UserProfileModalError,
   UserProfileModalSuccess,
@@ -52,6 +55,12 @@ const AlertModal = ({ title, icon, type }) => {
           return dispatch(PostDeleteSuccess(false));
         case "chatJoinAlert":
           return dispatch(ChatJoinModal(false));
+        case "signUpSuccess":
+          return dispatch(SignUpSuccess(false));
+        case "signUpError":
+          return dispatch(SignUpError(false));
+        case "signUpDup":
+          return dispatch(SignUpDup(false));
         default:
           return;
       }

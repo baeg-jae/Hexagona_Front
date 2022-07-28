@@ -16,6 +16,10 @@ const POST_DELETE_SUCCESS = "modal/POST_DELETE_SUCCESS";
 
 const CHAT_JOIN_ROOM = "modal/CHAT_JOIN_ROOM";
 
+const SIGNUP_SUCCESS = "modal/SIGNUP_SUCCESS";
+const SIGNUP_ERROR = "modal/SIGNUP_ERROR";
+const SIGNUP_DUP = "modal/SIGNUP_DUP";
+
 //  목표 관련 액션
 export function MissionAddModalError(payload) {
   return { type: MISSION_ADD_ERROR, payload };
@@ -64,6 +68,18 @@ export function PostDeleteSuccess(payload) {
 export function ChatJoinModal(payload) {
   return { type: CHAT_JOIN_ROOM, payload };
 }
+
+// 회원가입 관련 모달
+export function SignUpSuccess(payload) {
+  return { type: SIGNUP_SUCCESS, payload };
+}
+export function SignUpError(payload) {
+  return { type: SIGNUP_ERROR, payload };
+}
+export function SignUpDup(payload) {
+  return { type: SIGNUP_DUP, payload };
+}
+
 // 초기값
 const initialState = {
   MissionError: false,
@@ -82,6 +98,10 @@ const initialState = {
   PostDeleteSuccess: false,
   //
   ChatJoinAlert: false,
+  //
+  SignUpSuccess: false,
+  SignUpError: false,
+  SignUpDup: false,
 };
 export default function chatReducer(state = initialState, { payload, type }) {
   switch (type) {
@@ -126,6 +146,16 @@ export default function chatReducer(state = initialState, { payload, type }) {
 
     case CHAT_JOIN_ROOM: {
       return { ChatJoinAlert: payload };
+    }
+
+    case SIGNUP_SUCCESS: {
+      return { SignUpSuccess: payload };
+    }
+    case SIGNUP_ERROR: {
+      return { SignUpError: payload };
+    }
+    case SIGNUP_DUP: {
+      return { SignUpDup: payload };
     }
     default:
       return state;

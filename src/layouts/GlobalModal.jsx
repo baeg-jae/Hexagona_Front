@@ -16,6 +16,9 @@ const GlobalModal = () => {
     CommentDeleteSuccess,
     PostDeleteSuccess,
     ChatJoinAlert,
+    SignUpSuccess,
+    SignUpError,
+    SignUpDup,
   } = useSelector((state) => state.modalReducer);
   return (
     <>
@@ -114,8 +117,29 @@ const GlobalModal = () => {
           type="chatJoinAlert"
         />
       )}
+      {/* 회원가입 관련 모달 */}
+      {SignUpSuccess && (
+        <AlertModal
+          title="회원가입에 성공하셨습니다."
+          icon="confirm"
+          type="signUpSuccess"
+        />
+      )}
+      {SignUpError && (
+        <AlertModal
+          title="제대로 된 닉네임을 적어주세요."
+          icon="cancel"
+          type="signUpError"
+        />
+      )}
+      {SignUpDup && (
+        <AlertModal
+          title="중복 된 아이디 입니다."
+          icon="cancel"
+          type="signUpDup"
+        />
+      )}
     </>
   );
 };
-
 export default GlobalModal;

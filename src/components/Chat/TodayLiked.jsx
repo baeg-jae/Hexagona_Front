@@ -1,7 +1,6 @@
 import GetTodayLikes from "components/Hooks/Like/useTodayLikes";
 import styled from "@emotion/styled";
 import useCreateChatRoom from "components/Hooks/ChatList/useCreateChatRoom";
-import Swal from "sweetalert2";
 import flex from "components/Common/flex";
 import { HiCursorClick } from "react-icons/hi";
 import { useDispatch } from "react-redux";
