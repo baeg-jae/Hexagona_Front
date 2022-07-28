@@ -17,6 +17,7 @@ import "../GoalShot/styles.css";
 import "swiper/css/autoplay";
 import { CARD_BUTTON_TIME } from "shared/data";
 import { useCallback } from "react";
+import { ChatJoinModalError } from "redux/modules/modal";
 
 const Loading = loadable(() => import("pages/Status/Loading"));
 
@@ -32,7 +33,7 @@ const TodayLiked = ({ userData }) => {
       if (userData === undefined) return;
       // 나와의 채팅 불가
       if (userData.userId === opponentId) {
-        alert("나와는 대화할수 없습니다.");
+        dispatch(ChatJoinModalError(true));
       }
       // 채팅이 진행되면 확인버튼을 올려준다
       else {

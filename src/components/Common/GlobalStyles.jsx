@@ -247,3 +247,12 @@ export const alertModalIconAnim = keyframes`
     transform: rotateY(360deg); 
   }
 `;
+
+export const TextFadeAnim = keyframes`
+ 0% { 
+    opacity: 0; 
+  }
+  100% { 
+    opacity: 1; 
+  }
+`;

@@ -35,6 +35,7 @@ const ChatList = ({ keyword }) => {
 };
 
 export default ChatList;
+
 const StChatWrap = styled.div`
   ${flex({ direction: "column", justify: "flex-start" })}
 `;

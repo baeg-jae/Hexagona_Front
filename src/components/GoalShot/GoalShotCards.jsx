@@ -10,11 +10,14 @@ import Smile from "assets/img/smile.webp";
 import Sad from "assets/img/sad.webp";
 import TodayLiked from "components/Chat/TodayLiked";
 import { useCallback } from "react";
+import useCategory from "components/Hooks/useCategory";
 
 const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
   const cardTrigger = useCallback(() => {
     if (chooseOne || chooseTwo) return true;
   }, [chooseOne, chooseTwo]);
+  const getCategory = useCategory({ category: data[count]?.category });
+  const getCategoryRight = useCategory({ category: data[count + 1]?.category });
 
   return (
     <StCardContainer>
@@ -42,7 +45,7 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
               flag={cardTrigger()}
             >
               <div className="gradient">
-                <span className="category">{data[count]?.category}</span>
+                <span className="category">{getCategory}</span>
                 <span className="postContent">{data[count]?.postContent}</span>
               </div>
             </StLeftCard>
@@ -65,7 +68,7 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
             ) : (
               <StCard img={data[count]?.photoUrl} flag={cardTrigger()}>
                 <div className="gradient">
-                  <span className="category">{data[count]?.category}</span>
+                  <span className="category">{getCategory}</span>
                   <span className="postContent">
                     {data[count]?.postContent}
                   </span>
@@ -95,7 +98,7 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
                 flag={cardTrigger()}
               >
                 <div>
-                  <span className="category">{data[count + 1]?.category}</span>
+                  <span className="category">{getCategoryRight}</span>
                   <span className="postContent">
                     {data[count + 1]?.postContent}
                   </span>
@@ -108,7 +111,7 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
                 flag={cardTrigger()}
               >
                 <div className="gradient">
-                  <span className="category">{data[count + 1]?.category}</span>
+                  <span className="category">{getCategoryRight}</span>
                   <span className="postContent">
                     {data[count + 1]?.postContent}
                   </span>

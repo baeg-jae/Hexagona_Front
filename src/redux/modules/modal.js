@@ -15,6 +15,7 @@ const COMMENT_DELETE_SUCCESS = "modal/COMMENT_DELETE_SUCCESS";
 const POST_DELETE_SUCCESS = "modal/POST_DELETE_SUCCESS";
 
 const CHAT_JOIN_ROOM = "modal/CHAT_JOIN_ROOM";
+const CHAT_JOIN_ERROR = "modal/CHAT_JOIN_ERROR";
 
 const SIGNUP_SUCCESS = "modal/SIGNUP_SUCCESS";
 const SIGNUP_ERROR = "modal/SIGNUP_ERROR";
@@ -68,6 +69,9 @@ export function PostDeleteSuccess(payload) {
 export function ChatJoinModal(payload) {
   return { type: CHAT_JOIN_ROOM, payload };
 }
+export function ChatJoinModalError(payload) {
+  return { type: CHAT_JOIN_ERROR, payload };
+}
 
 // 회원가입 관련 모달
 export function SignUpSuccess(payload) {
@@ -98,6 +102,7 @@ const initialState = {
   PostDeleteSuccess: false,
   //
   ChatJoinAlert: false,
+  ChatJoinError: false,
   //
   SignUpSuccess: false,
   SignUpError: false,
@@ -146,6 +151,9 @@ export default function chatReducer(state = initialState, { payload, type }) {
 
     case CHAT_JOIN_ROOM: {
       return { ChatJoinAlert: payload };
+    }
+    case CHAT_JOIN_ERROR: {
+      return { ChatJoinError: payload };
     }
 
     case SIGNUP_SUCCESS: {

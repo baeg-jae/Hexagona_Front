@@ -21,8 +21,8 @@ const Loading = loadable(() => import("pages/Status/Loading"));
 const Routing = () => {
   return (
     <Routes>
-      <Route path="/" element={<Splash />} />
       <Route element={<NoNeedLogin />}>
+        <Route path="/" element={<Splash />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/oauth/kakao/callback" element={<Kakao />} />

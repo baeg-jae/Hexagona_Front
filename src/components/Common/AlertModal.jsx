@@ -23,6 +23,7 @@ import {
   UserProfileModalError,
   UserProfileModalSuccess,
 } from "redux/modules/modal";
+import { ChatJoinModalError } from "redux/modules/modal";
 
 const AlertModal = ({ title, icon, type }) => {
   const dispatch = useDispatch();
@@ -55,6 +56,8 @@ const AlertModal = ({ title, icon, type }) => {
           return dispatch(PostDeleteSuccess(false));
         case "chatJoinAlert":
           return dispatch(ChatJoinModal(false));
+        case "chatJoinError":
+          return dispatch(ChatJoinModalError(false));
         case "signUpSuccess":
           return dispatch(SignUpSuccess(false));
         case "signUpError":

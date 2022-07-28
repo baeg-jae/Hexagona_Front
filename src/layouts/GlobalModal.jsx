@@ -19,6 +19,7 @@ const GlobalModal = () => {
     SignUpSuccess,
     SignUpError,
     SignUpDup,
+    ChatJoinError,
   } = useSelector((state) => state.modalReducer);
   return (
     <>
@@ -115,6 +116,13 @@ const GlobalModal = () => {
           title="채팅방에 입장합니다."
           icon="confirm"
           type="chatJoinAlert"
+        />
+      )}
+      {ChatJoinError && (
+        <AlertModal
+          title="나 자신과는 대화할 수 없습니다."
+          icon="cancel"
+          type="chatJoinError"
         />
       )}
       {/* 회원가입 관련 모달 */}

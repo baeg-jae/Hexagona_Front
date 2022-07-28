@@ -41,7 +41,7 @@ const ChatSubscribe = () => {
     ".032";
 
   const wsSubscribe = () => {
-    StompClient.debug = null;
+    // StompClient.debug = null;
     StompClient.connect(
       {},
       () => {
@@ -98,7 +98,7 @@ const ChatSubscribe = () => {
       message: messageData,
     };
     waitForConnect(StompClient, () => {
-      StompClient.debug = null; // console 안보기
+      // StompClient.debug = null; // console 안보기
       StompClient.send(`/pub/templates/chat/message`, {}, JSON.stringify(data));
     });
     inputRef.current.value = "";
@@ -121,7 +121,7 @@ const ChatSubscribe = () => {
   }, [post_list, publicChats]);
 
   const onKeyPress = (e) => {
-    if (e.key == "Enter") {
+    if (e.key === "Enter") {
       SendMessage();
     }
   };
@@ -138,6 +138,7 @@ const ChatSubscribe = () => {
           {
             // 내가 예전에 주고받은 채팅 기록
             post_list?.chatMessageDataList?.map((v, i) => {
+              console.log(v);
               return v.userNickname === nickname ? (
                 <StFlexRow key={i}>
                   <FlexColumnDiv>
