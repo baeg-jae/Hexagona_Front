@@ -41,7 +41,7 @@ const ChatSubscribe = () => {
     ".032";
 
   const wsSubscribe = () => {
-    // StompClient.debug = null;
+    StompClient.debug = null;
     StompClient.connect(
       {},
       () => {
@@ -98,7 +98,7 @@ const ChatSubscribe = () => {
       message: messageData,
     };
     waitForConnect(StompClient, () => {
-      // StompClient.debug = null; // console 안보기
+      StompClient.debug = null; // console 안보기
       StompClient.send(`/pub/templates/chat/message`, {}, JSON.stringify(data));
     });
     inputRef.current.value = "";
@@ -194,7 +194,7 @@ const ChatSubscribe = () => {
             <input
               type="text"
               className="commentInput"
-              placeholder="메세지를  입력해주세요."
+              placeholder="메시지를 입력해주세요."
               onChange={addMessage}
               ref={inputRef}
               maxLength={250}

@@ -5,7 +5,6 @@ const MISSION_DELETE_SUCCESS = "modal/MISSION_DELETE_SUCCESS";
 const MISSION_PHOTO_SUCCESS = "modal/MISSION_PHOTO_SUCCESS";
 
 const USER_PROFILE_SUCCESS = "modal/USER_PROFILE_SUCCESS";
-const USER_PROFILE_ERROR = "modal/USER_PROFILE_ERROR";
 const USER_PROFILE_DUP_ERROR = "modal/USER_PROFILE_DUP_ERROR";
 
 const COMMENT_ADD_SUCCESS = "modal/COMMENT_ADD_SUCCESS";
@@ -18,7 +17,6 @@ const CHAT_JOIN_ROOM = "modal/CHAT_JOIN_ROOM";
 const CHAT_JOIN_ERROR = "modal/CHAT_JOIN_ERROR";
 
 const SIGNUP_SUCCESS = "modal/SIGNUP_SUCCESS";
-const SIGNUP_ERROR = "modal/SIGNUP_ERROR";
 const SIGNUP_DUP = "modal/SIGNUP_DUP";
 
 //  목표 관련 액션
@@ -36,11 +34,6 @@ export function MissionDeleteModalSuccess(payload) {
 }
 export function MissionPhotoModalSuccess(payload) {
   return { type: MISSION_PHOTO_SUCCESS, payload };
-}
-
-//  유저 관련 액션
-export function UserProfileModalError(payload) {
-  return { type: USER_PROFILE_ERROR, payload };
 }
 
 export function UserProfileModalDupError(payload) {
@@ -77,9 +70,6 @@ export function ChatJoinModalError(payload) {
 export function SignUpSuccess(payload) {
   return { type: SIGNUP_SUCCESS, payload };
 }
-export function SignUpError(payload) {
-  return { type: SIGNUP_ERROR, payload };
-}
 export function SignUpDup(payload) {
   return { type: SIGNUP_DUP, payload };
 }
@@ -105,7 +95,6 @@ const initialState = {
   ChatJoinError: false,
   //
   SignUpSuccess: false,
-  SignUpError: false,
   SignUpDup: false,
 };
 export default function chatReducer(state = initialState, { payload, type }) {
@@ -128,9 +117,6 @@ export default function chatReducer(state = initialState, { payload, type }) {
 
     case USER_PROFILE_SUCCESS: {
       return { UserChange: payload };
-    }
-    case USER_PROFILE_ERROR: {
-      return { UserChangeError: payload };
     }
     case USER_PROFILE_DUP_ERROR: {
       return { UserChangeDupError: payload };
@@ -158,9 +144,6 @@ export default function chatReducer(state = initialState, { payload, type }) {
 
     case SIGNUP_SUCCESS: {
       return { SignUpSuccess: payload };
-    }
-    case SIGNUP_ERROR: {
-      return { SignUpError: payload };
     }
     case SIGNUP_DUP: {
       return { SignUpDup: payload };

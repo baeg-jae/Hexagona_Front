@@ -29,9 +29,9 @@ const IntroPage = () => {
           </div>
           <span style={{ marginBottom: "16px" }}>반갑습니다!</span>
           <span className="subTitle">
-            목표를 이루는 여정을 갓생메이커와 함께해요!
+            갓생메이커 함께 갓생살기 시작해볼까요?
           </span>
-          <span className="subTitle">먼저, 목표를 정하러 가볼까요?</span>
+          <span className="subTitle">먼저, 목표를 정해보세요!</span>
           <Button theme="dark" text="목표 정하러 가기" click={onClickHandler} />
         </StWrapFlex>
       )}

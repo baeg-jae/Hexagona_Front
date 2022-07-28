@@ -37,7 +37,7 @@ const SplashDataSwiper = () => {
           <span className="bigSpan">갓생으로</span>
         </div>
         <div className="smallSpanDiv">
-          <span className="smallSpan">만들고싶은 갓생루틴을 정해보세요.</span>
+          <span className="smallSpan">달성하고 싶은 목표를 정해보세요</span>
           <span className="smallSpan">
             4가지의 갓생 카테고리를 준비했답니다.
           </span>
@@ -49,16 +49,13 @@ const SplashDataSwiper = () => {
 
       <SwiperSlide className="slider">
         <div className="bigSpanDiv">
-          <span className="bigSpan">말로하는 갓생은 그만!</span>
-          <span className="bigSpan">사진으로 인증을 남겨요.</span>
+          <span className="bigSpan">말로 하는 갓생은 그만!</span>
+          <span className="bigSpan">목표를 달성하고 </span>
+          <span className="bigSpan">사진으로 인증해요.</span>
         </div>
         <div className="smallSpanDiv">
-          <span className="smallSpan">
-            갓생루틴을 완료하려면 인증이 필요해요.
-          </span>
-          <span className="smallSpan">
-            내가 오늘 하루 이룬 ‘갓생루틴'이 무엇인지
-          </span>
+          <span className="smallSpan">목표를 완료하려면 인증이 필요해요.</span>
+          <span className="smallSpan">내가 오늘 하루 이룬 목표가 무엇인지</span>
           <span className="smallSpan">사진으로 공유해요.</span>
         </div>
         <div className="imgDiv">
@@ -68,12 +65,12 @@ const SplashDataSwiper = () => {
 
       <SwiperSlide className="slider">
         <div className="bigSpanDiv">
-          <span className="bigSpan">내 갓생루틴을</span>
+          <span className="bigSpan">내 목표를</span>
           <span className="bigSpan">공유해요</span>
         </div>
         <div className="smallSpanDiv">
           <span className="smallSpan">나만 알기 아까운</span>
-          <span className="smallSpan">나의 갓생 루틴을 공유하고</span>
+          <span className="smallSpan">나의 목표를 공유하고</span>
           <span className="smallSpan">사람들과 소통해보세요.</span>
         </div>
         <div className="imgDiv">
@@ -92,7 +89,7 @@ const SplashDataSwiper = () => {
             다른 이들의 갓생 사진을 보고 좋아요를 눌러보세요!
           </span>
           <span className="smallSpan">
-            좋아요가 된다면 채팅까지도 할 수 있답니다.
+            좋아요를 누른 분들과 채팅으로 이야기를 나눠보세요.
           </span>
         </div>
         <StFourthContainer className="imgDiv">

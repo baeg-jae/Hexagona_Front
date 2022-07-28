@@ -10,7 +10,7 @@ import Button from "components/Common/Button";
 import IntroPage from "./IntroPage";
 import styled from "@emotion/styled";
 import apis from "shared/api/main";
-import { SignUpDup, SignUpError, SignUpSuccess } from "redux/modules/modal";
+import { CommentAddError, SignUpDup, SignUpSuccess } from "redux/modules/modal";
 
 const __signup = async (payload) => {
   const data = await apis.signUp(payload);
@@ -68,7 +68,7 @@ const SignUpPage = () => {
       name.toLowerCase().includes(word.toLowerCase())
     );
     if (foundSwears.length) {
-      dispatch(SignUpError(true));
+      dispatch(CommentAddError(true));
     } else {
       // 욕설탐지기에 안걸리면 실행
       onClickBtnHandler();

@@ -26,11 +26,11 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
           <StLastCard flag={cardTrigger()}>
             <StEmoji sad mar />
             <div className="innerTextDiv">
-              <span className="innerText">평가하기에</span>
-              <span className="innerText">게시물이 부족합니다</span>
+              <span className="innerText">평가할 게시물이</span>
+              <span className="innerText">부족합니다.</span>
             </div>
             <span className="smallText">
-              다른 이들의 게시물을 둘러보러갈까요?
+              다른 갓생러들의 게시물을 둘러보러갈까요?
             </span>
           </StLastCard>
         ) : (
@@ -58,9 +58,7 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
                   <span className="innerText">오늘의 평가가</span>
                   <span className="innerText">끝이 났어요!</span>
                 </div>
-                <span className="smallText">
-                  이런 인증샷들을 좋아요 누르셨네요!
-                </span>
+                <span className="smallText">내가 좋아요 표시한 목표 인증</span>
                 <div className="likedPicsDiv">
                   <TodayLiked />
                 </div>
@@ -84,9 +82,7 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
                   <span className="innerText">오늘의 평가가</span>
                   <span className="innerText">끝이 났어요!</span>
                 </div>
-                <span className="smallText">
-                  이런 인증샷들을 좋아요 누르셨네요!
-                </span>
+                <span className="smallText">내가 좋아요 표시한 목표 인증</span>
                 <div className="likedPicsDiv">
                   <TodayLiked />
                 </div>
@@ -127,9 +123,7 @@ const GoalShotCards = ({ data, count, chooseOne, chooseTwo }) => {
                   <span className="innerText">오늘의 평가가</span>
                   <span className="innerText">끝이 났어요!</span>
                 </div>
-                <span className="smallText">
-                  이런 인증샷들을 좋아요 누르셨네요!
-                </span>
+                <span className="smallText">내가 좋아요 표시한 목표 인증</span>
                 <div className="likedPicsDiv">
                   <TodayLiked />
                 </div>
