@@ -12,6 +12,11 @@ import Splash2 from "assets/img/splash_02.webp";
 import Splash3 from "assets/img/splash_03.webp";
 import Splash4 from "assets/img/splash_04.webp";
 
+import Warning from "assets/img/warning.webp";
+import Cancel from "assets/img/cancel.webp";
+import Confirm from "assets/img/confirm.webp";
+import Question from "assets/img/question.webp";
+
 export const handleMainTutorial = (img) => {
   switch (img) {
     case "one":
@@ -134,5 +139,20 @@ export const missionText = (number) => {
       return "#384424";
     default:
       return "#727272";
+  }
+};
+
+export const alertIconHandler = (text) => {
+  switch (text) {
+    case "confirm":
+      return Confirm;
+    case "cancel":
+      return Cancel;
+    case "question":
+      return Question;
+    case "warning":
+      return Warning;
+    default:
+      return;
   }
 };

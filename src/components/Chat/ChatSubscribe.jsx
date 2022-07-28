@@ -44,7 +44,6 @@ const ChatSubscribe = () => {
     StompClient.connect(
       {},
       () => {
-        StompClient.debug = null;
         StompClient.subscribe(`/sub/chat/room/${chatRoomId}`, (data) => {
           const response = JSON.parse(data.body);
           // 내가 보낸채팅, 상대가 보낸 채팅을 response로 받아서 state 배열 관리
@@ -69,7 +68,6 @@ const ChatSubscribe = () => {
   };
 
   const wsDisconnect = () => {
-    StompClient.debug = null;
     StompClient.disconnect(() => {
       // 구독할떄 콘솔보면 id:sub-0 가 이래서 비구독은 아래처럼
       StompClient.unsubscribe("sub-0");
@@ -80,7 +78,7 @@ const ChatSubscribe = () => {
   useEffect(() => {
     // 옛날 채팅 보여주기
     dispatch(__prevPostChat({ userId: userId, chatRoomId: chatRoomId }));
-    wsSubscribe();
+    waitForConnect(StompClient, wsSubscribe());
     // 오류: disconnect할때 오류있음 가끔
     return () => wsDisconnect();
   }, []);
