@@ -20,10 +20,10 @@ const Chat = () => {
         <Search text="이름을 검색해주세요." setKeyword={setKeyword} />
         <div style={{ width: "500px", height: "77px" }} />
         <div>
-          <StLikeTitle>Goal Shot I Like</StLikeTitle>
+          <StLikeTitle>좋아요 표시한 게시글</StLikeTitle>
           <TodayLiked userData={data} />
         </div>
-        <StLikeTitle>Chatting</StLikeTitle>
+        <StLikeTitle>채팅</StLikeTitle>
         {/* props로 유저 정보를 넘겨줍니다. */}
         <ChatList keyword={keyword} />
       </>
@@ -42,7 +42,6 @@ const StCalculatedWrap = styled(StWrap)`
 const StLikeTitle = styled.div`
   font-weight: 700;
   font-size: 18px;
-  line-height: 28px;
   color: var(--gray-10);
   margin: 20px 0 0 19px;
 `;

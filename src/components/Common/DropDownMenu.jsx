@@ -106,9 +106,12 @@ const DropDownMenu = ({
           confirm={bogusCheck}
           cancel={() => onCancelBtnHandler(setNicknameFlag)}
           title="닉네임 변경하기"
+          list1="비속어 사용 불가"
+          list2="7자 이하"
+          isListed={true}
           cancelTitle="취소"
           confirmTitle="변경하기"
-          placeholder="닉네임을 써주세요"
+          placeholder="닉네임을 입력해주세요"
           count={SIGN_UP_MAX_LENGTH}
         />
       ) : (
@@ -122,7 +125,7 @@ const DropDownMenu = ({
           title="목표 수정하기"
           cancelTitle="취소"
           confirmTitle="변경하기"
-          placeholder="목표를 써주세요"
+          placeholder="목표를 작성해주세요"
           count={MISSION_ADD_LENGTH}
         />
       ) : (

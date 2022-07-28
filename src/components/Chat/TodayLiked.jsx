@@ -55,8 +55,8 @@ const TodayLiked = ({ userData }) => {
     <>
       {todayLikes?.length === 0 ? (
         <StEmptyLiked onClick={onMoveToGoalShot}>
-          <span>좋아요를 누른 분들하고만</span>
-          <span>채팅이 가능해요!</span>
+          <span>좋아요를 표시한 분들과</span>
+          <span>채팅이 가능합니다.</span>
           <span className="confirm">
             좋아요를 누르러 가볼까요?
             <HiCursorClick className="clickIcon" />

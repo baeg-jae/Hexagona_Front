@@ -14,7 +14,3 @@ export default function flex({
     gap: ${gap};
   `;
 }
-
-/* flex Sample */
-// 아래처럼 가져다가 쓰시면 됩니다!
-//${flex({ direction: "column", gap: "24px" })}

@@ -72,6 +72,9 @@ const EmptyMission = ({ category, list }) => {
           confirm={bogusCheck}
           cancel={() => onCancelBtnHandler(setClicked)}
           title="목표 생성하기"
+          list1="비속어 사용 불가"
+          list2="20자 이하"
+          isListed={true}
           cancelTitle="취소"
           confirmTitle="등록하기"
           placeholder="매일 런닝 30분"

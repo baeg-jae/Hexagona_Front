@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import { badWords } from "shared/TextsData";
 import useUpdateNickname from "components/Hooks/User/useUpdateNickname";
 import { useDispatch } from "react-redux";
-import { UserProfileModalError } from "redux/modules/modal";
+import { MissionAddModalError } from "redux/modules/modal";
 
 const useNicknameHandle = () => {
   const [nicknameFlag, setNicknameFlag] = useState(false);
@@ -15,7 +15,7 @@ const useNicknameHandle = () => {
       setNicknameFlag((value) => !value);
       mutate({ nickname: nickname });
     } else {
-      dispatch(UserProfileModalError(true));
+      dispatch(MissionAddModalError(true));
     }
   }, [mutate, nickname, dispatch]);
 
@@ -24,7 +24,7 @@ const useNicknameHandle = () => {
       nickname.toLowerCase().includes(word.toLowerCase())
     );
     if (foundSwears.length) {
-      dispatch(UserProfileModalError(true));
+      dispatch(MissionAddModalError(true));
     } else {
       onSendNickname();
     }

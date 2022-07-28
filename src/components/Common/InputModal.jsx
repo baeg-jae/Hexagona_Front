@@ -12,12 +12,22 @@ const InputModal = ({
   confirmTitle,
   placeholder,
   count,
+  list1,
+  list2,
+  isListed,
 }) => {
   return (
     <StModal>
       <div className="StInnerContainer">
         <div className="InfoContainer">
           <span className="missionTitle">{title}</span>
+          {isListed && (
+            <div>
+              <span>
+                ({list1}, {list2})
+              </span>
+            </div>
+          )}
           <input
             className="missionInput"
             type="text"
@@ -54,7 +64,7 @@ const StModal = styled(StModalGlobal)`
         font-weight: 700;
         font-size: 18px;
         color: var(--black);
-        margin-bottom: 24px;
+        margin-bottom: 6px;
       }
       .missionInput {
         width: 242px;
@@ -62,8 +72,13 @@ const StModal = styled(StModalGlobal)`
         background: var(--gary-0);
         border-radius: 8px;
         border: none;
-        margin-bottom: 24px;
+        margin: 12px 0 24px 0;
         padding: 16px;
+      }
+      span {
+        font-size: 14px;
+        color: var(--gray-7);
+        margin: 4px 0;
       }
     }
   }

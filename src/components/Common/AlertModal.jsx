@@ -17,15 +17,13 @@ import {
   MissionPhotoModalSuccess,
   PostDeleteSuccess,
   SignUpDup,
-  SignUpError,
   SignUpSuccess,
   UserProfileModalDupError,
-  UserProfileModalError,
   UserProfileModalSuccess,
 } from "redux/modules/modal";
 import { ChatJoinModalError } from "redux/modules/modal";
 
-const AlertModal = ({ title, icon, type }) => {
+const AlertModal = ({ title, icon, type, subText, subText2 }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -42,8 +40,6 @@ const AlertModal = ({ title, icon, type }) => {
           return dispatch(MissionPhotoModalSuccess(false));
         case "userProfileSuccess":
           return dispatch(UserProfileModalSuccess(false));
-        case "userProfileError":
-          return dispatch(UserProfileModalError(false));
         case "userProfileDupError":
           return dispatch(UserProfileModalDupError(false));
         case "commentAddSuccess":
@@ -60,8 +56,6 @@ const AlertModal = ({ title, icon, type }) => {
           return dispatch(ChatJoinModalError(false));
         case "signUpSuccess":
           return dispatch(SignUpSuccess(false));
-        case "signUpError":
-          return dispatch(SignUpError(false));
         case "signUpDup":
           return dispatch(SignUpDup(false));
         default:
