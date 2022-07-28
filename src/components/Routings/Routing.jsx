@@ -16,7 +16,7 @@ const FeedDetail = loadable(() => import("pages/FeedDetail"));
 const MyFeed = loadable(() => import("pages/MyFeed"));
 const Chat = loadable(() => import("pages/Chat"));
 const ChatRoom = loadable(() => import("pages/ChatRoom"));
-const LoadingMission = loadable(() => import("pages/Status/LoadingMission"));
+const Loading = loadable(() => import("pages/Status/Loading"));
 
 const Routing = () => {
   return (
@@ -36,7 +36,7 @@ const Routing = () => {
         <Route path="/feed/:postId" element={<FeedDetail />} />
         <Route path="/feed/MyFeed" element={<MyFeed />} />
         <Route path="/chat" element={<Chat />} />
-        <Route path="/loading" element={<LoadingMission />} />
+        <Route path="/loading" element={<Loading />} />
         <Route path="/chat/:chatRoomId" element={<ChatRoom />} />
       </Route>
       <Route path="*" element={<Error />} />

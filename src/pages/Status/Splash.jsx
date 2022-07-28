@@ -29,9 +29,8 @@ export default Splash;
 const StOutDiv = styled.div`
   .slider {
     ${flex({ direction: "column", justify: "flex-start", align: "flex-start" })}
-    width: 90%;
     height: 90vh;
-    color: #141414;
+    color: var(--black);
     line-height: 130%;
     .bigSpanDiv {
       ${flex({
@@ -54,7 +53,6 @@ const StOutDiv = styled.div`
         direction: "column",
       })}
       width: 100%;
-      overflow-y: scroll;
     }
     .smallSpan {
       font-size: 16px;
@@ -77,12 +75,10 @@ const StWrapFlex = styled(StWrap)`
   .bigSpan {
     font-weight: 700;
     font-size: 64px;
-    line-height: 130%;
     margin-bottom: 6px;
   }
   .smallSpan {
     font-size: 20px;
-    line-height: 130%;
     color: var(--gray-7);
   }
 `;

@@ -2,13 +2,13 @@ import api from "shared/api/core";
 import apis from "shared/api/main";
 
 const USER_LOGIN = "user/USER_LOGIN";
-const USER_PROFILETEMP = "user/USER_PROFILETEMP";
+const USER_PROFILE_TEMP = "user/USER_PROFILE_TEMP";
 const USER_PROFILE = "user/USER_PROFILE";
 const GET_USER = "user/GET_USER";
 
 const userLogin = (payload) => ({ type: USER_LOGIN, payload });
 export const addUserProfileTemp = (payload) => ({
-  type: USER_PROFILETEMP,
+  type: USER_PROFILE_TEMP,
   payload,
 });
 export const addUserProfile = (payload) => ({
@@ -76,7 +76,7 @@ export default function userReducer(state = initialState, { payload, type }) {
         isLogin: payload,
         newUser: payload.newUser,
       };
-    case USER_PROFILETEMP:
+    case USER_PROFILE_TEMP:
       return {
         ...state,
         profileTempImg: payload.profile,
