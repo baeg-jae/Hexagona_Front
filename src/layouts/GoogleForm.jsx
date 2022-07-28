@@ -6,19 +6,18 @@ import { SurveyAnim, SurveyAnim2 } from "components/Common/GlobalStyles";
 
 const GoogleForm = () => {
   return (
-    <StWrap
-      onClick={() =>
-        window.open(
-          "https://docs.google.com/forms/d/e/1FAIpQLSdZQUsNo9QyNXZ5qxZvduKm9t3Jhi4tch1H5BofjSo5CrBn-g/viewform?usp=sf_link",
-          "_blank"
-        )
-      }
-    >
-      <StSay flag>
-        <span>피드백 남기기</span>
-        <span>_ </span>
-      </StSay>
-      <StSurvey flag />
+    <StWrap>
+      <a
+        href="https://docs.google.com/forms/d/e/1FAIpQLSdZQUsNo9QyNXZ5qxZvduKm9t3Jhi4tch1H5BofjSo5CrBn-g/viewform?usp=sf_link"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <StSay flag>
+          <span>피드백 남기기</span>
+          <span>_ </span>
+        </StSay>
+        <StSurvey flag />
+      </a>
     </StWrap>
   );
 };
