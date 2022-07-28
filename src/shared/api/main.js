@@ -20,7 +20,6 @@ export const apis = {
     api.delete(`/api/category/missions/${payload.missionId}`),
 
   // post CRUD
-  // getPost: () => api.get("/api/posts"),
   getPosts: (pageParam) =>
     api.get(`/api/posts?page=${pageParam}&size=6&sortBy=postId&isAsc=false`),
   getMyPost: () => api.get("/api/posts/mypost"),

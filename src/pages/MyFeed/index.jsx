@@ -59,7 +59,7 @@ const StDiv = styled.div`
   justify-content: center;
   gap: 10px;
   grid-template-columns: 1fr 1fr;
-  margin: 80px 16px 0 16px;
+  margin: 90px 16px 0 16px;
   overflow-y: scroll;
 `;
 

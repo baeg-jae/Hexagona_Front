@@ -42,11 +42,9 @@ export default LogIn;
 
 const StFirstPageDiv = styled.div`
   ${flex({ direction: "column", justify: "flex-end" })}
-  width: 100%;
   height: 100%;
   font-size: 20px;
   color: var(--white);
-  text-align: center;
   background-size: contain;
   background-image: url(${LoginImg});
   animation: ${fadeAnimation} ${SPLASH_FADE_ANIMATION}s ease;
@@ -62,13 +60,13 @@ const StFirstPageDiv = styled.div`
     background: linear-gradient(
       180deg,
       rgba(30, 5, 5, 0) -9.31%,
-      var(--gradient) 62.46%
+      var(--gradient) 62%
     );
     @media screen and (min-width: 1024px) {
       background: linear-gradient(
         180deg,
         rgba(30, 5, 5, 0) -9.31%,
-        var(--gradient) 42.46%
+        var(--gradient) 42%
       );
     }
   }
