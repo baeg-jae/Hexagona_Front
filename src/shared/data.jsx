@@ -10,3 +10,4 @@ export const MOBILE_SIZE_WIDTH = 420;
 export const CARD_ANIMATION_TIME = 1.1;
 export const CARD_BUTTON_TIME = 1000;
 export const AUTO_PLAY_TIME = 3000;
+export const GRADIENT_TIME = 1;

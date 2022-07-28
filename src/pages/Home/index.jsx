@@ -32,11 +32,11 @@ const Home = () => {
         </>
       ) : (
         <>
-          <AlertModal
+          {/* <AlertModal
             title="나 자신과는 채팅이 불가능합니다."
             ConfirmText="확인"
             icon="cancel"
-          />
+          /> */}
           <Header data={data} />
           <Helmet>
             <title>마이: 갓생메이커</title>
