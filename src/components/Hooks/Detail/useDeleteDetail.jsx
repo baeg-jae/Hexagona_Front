@@ -16,7 +16,7 @@ const useDeleteDetail = () => {
       queryClient.invalidateQueries("post");
       dispatch(PostDeleteSuccess(true));
     },
-    onError: (e) => {},
+    onError: () => {},
   });
 };
 

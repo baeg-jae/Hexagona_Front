@@ -7,6 +7,7 @@ import { GOALSHOT_RANDOM_CARD } from "shared/data";
 import Button from "components/Common/Button";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
+import { useCallback } from "react";
 
 const GoalShotButtons = ({
   count,
@@ -18,11 +19,11 @@ const GoalShotButtons = ({
   isChooseTwo,
 }) => {
   const navigate = useNavigate();
-  const disableHandler = () => {
+  const disableHandler = useCallback(() => {
     if (chooseOne || chooseTwo) return true;
-    // if (data?.length < 11) return true;
     return false;
-  };
+  }, [chooseOne, chooseTwo]);
+
   useEffect(() => {
     const interval = setTimeout(() => {
       if (chooseOne) {
@@ -38,9 +39,9 @@ const GoalShotButtons = ({
     };
   }, [chooseOne, chooseTwo, setCount, isChooseOne, isChooseTwo]);
 
-  const onClickBtnHandler = () => {
+  const onClickBtnHandler = useCallback(() => {
     navigate("/feed");
-  };
+  }, [navigate]);
 
   return (
     <FlexRowDiv style={{ gap: "16px" }}>

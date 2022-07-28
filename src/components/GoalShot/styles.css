@@ -7,7 +7,7 @@
 
 .swiper-slide {
   text-align: center;
-  background: #fff;
+  background: var(--white);
   height: 150px !important;
   margin: 35px 5px 0 5px !important;
   border-radius: 4px !important;

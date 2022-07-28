@@ -1,4 +1,3 @@
-import { MOBILE_SIZE_WIDTH } from "shared/data";
 import { useEffect } from "react";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Routing from "components/Routings/Routing";
@@ -40,7 +39,6 @@ const Container = styled.div`
   justify-content: flex-start;
   align-items: center;
   height: 100%;
-  background-color: #fff;
   background-image: url(${bg});
   background-size: contain;
   background-position-x: -100px;
@@ -55,12 +53,12 @@ const Container = styled.div`
   // 모바일 뷰
   .wrap {
     width: 100%;
-    max-width: ${MOBILE_SIZE_WIDTH}px;
+    max-width: 420px;
     height: calc(var(--vh) * 100);
     margin: 0 auto;
     padding: 0 auto;
     box-sizing: border-box;
-    background-color: #fff;
+    background-color: var(--white);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     position: relative;
 

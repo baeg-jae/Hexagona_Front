@@ -6,7 +6,6 @@ const useGetGoalShot = () => {
     const { data } = await apis.getGoalShot();
     return data;
   };
-
   return useQuery("goalshot", fetcher);
 };
 

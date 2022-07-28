@@ -47,7 +47,7 @@ const StSurvey = styled.div`
 const StSay = styled.div`
   ${flex({ direction: "column" })}
   width: 120px;
-  height: 72.81px;
+  height: 72px;
   background-image: url(${Survey02});
   background-size: contain;
   background-position: center;
@@ -56,7 +56,5 @@ const StSay = styled.div`
   span {
     color: var(--white);
     font-weight: 600;
-    font-size: 15.3606px;
-    line-height: 130%;
   }
 `;

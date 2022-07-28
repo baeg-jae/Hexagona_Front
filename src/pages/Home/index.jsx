@@ -6,13 +6,13 @@ import NavigatorBar from "components/Common/NavigatorBar";
 import Header from "components/Common/Header";
 import loadable from "@loadable/component";
 import styled from "@emotion/styled";
-import SkeletonMain from "components/Skeletons/SkeletonMain";
 import { useEffect } from "react";
 import { __getUser } from "redux/modules/user";
 import { useDispatch } from "react-redux";
 
 const Main = loadable(() => import("./Main"));
 const HomeCategory = loadable(() => import("pages/HomeCategory"));
+const Loading = loadable(() => import("pages/Status/Loading"));
 
 const Home = () => {
   const { data, isLoading } = useGetUser();
@@ -27,7 +27,7 @@ const Home = () => {
     <StCalculatedWrap className="main_three">
       {isLoading ? (
         <>
-          <SkeletonMain />
+          <Loading />
         </>
       ) : (
         <>

@@ -117,6 +117,15 @@ export const StModalGlobal = styled.div`
   }
 `;
 
+export const StImg = styled.div`
+  width: 50px;
+  height: 43px;
+  margin-right: 20px;
+  background-image: url(${(props) => props.img});
+  background-size: cover;
+  background-position: center;
+`;
+
 export const fadeAnimation = keyframes`
  0% { 
     opacity: 0; 
