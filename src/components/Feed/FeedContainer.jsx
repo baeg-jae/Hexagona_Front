@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 import { useCallback, useState, useEffect } from "react";
 import { StImgDiv } from "./styles";
+import { useDebounce } from "components/Hooks/useDebounce";
 import useGetPost from "components/Hooks/useGetPost";
 import Search from "./Search";
 import styled from "@emotion/styled";
@@ -10,7 +11,10 @@ import SkeletonFeed from "components/Skeletons/SkeletonFeed";
 
 const FeedContainer = () => {
   const navigate = useNavigate();
-  const [keyword, setKeyword] = useState("");
+  const text = "";
+  const [debounceInput, setDebounceInput] = useDebounce(text, 300);
+  console.log(debounceInput);
+
   const { ref, inView } = useInView();
   const { data, fetchNextPage, isFetchingNextPage } = useGetPost();
 
@@ -29,17 +33,19 @@ const FeedContainer = () => {
 
   return (
     <>
-      <Search setKeyword={setKeyword} text="키워드를 입력해주세요." />
+      <Search setKeyword={setDebounceInput} text="키워드를 입력해주세요." />
       <StScrollWrapper>
         <Grid>
           <MyPageFeed />
           {data?.pages?.map((page) => {
             return page?.data
               .filter((v) => {
-                if (keyword === "") {
+                if (debounceInput === "") {
                   return v;
                 } else if (
-                  v.postContent.toLowerCase().includes(keyword.toLowerCase())
+                  v.postContent
+                    .toLowerCase()
+                    .includes(debounceInput.toLowerCase())
                 ) {
                   return v;
                 }
@@ -49,7 +55,7 @@ const FeedContainer = () => {
                 return (
                   v.postContent
                     .toLowerCase()
-                    .includes(keyword.toLowerCase()) && (
+                    .includes(debounceInput.toLowerCase()) && (
                     <StImgDiv
                       className="imgDiv"
                       onClick={() => onClickHandler(v?.postId)}
