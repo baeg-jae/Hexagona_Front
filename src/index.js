@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "layouts/App";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import "./index.css";
 // React-Query
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -16,9 +16,9 @@ root.render(
   <ReactPWAInstallProvider enableLogging>
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
+        <HashRouter>
           <App />
-        </BrowserRouter>
+        </HashRouter>
       </QueryClientProvider>
     </Provider>
   </ReactPWAInstallProvider>
