@@ -11,6 +11,7 @@ import IntroPage from "./IntroPage";
 import styled from "@emotion/styled";
 import apis from "shared/api/main";
 import { CommentAddError, SignUpDup, SignUpSuccess } from "redux/modules/modal";
+import { useDebounce } from "components/Hooks/useDebounce";
 
 const __signup = async (payload) => {
   const data = await apis.signUp(payload);
@@ -24,10 +25,11 @@ const __dupCheck = async (payload) => {
 
 const SignUpPage = () => {
   const [flag, setFlag] = useState(false);
-  const [name, setName] = useState("");
   const queryClient = useQueryClient();
   const dispatch = useDispatch();
   const onSkipHandler = useNewUserCheck();
+  const text = "";
+  const [debounceInput, setDebounceInput] = useDebounce(text, 150);
 
   // 회원가입 mutation
   const userSignUpMutation = useMutation(__signup, {
@@ -49,7 +51,7 @@ const SignUpPage = () => {
       queryClient.invalidateQueries("users");
       if (data.data) {
         // 중복검사에 통과되면 회원가입을 진행한다
-        userSignUpMutation.mutate({ nickname: name });
+        userSignUpMutation.mutate({ nickname: debounceInput });
       } else {
         dispatch(SignUpDup(true));
       }
@@ -59,13 +61,13 @@ const SignUpPage = () => {
 
   // 버튼 핸들러
   const onClickBtnHandler = useCallback(() => {
-    userDupCheck.mutate({ nickname: name });
-  }, [name, userDupCheck]);
+    userDupCheck.mutate({ nickname: debounceInput });
+  }, [debounceInput, userDupCheck]);
 
   //욕설탐지기
   const bogusCheck = useCallback(() => {
     const foundSwears = badWords.filter((word) =>
-      name.toLowerCase().includes(word.toLowerCase())
+      debounceInput.toLowerCase().includes(word.toLowerCase())
     );
     if (foundSwears.length) {
       dispatch(CommentAddError(true));
@@ -73,18 +75,26 @@ const SignUpPage = () => {
       // 욕설탐지기에 안걸리면 실행
       onClickBtnHandler();
     }
-  }, [name, onClickBtnHandler, dispatch]);
+  }, [debounceInput, onClickBtnHandler, dispatch]);
 
   // 버튼 disable Handler
   const onDisableHandler = useCallback(() => {
-    if (name !== "") return false;
+    if (debounceInput !== "") return false;
     return true;
-  }, [name]);
+  }, [debounceInput]);
 
   // 클래스이름 생성
   const generateClassName = useCallback(() => {
-    if (name.length > 0) return "currentCount";
-  }, [name.length]);
+    if (debounceInput.length > 0) return "currentCount";
+  }, [debounceInput.length]);
+
+  // 디바운스 적용 onChange
+  const handleOnInputChange = useCallback(
+    (e) => {
+      setDebounceInput(e.target.value);
+    },
+    [setDebounceInput]
+  );
 
   return (
     <>
@@ -96,12 +106,14 @@ const SignUpPage = () => {
             <StInput
               placeholder="닉네임을 입력해주세요."
               maxLength={SIGN_UP_MAX_LENGTH}
-              onChange={(e) => setName(e.target.value)}
+              onChange={handleOnInputChange}
               className="stInput"
             />
             <div className="inputCount">
-              <span className={generateClassName()}>{name.length}</span>/
-              {SIGN_UP_MAX_LENGTH}
+              <span className={generateClassName()}>
+                {debounceInput.length}
+              </span>
+              /{SIGN_UP_MAX_LENGTH}
             </div>
           </div>
 
@@ -128,6 +140,7 @@ const StWrap = styled.div`
   font-size: 24px;
   font-weight: 700;
   margin-top: 4rem;
+  overflow-y: scroll;
   .titleSpan {
     margin: 135px 0 74px 0;
   }
