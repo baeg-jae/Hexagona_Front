@@ -6,10 +6,11 @@ import Search from "components/Feed/Search";
 import TodayLiked from "components/Chat/TodayLiked";
 import useGetUser from "components/Hooks/User/useGetUser";
 import ChatList from "components/Chat/ChatList";
-import { useState } from "react";
+import { useDebounce } from "components/Hooks/useDebounce";
 
 const Chat = () => {
-  const [keyword, setKeyword] = useState("");
+  const text = "";
+  const [debounceInput, setDebounceInput] = useDebounce(text, 300);
   const { data } = useGetUser();
   return (
     <StCalculatedWrap>
@@ -17,7 +18,7 @@ const Chat = () => {
         <title>채팅: 갓생메이커</title>
       </Helmet>
       <>
-        <Search text="이름을 검색해주세요." setKeyword={setKeyword} />
+        <Search text="이름을 검색해주세요." setKeyword={setDebounceInput} />
         <div style={{ width: "500px", height: "77px" }} />
         <div>
           <StLikeTitle>좋아요 표시한 게시글</StLikeTitle>
@@ -25,7 +26,7 @@ const Chat = () => {
         </div>
         <StLikeTitle>채팅</StLikeTitle>
         {/* props로 유저 정보를 넘겨줍니다. */}
-        <ChatList keyword={keyword} />
+        <ChatList keyword={debounceInput} />
       </>
       <NavigatorBar />
     </StCalculatedWrap>

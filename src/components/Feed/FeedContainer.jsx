@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { StImgDiv } from "./styles";
 import { useDebounce } from "components/Hooks/useDebounce";
 import useGetPost from "components/Hooks/useGetPost";
@@ -13,8 +13,6 @@ const FeedContainer = () => {
   const navigate = useNavigate();
   const text = "";
   const [debounceInput, setDebounceInput] = useDebounce(text, 300);
-  console.log(debounceInput);
-
   const { ref, inView } = useInView();
   const { data, fetchNextPage, isFetchingNextPage } = useGetPost();
 

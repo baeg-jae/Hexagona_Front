@@ -2,7 +2,6 @@ import { StFixDiv, StSearchInputDiv, StImg } from "./styles";
 import searchImg from "assets/img/Search.webp";
 
 const Search = ({ setKeyword, text }) => {
-  console.log("rendered");
   return (
     <>
       {/* 검색 */}
