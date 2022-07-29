@@ -1,0 +1,64 @@
+{
+  "short_name": "godlife",
+  "name": "godlife",
+  "icons": [
+    {
+      "src": "./imgs/57.webp",
+      "sizes": "57x57",
+      "type": "image/webp"
+    },
+    {
+      "src": "./imgs/60.webp",
+      "sizes": "60x60",
+      "type": "image/webp"
+    },
+    {
+      "src": "./imgs/72.webp",
+      "sizes": "72x72",
+      "type": "image/webp"
+    },
+    {
+      "src": "./imgs/76.webp",
+      "sizes": "76x76",
+      "type": "image/webp"
+    },
+    {
+      "src": "./imgs/114.webp",
+      "sizes": "114x114",
+      "type": "image/webp"
+    },
+    {
+      "src": "./imgs/120.webp",
+      "sizes": "120x120",
+      "type": "image/webp"
+    },
+    {
+      "src": "./imgs/144.webp",
+      "sizes": "144x144",
+      "type": "image/webp"
+    },
+    {
+      "src": "./imgs/192.webp",
+      "sizes": "196x196",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./imgs/310.webp",
+      "sizes": "310x310",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./imgs/512.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    }
+  ],
+  "prefer_related_applications": "true",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
