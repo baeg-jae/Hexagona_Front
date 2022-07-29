@@ -32,6 +32,7 @@ const StOutDiv = styled.div`
     height: 90vh;
     color: var(--black);
     line-height: 130%;
+    overflow-y: scroll;
     .bigSpanDiv {
       ${flex({
         direction: "column",

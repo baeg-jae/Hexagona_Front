@@ -8,7 +8,7 @@ const GoogleForm = () => {
   return (
     <StWrap>
       <a
-        href="https://docs.google.com/forms/d/e/1FAIpQLSdZQUsNo9QyNXZ5qxZvduKm9t3Jhi4tch1H5BofjSo5CrBn-g/viewform?usp=sf_link"
+        href="https://docs.google.com/forms/d/1LjjgwEaTgbH2aVH1mC392eaNpiFDCNLErNvSKQE5iYI/viewform?hl=ko&hl=ko&edit_requested=true"
         target="_blank"
         rel="noreferrer"
       >
