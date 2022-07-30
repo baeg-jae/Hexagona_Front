@@ -1,6 +1,6 @@
 // GOOGLE
 const GOOGLE_REACT_APP_CLIENTID = process.env.REACT_APP_CLIENTID;
-const GOOGLE_REACT_APP_REDIRECT_URI = 'https://godlife.vercel.app/oauth/google/callback';
+const GOOGLE_REACT_APP_REDIRECT_URI = 'https://godlife.co.kr/oauth/google/callback';
 export const GOOGLE_AUTH_URL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_REACT_APP_CLIENTID}&redirect_uri=${GOOGLE_REACT_APP_REDIRECT_URI}&response_type=code&scope=email%20profile%20openid&access_type=offline`;
 // `https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?&scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile&access_type=offline&redirect_uri=${GOOGLE_REACT_APP_REDIRECT_URI}&response_type=code&client_id=${GOOGLE_REACT_APP_CLIENTID}`;
 
