@@ -110,6 +110,7 @@ const StEmptyLiked = styled(StDupModel)`
   cursor: pointer;
   span {
     font-weight: 700;
+    font-family: Pretendard_Bold;
     font-size: 24px;
     line-height: 29px;
     color: var(--brown-3);

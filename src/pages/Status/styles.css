@@ -37,16 +37,14 @@
 }
 
 span.swiper-pagination-bullet.swiper-pagination-bullet-active {
-  background-color: var(--gray-10);
-  width: 10px;
-  height: 10px;
+  background-color: #0084ff;
 }
 
 /* target all bullets */
 .swiper-pagination-bullet {
   background-color: var(--brown);
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
 }
 
 .swiper-button-prev,

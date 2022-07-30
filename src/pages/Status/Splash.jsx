@@ -62,6 +62,7 @@ const StOutDiv = styled.div`
       font-weight: 700;
       font-size: 32px;
       margin-top: 20px;
+      font-family: Pretendard_Bold;
     }
     button {
       margin-top: 10px;
@@ -75,6 +76,7 @@ const StWrapFlex = styled(StWrap)`
   color: var(--brown);
   .bigSpan {
     font-weight: 700;
+    font-family: Pretendard_Bold;
     font-size: 64px;
     margin-bottom: 6px;
   }

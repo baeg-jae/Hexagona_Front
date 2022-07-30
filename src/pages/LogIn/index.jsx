@@ -76,6 +76,7 @@ const StFirstPageDiv = styled.div`
   }
   .bigFont {
     font-weight: 700;
+    font-family: Pretendard_Bold;
     font-size: 48px;
     margin-bottom: 13px;
   }

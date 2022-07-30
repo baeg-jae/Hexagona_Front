@@ -2,6 +2,11 @@
   font-family: "Pretendard";
   src: url("../../assets/fonts/pretendard.woff");
 }
+@font-face {
+  font-family: "Pretendard_Bold";
+  src: url("../../assets/fonts/Pretendard-Bold.woff");
+}
+
 * {
-  font-family: "Pretendard";
+  font-family: "Pretendard", "Pretendard_Bold";
 }

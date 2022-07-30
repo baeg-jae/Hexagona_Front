@@ -80,6 +80,7 @@ const StReplyWrap = styled.div`
     .replyUser {
       ${flex({ justify: "space-between" })}
       font-weight: 700;
+      font-family: Pretendard_Bold;
     }
     .replyDay {
       font-size: 12px;

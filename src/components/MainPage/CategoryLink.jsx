@@ -39,6 +39,7 @@ const StCategoryDiv = styled.div`
     margin: 0 0 11px 16px;
     border-radius: 82px;
     font-weight: 700;
+    font-family: Pretendard_Bold;
     font-size: 18px;
     background-color: ${(props) => categoryBGColorHandler(props.pic)};
     color: ${(props) => categoryTextColorHandler(props.pic)};

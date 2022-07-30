@@ -51,6 +51,7 @@ const HeaderWrap = styled.div`
   .textDiv {
     ${flex({ direction: "column", align: "flex-start" })}
     font-weight: 700;
+    font-family: Pretendard_Bold;
     font-size: 14px;
     margin-left: 12px;
     color: var(--gray-7);

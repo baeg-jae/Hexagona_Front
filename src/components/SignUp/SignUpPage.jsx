@@ -127,6 +127,7 @@ const StWrap = styled.div`
   height: 100%;
   font-size: 24px;
   font-weight: 700;
+  font-family: Pretendard_Bold;
   margin-top: 4rem;
   overflow-y: scroll;
   .titleSpan {
@@ -166,6 +167,7 @@ const StWrap = styled.div`
     margin-right: 20px;
     .currentCount {
       font-weight: 700;
+      font-family: Pretendard_Bold;
       color: #1f201d;
     }
   }

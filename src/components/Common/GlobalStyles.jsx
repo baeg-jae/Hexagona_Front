@@ -40,6 +40,7 @@ export const StWrapFlex = styled(StWrap)`
   color: #665547;
   .bigSpan {
     font-weight: 700;
+    font-family: Pretendard_Bold;
     font-size: 64px;
     line-height: 130%;
     margin-bottom: 6px;
@@ -69,6 +70,7 @@ export const StInputDivGlobal = styled.div`
   .commentButton {
     background-color: transparent;
     font-weight: 700;
+    font-family: Pretendard_Bold;
     line-height: 20px;
     color: #4876ef;
     margin-right: 15px;
@@ -100,6 +102,7 @@ export const StModalGlobal = styled.div`
         width: 100%;
         .missionTitle {
           font-weight: 700;
+          font-family: Pretendard_Bold;
           font-size: 18px;
           color: var(--black);
           margin-bottom: 24px;
