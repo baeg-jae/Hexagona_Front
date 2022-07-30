@@ -4,6 +4,7 @@ const GOOGLE_REACT_APP_CLIENTID = process.env.REACT_APP_CLIENTID;
 //   "http://godlife.co.kr/oauth/google/callback";
 const GOOGLE_REACT_APP_REDIRECT_URI =
   "http://localhost:3000/oauth/google/callback";
+
 export const GOOGLE_AUTH_URL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_REACT_APP_CLIENTID}&redirect_uri=${GOOGLE_REACT_APP_REDIRECT_URI}&response_type=code&scope=email%20profile%20openid&access_type=offline`;
 
 // KAKAO
