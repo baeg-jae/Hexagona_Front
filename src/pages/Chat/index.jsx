@@ -7,11 +7,21 @@ import TodayLiked from "components/Chat/TodayLiked";
 import useGetUser from "components/Hooks/User/useGetUser";
 import ChatList from "components/Chat/ChatList";
 import { useDebounce } from "components/Hooks/useDebounce";
+import { useEffect } from "react";
+import { __getUser } from "redux/modules/user";
+import { useDispatch, useSelector } from "react-redux";
 
 const Chat = () => {
   const text = "";
   const [debounceInput, setDebounceInput] = useDebounce(text, 300);
+  const { userId } = useSelector((state) => state.userReducer);
   const { data } = useGetUser();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(__getUser());
+  }, [dispatch]);
+
   return (
     <StCalculatedWrap>
       <Helmet>
@@ -26,7 +36,7 @@ const Chat = () => {
         </div>
         <StLikeTitle>채팅</StLikeTitle>
         {/* props로 유저 정보를 넘겨줍니다. */}
-        <ChatList keyword={debounceInput} />
+        {userId !== 0 && <ChatList keyword={debounceInput} userId={userId} />}
       </>
       <NavigatorBar />
     </StCalculatedWrap>

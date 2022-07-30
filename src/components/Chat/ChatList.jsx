@@ -1,13 +1,12 @@
 import styled from "@emotion/styled";
 import flex from "components/Common/flex";
 import useGetChatListSetting from "components/Hooks/ChatList/useGetChatListSetting";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const ChatList = ({ keyword }) => {
-  const { userId } = useSelector((state) => state.userReducer);
-  const { data } = useGetChatListSetting({ userId: userId });
+const ChatList = ({ keyword, userId }) => {
   const navigate = useNavigate();
+
+  const { data } = useGetChatListSetting({ userId: userId });
 
   const onClickChatRoomHandler = (RoomId) => {
     if (data.chatRoomList !== undefined) navigate(`/chat/${RoomId}`);
