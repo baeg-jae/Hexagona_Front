@@ -7,26 +7,22 @@ import styled from "@emotion/styled";
 
 export const SocialButton = ({ link, text, name }) => {
   return (
-    <StButtonDiv name={name}>
-      <a href={link}>
-        <span className="innerText">{text}</span>
-      </a>
+    <StButtonDiv name={name} href={link}>
+      <span className="innerText">{text}</span>
     </StButtonDiv>
   );
 };
 
-const StButtonDiv = styled.div`
+const StButtonDiv = styled.a`
   ${flex({ direction: "column" })}
   width: 327px;
   height: 56px;
   border-radius: 10px;
   margin-top: 8px;
   background-color: ${(props) => handleButtonColor(props.name)};
-  a {
-    color: ${(props) => handleTextColor(props.name)};
-  }
   .innerText {
     font-size: 16px;
+    color: ${(props) => handleTextColor(props.name)};
   }
   &:last-child {
     margin-bottom: 30px;

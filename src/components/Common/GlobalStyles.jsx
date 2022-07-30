@@ -25,7 +25,7 @@ export const StInput = styled.input`
 `;
 
 export const StButton = styled.button`
-  width: 131.94px;
+  width: 132px;
   height: 48px;
   border-radius: 8px;
   margin: 0 4.06px 0 4.06px;
