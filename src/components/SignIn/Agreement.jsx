@@ -5,14 +5,7 @@ import { StButton } from "components/Common/GlobalStyles";
 import { generateWordSet } from "./fetchAgreement";
 import { useState, useEffect } from "react";
 
-const Agreement = ({
-  set,
-  cancel,
-  confirm,
-  title,
-  cancelTitle,
-  confirmTitle,
-}) => {
+const Agreement = ({ confirm, title, cancelTitle, confirmTitle }) => {
   const [wordSet, setWordSet] = useState();
   const [flagBottom, setFlagBottom] = useState(true);
   useEffect(() => {
@@ -20,9 +13,6 @@ const Agreement = ({
       setWordSet(word);
     });
   }, []);
-  const closeWindowHandler = () => {
-    window.close();
-  };
 
   const handleScroll = (e) => {
     const bottom =
@@ -47,11 +37,11 @@ const Agreement = ({
             })}
           </StAgreementDiv>
           <FlexRowDiv>
-            <StButton onClick={closeWindowHandler}>{cancelTitle}</StButton>
             <StButton
               color="brown"
               onClick={confirm}
               disabled={buttonDisabled()}
+              style={{ width: "260px" }}
             >
               {confirmTitle}
             </StButton>
