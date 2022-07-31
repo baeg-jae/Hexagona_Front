@@ -1,5 +1,5 @@
 .swiper {
-  width: 100%;
+  width: calc(100% - 16px) !important;
   height: 100%;
   box-shadow: none !important;
   text-shadow: none !important;
@@ -7,8 +7,9 @@
 
 .swiper-slide {
   text-align: center;
-  background: var(--white);
-  height: 150px !important;
+  background: transparent;
+  width: 101.27px !important;
+  height: 121.53px !important;
   margin: 20px 5px 0 5px !important;
   border-radius: 4px !important;
   box-shadow: none !important;
