@@ -48,6 +48,6 @@ const StContainer = styled.div`
     justify: "flex-start",
   })}
   width: 345px;
-  height: 497px;
+  height: 100vh;
   margin-top: 40px;
 `;

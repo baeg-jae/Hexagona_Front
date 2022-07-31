@@ -61,7 +61,6 @@ const StModal = styled(StModalGlobal)`
       })}
       height: 179px;
       .missionTitle {
-        font-weight: 700;
         font-family: Pretendard_Bold;
         font-size: 18px;
         color: var(--black);
@@ -81,6 +80,18 @@ const StModal = styled(StModalGlobal)`
         color: var(--gray-7);
         margin: 4px 0;
       }
+    }
+  }
+  @media screen and (max-width: 350px) {
+    span {
+      margin-left: 20px !important;
+    }
+    .missionInput {
+      margin-left: 20px !important;
+      width: 202px !important;
+    }
+    button {
+      margin-left: 20px !important;
     }
   }
 `;

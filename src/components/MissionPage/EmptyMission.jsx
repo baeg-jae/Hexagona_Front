@@ -17,7 +17,6 @@ import {
 } from "redux/modules/modal";
 
 const EmptyMission = ({ category, list }) => {
-  const arr = [1, 2, 3, 4];
   const [mission, setMission] = useState("");
   const [clicked, setClicked] = useState(false);
   const dispatch = useDispatch();
@@ -63,6 +62,11 @@ const EmptyMission = ({ category, list }) => {
     }
   }, [mission, onAddMissionHandler, dispatch]);
 
+  const onDisabledHandler = useCallback(() => {
+    if (list?.length >= 4) return true;
+    return false;
+  }, [list?.length]);
+
   return (
     <>
       {/* 목표 등록 인풋 모달 */}
@@ -83,7 +87,7 @@ const EmptyMission = ({ category, list }) => {
       ) : (
         <></>
       )}
-      {arr.map((v, i) => {
+      {list?.map((v, i) => {
         return list[i] !== undefined ? (
           <AddedMission
             key={i}
@@ -94,25 +98,28 @@ const EmptyMission = ({ category, list }) => {
           <></>
         );
       })}
-      {list?.length < 1 ? (
-        <StWrap onClick={onClickedHandler} className="mission_one">
-          <StCircle>
-            <StImg img={plus} />
-          </StCircle>
-          <div className="innerDiv">
-            <span>목표를 생성해주세요.</span>
-          </div>
-        </StWrap>
-      ) : (
-        <></>
-      )}
-      <StMissionBtn className="mission_two">
-        <Button
-          theme="dark"
-          text="새로운 목표 추가하기"
-          click={onClickedHandler}
-        />
-      </StMissionBtn>
+      <StFlexBtw>
+        {list?.length < 1 ? (
+          <StWrap onClick={onClickedHandler} className="mission_one">
+            <StCircle>
+              <StImg img={plus} />
+            </StCircle>
+            <div className="innerDiv">
+              <span>목표를 생성해주세요.</span>
+            </div>
+          </StWrap>
+        ) : (
+          <></>
+        )}
+        <StMissionBtn className="mission_two">
+          <Button
+            theme="dark"
+            text="새로운 목표 추가하기"
+            click={onClickedHandler}
+            disabled={onDisabledHandler()}
+          />
+        </StMissionBtn>
+      </StFlexBtw>
       <JoyrideContainer
         run={isShowTutorial}
         setRun={setIsShowTutorial}
@@ -142,6 +149,24 @@ const StWrap = styled.div`
       color: var(--gray-7);
     }
   }
+  @media screen and (max-width: 350px) {
+    width: 250px;
+    height: 80px;
+    span {
+      margin: 0 0 24px 21px !important;
+      font-weight: 600;
+      font-size: 16px !important;
+      color: var(--gray-7);
+    }
+  }
+  @media screen and (max-height: 700px) {
+    height: 80px;
+    span {
+      margin: 0 0 24px 31px !important;
+      font-weight: 600;
+      color: var(--gray-7);
+    }
+  }
 `;
 
 const StCircle = styled.div`
@@ -151,6 +176,14 @@ const StCircle = styled.div`
   border: 1px solid var(--gray-3);
   border-radius: 94px;
   margin-left: 29px;
+  @media screen and (max-width: 350px) {
+    width: 50px;
+    height: 50px;
+  }
+  @media screen and (max-height: 700px) {
+    width: 50px;
+    height: 50px;
+  }
 `;
 
 const StImg = styled.div`
@@ -160,7 +193,14 @@ const StImg = styled.div`
   background-size: cover;
   background-position: center;
 `;
-const StMissionBtn = styled.div`
-  position: absolute;
-  bottom: 10%;
+const StFlexBtw = styled.div`
+  ${flex({ direction: "column", justify: "space-between" })};
+  height: calc(100% - 300px);
+  @media screen and (max-height: 700px) {
+    height: calc(100% - 250px);
+  }
+  @media screen and (min-height: 1000px) {
+    height: 700px;
+  }
 `;
+const StMissionBtn = styled.div``;
