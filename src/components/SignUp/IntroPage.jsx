@@ -51,6 +51,9 @@ const StWrapFlex = styled(StWrap)`
     color: #956c4a;
   }
   .subTitle {
+    font-weight: 400;
+    color: var(--gray-6);
+    font-family: Pretendard;
     font-size: 15px;
     line-height: 140%;
   }
@@ -59,5 +62,8 @@ const StWrapFlex = styled(StWrap)`
     font-weight: 500;
     font-size: 16px;
     line-height: 130%;
+  }
+  @media screen and (max-width: 350px) {
+    font-size: 26px;
   }
 `;
