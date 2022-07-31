@@ -123,7 +123,6 @@ const StEmptyLiked = styled(StDupModel)`
         text-decoration: underline;
     }
 `;
-
 const GoTotheGoalShot = styled.div`
     width: 15px;
     height: 15px;
