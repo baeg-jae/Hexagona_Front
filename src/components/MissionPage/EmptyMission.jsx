@@ -17,7 +17,6 @@ import {
 } from "redux/modules/modal";
 
 const EmptyMission = ({ category, list }) => {
-  const arr = [1, 2, 3, 4];
   const [mission, setMission] = useState("");
   const [clicked, setClicked] = useState(false);
   const dispatch = useDispatch();
@@ -63,6 +62,11 @@ const EmptyMission = ({ category, list }) => {
     }
   }, [mission, onAddMissionHandler, dispatch]);
 
+  const onDisabledHandler = useCallback(() => {
+    if (list?.length >= 4) return true;
+    return false;
+  }, [list?.length]);
+
   return (
     <>
       {/* 목표 등록 인풋 모달 */}
@@ -83,7 +87,7 @@ const EmptyMission = ({ category, list }) => {
       ) : (
         <></>
       )}
-      {arr.map((v, i) => {
+      {list?.map((v, i) => {
         return list[i] !== undefined ? (
           <AddedMission
             key={i}
@@ -112,6 +116,7 @@ const EmptyMission = ({ category, list }) => {
             theme="dark"
             text="새로운 목표 추가하기"
             click={onClickedHandler}
+            disabled={onDisabledHandler()}
           />
         </StMissionBtn>
       </StFlexBtw>
