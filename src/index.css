@@ -1,55 +1,57 @@
 :root {
-  --gary-0: #f7f7f7;
-  --gray-1: #ebebeb;
-  --gray-3: #dadada;
-  --gray-5: #bfbfbf;
-  --gray-7: #555555;
-  --gray-10: #2c2825;
-  --green: #55977a;
-  --white: #fff;
-  --black: #212121;
-  --brown: #665547;
-  --brown-3: #956c4a;
-  --gradient: #1e1818;
-  --skeleton: #e5e5e5;
-  --red: #ff0000;
-  --orange: #ff6b00;
+    --gary-0: #f7f7f7;
+    --gray-1: #ebebeb;
+    --gray-3: #dadada;
+    --gray-5: #bfbfbf;
+    --gray-6: #adadad;
+    --gray-7: #555555;
+    --gray-10: #2c2825;
+
+    --green: #55977a;
+    --white: #fff;
+    --black: #212121;
+    --brown: #665547;
+    --brown-3: #956c4a;
+    --gradient: #1e1818;
+    --skeleton: #e5e5e5;
+    --red: #ff0000;
+    --orange: #ff6b00;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 ::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 button {
-  border: none;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 button:disabled {
-  background-color: var(--gray-3);
+    background-color: var(--gray-3);
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 a:visited {
-  color: inherit;
+    color: inherit;
 }
 
-input[type="file"] {
-  position: absolute;
-  width: 0;
-  height: 0;
-  padding: 0;
-  overflow: hidden;
-  border: 0;
+input[type='file'] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
 }
