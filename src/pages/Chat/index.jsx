@@ -50,6 +50,7 @@ const StCalculatedWrap = styled(StWrap)``;
 const StChatMainContent = styled.div`
   height: calc(100% - 68px);
   overflow-y: scroll;
+  overflow-x: hidden;
 `;
 
 const StLikeTitle = styled.div`
