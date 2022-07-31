@@ -97,4 +97,17 @@ const StWrap = styled.div`
       white-space: pre-wrap;
     }
   }
+  @media screen and (max-width: 350px) {
+    width: 250px;
+    height: 80px;
+    span {
+      font-size: 16px !important;
+    }
+  }
+  @media screen and (max-height: 700px) {
+    height: 80px;
+    span {
+      color: var(--gray-7);
+    }
+  }
 `;
