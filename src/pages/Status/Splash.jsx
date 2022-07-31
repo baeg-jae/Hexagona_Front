@@ -8,8 +8,8 @@ import styled from "@emotion/styled";
 import SplashDataSwiper from "components/Status/SplashDataSwiper";
 
 const Splash = () => {
-  const [flag, setFlag] = useState(true);
-  // useSplash(setFlag);
+  const [flag, setFlag] = useState(false);
+  useSplash(setFlag);
   return (
     <StOutDiv>
       {!flag ? (

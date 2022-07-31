@@ -15,9 +15,15 @@ const Agreement = ({ confirm, title, confirmTitle }) => {
   }, []);
 
   const handleScroll = (e) => {
+    console.log(
+      e.target.scrollHeight,
+      e.target.scrollTop,
+      e.target.clientHeight
+    );
     const bottom =
-      e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
+      e.target.scrollHeight - e.target.scrollTop <= e.target.clientHeight + 10;
     if (bottom) {
+      console.log("BBB");
       setFlagBottom(false);
     }
   };
