@@ -29,7 +29,7 @@ export default Splash;
 const StOutDiv = styled.div`
   .slider {
     ${flex({ direction: "column", justify: "flex-start", align: "flex-start" })}
-    height: 90vh;
+    height: 1000px;
     color: var(--black);
     line-height: 130%;
     overflow-y: scroll;
@@ -57,6 +57,7 @@ const StOutDiv = styled.div`
     }
     .smallSpan {
       font-size: 16px;
+      color: var(--gray-6);
     }
     .bigSpan {
       font-weight: 700;
@@ -66,6 +67,33 @@ const StOutDiv = styled.div`
     }
     button {
       margin-top: 10px;
+    }
+  }
+  @media screen and (max-height: 820px) {
+    .bigSpanDiv {
+      margin: 10px 0 0 26px !important;
+    }
+  }
+  @media screen and (max-height: 820px) {
+    .bigSpanDiv {
+      margin: 10px 0 0 26px !important;
+    }
+  }
+  @media screen and (max-width: 340px) {
+    .smallSpan {
+      font-size: 12px !important;
+    }
+    button {
+      width: 280px;
+    }
+  }
+  @media screen and (max-width: 280px) {
+    .bigSpan {
+      font-size: 18px !important;
+      margin-top: 2px !important;
+    }
+    button {
+      width: 260px;
     }
   }
 `;

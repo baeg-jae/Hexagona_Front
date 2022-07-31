@@ -1,6 +1,7 @@
 .swiper {
+  position: relative;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -33,7 +34,7 @@
 }
 
 .swiper-pagination {
-  bottom: 5% !important;
+  display: none;
 }
 
 span.swiper-pagination-bullet.swiper-pagination-bullet-active {

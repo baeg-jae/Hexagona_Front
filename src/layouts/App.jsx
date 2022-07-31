@@ -3,7 +3,6 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Routing from "components/Routings/Routing";
 import styled from "@emotion/styled";
 import bg from "assets/img/WebBG.webp";
-import col from "assets/img/col.webp";
 import GoogleForm from "./GoogleForm";
 import GlobalModal from "./GlobalModal";
 
@@ -38,12 +37,12 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  height: 100%;
+  height: 100vh;
   background-image: url(${bg});
-  background-size: contain;
+  background-size: cover;
   background-position-x: -100px;
+  background-position: bottom;
   background-repeat: no-repeat;
-  background-position-y: 130px;
   overflow: hidden;
 
   @media screen and (max-width: 1024px) {
@@ -52,26 +51,19 @@ const Container = styled.div`
 
   // 모바일 뷰
   .wrap {
+    position: relative;
     width: 100%;
+    max-height: 1000px;
     max-width: 420px;
-    height: calc(var(--vh) * 100);
-    margin: 0 auto;
-    padding: 0 auto;
-    box-sizing: border-box;
+    margin: auto;
     background-color: var(--white);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-
+    border-radius: 24 px;
     @media screen and (min-width: 1024px) {
       position: relative;
       left: 15%;
       top: 0%;
       overflow: auto;
-    }
-    @media screen and (min-height: 1000px) {
-      background-image: url(${col});
-      background-size: contain;
-      background-repeat: no-repeat;
     }
   }
 `;

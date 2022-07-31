@@ -32,14 +32,18 @@ export default Header;
 
 const StWrap = styled.div`
   ${flex({})}
-  width: 100%;
 `;
 
 const StWrapFlex = styled.div`
   ${flex({ align: "flex-start" })}
   width: 342px;
-  height: 56px;
   margin-top: 62px;
+  @media screen and (max-height: 700px) {
+    margin-top: 20px;
+  }
+  @media screen and (max-width: 350px) {
+    width: 250px;
+  }
 `;
 
 const HeaderWrap = styled.div`

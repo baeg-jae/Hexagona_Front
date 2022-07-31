@@ -60,7 +60,7 @@ export default LogIn;
 const StFirstPageDiv = styled.div`
   ${flex({ direction: "column", justify: "flex-end" })}
   position: relative;
-  height: 100%;
+  height: 1000px;
   font-size: 20px;
   color: var(--white);
   background-size: contain;
@@ -95,5 +95,8 @@ const StFirstPageDiv = styled.div`
         var(--gradient) 42%
       );
     }
+  }
+  @media screen and (max-height: 1000px) {
+    height: 100vh;
   }
 `;

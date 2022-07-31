@@ -14,6 +14,9 @@ export const FlexColumnDiv = styled.div`
 export const StWrap = styled.div`
   width: 100%;
   height: 100vh;
+  @media screen and (min-height: 1000px) {
+    height: 1000px;
+  }
 `;
 
 export const StInput = styled.input`
@@ -33,6 +36,9 @@ export const StButton = styled.button`
   background-color: ${(props) =>
     props.color === "brown" ? "#956C4A" : "var(--white)"};
   color: ${(props) => (props.color === "brown" ? "#fff" : "#4C525C")};
+  @media screen and (max-width: 350px) {
+    width: 100px;
+  }
 `;
 
 export const StWrapFlex = styled(StWrap)`
@@ -92,6 +98,9 @@ export const StModalGlobal = styled.div`
     height: 383px;
     background: var(--white);
     border-radius: 8px;
+    @media screen and (max-width: 350px) {
+      width: 270px;
+    }
     .InfoContainer {
       ${flex({
         direction: "column",
@@ -106,6 +115,9 @@ export const StModalGlobal = styled.div`
           font-size: 18px;
           color: var(--black);
           margin-bottom: 24px;
+          @media screen and (max-width: 350px) {
+            margin-left: 20px;
+          }
         }
       }
       label {

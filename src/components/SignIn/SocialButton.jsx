@@ -28,4 +28,7 @@ const StButtonDiv = styled.a`
   &:last-child {
     margin-bottom: 30px;
   }
+  @media screen and (max-width: 340px) {
+    width: 260px;
+  }
 `;
