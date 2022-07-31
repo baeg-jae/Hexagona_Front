@@ -23,6 +23,9 @@ export const StSearchInputDiv = styled.div`
       outline: none;
     }
   }
+  @media screen and (max-width: 350px) {
+    width: 270px;
+  }
 `;
 
 export const StImg = styled.div`

@@ -16,6 +16,5 @@ const ChatRoom = () => {
 export default ChatRoom;
 
 const StContainer = styled(StWrap)`
-  width: 100%;
-  height: calc(100vh - 80px);
+  position: relative;
 `;

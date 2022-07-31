@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import flex from "components/Common/flex";
 import { useEffect } from "react";
-import { ALERT_MODAL_ICON, ALERT_MODAL_POPUP } from "shared/data";
+import { ALERT_MODAL_POPUP } from "shared/data";
 import { alertIconHandler } from "./ButtonPropsHandler";
-import { alertModalAnim, alertModalIconAnim } from "./GlobalStyles";
+import { alertModalAnim } from "./GlobalStyles";
 import { useDispatch } from "react-redux";
 import {
   ChatJoinModal,
@@ -61,7 +61,7 @@ const AlertModal = ({ title, icon, type, subText, subText2 }) => {
         default:
           return;
       }
-    }, 1500);
+    }, 700);
     return () => {
       clearTimeout(timeout);
     };
@@ -90,6 +90,11 @@ const StModal = styled.div`
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 5;
+  @media screen and (max-width: 350px) {
+    .StInnerContainer {
+      width: 270px !important;
+    }
+  }
   .StInnerContainer {
     ${flex({})}
     width: 320px;
@@ -120,5 +125,4 @@ const StIcon = styled.div`
   background-image: url(${(props) => alertIconHandler(props.name)});
   background-position: center;
   background-size: cover;
-  animation: ${alertModalIconAnim} ${ALERT_MODAL_ICON}s ease;
 `;

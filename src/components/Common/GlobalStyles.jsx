@@ -254,15 +254,6 @@ export const alertModalAnim = keyframes`
   }
 `;
 
-export const alertModalIconAnim = keyframes`
- 0% { 
-  transform: rotateY(0);
-}
-  100% {  
-    transform: rotateY(360deg); 
-  }
-`;
-
 export const TalkCloudAnim = keyframes`
  0% { 
    transform: translateY(0);

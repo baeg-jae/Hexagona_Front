@@ -5,6 +5,7 @@ import WebTitle from "components/Common/WebTitle";
 import NavigatorBar from "components/Common/NavigatorBar";
 import Search from "components/Feed/Search";
 import styled from "@emotion/styled";
+import { StWrap } from "components/Common/GlobalStyles";
 
 const MyFeed = () => {
   const [keyword, setKeyword] = useState("");
@@ -17,7 +18,7 @@ const MyFeed = () => {
     [navigate]
   );
   return (
-    <>
+    <StCalculatedWrap>
       <WebTitle text="내사진보기: 갓생메이커" />
       <Search setKeyword={setKeyword} />
       <StScrollWrapper>
@@ -48,7 +49,7 @@ const MyFeed = () => {
         </StDiv>
       </StScrollWrapper>
       <NavigatorBar />
-    </>
+    </StCalculatedWrap>
   );
 };
 
@@ -59,7 +60,7 @@ const StDiv = styled.div`
   justify-content: center;
   gap: 10px;
   grid-template-columns: 1fr 1fr;
-  margin: 90px 16px 0 16px;
+  margin: 85px 20px 0 16px;
   overflow-y: scroll;
 `;
 
@@ -75,4 +76,9 @@ const StScrollWrapper = styled.div`
   width: 100%;
   height: calc(100vh - 70px);
   overflow-y: scroll;
+`;
+
+const StCalculatedWrap = styled(StWrap)`
+  position: relative;
+  height: 100vh;
 `;

@@ -61,22 +61,27 @@ const AddPhoto = ({ missionContent, files, missionId }) => {
     addTodoMutation.mutate(formData);
   }, [addTodoMutation, category, files, missionContent, missionId]);
 
-  return (
-    <StWrap onClick={onCreate} className="mission_one">
-      <div className="innerDiv">
-        <span>{missionContent}</span>
-        <StImg img={Camera} />
-      </div>
-      <JoyrideContainer
-        run={isShowTutorial}
-        setRun={setIsShowTutorial}
-        steps={missionThree}
-      />
-    </StWrap>
-  );
+  useEffect(() => {
+    if (files !== undefined) onCreate();
+  }, [files, onCreate]);
+
+  return <></>;
 };
 
 export default AddPhoto;
+
+{
+  /* <StWrap onClick={onCreate} className="mission_one">
+  <div className="innerDiv">
+    <span>{missionContent}</span>
+    <StImg img={Camera} />
+  </div>
+  <JoyrideContainer
+    run={isShowTutorial}
+    setRun={setIsShowTutorial}
+    steps={missionThree}
+  />
+</StWrap>;
 
 const StWrap = styled.div`
   ${flex({ justify: "space-between" })}
@@ -97,4 +102,18 @@ const StWrap = styled.div`
       white-space: pre-wrap;
     }
   }
-`;
+  @media screen and (max-width: 350px) {
+    width: 250px;
+    height: 80px;
+    span {
+      font-size: 16px !important;
+    }
+  }
+  @media screen and (max-height: 700px) {
+    height: 80px;
+    span {
+      color: var(--gray-7);
+    }
+  }
+`; */
+}
