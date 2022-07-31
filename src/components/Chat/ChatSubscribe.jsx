@@ -26,13 +26,12 @@ const ChatSubscribe = () => {
   const dispatch = useDispatch();
   const inputRef = useRef();
 
-  console.log(post_list?.chatMessageDataList);
+  console.log(post_list);
 
   const time =
     new Date(Date.now()).getFullYear() +
     "-" +
-    new Date(Date.now()).getMonth() +
-    1 +
+    (new Date(Date.now()).getMonth() + 1) +
     "-" +
     new Date(Date.now()).getDate() +
     "T" +
@@ -83,10 +82,13 @@ const ChatSubscribe = () => {
   useEffect(() => {
     // 이전 채팅 보여주기
     dispatch(__prevPostChat({ userId: userId, chatRoomId: chatRoomId }));
+  }, []);
+
+  useEffect(() => {
     // 연결도 끊어지면 다시 되게
     wsSubscribe();
     return () => wsDisconnect();
-    // 디펜던시 주면 안됌
+    // 디펜던시 주면 안됨
   }, []);
 
   // 채팅 보내기
@@ -148,7 +150,7 @@ const ChatSubscribe = () => {
                     <StChatContentContainer me>
                       <StChatContent me>{v.message}</StChatContent>
                     </StChatContentContainer>
-                    <StTime me>{v.messageModifiedAt}</StTime>
+                    <StTime me>{v.messageModifiedTime}</StTime>
                   </MyChatFlexColumnDiv>
                   <StMyProfile img={data?.profile_img} />
                 </StFlexRow>
@@ -159,7 +161,7 @@ const ChatSubscribe = () => {
                     <StChatContentContainer>
                       <StChatContent>{v.message}</StChatContent>
                     </StChatContentContainer>
-                    <StTime>{v.messageModifiedAt}</StTime>
+                    <StTime>{v.messageModifiedTime}</StTime>
                   </ChatFlexColumnDiv>
                 </StFlexRow>
               );
@@ -174,7 +176,7 @@ const ChatSubscribe = () => {
                     <StChatContentContainer me>
                       <StChatContent me>{v.message}</StChatContent>
                     </StChatContentContainer>
-                    <StTime me>{v.messageModifiedAt}</StTime>
+                    <StTime me>{v.messageModifiedTime}</StTime>
                   </MyChatFlexColumnDiv>
                   <StMyProfile img={data?.profile_img} />
                 </StFlexRow>
@@ -185,7 +187,7 @@ const ChatSubscribe = () => {
                     <StChatContentContainer>
                       <StChatContent>{v.message}</StChatContent>
                     </StChatContentContainer>
-                    <StTime>{v.messageModifiedAt}</StTime>
+                    <StTime>{v.messageModifiedTime}</StTime>
                   </ChatFlexColumnDiv>
                 </StFlexRow>
               );
@@ -322,8 +324,5 @@ const StTime = styled.span`
   justify-content: ${(props) => (props.me ? "flex-end" : "flex-start")};
   width: 100%;
   font-size: 10px;
-  margin: ${(props) => (props.me ? "0 16px 0 0" : "0 0 0 16px")};
+  color: var(--gray-6);
 `;
-
-// time 색상
-// color: var(--gary-6);
