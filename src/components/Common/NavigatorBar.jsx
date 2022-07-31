@@ -7,7 +7,7 @@ const NavigatorBar = () => {
   return (
     <StWrapFlex>
       <NavLink to={"/home"}>
-        <span>홈</span>
+        <span>마이</span>
       </NavLink>
       <NavLink to={"/goalshot"}>
         <FlexColumnDiv>
@@ -28,24 +28,22 @@ export default NavigatorBar;
 
 const StWrapFlex = styled.div`
   ${flex({ justify: "space-evenly" })}
-  position: fixed;
+  position: absolute;
   bottom: 0;
   width: 420px;
   height: 68px;
-  text-align: center;
   background-color: var(--white);
   border-top: 1px solid var(--gray-1);
   @media screen and (max-width: 420px) {
     width: 100%;
   }
   span {
-    font-weight: 500;
     font-size: 13px;
-    line-height: 130%;
     color: var(--gray-5);
   }
   .active {
     span {
+      font-weight: 700;
       color: var(--black);
     }
   }

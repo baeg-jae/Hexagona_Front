@@ -49,9 +49,6 @@ const Home = () => {
 export default Home;
 
 const StCalculatedWrap = styled(StWrap)`
-  height: calc(100vh - 60px);
-  overflow-y: scroll;
-  @media screen and (min-height: 1000px) {
-    display: none;
-  }
+  position: relative;
+  height: 100vh;
 `;

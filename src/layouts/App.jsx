@@ -58,7 +58,7 @@ const Container = styled.div`
     margin: auto;
     background-color: var(--white);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-
+    border-radius: 24 px;
     @media screen and (min-width: 1024px) {
       position: relative;
       left: 15%;
