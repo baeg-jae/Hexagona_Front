@@ -15,7 +15,6 @@ const FeedContainer = () => {
   const [debounceInput, setDebounceInput] = useDebounce(text, 300);
   const { ref, inView } = useInView();
   const { data, fetchNextPage, isFetchingNextPage } = useGetPost();
-  console.log(data);
 
   const onClickHandler = useCallback(
     (postId) => {

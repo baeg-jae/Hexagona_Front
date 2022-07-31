@@ -225,6 +225,7 @@ const StBody = styled.div`
   ${flex({ direction: "column", justify: "space-between" })}
   width: 100%;
   height: calc(100vh - 200px);
+  max-height: 900px;
 `;
 
 const StOtherProfile = styled.div`
@@ -246,10 +247,11 @@ const StMyProfile = styled(StOtherProfile)`
 
 const StInputDiv = styled.div`
   ${flex({})}
-  position: fixed;
+  position: absolute;
   width: calc(100% - 32px);
   height: 50px;
-  top: calc(100vh - 118px);
+  bottom: 68px;
+  background-color: white;
   @media screen and (min-width: 420px) {
     width: 384px;
   }

@@ -88,7 +88,6 @@ const StWrapFlex = styled.div`
     direction: "column",
     justify: "space-between",
   })}
-  animation: ${fadeAnimation} ${FEED_DETAIL_ANIMATION}s ease;
   width: calc(100% - 32px);
   height: 440px;
   margin-top: 59px;
@@ -110,7 +109,6 @@ const StGradient = styled.div`
         ? "var(--black), rgba(0, 0, 0, 0) 40%"
         : "0.14deg, var(--black), rgba(0, 0, 0, 0) 40%"}
   );
-  animation: ${gradientFade} ${GRADIENT_TIME}s ease;
 `;
 
 const HeaderDiv = styled.div`
