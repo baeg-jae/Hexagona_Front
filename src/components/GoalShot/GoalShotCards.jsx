@@ -31,8 +31,6 @@ const GoalShotCards = ({
   }, [chooseOne, chooseTwo]);
   const getCategory = useCategory({ category: data[count]?.category });
   const getCategoryRight = useCategory({ category: data[count + 1]?.category });
-  console.log(data?.length);
-  console.log(count);
 
   return (
     <StContainer>
