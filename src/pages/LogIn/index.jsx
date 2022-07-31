@@ -30,7 +30,7 @@ const LogIn = () => {
         />
       )}
       <button className="agreement" onClick={onOpenAgreeHandler}>
-        이용약관
+        <span>이용약관</span>
       </button>
       <div className="gradient">
         <span>이번엔 꼭 내 인생을 갓생으로</span>

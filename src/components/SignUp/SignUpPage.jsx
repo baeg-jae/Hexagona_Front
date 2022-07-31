@@ -171,4 +171,13 @@ const StWrap = styled.div`
       color: #1f201d;
     }
   }
+  @media screen and (max-width: 350px) {
+    font-size: 20px;
+    .inputBox {
+      width: 250px;
+    }
+    .stInput {
+      width: 190px;
+    }
+  }
 `;

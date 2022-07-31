@@ -7,8 +7,8 @@ import CommentImg from "components/Comment_Like/CommentImg";
 import CommentLists from "components/Comment_Like/CommentLists";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
-import SkeletonDetail from "components/Skeletons/SkeletonDetail";
 import WebTitle from "components/Common/WebTitle";
+import Loading from "pages/Status/Loading";
 
 const FeedDetail = () => {
   const { postId } = useParams();
@@ -19,7 +19,7 @@ const FeedDetail = () => {
   return (
     <StWrapFlex>
       {isFetching ? (
-        <SkeletonDetail />
+        <Loading />
       ) : (
         <>
           <StWrapComment>

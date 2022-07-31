@@ -26,8 +26,6 @@ const ChatSubscribe = () => {
   const dispatch = useDispatch();
   const inputRef = useRef();
 
-  console.log(post_list);
-
   const time =
     new Date(Date.now()).getFullYear() +
     "-" +
@@ -275,9 +273,11 @@ const StOtherName = styled.span`
 const StWrap = styled.div`
   ${flex({ direction: "column", justify: "flex-start" })}
   width: calc(100% - 32px);
-  height: calc(var(--vh) * 70);
   margin-top: 31px;
   overflow-y: scroll;
+  @media screen and (min-height: 420px) {
+    width: 384px;
+  }
 `;
 
 const StDate = styled.div`
