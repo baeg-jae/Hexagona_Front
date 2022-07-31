@@ -105,8 +105,6 @@ const SplashDataSwiper = () => {
 
 export default SplashDataSwiper;
 
-const StSwiper = styled(Swiper)``;
-
 const StImgDiv = styled.div`
   width: 339px;
   height: 339px;
@@ -120,4 +118,13 @@ const StFourthContainer = styled.div`
   ${flex({ direction: "column" })}
   width: 339px;
   height: 600px;
+  @media screen and (max-width: 280px) {
+    height: 500px;
+  }
+  @media screen and (max-height: 740px) {
+    height: 500px;
+  }
+  @media screen and (max-height: 690px) {
+    height: 400px;
+  }
 `;

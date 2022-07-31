@@ -14,6 +14,9 @@ export const FlexColumnDiv = styled.div`
 export const StWrap = styled.div`
   width: 100%;
   height: 100vh;
+  @media screen and (min-height: 1000px) {
+    height: 1000px;
+  }
 `;
 
 export const StInput = styled.input`
