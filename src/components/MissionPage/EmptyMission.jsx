@@ -94,25 +94,27 @@ const EmptyMission = ({ category, list }) => {
           <></>
         );
       })}
-      {list?.length < 1 ? (
-        <StWrap onClick={onClickedHandler} className="mission_one">
-          <StCircle>
-            <StImg img={plus} />
-          </StCircle>
-          <div className="innerDiv">
-            <span>목표를 생성해주세요.</span>
-          </div>
-        </StWrap>
-      ) : (
-        <></>
-      )}
-      <StMissionBtn className="mission_two">
-        <Button
-          theme="dark"
-          text="새로운 목표 추가하기"
-          click={onClickedHandler}
-        />
-      </StMissionBtn>
+      <StFlexBtw>
+        {list?.length < 1 ? (
+          <StWrap onClick={onClickedHandler} className="mission_one">
+            <StCircle>
+              <StImg img={plus} />
+            </StCircle>
+            <div className="innerDiv">
+              <span>목표를 생성해주세요.</span>
+            </div>
+          </StWrap>
+        ) : (
+          <></>
+        )}
+        <StMissionBtn className="mission_two">
+          <Button
+            theme="dark"
+            text="새로운 목표 추가하기"
+            click={onClickedHandler}
+          />
+        </StMissionBtn>
+      </StFlexBtw>
       <JoyrideContainer
         run={isShowTutorial}
         setRun={setIsShowTutorial}
@@ -142,6 +144,24 @@ const StWrap = styled.div`
       color: var(--gray-7);
     }
   }
+  @media screen and (max-width: 350px) {
+    width: 250px;
+    height: 80px;
+    span {
+      margin: 0 0 24px 21px !important;
+      font-weight: 600;
+      font-size: 16px !important;
+      color: var(--gray-7);
+    }
+  }
+  @media screen and (max-height: 700px) {
+    height: 80px;
+    span {
+      margin: 0 0 24px 31px !important;
+      font-weight: 600;
+      color: var(--gray-7);
+    }
+  }
 `;
 
 const StCircle = styled.div`
@@ -151,6 +171,14 @@ const StCircle = styled.div`
   border: 1px solid var(--gray-3);
   border-radius: 94px;
   margin-left: 29px;
+  @media screen and (max-width: 350px) {
+    width: 50px;
+    height: 50px;
+  }
+  @media screen and (max-height: 700px) {
+    width: 50px;
+    height: 50px;
+  }
 `;
 
 const StImg = styled.div`
@@ -160,7 +188,14 @@ const StImg = styled.div`
   background-size: cover;
   background-position: center;
 `;
-const StMissionBtn = styled.div`
-  position: absolute;
-  bottom: 10%;
+const StFlexBtw = styled.div`
+  ${flex({ direction: "column", justify: "space-between" })};
+  height: calc(100% - 300px);
+  @media screen and (max-height: 700px) {
+    height: calc(100% - 250px);
+  }
+  @media screen and (min-height: 1000px) {
+    height: 700px;
+  }
 `;
+const StMissionBtn = styled.div``;
