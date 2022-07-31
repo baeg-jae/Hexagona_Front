@@ -1,7 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
 import { FlexRowDiv } from "components/Common/GlobalStyles";
-import { gradientFade } from "components/Common/GlobalStyles";
-import { GRADIENT_TIME } from "shared/data";
 import styled from "@emotion/styled";
 import flex from "../Common/flex";
 import likeImg from "assets/img/like.webp";
@@ -11,8 +9,6 @@ import useAddLike from "components/Hooks/Like/useAddLike";
 import DropDownMenu from "components/Common/DropDownMenu";
 import useGetIfLiked from "components/Hooks/Like/useGetIfLiked";
 import UserInfo from "components/Feed/UserInfo";
-import { fadeAnimation } from "components/Common/GlobalStyles";
-import { FEED_DETAIL_ANIMATION } from "shared/data";
 
 const CommentImg = ({
   category,
@@ -101,13 +97,13 @@ const StGradient = styled.div`
   ${flex({ direction: "column", align: "flex-start" })}
   justify-content: ${(props) => (props.top ? "flex-start" : "flex-end")};
   width: 100%;
-  height: 440px;
+  height: 50%;
   border-radius: 16px;
   background: linear-gradient(
     ${(props) =>
       props.top
         ? "var(--black), rgba(0, 0, 0, 0) 40%"
-        : "0.14deg, var(--black), rgba(0, 0, 0, 0) 40%"}
+        : "0.14deg, var(--black), rgba(0, 0, 0, 0) 60%"}
   );
 `;
 
@@ -161,7 +157,8 @@ const LikeButton = styled.div`
   height: 20px;
   background-image: ${(props) =>
     props.like ? `url(${likeImg})` : `url(${unlikeImg})`};
-  background-size: cover;
+  background-size: contain;
   background-position: center;
+  background-repeat: no-repeat;
   margin-right: 16px;
 `;

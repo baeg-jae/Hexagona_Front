@@ -44,6 +44,7 @@ export const StFixDiv = styled.div`
   height: 77px;
   background: #ffffff;
   box-shadow: 0px 12px 14px rgba(0, 0, 0, 0.1);
+  z-index: 99;
   @media screen and (min-width: 420px) {
     width: 420px;
   }

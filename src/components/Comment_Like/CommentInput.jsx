@@ -56,7 +56,7 @@ const CommentInput = ({ postId }) => {
   }, [doubleClick]);
 
   return (
-    <StCommentWrap>
+    <>
       <StWrapFlex>
         <StProfile profile_img={data?.profile_img} />
         <StInputDivGlobal>
@@ -77,30 +77,31 @@ const CommentInput = ({ postId }) => {
           </button>
         </StInputDivGlobal>
       </StWrapFlex>
-    </StCommentWrap>
+    </>
   );
 };
 
 export default CommentInput;
 
-const StCommentWrap = styled.div`
-  ${flex({
-    direction: "column",
-    justify: "space-between",
-  })}
-  width: calc(100% - 32px);
-  height: 100%;
-`;
-
 const StWrapFlex = styled.div`
   ${flex({})}
-  position: fixed;
-  top: calc(100% - 150px);
+  position: absolute;
   width: calc(100% - 32px);
-  height: 92px;
+  height: 50px;
+  bottom: 68px;
   background-color: var(--white);
-  @media screen and (min-width: 400px) {
-    width: 400px;
+  @media screen and (max-width: 300px) {
+    width: 260px;
+    .commentInput {
+      width: 140px !important;
+      &::placeholder {
+        font-size: 1px !important;
+      }
+      font-size: 12px !important;
+    }
+    .commentButton {
+      font-size: 8px !important;
+    }
   }
 `;
 

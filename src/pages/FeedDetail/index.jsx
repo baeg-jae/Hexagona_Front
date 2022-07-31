@@ -35,11 +35,10 @@ const FeedDetail = () => {
               userId={data?.userId}
             />
             <CommentLists postId={postId} />
-            <CommentInput postId={data?.postId} />
           </StWrapComment>
         </>
       )}
-
+      <CommentInput postId={data?.postId} />
       <NavigatorBar />
     </StWrapFlex>
   );
@@ -50,6 +49,7 @@ export default FeedDetail;
 const StWrapFlex = styled(StWrap)`
   ${flex({ direction: "column", justify: "flex-start" })}
   position: relative;
+  max-height: 1000px;
 `;
 const StWrapComment = styled.div`
   ${flex({ direction: "column", justify: "flex-start" })}
