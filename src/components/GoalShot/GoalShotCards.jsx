@@ -153,9 +153,19 @@ const StCardContainer = styled.div`
   ${flex({
     gap: "10px",
     align: "flex-start",
-  })}/* @media screen and (max-width: 1024px) {
+  })}
+  /* @media screen and (max-width: 1024px) {
     overflow: hidden;
   } */
+  @media screen and (max-height: 820px) {
+    height: 600px;
+  }
+  @media screen and (max-height: 770px) {
+    height: 550px;
+  }
+  @media screen and (max-height: 670px) {
+    height: 450px;
+  }
 `;
 
 const StCard = styled.div`
@@ -188,12 +198,8 @@ const StCard = styled.div`
     margin-bottom: 5px;
   }
   @media screen and (max-width: 350px) {
-    min-width: 230px;
     animation: ${(props) => props.flag && CenterCardAnimRes()}
       ${CARD_ANIMATION_TIME}s ease;
-  }
-  @media screen and (max-height: 820px) {
-    height: 400px;
   }
   @media screen and (max-height: 700px) {
     height: 350px;
@@ -283,8 +289,8 @@ const StEmoji = styled.div`
   height: 127px;
   background-image: url(${(props) => (props.smile ? `${Smile}` : `${Sad}`)});
   background-position: center;
-  background-size: cover;
-  margin-top: ${(props) => (props.mar ? "120px" : "15px")};
+  background-size: contain;
+  background-repeat: no-repeat;
 `;
 
 const StRightRightCard = styled(StCard)`
@@ -328,6 +334,7 @@ const StLastCard = styled.div`
     }
   }
   @media screen and (max-height: 700px) {
+    height: 350px;
     margin-top: ${(props) => (props.differ ? "120px" : "68px")};
   }
   @media screen and (max-width: 280px) {

@@ -146,7 +146,7 @@ const ChatSubscribe = () => {
                     <StChatContentContainer me>
                       <StChatContent me>{v.message}</StChatContent>
                     </StChatContentContainer>
-                    <StTime me>{v.messageModifiedAt}</StTime>
+                    <StTime me>{v.messageModifiedTime}</StTime>
                   </MyChatFlexColumnDiv>
                   <StMyProfile img={data?.profile_img} />
                 </StFlexRow>
@@ -157,7 +157,7 @@ const ChatSubscribe = () => {
                     <StChatContentContainer>
                       <StChatContent>{v.message}</StChatContent>
                     </StChatContentContainer>
-                    <StTime>{v.messageModifiedAt}</StTime>
+                    <StTime>{v.messageModifiedTime}</StTime>
                   </ChatFlexColumnDiv>
                 </StFlexRow>
               );
@@ -172,7 +172,7 @@ const ChatSubscribe = () => {
                     <StChatContentContainer me>
                       <StChatContent me>{v.message}</StChatContent>
                     </StChatContentContainer>
-                    <StTime me>{v.messageModifiedAt}</StTime>
+                    <StTime me>{v.messageModifiedTime}</StTime>
                   </MyChatFlexColumnDiv>
                   <StMyProfile img={data?.profile_img} />
                 </StFlexRow>
@@ -183,7 +183,7 @@ const ChatSubscribe = () => {
                     <StChatContentContainer>
                       <StChatContent>{v.message}</StChatContent>
                     </StChatContentContainer>
-                    <StTime>{v.messageModifiedAt}</StTime>
+                    <StTime>{v.messageModifiedTime}</StTime>
                   </ChatFlexColumnDiv>
                 </StFlexRow>
               );
@@ -271,9 +271,11 @@ const StOtherName = styled.span`
 const StWrap = styled.div`
   ${flex({ direction: "column", justify: "flex-start" })}
   width: calc(100% - 32px);
-  height: calc(var(--vh) * 70);
   margin-top: 31px;
   overflow-y: scroll;
+  @media screen and (min-height: 420px) {
+    width: 384px;
+  }
 `;
 
 const StDate = styled.div`

@@ -93,4 +93,7 @@ const FlexRowDiv = styled.div`
   @media screen and (max-height: 770px) {
     margin-top: 0 !important;
   }
+  @media screen and (max-height: 820px) {
+    margin-top: 0 !important;
+  }
 `;
