@@ -57,6 +57,7 @@ const StOutDiv = styled.div`
     }
     .smallSpan {
       font-size: 16px;
+      color: var(--gray-6);
     }
     .bigSpan {
       font-weight: 700;

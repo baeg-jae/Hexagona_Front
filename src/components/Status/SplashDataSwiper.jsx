@@ -95,8 +95,12 @@ const SplashDataSwiper = () => {
         <StFourthContainer className="imgDiv">
           <StImgDiv pic="four" />
 
-          <Button click={onClickToLogin} text="갓생 시작하기" />
-          <PwaButton />
+          <div>
+            <Button click={onClickToLogin} text="갓생 시작하기" />
+          </div>
+          <div>
+            <PwaButton />
+          </div>
         </StFourthContainer>
       </SwiperSlide>
     </Swiper>
@@ -126,5 +130,8 @@ const StFourthContainer = styled.div`
   }
   @media screen and (max-height: 690px) {
     height: 400px;
+  }
+  @media screen and (max-height: 600px) {
+    height: 300px;
   }
 `;

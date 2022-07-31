@@ -14,11 +14,11 @@ const PwaButton = () => {
   };
 
   return (
-    <div>
+    <>
       {supported() && !isInstalled() && (
         <Button click={pwaClick} text="앱 다운받기" theme="dark" />
       )}
-    </div>
+    </>
   );
 };
 
