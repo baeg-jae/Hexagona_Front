@@ -57,7 +57,11 @@ const CommentImg = ({
               <span className="nameText">{postContent}</span>
             </BottomDiv>
             <div className="imgWrap">
-              <LikeButton onClick={() => addLike()} like={like} />
+              {data !== undefined ? (
+                <LikeButton onClick={() => addLike()} like={like} />
+              ) : (
+                <></>
+              )}
               {userId !== userInfo?.userId ? (
                 <></>
               ) : (
@@ -91,6 +95,9 @@ const StWrapFlex = styled.div`
   background-position: center;
   background-size: cover;
   border-radius: 16px;
+  @media screen and (max-height: 700px) {
+    height: 304px;
+  }
 `;
 
 const StGradient = styled.div`

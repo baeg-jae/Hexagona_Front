@@ -91,6 +91,6 @@ const FlexRowDiv = styled.div`
   ${flex({ gap: "16px" })}
   margin-top: 47px;
   @media screen and (max-height: 770px) {
-    margin-top: 27px;
+    margin-top: 0 !important;
   }
 `;

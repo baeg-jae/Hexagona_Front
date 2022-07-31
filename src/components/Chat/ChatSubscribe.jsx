@@ -26,8 +26,6 @@ const ChatSubscribe = () => {
   const dispatch = useDispatch();
   const inputRef = useRef();
 
-  console.log(post_list?.chatMessageDataList);
-
   const time =
     new Date(Date.now()).getFullYear() +
     "-" +

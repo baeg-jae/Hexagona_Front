@@ -1,7 +1,9 @@
 import {
   CenterCardAnim,
+  CenterCardAnimRes,
   FlexRowDiv,
   RightCardAnim,
+  RightCardAnimRes,
   RightRightCardAnim,
 } from "components/Common/GlobalStyles";
 import { CARD_ANIMATION_TIME } from "shared/data";
@@ -28,8 +30,6 @@ const GoalShotCards = ({
   }, [chooseOne, chooseTwo]);
   const getCategory = useCategory({ category: data[count]?.category });
   const getCategoryRight = useCategory({ category: data[count + 1]?.category });
-
-  console.log(data);
 
   return (
     <StContainer>
@@ -140,12 +140,33 @@ const StCard = styled.div`
   }
   @media screen and (max-width: 350px) {
     min-width: 230px;
+    animation: ${(props) => props.flag && CenterCardAnimRes()}
+      ${CARD_ANIMATION_TIME}s ease;
   }
-  @media screen and (max-height: 770px) {
+  @media screen and (max-height: 820px) {
     height: 400px;
   }
   @media screen and (max-height: 700px) {
     height: 350px;
+    margin-top: ${(props) => (props.differ ? "120px" : "68px")};
+  }
+`;
+
+const StRightCard = styled(StCard)`
+  animation: ${(props) => props.flag && RightCardAnim()} ${CARD_ANIMATION_TIME}s
+    ease;
+  @media screen and (max-width: 350px) {
+    animation: ${(props) => props.flag && RightCardAnimRes()}
+      ${CARD_ANIMATION_TIME}s ease;
+  }
+`;
+
+const StLeftCard = styled(StCard)`
+  animation: ${(props) => props.flag && RightCardAnim()} ${CARD_ANIMATION_TIME}s
+    ease;
+  @media screen and (max-width: 350px) {
+    animation: ${(props) => props.flag && RightCardAnimRes()}
+      ${CARD_ANIMATION_TIME}s ease;
   }
 `;
 
@@ -213,16 +234,6 @@ const StEmoji = styled.div`
   background-position: center;
   background-size: cover;
   margin-top: ${(props) => (props.mar ? "120px" : "15px")};
-`;
-
-const StRightCard = styled(StCard)`
-  animation: ${(props) => props.flag && RightCardAnim()} ${CARD_ANIMATION_TIME}s
-    ease;
-`;
-
-const StLeftCard = styled(StCard)`
-  animation: ${(props) => props.flag && RightCardAnim()} ${CARD_ANIMATION_TIME}s
-    ease;
 `;
 
 const StRightRightCard = styled(StCard)`

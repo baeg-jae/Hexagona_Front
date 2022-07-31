@@ -202,6 +202,37 @@ export const RightRightCardAnim = () => keyframes`
 }
 `;
 
+export const CenterCardAnimRes = () => keyframes`
+  0% {  
+    transform: translateX(0) translateY(0);
+    opacity: 1;
+}
+  100% {  
+    transform: translateX(-240px) translateY(50px); 
+    opacity: 0.6;
+}
+`;
+
+export const RightCardAnimRes = () => keyframes`
+  0% {  
+    transform: translateX(0) translateY(0); 
+    opacity: 0.6;
+}
+  100% {  
+    transform: translateX(-240px) translateY(-50px); 
+    opacity: 1;
+}
+`;
+
+export const RightRightCardAnimRes = () => keyframes`
+  0% {  
+    transform: translateX(0); 
+}
+  100% {  
+    transform: translateX(-240px); 
+}
+`;
+
 export const SurveyAnim = () => keyframes`
   0% {  
     transform: translateY(-5PX); 
