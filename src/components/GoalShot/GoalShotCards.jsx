@@ -30,6 +30,8 @@ const GoalShotCards = ({
   }, [chooseOne, chooseTwo]);
   const getCategory = useCategory({ category: data[count]?.category });
   const getCategoryRight = useCategory({ category: data[count + 1]?.category });
+  console.log(data?.length);
+  console.log(count);
 
   return (
     <StContainer>
@@ -42,38 +44,85 @@ const GoalShotCards = ({
           </div>
         </StLeftCard>
         {/* 중간카드 */}
-        <StCard img={data[count]?.photoUrl} flag={cardTrigger()}>
-          <StGradient top>
-            <HeaderDiv>
-              <FlexRowDiv>
-                <StProfile img={data[count]?.profile_img} />
-                <StTextDiv>
-                  <span className="titleText">갓생 입문자</span>
-                  <span>{data[count]?.nickname}</span>
-                </StTextDiv>
-              </FlexRowDiv>
-            </HeaderDiv>
-          </StGradient>
-          <StGradient>
-            <BottomWarp>
-              <BottomDiv>
-                <span className="category">{getCategory}</span>
-                <span className="postContent">{data[count]?.postContent}</span>
-              </BottomDiv>
-            </BottomWarp>
-          </StGradient>
-        </StCard>
+        {data?.length !== count && data?.length !== 0 ? (
+          <StCard img={data[count]?.photoUrl} flag={cardTrigger()}>
+            <StGradient top>
+              <HeaderDiv>
+                <FlexRowDiv>
+                  <StProfile img={data[count]?.profile_img} />
+                  <StTextDiv>
+                    <span className="titleText">갓생 입문자</span>
+                    <span>{data[count]?.nickname}</span>
+                  </StTextDiv>
+                </FlexRowDiv>
+              </HeaderDiv>
+            </StGradient>
+            <StGradient>
+              <BottomWarp>
+                <BottomDiv>
+                  <span className="category">{getCategory}</span>
+                  <span className="postContent">
+                    {data[count]?.postContent}
+                  </span>
+                </BottomDiv>
+              </BottomWarp>
+            </StGradient>
+          </StCard>
+        ) : (
+          <StLastCard flag={cardTrigger()} center>
+            <StEmoji smile />
+            <div className="innerTextDiv">
+              <span className="innerText">오늘의 평가가</span>
+              <span className="innerText">끝이 났어요!</span>
+            </div>
+            <span className="smallText">내가 좋아요 표시한 목표 인증</span>
+            <div className="likedPicsDiv">
+              <TodayLiked />
+            </div>
+          </StLastCard>
+        )}
         {/* 우측카드 */}
-        <StRightCard
-          img={data[count + 1]?.photoUrl}
-          differ
-          flag={cardTrigger()}
-        >
-          <div>
-            <span className="category">{getCategoryRight}</span>
-            <span className="postContent">{data[count + 1]?.postContent}</span>
-          </div>
-        </StRightCard>
+        {data?.length !== count + 1 ? (
+          <StRightCard
+            img={data[count + 1]?.photoUrl}
+            differ
+            flag={cardTrigger()}
+          >
+            <StGradient top>
+              <HeaderDiv>
+                <FlexRowDiv>
+                  <StProfile img={data[count + 1]?.profile_img} />
+                  <StTextDiv>
+                    <span className="titleText">갓생 입문자</span>
+                    <span>{data[count + 1]?.nickname}</span>
+                  </StTextDiv>
+                </FlexRowDiv>
+              </HeaderDiv>
+            </StGradient>
+            <StGradient>
+              <BottomWarp>
+                <BottomDiv>
+                  <span className="category">{getCategory}</span>
+                  <span className="postContent">
+                    {data[count + 1]?.postContent}
+                  </span>
+                </BottomDiv>
+              </BottomWarp>
+            </StGradient>
+          </StRightCard>
+        ) : (
+          <StLastCard flag={cardTrigger()} center differ>
+            <StEmoji smile />
+            <div className="innerTextDiv">
+              <span className="innerText">오늘의 평가가</span>
+              <span className="innerText">끝이 났어요!</span>
+            </div>
+            <span className="smallText">내가 좋아요 표시한 목표 인증</span>
+            <div className="likedPicsDiv">
+              <TodayLiked />
+            </div>
+          </StLastCard>
+        )}
       </StCardContainer>
 
       <GoalShotButtons
@@ -155,6 +204,7 @@ const StCard = styled.div`
 const StRightCard = styled(StCard)`
   animation: ${(props) => props.flag && RightCardAnim()} ${CARD_ANIMATION_TIME}s
     ease;
+  opacity: 0.3;
   @media screen and (max-width: 350px) {
     animation: ${(props) => props.flag && RightCardAnimRes()}
       ${CARD_ANIMATION_TIME}s ease;
@@ -164,6 +214,7 @@ const StRightCard = styled(StCard)`
 const StLeftCard = styled(StCard)`
   animation: ${(props) => props.flag && RightCardAnim()} ${CARD_ANIMATION_TIME}s
     ease;
+  opacity: 0.3;
   @media screen and (max-width: 350px) {
     animation: ${(props) => props.flag && RightCardAnimRes()}
       ${CARD_ANIMATION_TIME}s ease;
@@ -247,27 +298,41 @@ const StLastCard = styled.div`
   height: 480px;
   border-radius: 20px;
   opacity: ${(props) => (props.differ ? "0.6" : "1")};
-  margin-top: ${(props) => (props.center ? "57px" : "107px")};
+  margin-top: ${(props) => (props.differ ? "150px" : "98px")};
   animation: ${(props) => props.flag && RightCardAnim()} ${CARD_ANIMATION_TIME}s
     ease;
   border: 1px ${(props) => (props.dashed ? "dashed" : "none")} #cccccc;
   background: ${(props) =>
     props.bg ? "linear-gradient(0deg, #f9f9f9, #f9f9f9)" : "none"};
+  color: var(--white);
   .innerTextDiv {
     ${flex({ direction: "column" })}
     margin-top: 28px;
   }
   .innerText {
-    color: var(--black);
     font-weight: 600;
     font-size: 24px;
   }
   .smallText {
     font-size: 14px;
-    color: var(--gray-7);
     margin-top: 20px;
   }
   .likedPicsDiv {
-    width: 100%;
+    width: 300px;
+  }
+  @media screen and (max-height: 820px) {
+    height: 500px;
+
+    .likedPicsDiv {
+      width: 300px;
+    }
+  }
+  @media screen and (max-height: 700px) {
+    margin-top: ${(props) => (props.differ ? "120px" : "68px")};
+  }
+  @media screen and (max-width: 280px) {
+    .likedPicsDiv {
+      width: 260px;
+    }
   }
 `;
