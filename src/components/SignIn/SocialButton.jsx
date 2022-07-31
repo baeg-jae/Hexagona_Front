@@ -21,7 +21,8 @@ const StButtonDiv = styled.a`
   margin-top: 8px;
   background-color: ${(props) => handleButtonColor(props.name)};
   .innerText {
-    font-size: 16px;
+    font-size: 17px;
+    font-weight: 700;
     color: ${(props) => handleTextColor(props.name)};
   }
   &:last-child {

@@ -15,7 +15,7 @@ import { useCallback } from "react";
 import Agreement from "components/SignIn/Agreement";
 
 const LogIn = () => {
-  const [openAgree, setOpenAgree] = useState(true);
+  const [openAgree, setOpenAgree] = useState(false);
   const onOpenAgreeHandler = useCallback(() => {
     setOpenAgree((value) => !value);
   }, []);
@@ -25,8 +25,7 @@ const LogIn = () => {
       {openAgree && (
         <Agreement
           title="갓생메이커 이용약관"
-          confirmTitle="동의하기"
-          cancelTitle="나가기"
+          confirmTitle="닫기"
           confirm={onOpenAgreeHandler}
         />
       )}

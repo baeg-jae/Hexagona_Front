@@ -5,7 +5,7 @@ import { StButton } from "components/Common/GlobalStyles";
 import { generateWordSet } from "./fetchAgreement";
 import { useState, useEffect } from "react";
 
-const Agreement = ({ confirm, title, cancelTitle, confirmTitle }) => {
+const Agreement = ({ confirm, title, confirmTitle }) => {
   const [wordSet, setWordSet] = useState();
   const [flagBottom, setFlagBottom] = useState(true);
   useEffect(() => {
