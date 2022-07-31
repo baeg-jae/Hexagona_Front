@@ -26,10 +26,13 @@ const ChatSubscribe = () => {
   const dispatch = useDispatch();
   const inputRef = useRef();
 
+  console.log(post_list?.chatMessageDataList);
+
   const time =
     new Date(Date.now()).getFullYear() +
     "-" +
-    (new Date(Date.now()).getMonth() + 1) +
+    new Date(Date.now()).getMonth() +
+    1 +
     "-" +
     new Date(Date.now()).getDate() +
     "T" +
@@ -135,28 +138,29 @@ const ChatSubscribe = () => {
       </StHeader>
       <StBody>
         <StWrap ref={messageScroll}>
+          <StDate>2022년 7월 31일</StDate>
           {
             // 내가 예전에 주고받은 채팅 기록
             post_list?.chatMessageDataList?.map((v, i) => {
               return v.userNickname === nickname ? (
                 <StFlexRow key={i}>
-                  <FlexColumnDiv>
+                  <MyChatFlexColumnDiv>
                     <StChatContentContainer me>
                       <StChatContent me>{v.message}</StChatContent>
                     </StChatContentContainer>
                     <StTime me>{v.messageModifiedAt}</StTime>
-                  </FlexColumnDiv>
+                  </MyChatFlexColumnDiv>
                   <StMyProfile img={data?.profile_img} />
                 </StFlexRow>
               ) : (
                 <StFlexRow key={i}>
                   <StMyProfile img={post_list?.otherProfileImg} />
-                  <FlexColumnDiv>
+                  <ChatFlexColumnDiv>
                     <StChatContentContainer>
                       <StChatContent>{v.message}</StChatContent>
                     </StChatContentContainer>
                     <StTime>{v.messageModifiedAt}</StTime>
-                  </FlexColumnDiv>
+                  </ChatFlexColumnDiv>
                 </StFlexRow>
               );
             })
@@ -166,23 +170,23 @@ const ChatSubscribe = () => {
             publicChats?.map((v, i) => {
               return v.userId === userId ? (
                 <StFlexRow key={i}>
-                  <FlexColumnDiv>
+                  <MyChatFlexColumnDiv>
                     <StChatContentContainer me>
                       <StChatContent me>{v.message}</StChatContent>
                     </StChatContentContainer>
                     <StTime me>{v.messageModifiedAt}</StTime>
-                  </FlexColumnDiv>
+                  </MyChatFlexColumnDiv>
                   <StMyProfile img={data?.profile_img} />
                 </StFlexRow>
               ) : (
                 <StFlexRow key={i}>
                   <StMyProfile img={post_list?.otherProfileImg} />
-                  <FlexColumnDiv>
+                  <ChatFlexColumnDiv>
                     <StChatContentContainer>
                       <StChatContent>{v.message}</StChatContent>
                     </StChatContentContainer>
                     <StTime>{v.messageModifiedAt}</StTime>
-                  </FlexColumnDiv>
+                  </ChatFlexColumnDiv>
                 </StFlexRow>
               );
             })
@@ -274,15 +278,32 @@ const StWrap = styled.div`
   overflow-y: scroll;
 `;
 
+const StDate = styled.div`
+  font-size: 13px;
+  background-color: var(--gray-1);
+  padding: 5px 10px;
+  border-radius: 10px;
+`;
+
+const MyChatFlexColumnDiv = styled.div`
+  ${flex({ direction: "column", align: "flex-end" })};
+  width: 80%;
+`;
+
+const ChatFlexColumnDiv = styled.div`
+  ${flex({ direction: "column", align: "flex-start" })};
+  width: 80%;
+`;
+
 const StChatContentContainer = styled.div`
-  ${flex({ direction: "column" })}
+  ${flex({ direction: "column", items: "flex-end" })}
   // 여기가 채팅 말풍선
-  width: 277px;
-  padding: 10px;
+  max-width: 230px;
+  padding: 10px 15px;
   background: ${(props) => (props.me ? "var(--green)" : "var(--gray-1)")};
   border-radius: ${(props) =>
     props.me ? "30px 30px 0 30px" : "30px 30px 30px 0"};
-  margin: 10px 10px 5px 10px;
+  margin: 10px -3px 5px -3px;
 `;
 
 const StChatContent = styled.span`
@@ -292,7 +313,8 @@ const StChatContent = styled.span`
 `;
 
 const StFlexRow = styled.div`
-  ${flex({ justify: "space-evenly", align: "flex-end" })}
+  ${flex({ justify: "space-evenly", align: "flex-end" })};
+  width: 100%;
 `;
 
 const StTime = styled.span`
