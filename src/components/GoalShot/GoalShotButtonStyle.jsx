@@ -18,6 +18,10 @@ export const StButton = styled.button`
   &:disabled {
     background-color: inherit;
   }
+  @media screen and (max-height: 700px) {
+    width: 80px;
+    height: 80px;
+  }
 `;
 
 export const StImageDiv = styled.div`

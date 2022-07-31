@@ -1,13 +1,12 @@
-import { FlexRowDiv } from "components/Common/GlobalStyles";
 import { useEffect } from "react";
 import { CARD_BUTTON_TIME } from "shared/data";
 import AddDislikeButton from "./AddDislikeButton";
 import AddLikeButton from "./AddLikeButton";
-import { GOALSHOT_RANDOM_CARD } from "shared/data";
 import Button from "components/Common/Button";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import { useCallback } from "react";
+import flex from "components/Common/flex";
 
 const GoalShotButtons = ({
   count,
@@ -44,8 +43,8 @@ const GoalShotButtons = ({
   }, [navigate]);
 
   return (
-    <FlexRowDiv style={{ gap: "16px" }}>
-      {data?.length < GOALSHOT_RANDOM_CARD || count === GOALSHOT_RANDOM_CARD ? (
+    <FlexRowDiv>
+      {data?.length === count ? (
         <StButtonDiv>
           <Button
             theme="dark"
@@ -78,6 +77,20 @@ const GoalShotButtons = ({
 export default GoalShotButtons;
 
 const StButtonDiv = styled.div`
-  position: fixed;
+  position: absolute;
   bottom: 10%;
+  @media screen and (max-height: 770px) {
+    bottom: 11%;
+  }
+  @media screen and (max-height: 670px) {
+    bottom: 12%;
+  }
+`;
+
+const FlexRowDiv = styled.div`
+  ${flex({ gap: "16px" })}
+  margin-top: 47px;
+  @media screen and (max-height: 770px) {
+    margin-top: 27px;
+  }
 `;

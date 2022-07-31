@@ -177,7 +177,7 @@ export const CenterCardAnim = () => keyframes`
     opacity: 1;
 }
   100% {  
-    transform: translateX(-295px) translateY(50px); 
+    transform: translateX(-320px) translateY(50px); 
     opacity: 0.6;
 }
 `;
@@ -188,7 +188,7 @@ export const RightCardAnim = () => keyframes`
     opacity: 0.6;
 }
   100% {  
-    transform: translateX(-295px) translateY(-50px); 
+    transform: translateX(-320px) translateY(-50px); 
     opacity: 1;
 }
 `;
@@ -198,7 +198,7 @@ export const RightRightCardAnim = () => keyframes`
     transform: translateX(0); 
 }
   100% {  
-    transform: translateX(-295px); 
+    transform: translateX(-320px); 
 }
 `;
 

@@ -11,7 +11,7 @@ import loadable from "@loadable/component";
 const Loading = loadable(() => import("pages/Status/Loading"));
 
 const GoalShot = () => {
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(0);
   const { data, isFetching } = useGetGoalShot();
   const [chooseOne, isChooseOne] = useState(false);
   const [chooseTwo, isChooseTwo] = useState(false);
@@ -32,15 +32,7 @@ const GoalShot = () => {
               chooseTwo={chooseTwo}
               isChooseOne={isChooseOne}
               isChooseTwo={isChooseTwo}
-            />
-            <GoalShotButtons
-              count={count}
               setCount={setCount}
-              data={data}
-              chooseOne={chooseOne}
-              chooseTwo={chooseTwo}
-              isChooseOne={isChooseOne}
-              isChooseTwo={isChooseTwo}
             />
           </>
         )}
