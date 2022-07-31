@@ -15,6 +15,7 @@ const FeedContainer = () => {
   const [debounceInput, setDebounceInput] = useDebounce(text, 300);
   const { ref, inView } = useInView();
   const { data, fetchNextPage, isFetchingNextPage } = useGetPost();
+  console.log(data);
 
   const onClickHandler = useCallback(
     (postId) => {
@@ -80,6 +81,7 @@ export default FeedContainer;
 const StScrollWrapper = styled.div`
   width: 100%;
   height: calc(100vh - 70px);
+  max-height: 900px;
   overflow-y: scroll;
 `;
 
