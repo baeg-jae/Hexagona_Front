@@ -15,6 +15,7 @@ import TodayLiked from "components/Chat/TodayLiked";
 import { useCallback } from "react";
 import useCategory from "components/Hooks/useCategory";
 import GoalShotButtons from "./GoalShotButtons";
+import smile from "assets/img/smile.svg";
 
 const GoalShotCards = ({
   data,
@@ -70,7 +71,7 @@ const GoalShotCards = ({
           </StCard>
         ) : (
           <StLastCard flag={cardTrigger()} center>
-            <StEmoji smile />
+            <StEmoji />
             <div className="innerTextDiv">
               <span className="innerText">오늘의 평가가</span>
               <span className="innerText">끝이 났어요!</span>
@@ -112,7 +113,7 @@ const GoalShotCards = ({
           </StRightCard>
         ) : (
           <StLastCard flag={cardTrigger()} center differ>
-            <StEmoji smile />
+            <StEmoji />
             <div className="innerTextDiv">
               <span className="innerText">오늘의 평가가</span>
               <span className="innerText">끝이 났어요!</span>
@@ -287,7 +288,7 @@ const BottomDiv = styled.div`
 const StEmoji = styled.div`
   width: 127px;
   height: 127px;
-  background-image: url(${(props) => (props.smile ? `${Smile}` : `${Sad}`)});
+  background-image: url(${smile});
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
