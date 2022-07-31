@@ -21,4 +21,7 @@ const Btn = styled.button`
     props.theme === "dark" ? "#956C4A" : "#1E1919"};
   color: ${(props) =>
     props.theme === "dark" ? "var(--white)" : "var(--white)"};
+  @media screen and (max-width: 350px) {
+    width: 250px;
+  }
 `;

@@ -70,9 +70,13 @@ const StWrap = styled.div`
     width: 345px;
     border: 1px solid var(--gray-3);
     margin-bottom: 26px;
+    @media screen and (max-width: 350px) {
+      width: 270px;
+    }
   }
 
   .active {
+    font-weight: 700;
     color: var(--black) !important;
     div {
       border: 1px solid var(--black);
