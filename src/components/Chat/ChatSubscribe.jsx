@@ -130,7 +130,7 @@ const ChatSubscribe = () => {
   };
 
   return (
-    <FlexColumnDiv>
+    <>
       <StHeader>
         <BackButton />
         <StOtherProfile img={post_list?.otherProfileImg} />
@@ -210,7 +210,7 @@ const ChatSubscribe = () => {
           </StInputDivGlobal>
         </StInputDiv>
       </StBody>
-    </FlexColumnDiv>
+    </>
   );
 };
 
@@ -220,7 +220,6 @@ const StHeader = styled.div`
   ${flex({ justify: "flex-start" })}
   width: 100%;
   height: 49px;
-  margin-top: 44px;
   border-top: 1px solid var(--gray-3);
   border-bottom: 1px solid var(--gray-3);
 `;
@@ -228,8 +227,7 @@ const StHeader = styled.div`
 const StBody = styled.div`
   ${flex({ direction: "column", justify: "space-between" })}
   width: 100%;
-  height: calc(100vh - 200px);
-  max-height: 900px;
+  max-height: calc(100% - 180px);
 `;
 
 const StOtherProfile = styled.div`
