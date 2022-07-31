@@ -276,9 +276,10 @@ const StWrap = styled.div`
 
 const StChatContentContainer = styled.div`
   ${flex({ direction: "column" })}
+  // 여기가 채팅 말풍선
   width: 277px;
   padding: 10px;
-  background: ${(props) => (props.me ? "var(--gray-1)" : "var(--green)")};
+  background: ${(props) => (props.me ? "var(--green)" : "var(--gray-1)")};
   border-radius: ${(props) =>
     props.me ? "30px 30px 0 30px" : "30px 30px 30px 0"};
   margin: 10px 10px 5px 10px;
@@ -287,7 +288,7 @@ const StChatContentContainer = styled.div`
 const StChatContent = styled.span`
   font-weight: 600;
   line-height: 28px;
-  color: ${(props) => (props.me ? "var(--gray-10)" : "var(--white)")};
+  color: ${(props) => (props.me ? "var(--white)" : "var(--gray-10)")};
 `;
 
 const StFlexRow = styled.div`
@@ -301,3 +302,6 @@ const StTime = styled.span`
   font-size: 10px;
   margin: ${(props) => (props.me ? "0 16px 0 0" : "0 0 0 16px")};
 `;
+
+// time 색상
+// color: var(--gary-6);
