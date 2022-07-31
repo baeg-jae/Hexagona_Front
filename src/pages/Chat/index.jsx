@@ -27,7 +27,7 @@ const Chat = () => {
       <Helmet>
         <title>채팅: 갓생메이커</title>
       </Helmet>
-      <>
+      <StChatMainContent>
         <Search text="이름을 검색해주세요." setKeyword={setDebounceInput} />
         <div style={{ width: "500px", height: "77px" }} />
         <div>
@@ -37,7 +37,7 @@ const Chat = () => {
         <StLikeTitle>채팅</StLikeTitle>
         {/* props로 유저 정보를 넘겨줍니다. */}
         {userId !== 0 && <ChatList keyword={debounceInput} userId={userId} />}
-      </>
+      </StChatMainContent>
       <NavigatorBar />
     </StCalculatedWrap>
   );
@@ -45,8 +45,10 @@ const Chat = () => {
 
 export default Chat;
 
-const StCalculatedWrap = styled(StWrap)`
-  height: calc(100vh - 60px);
+const StCalculatedWrap = styled(StWrap)``;
+
+const StChatMainContent = styled.div`
+  height: calc(100% - 68px);
   overflow-y: scroll;
 `;
 
