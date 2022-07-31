@@ -10,11 +10,28 @@ import flex from "components/Common/flex";
 import styled from "@emotion/styled";
 import { SPLASH_FADE_ANIMATION } from "shared/data";
 import { fadeAnimation } from "components/Common/GlobalStyles";
+import { useState } from "react";
+import { useCallback } from "react";
+import Agreement from "components/SignIn/Agreement";
 
 const LogIn = () => {
+  const [openAgree, setOpenAgree] = useState(false);
+  const onOpenAgreeHandler = useCallback(() => {
+    setOpenAgree((value) => !value);
+  }, []);
   return (
     <StFirstPageDiv>
       <WebTitle text="로그인: 갓생메이커" />
+      {openAgree && (
+        <Agreement
+          title="갓생메이커 이용약관"
+          confirmTitle="닫기"
+          confirm={onOpenAgreeHandler}
+        />
+      )}
+      <button className="agreement" onClick={onOpenAgreeHandler}>
+        이용약관
+      </button>
       <div className="gradient">
         <span>이번엔 꼭 내 인생을 갓생으로</span>
         <span className="bigFont">갓생메이커</span>
@@ -42,14 +59,23 @@ export default LogIn;
 
 const StFirstPageDiv = styled.div`
   ${flex({ direction: "column", justify: "flex-end" })}
+  position: relative;
   height: 100%;
   font-size: 20px;
   color: var(--white);
   background-size: contain;
   background-image: url(${LoginImg});
   animation: ${fadeAnimation} ${SPLASH_FADE_ANIMATION}s ease;
+  .agreement {
+    position: absolute;
+    top: 2%;
+    right: 5%;
+    background-color: transparent;
+    border: 1px solid var(--black);
+  }
   .bigFont {
     font-weight: 700;
+    font-family: Pretendard_Bold;
     font-size: 48px;
     margin-bottom: 13px;
   }

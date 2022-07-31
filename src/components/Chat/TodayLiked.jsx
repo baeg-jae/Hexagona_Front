@@ -18,6 +18,7 @@ import "swiper/css/autoplay";
 import { CARD_BUTTON_TIME } from "shared/data";
 import { useCallback } from "react";
 import { ChatJoinModalError } from "redux/modules/modal";
+import DirectToFeed from "./DirectToFeed";
 
 const Loading = loadable(() => import("pages/Status/Loading"));
 
@@ -61,6 +62,8 @@ const TodayLiked = ({ userData }) => {
             좋아요를 누르러 가볼까요?
             <HiCursorClick className="clickIcon" />
           </span>
+          <DirectToFeed text="여기로 가요!" left={22} left2={59.2} />
+          <DirectToFeed text="여기로 가요!" left={45} left2={64.1} />
         </StEmptyLiked>
       ) : (
         <Swiper
@@ -107,6 +110,7 @@ const StEmptyLiked = styled(StDupModel)`
   cursor: pointer;
   span {
     font-weight: 700;
+    font-family: Pretendard_Bold;
     font-size: 24px;
     line-height: 29px;
     color: var(--brown-3);

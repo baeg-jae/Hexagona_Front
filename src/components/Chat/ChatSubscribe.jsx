@@ -257,6 +257,7 @@ const StInputDiv = styled.div`
 
 const StOtherName = styled.span`
   font-weight: 700;
+  font-family: Pretendard_Bold;
   font-size: 15px;
   line-height: 130%;
   margin-left: 8px;

@@ -105,6 +105,7 @@ const StModal = styled.div`
       height: 179px;
       .alertTitle {
         font-weight: 700;
+        font-family: Pretendard_Bold;
         font-size: 18px;
         color: var(--black);
         margin: 24px 0;

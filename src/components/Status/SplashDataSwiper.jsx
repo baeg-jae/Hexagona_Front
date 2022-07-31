@@ -105,6 +105,8 @@ const SplashDataSwiper = () => {
 
 export default SplashDataSwiper;
 
+const StSwiper = styled(Swiper)``;
+
 const StImgDiv = styled.div`
   width: 339px;
   height: 339px;

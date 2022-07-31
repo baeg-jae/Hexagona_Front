@@ -25,7 +25,7 @@ export const StInput = styled.input`
 `;
 
 export const StButton = styled.button`
-  width: 131.94px;
+  width: 132px;
   height: 48px;
   border-radius: 8px;
   margin: 0 4.06px 0 4.06px;
@@ -40,6 +40,7 @@ export const StWrapFlex = styled(StWrap)`
   color: #665547;
   .bigSpan {
     font-weight: 700;
+    font-family: Pretendard_Bold;
     font-size: 64px;
     line-height: 130%;
     margin-bottom: 6px;
@@ -69,6 +70,7 @@ export const StInputDivGlobal = styled.div`
   .commentButton {
     background-color: transparent;
     font-weight: 700;
+    font-family: Pretendard_Bold;
     line-height: 20px;
     color: #4876ef;
     margin-right: 15px;
@@ -100,6 +102,7 @@ export const StModalGlobal = styled.div`
         width: 100%;
         .missionTitle {
           font-weight: 700;
+          font-family: Pretendard_Bold;
           font-size: 18px;
           color: var(--black);
           margin-bottom: 24px;
@@ -248,11 +251,14 @@ export const alertModalIconAnim = keyframes`
   }
 `;
 
-export const TextFadeAnim = keyframes`
+export const TalkCloudAnim = keyframes`
  0% { 
-    opacity: 0; 
+   transform: translateY(0);
+  }
+  50%{
+    transform: translateY(-10px);
   }
   100% { 
-    opacity: 1; 
+    transform: translateY(0);
   }
 `;

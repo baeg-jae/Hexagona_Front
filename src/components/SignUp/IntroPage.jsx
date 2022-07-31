@@ -44,6 +44,7 @@ export default IntroPage;
 const StWrapFlex = styled(StWrap)`
   ${flex({ direction: "column", justify: "flex-start" })}
   font-weight: 700;
+  font-family: Pretendard_Bold;
   font-size: 34px;
   line-height: 130%;
   .OrangeText {

@@ -62,6 +62,7 @@ const StModal = styled(StModalGlobal)`
       height: 179px;
       .missionTitle {
         font-weight: 700;
+        font-family: Pretendard_Bold;
         font-size: 18px;
         color: var(--black);
         margin-bottom: 6px;

@@ -45,6 +45,7 @@ export const missionOne = [
         <br />
         <span>목표를 추가할 수 있습니다.</span>
         <br />
+        <span>최대 4개까지 추가 가능합니다.</span>
       </div>
     ),
     placement: "auto",
