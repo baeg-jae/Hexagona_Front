@@ -15,10 +15,12 @@ import useCommentDHandle from "components/Hooks/Comment/useCommentDHandle";
 import useDetailDHandle from "components/Hooks/Detail/useDetailDHandle";
 import useMissionDHandle from "components/Hooks/Mission/useMissionDHandle";
 import useMissionUHandle from "components/Hooks/Mission/useMissionUHandle";
+import { useNavigate } from "react-router-dom";
 
 const DropDownMenu = ({
   text,
   text2,
+  text3,
   margin,
   click,
   click2,
@@ -28,6 +30,7 @@ const DropDownMenu = ({
   missionId,
 }) => {
   const dropDownRef = useRef(null);
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useDetectClose(dropDownRef, false);
   // 닉네임 변경
   const { setNicknameFlag, nicknameFlag, setNickname, bogusCheck } =
@@ -85,6 +88,11 @@ const DropDownMenu = ({
   const onCancelBtnHandler = useCallback((setter) => {
     setter((value) => !value);
   }, []);
+
+  const onLogoutHandler = useCallback(() => {
+    navigate("/login");
+    localStorage.removeItem("Authorization");
+  }, [navigate]);
 
   return (
     <FlexRowDiv>
@@ -146,6 +154,14 @@ const DropDownMenu = ({
             ) : (
               <></>
             )}
+            {text3 !== undefined ? (
+              <>
+                <div />
+                <span onClick={() => onLogoutHandler()}>{text3}</span>
+              </>
+            ) : (
+              <></>
+            )}
           </DropRow>
         ) : (
           <></>
@@ -162,6 +178,7 @@ const StImgDiv = styled.div`
   width: 2.5px;
   height: 12px;
   margin-right: 10.25px;
+  z-index: 10;
 `;
 const StDotDiv = styled.div`
   color: ${(props) => props.color};

@@ -18,9 +18,10 @@ const Header = ({ data }) => {
           <DropDownMenu
             text={!data?.picChange ? "프로필 등록" : "프로필 변경"}
             text2="닉네임 변경"
+            text3="로그아웃"
             margin="40"
-            click2="nickname"
             click="image"
+            click2="nickname"
           />
         </HeaderWrap>
       </StWrapFlex>
