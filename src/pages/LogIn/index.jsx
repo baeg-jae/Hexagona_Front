@@ -41,14 +41,16 @@ const LogIn = () => {
           text="카카오 계정으로 시작하기"
         />
         <SocialButton
-          link={NAVER_AUTH_URL}
+          // link={NAVER_AUTH_URL}
           name="naver"
-          text="네이버 계정으로 시작하기"
+          // text="네이버 계정으로 시작하기"
+          text="서비스 준비중 입니다."
         />
         <SocialButton
-          link={GOOGLE_AUTH_URL}
+          // link={GOOGLE_AUTH_URL}
           name=""
-          text="Google 계정으로 계속하기"
+          // text="Google 계정으로 계속하기"
+          text="서비스 준비중 입니다."
         />
       </div>
     </StFirstPageDiv>
