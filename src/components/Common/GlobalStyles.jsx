@@ -8,7 +8,7 @@ export const FlexRowDiv = styled.div`
 `;
 
 export const FlexColumnDiv = styled.div`
-  ${flex({ direction: "column" })}
+  ${flex({ direction: "column", align: "flex-start" })}
 `;
 
 export const StWrap = styled.div`

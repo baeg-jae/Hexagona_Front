@@ -57,5 +57,5 @@ const StLikeTitle = styled.div`
   font-weight: 700;
   font-size: 18px;
   color: #393939;
-  margin: 20px 0 0 19px;
+  margin: 20px 0 18px 19px;
 `;
