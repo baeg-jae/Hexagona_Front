@@ -49,7 +49,6 @@ const StMyPageDisabled = styled.div`
 
 const StMyPage = styled.div`
   ${flex({ direction: "column" })}
-  width: 97%;
   height: 225px;
   border-radius: 16px;
   margin: 5px 5px 5px 5px;
