@@ -85,7 +85,7 @@ const StWrap = styled.div`
       width: 65%;
       margin-left: 40px;
       font-weight: 600;
-      font-size: 24px;
+      font-size: 18px;
       color: var(--gary-7);
       white-space: pre-wrap;
     }

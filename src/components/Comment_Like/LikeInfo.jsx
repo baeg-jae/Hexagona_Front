@@ -35,11 +35,11 @@ const LikeInfo = ({ postId }) => {
       ) : (
         <StWrap>
           {picAmountHandler()}
-          <span>
+          <StLikeSpan>
             {data?.length - LIKE_MAX_SHOW < 1
               ? ""
-              : `+${data?.length - LIKE_MAX_SHOW}`}
-          </span>
+              : `님 외 ${data?.length - LIKE_MAX_SHOW}명이 좋아합니다.`}
+          </StLikeSpan>
         </StWrap>
       )}
     </>
@@ -53,6 +53,7 @@ const StWrap = styled.div`
   width: calc(100% - 32px);
   margin-top: 9px;
   margin-left: 8px;
+  margin-bottom: 16px;
 `;
 
 const StImg = styled.div`
@@ -68,4 +69,10 @@ const StHidedText = styled.div`
   width: 20px;
   height: 20px;
   opacity: 0;
+`;
+
+const StLikeSpan = styled.span`
+  font-size: 12px;
+  line-height: 14px;
+  color: #212121;
 `;

@@ -179,6 +179,7 @@ const StImgDiv = styled.div`
   height: 12px;
   margin-right: 10.25px;
   z-index: 10;
+  cursor: pointer;
 `;
 const StDotDiv = styled.div`
   color: ${(props) => props.color};

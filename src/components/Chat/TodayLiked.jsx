@@ -17,7 +17,6 @@ import "swiper/css/autoplay";
 import { CARD_BUTTON_TIME } from "shared/data";
 import { useCallback } from "react";
 import { ChatJoinModalError } from "redux/modules/modal";
-import DirectToFeed from "./DirectToFeed";
 
 const Loading = loadable(() => import("pages/Status/Loading"));
 
@@ -93,13 +92,14 @@ export default TodayLiked;
 const StDupModel = styled.div`
   width: 100%;
   height: 100%;
-  border-radius: 16px;
+  border-radius: 4px;
 `;
 
 const StTodayLIked = styled(StDupModel)`
   background-image: url(${(props) => props.img});
   background-position: center;
   background-size: cover;
+  cursor: pointer;
 `;
 
 const StEmptyLiked = styled(StDupModel)`

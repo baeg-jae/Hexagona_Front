@@ -8,6 +8,7 @@ export const StImgDiv = styled.div`
   background-position: center;
   border-radius: 16px;
   margin: 5px;
+  cursor: pointer;
 `;
 
 export const StSearchInputDiv = styled.div`

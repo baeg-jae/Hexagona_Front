@@ -1,5 +1,5 @@
 .swiper {
-  width: calc(100% - 16px) !important;
+  width: calc(100% - 32px) !important;
   height: 100%;
   box-shadow: none !important;
   text-shadow: none !important;
@@ -10,7 +10,7 @@
   background: transparent;
   width: 101.27px !important;
   height: 121.53px !important;
-  margin: 20px 5px 0 5px !important;
+  margin: 0px 2.5px 0 2.5px !important;
   border-radius: 4px !important;
   box-shadow: none !important;
   text-shadow: none !important;

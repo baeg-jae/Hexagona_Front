@@ -133,8 +133,8 @@ const ChatSubscribe = () => {
     <>
       <StHeader>
         <BackButton />
-        <StOtherProfile img={post_list?.otherProfileImg} />
         <StOtherName>{post_list?.otherNickName}</StOtherName>
+        <StOtherProfile img={post_list?.otherProfileImg} />
       </StHeader>
       <StBody>
         <StWrap ref={messageScroll}>
@@ -150,7 +150,6 @@ const ChatSubscribe = () => {
                     </StChatContentContainer>
                     <StTime me>{v.messageModifiedTime}</StTime>
                   </MyChatFlexColumnDiv>
-                  <StMyProfile img={data?.profile_img} />
                 </StFlexRow>
               ) : (
                 <StFlexRow key={i}>
@@ -176,7 +175,6 @@ const ChatSubscribe = () => {
                     </StChatContentContainer>
                     <StTime me>{v.messageModifiedTime}</StTime>
                   </MyChatFlexColumnDiv>
-                  <StMyProfile img={data?.profile_img} />
                 </StFlexRow>
               ) : (
                 <StFlexRow key={i}>
@@ -217,11 +215,11 @@ const ChatSubscribe = () => {
 export default ChatSubscribe;
 
 const StHeader = styled.div`
-  ${flex({ justify: "flex-start" })}
+  ${flex({ justify: "space-between" })}
   width: 100%;
-  height: 49px;
-  border-top: 1px solid var(--gray-3);
-  border-bottom: 1px solid var(--gray-3);
+  height: 56px;
+  border-bottom: 1px solid #f2f2f2;
+  margin-bottom: 18px;
 `;
 
 const StBody = styled.div`
@@ -234,7 +232,7 @@ const StOtherProfile = styled.div`
   width: 32px;
   height: 32px;
   border-radius: 100%;
-  margin-left: 14px;
+  margin-right: 16px;
   background-image: url(${(props) => props.img});
   background-size: cover;
   background-position: center;
@@ -243,7 +241,7 @@ const StOtherProfile = styled.div`
 const StMyProfile = styled(StOtherProfile)`
   width: 40px;
   height: 40px;
-  margin-left: 0px;
+  margin-left: 16px;
   background-image: url(${(props) => props.img});
 `;
 
@@ -254,28 +252,21 @@ const StInputDiv = styled.div`
   height: 50px;
   bottom: 68px;
   background-color: white;
-  @media screen and (min-width: 420px) {
-    width: 384px;
-  }
 `;
 
 const StOtherName = styled.span`
   font-weight: 700;
   font-family: Pretendard_Bold;
-  font-size: 15px;
-  line-height: 130%;
-  margin-left: 8px;
-  color: var(--black);
+  font-size: 14px;
+  line-height: 17px;
+  color: #393939;
 `;
 
 const StWrap = styled.div`
   ${flex({ direction: "column", justify: "flex-start" })}
-  width: calc(100% - 32px);
+  width: 100%;
   margin-top: 31px;
   overflow-y: scroll;
-  @media screen and (min-height: 420px) {
-    width: 384px;
-  }
 `;
 
 const StDate = styled.div`
@@ -287,27 +278,28 @@ const StDate = styled.div`
 
 const MyChatFlexColumnDiv = styled.div`
   ${flex({ direction: "column", align: "flex-end" })};
-  width: 80%;
+  width: 100%;
+  margin-right: 16px;
 `;
 
 const ChatFlexColumnDiv = styled.div`
   ${flex({ direction: "column", align: "flex-start" })};
-  width: 80%;
+  width: 100%;
+  margin-left: 16px;
 `;
 
 const StChatContentContainer = styled.div`
   ${flex({ direction: "column", items: "flex-end" })}
   // 여기가 채팅 말풍선
   max-width: 230px;
-  padding: 10px 15px;
-  background: ${(props) => (props.me ? "var(--green)" : "var(--gray-1)")};
+  padding: 4px 16px;
+  background: ${(props) => (props.me ? "#006FFD" : "var(--gray-1)")};
   border-radius: ${(props) =>
     props.me ? "30px 30px 0 30px" : "30px 30px 30px 0"};
-  margin: 10px -3px 5px -3px;
+  margin: 10px -0px 4px 0px;
 `;
 
 const StChatContent = styled.span`
-  font-weight: 600;
   line-height: 28px;
   color: ${(props) => (props.me ? "var(--white)" : "var(--gray-10)")};
 `;

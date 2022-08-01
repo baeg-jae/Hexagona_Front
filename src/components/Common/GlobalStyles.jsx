@@ -8,7 +8,7 @@ export const FlexRowDiv = styled.div`
 `;
 
 export const FlexColumnDiv = styled.div`
-  ${flex({ direction: "column" })}
+  ${flex({ direction: "column", align: "flex-start" })}
 `;
 
 export const StWrap = styled.div`
@@ -135,6 +135,7 @@ export const StModalGlobal = styled.div`
 export const StImg = styled.div`
   width: 50px;
   height: 43px;
+  cursor: pointer;
   margin-right: 20px;
   background-image: url(${(props) => props.img});
   background-size: cover;

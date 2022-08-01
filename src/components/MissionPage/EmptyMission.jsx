@@ -139,6 +139,7 @@ const StWrap = styled.div`
   border: 1px dashed var(--gray-5);
   border-radius: 16px;
   margin-bottom: 8px;
+  cursor: pointer;
   .innerDiv {
     ${flex({ align: "flex-end" })}
     height: 100%;
@@ -195,6 +196,7 @@ const StImg = styled.div`
 `;
 const StFlexBtw = styled.div`
   ${flex({ direction: "column", justify: "space-between" })};
+  width: 100%;
   height: calc(100% - 300px);
   @media screen and (max-height: 700px) {
     height: calc(100% - 250px);
@@ -203,4 +205,7 @@ const StFlexBtw = styled.div`
     height: 700px;
   }
 `;
-const StMissionBtn = styled.div``;
+const StMissionBtn = styled.div`
+  position: absolute;
+  bottom: 84px;
+`;

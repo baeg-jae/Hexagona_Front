@@ -41,7 +41,6 @@ export default MyPageFeed;
 
 const StMyPageDisabled = styled.div`
   ${flex({ direction: "column" })}
-  width: 97%;
   height: 225px;
   border-radius: 16px;
   margin: 5px 5px 5px 5px;
@@ -50,10 +49,10 @@ const StMyPageDisabled = styled.div`
 
 const StMyPage = styled.div`
   ${flex({ direction: "column" })}
-  width: 97%;
   height: 225px;
   border-radius: 16px;
   margin: 5px 5px 5px 5px;
+  cursor: pointer;
   background: linear-gradient(
       90deg,
       rgba(255, 255, 255, 0.6) 0%,
@@ -76,7 +75,7 @@ const StSkeleton = styled.div`
   width: 97%;
   height: 225px;
   border-radius: 16px;
-  margin: 10px 5px 5px 5px;
+  margin: 5px 5px 5px 5px;
   background-color: var(--skeleton);
   animation: ${SkeletonAnim} 0.5s linear infinite alternate;
 `;

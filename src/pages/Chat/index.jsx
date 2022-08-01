@@ -34,7 +34,7 @@ const Chat = () => {
           <StLikeTitle>좋아요 표시한 게시글</StLikeTitle>
           <TodayLiked userData={data} />
         </div>
-        <StLikeTitle>채팅</StLikeTitle>
+        <StLikeTitle chat>채팅</StLikeTitle>
         {/* props로 유저 정보를 넘겨줍니다. */}
         {userId !== 0 && <ChatList keyword={debounceInput} userId={userId} />}
       </StChatMainContent>
@@ -55,8 +55,7 @@ const StChatMainContent = styled.div`
 
 const StLikeTitle = styled.div`
   font-weight: 700;
-  font-family: Pretendard_Bold;
   font-size: 18px;
-  color: var(--gray-10);
-  margin: 20px 0 0 19px;
+  color: #393939;
+  margin: ${(props) => (props.chat ? "32px 0 24px 16px" : "32px 0 16px 16px")};
 `;

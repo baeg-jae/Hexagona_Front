@@ -24,6 +24,7 @@ const FeedDetail = () => {
         <>
           <StWrapComment>
             <WebTitle text="피드: 갓생메이커" />
+            hi
             <CommentImg
               category={data?.category}
               postContent={data?.postContent}

@@ -1,9 +1,8 @@
 import { COMMENT_MAX_LENGTH } from "shared/data";
 import { badWordsComment } from "shared/TextsData";
-import { useCallback, useState, useRef, useEffect } from "react";
+import { useCallback, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { CommentAddError } from "redux/modules/modal";
-import { BUTTON_CLICK_OFFSET } from "shared/data";
 import useAddComment from "components/Hooks/Comment/useAddComment";
 import useGetUser from "components/Hooks/User/useGetUser";
 import styled from "@emotion/styled";
@@ -15,7 +14,6 @@ const CommentInput = ({ postId }) => {
   const [comment, setComment] = useState("");
   const inputRef = useRef(null);
   const buttonRef = useRef(null);
-  const [doubleClick, setDoubleClick] = useState(false);
   const { mutate } = useAddComment();
   const dispatch = useDispatch();
   const addComment = useCallback(() => {
@@ -31,8 +29,6 @@ const CommentInput = ({ postId }) => {
   }, [comment, mutate, postId, dispatch]);
 
   const bogusCheck = useCallback(() => {
-    buttonRef.current.disabled = true;
-    setDoubleClick(true);
     const foundSwears = badWordsComment.filter((word) =>
       comment.toLowerCase().includes(word.toLowerCase())
     );
@@ -42,18 +38,6 @@ const CommentInput = ({ postId }) => {
       addComment();
     }
   }, [comment, addComment, dispatch]);
-
-  useEffect(() => {
-    // 버튼 더블클릭 방지
-    const interval = setTimeout(() => {
-      if (doubleClick) {
-        buttonRef.current.disabled = false;
-      }
-    }, `${BUTTON_CLICK_OFFSET}`);
-    return () => {
-      clearTimeout(interval);
-    };
-  }, [doubleClick]);
 
   return (
     <>
@@ -88,7 +72,7 @@ const StWrapFlex = styled.div`
   position: absolute;
   width: calc(100% - 32px);
   height: 50px;
-  bottom: 68px;
+  bottom: 84px;
   background-color: var(--white);
   @media screen and (max-width: 300px) {
     width: 260px;

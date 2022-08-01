@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { CARD_BUTTON_TIME } from "shared/data";
 import AddDislikeButton from "./AddDislikeButton";
 import AddLikeButton from "./AddLikeButton";
-import Button from "components/Common/Button";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import { useCallback } from "react";
@@ -46,7 +45,7 @@ const GoalShotButtons = ({
     <FlexRowDiv>
       {data?.length === count ? (
         <StButtonDiv>
-          <Button
+          <Btn
             theme="dark"
             text="다른 사람들의 목표 인증 보러 가기"
             click={onClickBtnHandler}
@@ -78,7 +77,8 @@ export default GoalShotButtons;
 
 const StButtonDiv = styled.div`
   position: absolute;
-  bottom: 10%;
+  bottom: 88px;
+
   @media screen and (max-height: 770px) {
     bottom: 11%;
   }
@@ -96,4 +96,11 @@ const FlexRowDiv = styled.div`
   @media screen and (max-height: 820px) {
     margin-top: 0 !important;
   }
+`;
+
+const Btn = styled.button`
+  width: 343px;
+  height: 64px;
+  background: #ffffff;
+  border-radius: 10px;
 `;
