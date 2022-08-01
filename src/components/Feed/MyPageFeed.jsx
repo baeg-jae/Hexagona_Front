@@ -54,6 +54,7 @@ const StMyPage = styled.div`
   height: 225px;
   border-radius: 16px;
   margin: 5px 5px 5px 5px;
+  cursor: pointer;
   background: linear-gradient(
       90deg,
       rgba(255, 255, 255, 0.6) 0%,

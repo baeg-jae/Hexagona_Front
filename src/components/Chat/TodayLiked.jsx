@@ -100,6 +100,7 @@ const StTodayLIked = styled(StDupModel)`
   background-image: url(${(props) => props.img});
   background-position: center;
   background-size: cover;
+  cursor: pointer;
 `;
 
 const StEmptyLiked = styled(StDupModel)`

@@ -70,6 +70,7 @@ const StImgDiv = styled.div`
   background: url(${(props) => props.img});
   background-position: center;
   background-size: cover;
+  cursor: pointer;
 `;
 
 const StScrollWrapper = styled.div`

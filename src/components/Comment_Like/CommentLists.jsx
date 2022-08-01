@@ -74,13 +74,14 @@ const StReplyWrap = styled.div`
   width: calc(100% - 32px);
   margin-top: 15px;
   line-height: 130%;
+  padding-bottom: 24px;
   border-bottom: 1px solid var(--gray-1);
   .reply {
     width: calc(100% - 50px);
     .replyUser {
       ${flex({ justify: "space-between" })}
       font-weight: 700;
-      font-family: Pretendard_Bold;
+      color: #494949;
     }
     .replyDay {
       font-size: 12px;

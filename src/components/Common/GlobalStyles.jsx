@@ -135,6 +135,7 @@ export const StModalGlobal = styled.div`
 export const StImg = styled.div`
   width: 50px;
   height: 43px;
+  cursor: pointer;
   margin-right: 20px;
   background-image: url(${(props) => props.img});
   background-size: cover;

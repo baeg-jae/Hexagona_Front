@@ -119,6 +119,11 @@ export const badWords = [
   "ㅙ",
   "ㅞ",
   "ㅢ",
+  "야팔",
+  "조팔",
+  "싯팔",
+  "시팔",
+  "씨팔",
 ];
 
 export const badWordsComment = [
@@ -211,4 +216,9 @@ export const badWordsComment = [
   "과메기",
   "홍어",
   "시발",
+  "야팔",
+  "조팔",
+  "싯팔",
+  "시팔",
+  "씨팔",
 ];

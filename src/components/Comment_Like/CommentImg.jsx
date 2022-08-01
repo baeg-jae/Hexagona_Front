@@ -162,6 +162,7 @@ const BottomWarp = styled.div`
 const LikeButton = styled.div`
   width: 20px;
   height: 20px;
+  cursor: pointer;
   background-image: ${(props) =>
     props.like ? `url(${likeImg})` : `url(${unlikeImg})`};
   background-size: contain;

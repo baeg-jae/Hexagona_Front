@@ -29,10 +29,8 @@ export default Splash;
 const StOutDiv = styled.div`
   .slider {
     ${flex({ direction: "column", justify: "flex-start", align: "flex-start" })}
-    height: 1000px;
     color: var(--black);
     line-height: 130%;
-    overflow-y: scroll;
     .bigSpanDiv {
       ${flex({
         direction: "column",

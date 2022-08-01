@@ -36,7 +36,7 @@ const ImageModal = ({
             accept="image/*"
             onChange={saveFileImage}
           />
-          <label htmlFor="file">
+          <label htmlFor="file" style={{ cursor: "pointer" }}>
             {fileImage?.length ? (
               <StImg img={fileImage} />
             ) : (
