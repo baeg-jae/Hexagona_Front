@@ -72,9 +72,9 @@ const StWrap = styled.div`
 const StReplyWrap = styled.div`
   ${flex({ justify: "flex-start", direction: "row", align: "flex-start" })}
   width: calc(100% - 32px);
-  margin-top: 15px;
+  margin-top: 16px;
   line-height: 130%;
-  padding-bottom: 24px;
+  padding-bottom: 16px;
   border-bottom: 1px solid var(--gray-1);
   .reply {
     width: calc(100% - 50px);
@@ -97,5 +97,5 @@ const StProfile = styled.div`
   background-size: cover;
   background-position: center;
   background-image: url(${(props) => props.img});
-  margin-right: 8px;
+  margin-right: 16px;
 `;
