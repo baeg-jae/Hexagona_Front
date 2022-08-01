@@ -2,8 +2,11 @@ import { FlexColumnDiv } from "./GlobalStyles";
 import { NavLink } from "react-router-dom";
 import styled from "@emotion/styled";
 import flex from "./flex";
+import useGetUser from "components/Hooks/User/useGetUser";
 
 const NavigatorBar = () => {
+  const { data } = useGetUser();
+  console.log(data);
   return (
     <StWrapFlex>
       <NavLink to={"/home"}>
@@ -20,7 +23,9 @@ const NavigatorBar = () => {
       <NavLink to={"/chat"}>
         <StDiv>
           <span>채팅</span>
-          <StCircleAlert></StCircleAlert>
+          {data?.noticeCount > 0 && (
+            <StCircleAlert>{data?.noticeCount}</StCircleAlert>
+          )}
         </StDiv>
       </NavLink>
     </StWrapFlex>
@@ -54,6 +59,7 @@ const StWrapFlex = styled.div`
 `;
 
 const StCircleAlert = styled.div`
+  ${flex({})}
   position: absolute;
   top: -15px;
   right: -22px;
