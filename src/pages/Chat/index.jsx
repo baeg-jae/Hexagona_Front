@@ -55,8 +55,7 @@ const StChatMainContent = styled.div`
 
 const StLikeTitle = styled.div`
   font-weight: 700;
-  font-family: Pretendard_Bold;
   font-size: 18px;
-  color: var(--gray-10);
+  color: #393939;
   margin: 20px 0 0 19px;
 `;

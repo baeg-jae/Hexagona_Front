@@ -38,12 +38,13 @@ const StWrapFlex = styled.div`
     width: 100%;
   }
   span {
-    font-size: 13px;
+    font-size: 15px;
     color: var(--gray-5);
   }
   .active {
     span {
       font-weight: 700;
+      font-family: "Pretendard_Bold";
       color: var(--black);
     }
   }
