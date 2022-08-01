@@ -29,7 +29,9 @@ const ChatList = ({ keyword, userId }) => {
                     <StChatDec>{v.lastChat}</StChatDec>
                   </FlexColumnDiv>
                 </StFlexRow>
-                <StCircleAlert></StCircleAlert>
+                {v.noticeCount > 0 && (
+                  <StCircleAlert>{v.noticeCount}</StCircleAlert>
+                )}
               </StChatHeader>
             </StChat>
           )
@@ -87,6 +89,7 @@ const StFlexRow = styled.div`
 `;
 
 const StCircleAlert = styled.div`
+  ${flex({ direction: "row" })}
   width: 24px;
   height: 24px;
   background: #006ffd;

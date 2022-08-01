@@ -1,10 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  FlexColumnDiv,
-  StInputDivGlobal,
-} from "components/Common/GlobalStyles";
+import { StInputDivGlobal } from "components/Common/GlobalStyles";
 import { __prevPostChat } from "redux/modules/chat";
 import Stomp from "stompjs";
 import SockJS from "sockjs-client";
@@ -96,6 +93,7 @@ const ChatSubscribe = () => {
     }
     const data = {
       userId: userId,
+      receiverId: post_list?.otherId,
       chatRoomId: chatRoomId,
       modifiedAt: time,
       message: messageData,
