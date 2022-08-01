@@ -87,5 +87,5 @@ const StScrollWrapper = styled.div`
 const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin: 80px 16px 0 16px;
+  margin: 80px 8px 0 8px;
 `;

@@ -91,4 +91,5 @@ const StCircleAlert = styled.div`
   height: 24px;
   background: #006ffd;
   border-radius: 20px;
+  color: var(--white);
 `;

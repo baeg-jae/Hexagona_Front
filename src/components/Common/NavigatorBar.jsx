@@ -18,7 +18,10 @@ const NavigatorBar = () => {
         <span>피드</span>
       </NavLink>
       <NavLink to={"/chat"}>
-        <span>채팅</span>
+        <StDiv>
+          <span>채팅</span>
+          <StCircleAlert></StCircleAlert>
+        </StDiv>
       </NavLink>
     </StWrapFlex>
   );
@@ -48,4 +51,19 @@ const StWrapFlex = styled.div`
       color: var(--black);
     }
   }
+`;
+
+const StCircleAlert = styled.div`
+  position: absolute;
+  top: -15px;
+  right: -22px;
+  width: 24px;
+  height: 24px;
+  background: #e2efff;
+  border-radius: 20px;
+  color: #006ffd;
+`;
+
+const StDiv = styled.div`
+  position: relative;
 `;
