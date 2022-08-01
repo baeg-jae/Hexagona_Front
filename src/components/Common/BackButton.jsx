@@ -16,7 +16,8 @@ export default BackButton;
 
 const StWrap = styled.div`
   ${flex({})}
-  height: 49px;
-  margin-left: 21px;
+  width: 20px;
+  height: 20px;
+  margin-left: 24px;
   font-size: 30px;
 `;

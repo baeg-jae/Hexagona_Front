@@ -6,8 +6,8 @@ import x from "assets/img/x.webp";
 
 export const StButton = styled.button`
   ${flex({})}
-  width: 100px;
-  height: 100px;
+  width: 72px;
+  height: 72px;
   background: ${(props) =>
     props.red
       ? `linear-gradient(180deg, var(--red) 0%, var(--orange) 100%)`
@@ -25,8 +25,8 @@ export const StButton = styled.button`
 `;
 
 export const StImageDiv = styled.div`
-  width: 35px;
-  height: 35px;
+  width: 20px;
+  height: 20px;
   background-image: ${(props) => (props.heart ? `url(${heart})` : `url(${x})`)};
   background-position: center;
   background-size: cover;

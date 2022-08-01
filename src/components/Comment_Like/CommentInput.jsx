@@ -72,7 +72,7 @@ const StWrapFlex = styled.div`
   position: absolute;
   width: calc(100% - 32px);
   height: 50px;
-  bottom: 68px;
+  bottom: 84px;
   background-color: var(--white);
   @media screen and (max-width: 300px) {
     width: 260px;

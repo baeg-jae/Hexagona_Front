@@ -133,8 +133,8 @@ const ChatSubscribe = () => {
     <>
       <StHeader>
         <BackButton />
-        <StOtherProfile img={post_list?.otherProfileImg} />
         <StOtherName>{post_list?.otherNickName}</StOtherName>
+        <StOtherProfile img={post_list?.otherProfileImg} />
       </StHeader>
       <StBody>
         <StWrap ref={messageScroll}>
@@ -215,11 +215,11 @@ const ChatSubscribe = () => {
 export default ChatSubscribe;
 
 const StHeader = styled.div`
-  ${flex({ justify: "flex-start" })}
+  ${flex({ justify: "space-between" })}
   width: 100%;
-  height: 49px;
-  border-top: 1px solid var(--gray-3);
+  height: 56px;
   border-bottom: 1px solid #f2f2f2;
+  margin-bottom: 18px;
 `;
 
 const StBody = styled.div`
@@ -232,7 +232,7 @@ const StOtherProfile = styled.div`
   width: 32px;
   height: 32px;
   border-radius: 100%;
-  margin-left: 14px;
+  margin-right: 16px;
   background-image: url(${(props) => props.img});
   background-size: cover;
   background-position: center;
@@ -257,10 +257,9 @@ const StInputDiv = styled.div`
 const StOtherName = styled.span`
   font-weight: 700;
   font-family: Pretendard_Bold;
-  font-size: 15px;
-  line-height: 130%;
-  margin-left: 8px;
-  color: var(--black);
+  font-size: 14px;
+  line-height: 17px;
+  color: #393939;
 `;
 
 const StWrap = styled.div`
