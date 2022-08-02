@@ -6,7 +6,6 @@ import useGetUser from "components/Hooks/User/useGetUser";
 
 const NavigatorBar = () => {
   const { data } = useGetUser();
-  console.log(data);
   return (
     <StWrapFlex>
       <NavLink to={"/home"}>
@@ -23,9 +22,7 @@ const NavigatorBar = () => {
       <NavLink to={"/chat"}>
         <StDiv>
           <span>채팅</span>
-          {data?.noticeCount > 0 && (
-            <StCircleAlert>{data?.noticeCount}</StCircleAlert>
-          )}
+          {data?.noticeCount > 0 && <StCircleAlert></StCircleAlert>}
         </StDiv>
       </NavLink>
     </StWrapFlex>
