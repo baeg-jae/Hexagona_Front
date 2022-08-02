@@ -45,11 +45,9 @@ const GoalShotButtons = ({
     <FlexRowDiv>
       {data?.length === count ? (
         <StButtonDiv>
-          <Btn
-            theme="dark"
-            text="다른 사람들의 목표 인증 보러 가기"
-            click={onClickBtnHandler}
-          />
+          <Btn onClick={onClickBtnHandler}>
+            <span>다른 이들의 미션 인증샷 보러가기</span>
+          </Btn>
         </StButtonDiv>
       ) : (
         <>
@@ -103,4 +101,10 @@ const Btn = styled.button`
   height: 64px;
   background: #ffffff;
   border-radius: 10px;
+  span {
+    color: #192126;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 130%;
+  }
 `;

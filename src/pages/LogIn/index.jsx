@@ -43,8 +43,8 @@ const LogIn = () => {
         <SocialButton
           link={NAVER_AUTH_URL}
           name="naver"
-          text="네이버 계정으로 시작하기"
-          // text="서비스 준비중 입니다."
+          // text="네이버 계정으로 시작하기"
+          text="서비스 준비중 입니다."
         />
         <SocialButton
           link={GOOGLE_AUTH_URL}

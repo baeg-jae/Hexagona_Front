@@ -1,10 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  FlexColumnDiv,
-  StInputDivGlobal,
-} from "components/Common/GlobalStyles";
+import { StInputDivGlobal } from "components/Common/GlobalStyles";
 import { __prevPostChat } from "redux/modules/chat";
 import Stomp from "stompjs";
 import SockJS from "sockjs-client";
@@ -39,6 +36,15 @@ const ChatSubscribe = () => {
     ":" +
     new Date(Date.now()).getSeconds() +
     ".032";
+
+  const now =
+    new Date(Date.now()).getFullYear() +
+    "년 " +
+    "0" +
+    (new Date(Date.now()).getMonth() + 1) +
+    "월 0" +
+    new Date(Date.now()).getDate() +
+    "일";
 
   const wsSubscribe = () => {
     StompClient.debug = null;
@@ -96,6 +102,7 @@ const ChatSubscribe = () => {
     }
     const data = {
       userId: userId,
+      receiverId: post_list?.otherId,
       chatRoomId: chatRoomId,
       modifiedAt: time,
       message: messageData,
@@ -138,7 +145,7 @@ const ChatSubscribe = () => {
       </StHeader>
       <StBody>
         <StWrap ref={messageScroll}>
-          <StDate>2022년 7월 31일</StDate>
+          <StDate>{now}</StDate>
           {
             // 내가 예전에 주고받은 채팅 기록
             post_list?.chatMessageDataList?.map((v, i) => {
@@ -285,7 +292,6 @@ const MyChatFlexColumnDiv = styled.div`
 const ChatFlexColumnDiv = styled.div`
   ${flex({ direction: "column", align: "flex-start" })};
   width: 100%;
-  margin-left: 16px;
 `;
 
 const StChatContentContainer = styled.div`

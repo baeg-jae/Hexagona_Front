@@ -68,7 +68,7 @@ const GoalShotCards = ({
             </StGradient>
           </StCard>
         ) : (
-          <StLastCard flag={cardTrigger()} center>
+          <StLastBigCard flag={cardTrigger()} center>
             <StEmoji />
             <div className="innerTextDiv">
               <span className="innerText">오늘의 평가가</span>
@@ -78,7 +78,7 @@ const GoalShotCards = ({
             <div className="likedPicsDiv">
               <TodayLiked />
             </div>
-          </StLastCard>
+          </StLastBigCard>
         )}
         {/* 우측카드 */}
         {data?.length !== count + 1 ? (
@@ -301,6 +301,61 @@ const StRightRightCard = styled(StCard)`
 `;
 
 const StLastCard = styled.div`
+  ${flex({ direction: "column", justify: "flex-start" })}
+  max-width: 312px;
+  height: 480px;
+  border-radius: 20px;
+  opacity: ${(props) => (props.differ ? "0.6" : "1")};
+  margin-top: ${(props) => (props.differ ? "150px" : "98px")};
+  animation: ${(props) => props.flag && RightCardAnim()} ${CARD_ANIMATION_TIME}s
+    ease;
+  border: 1px ${(props) => (props.dashed ? "dashed" : "none")} #cccccc;
+  background: ${(props) =>
+    props.bg ? "linear-gradient(0deg, #f9f9f9, #f9f9f9)" : "none"};
+  color: var(--white);
+  overflow: hidden !important;
+
+  .innerTextDiv {
+    ${flex({ direction: "column" })}
+    margin-top: 28px;
+  }
+  .innerText {
+    font-weight: 600;
+    font-size: 24px;
+  }
+  .smallText {
+    font-family: Pretendard;
+    font-weight: 400;
+    font-size: 14px;
+    margin-top: 29px;
+    margin-bottom: 32px;
+  }
+  .likedPicsDiv {
+    width: 388px;
+  }
+  @media screen and (max-height: 845px) {
+    height: 400px;
+  }
+  @media screen and (max-height: 700px) {
+    height: 350px;
+    margin-top: ${(props) => (props.differ ? "120px" : "68px")};
+  }
+  @media screen and (max-width: 280px) {
+    .likedPicsDiv {
+      width: 260px;
+    }
+  }
+  @media screen and (max-width: 380px) {
+    .likedPicsDiv {
+      width: 390px;
+    }
+  }
+  @media screen and (max-width: 320px) {
+    max-width: 250px;
+  }
+`;
+
+const StLastBigCard = styled(StLastCard)`
   ${flex({ direction: "column", justify: "flex-start" })}
   max-width: 312px;
   height: 480px;
