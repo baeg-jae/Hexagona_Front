@@ -55,8 +55,8 @@ const StMyPage = styled.div`
   cursor: pointer;
   background: linear-gradient(
       90deg,
-      rgba(255, 255, 255, 0.6) 0%,
-      rgba(255, 255, 255, 0.6) 100%
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(255, 255, 255, 0.85) 100%
     ),
     url(${(props) => props.img});
   background-position: center;

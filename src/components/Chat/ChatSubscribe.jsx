@@ -226,13 +226,12 @@ const StHeader = styled.div`
   width: 100%;
   height: 56px;
   border-bottom: 1px solid #f2f2f2;
-  margin-bottom: 18px;
 `;
 
 const StBody = styled.div`
   ${flex({ direction: "column", justify: "space-between" })}
   width: 100%;
-  max-height: calc(100% - 240px);
+  max-height: calc(100% - 200px);
 `;
 
 const StOtherProfile = styled.div`
@@ -264,23 +263,23 @@ const StInputDiv = styled.div`
 const StOtherName = styled.span`
   font-weight: 700;
   font-family: Pretendard_Bold;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 17px;
-  color: #393939;
+  color: #494949;
 `;
 
 const StWrap = styled.div`
   ${flex({ direction: "column", justify: "flex-start" })}
   width: 100%;
-  margin-top: 31px;
+  margin-top: 24px;
   overflow-y: scroll;
 `;
 
 const StDate = styled.div`
-  font-size: 13px;
-  background-color: var(--gray-1);
-  padding: 5px 10px;
-  border-radius: 10px;
+  font-size: 12px;
+  line-height: 28px;
+  color: #b7b7b7;
+  margin-bottom: 16px;
 `;
 
 const MyChatFlexColumnDiv = styled.div`
@@ -302,11 +301,12 @@ const StChatContentContainer = styled.div`
   background: ${(props) => (props.me ? "#006FFD" : "var(--gray-1)")};
   border-radius: ${(props) =>
     props.me ? "30px 30px 0 30px" : "30px 30px 30px 0"};
-  margin: 10px -0px 4px 0px;
+  margin: 10px -0px 12px 0px;
 `;
 
 const StChatContent = styled.span`
-  line-height: 28px;
+  padding: 6px;
+  line-height: 130%;
   color: ${(props) => (props.me ? "var(--white)" : "var(--gray-10)")};
 `;
 
@@ -320,5 +320,5 @@ const StTime = styled.span`
   justify-content: ${(props) => (props.me ? "flex-end" : "flex-start")};
   width: 100%;
   font-size: 10px;
-  color: var(--gray-6);
+  color: #c4c4c4;
 `;

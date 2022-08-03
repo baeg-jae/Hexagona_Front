@@ -61,7 +61,7 @@ const StChatHeader = styled.div`
     font-weight: 700;
     font-size: 14px;
     line-height: 15px;
-    color: #1f2024;
+    color: #494949;
   }
 `;
 const StChatHeaderImg = styled.div`

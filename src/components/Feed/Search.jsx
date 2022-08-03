@@ -1,5 +1,5 @@
-import { StFixDiv, StSearchInputDiv, StImg } from "./styles";
-import searchImg from "assets/img/Search.webp";
+import { StFixDiv, StSearchInputDiv } from "./styles";
+import { AiOutlineSearch } from "react-icons/ai";
 
 const Search = ({ setKeyword, text }) => {
   return (
@@ -13,7 +13,7 @@ const Search = ({ setKeyword, text }) => {
             placeholder={text}
             onChange={(e) => setKeyword(e.target.value)}
           />
-          <StImg img={searchImg} />
+          <AiOutlineSearch className="searchIcon" />
         </StSearchInputDiv>
       </StFixDiv>
     </>
