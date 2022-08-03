@@ -9,8 +9,8 @@ export const GOOGLE_AUTH_URL = `https://accounts.google.com/o/oauth2/v2/auth?cli
 
 // KAKAO
 const KAKAO_REST_API_KEY = process.env.REACT_APP_REST_API_KEY;
-const KAKAO_REDIRECT_URI = "http://godlife.co.kr/oauth/kakao/callback";
-// const KAKAO_REDIRECT_URI = "http://localhost:3000/oauth/kakao/callback";
+// const KAKAO_REDIRECT_URI = "http://godlife.co.kr/oauth/kakao/callback";
+const KAKAO_REDIRECT_URI = "http://localhost:3000/oauth/kakao/callback";
 
 export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URI}&response_type=code`;
 

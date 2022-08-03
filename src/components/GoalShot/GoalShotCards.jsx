@@ -71,7 +71,7 @@ const GoalShotCards = ({
           <StLastBigCard flag={cardTrigger()} center>
             <StEmoji />
             <div className="innerTextDiv">
-              <span className="innerText">오늘의 평가가</span>
+              <span className="innerText">10번의 평가가</span>
               <span className="innerText">끝이 났어요!</span>
             </div>
             <span className="smallText">내가 좋아요 표시한 목표 인증</span>

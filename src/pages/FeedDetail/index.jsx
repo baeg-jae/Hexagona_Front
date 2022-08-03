@@ -26,7 +26,7 @@ const FeedDetail = () => {
           <StWrapComment>
             <WebTitle text="피드: 갓생메이커" />
             <StHeader>
-              <BackButton />
+              <BackButton link="/feed" />
               <StOtherName>피드</StOtherName>
               <span style={{ opacity: "0", marginRight: "24px" }}>.</span>
             </StHeader>

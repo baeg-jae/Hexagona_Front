@@ -58,13 +58,12 @@ const StWrapFlex = styled.div`
 const StCircleAlert = styled.div`
   ${flex({})}
   position: absolute;
-  top: -15px;
-  right: -22px;
-  width: 24px;
-  height: 24px;
-  background: #e2efff;
+  top: -10px;
+  right: -14px;
+  width: 15px;
+  height: 15px;
+  background: #006ffd;
   border-radius: 20px;
-  color: #006ffd;
 `;
 
 const StDiv = styled.div`
