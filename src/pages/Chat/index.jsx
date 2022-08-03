@@ -56,6 +56,6 @@ const StChatMainContent = styled.div`
 const StLikeTitle = styled.div`
   font-weight: 700;
   font-size: 18px;
-  color: #393939;
+  color: #212121;
   margin: ${(props) => (props.chat ? "32px 0 24px 16px" : "32px 0 16px 16px")};
 `;
