@@ -198,7 +198,7 @@ const ChatSubscribe = () => {
           }
         </StWrap>
         <StInputDiv>
-          <StMyProfile img={data?.profile_img} />
+          <StInputProfile img={data?.profile_img} />
           <StInputDivGlobal>
             <input
               type="text"
@@ -238,7 +238,7 @@ const StOtherProfile = styled.div`
   width: 32px;
   height: 32px;
   border-radius: 100%;
-  margin-right: 16px;
+  margin-right: 11px;
   background-image: url(${(props) => props.img});
   background-size: cover;
   background-position: center;
@@ -249,6 +249,15 @@ const StMyProfile = styled(StOtherProfile)`
   height: 40px;
   margin-left: 16px;
   background-image: url(${(props) => props.img});
+`;
+
+const StInputProfile = styled.div`
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background-image: url(${(props) => props.img});
+  background-size: cover;
+  background-position: center;
 `;
 
 const StInputDiv = styled.div`
@@ -290,7 +299,7 @@ const MyChatFlexColumnDiv = styled.div`
 
 const ChatFlexColumnDiv = styled.div`
   ${flex({ direction: "column", align: "flex-start" })};
-  width: 100%;
+  width: 80%;
 `;
 
 const StChatContentContainer = styled.div`
@@ -305,7 +314,8 @@ const StChatContentContainer = styled.div`
 `;
 
 const StChatContent = styled.span`
-  padding: 6px;
+  ${flex({})}
+  padding: 6px 6px 2px 6px;
   line-height: 130%;
   color: ${(props) => (props.me ? "var(--white)" : "var(--gray-10)")};
 `;
