@@ -63,8 +63,9 @@ export const StInputDivGlobal = styled.div`
   width: 83%;
   height: 40px;
   margin-left: 12px;
-  border: 1px solid var(--gray-5);
+  border: 1px solid #e0e0e0;
   border-radius: 55px;
+  font-size: 14px;
   .commentInput {
     width: calc(100% - 100px);
     border: none;
@@ -72,11 +73,15 @@ export const StInputDivGlobal = styled.div`
     &:focus {
       outline: none;
     }
+    &::placeholder {
+      color: #a3a3a3;
+    }
   }
   .commentButton {
     background-color: transparent;
     font-weight: 700;
     font-family: Pretendard_Bold;
+    font-size: 14px;
     line-height: 20px;
     color: #4876ef;
     margin-right: 15px;

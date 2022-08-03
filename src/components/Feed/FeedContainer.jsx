@@ -47,7 +47,6 @@ const FeedContainer = () => {
           {data?.pages?.map((page) => {
             return page?.data?.postResponseDtoList
               .filter((v) => {
-                console.log();
                 if (debounceInput === "") {
                   return v;
                 } else if (
