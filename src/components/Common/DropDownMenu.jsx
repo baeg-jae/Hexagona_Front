@@ -16,6 +16,7 @@ import useDetailDHandle from "components/Hooks/Detail/useDetailDHandle";
 import useMissionDHandle from "components/Hooks/Mission/useMissionDHandle";
 import useMissionUHandle from "components/Hooks/Mission/useMissionUHandle";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const DropDownMenu = ({
   text,
@@ -31,6 +32,7 @@ const DropDownMenu = ({
 }) => {
   const dropDownRef = useRef(null);
   const navigate = useNavigate();
+  const auth = localStorage.getItem("Authorization");
   const [isOpen, setIsOpen] = useDetectClose(dropDownRef, false);
   // 닉네임 변경
   const { setNicknameFlag, nicknameFlag, setNickname, bogusCheck } =
@@ -89,10 +91,17 @@ const DropDownMenu = ({
     setter((value) => !value);
   }, []);
 
+  // 로그아웃
   const onLogoutHandler = useCallback(() => {
-    navigate("/login");
     localStorage.removeItem("Authorization");
-  }, [navigate]);
+  }, []);
+
+  // 로그아웃 useEffect
+  useEffect(() => {
+    if (auth === null) {
+      navigate("/login");
+    }
+  }, [navigate, auth]);
 
   return (
     <FlexRowDiv>

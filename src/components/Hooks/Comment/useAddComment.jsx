@@ -13,8 +13,9 @@ const useAddComment = () => {
   const dispatch = useDispatch();
 
   return useMutation(addComment, {
-    onSuccess: () => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries("comment");
+      console.log(data);
       dispatch(CommentAddSuccess(true));
     },
     onError: () => {},
