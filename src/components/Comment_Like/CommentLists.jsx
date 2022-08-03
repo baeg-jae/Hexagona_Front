@@ -5,10 +5,19 @@ import useGetComment from "components/Hooks/Comment/useGetComment";
 import DropDownMenu from "components/Common/DropDownMenu";
 import LikeInfo from "./LikeInfo";
 import UserInfo from "components/Feed/UserInfo";
+import { useEffect } from "react";
 
 const CommentLists = ({ postId }) => {
   const { data, isFetching } = useGetComment({ postId: postId });
   const userInfo = UserInfo();
+
+  const scrollToBottom = () => {
+    console.log("hi");
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [data?.length]);
 
   return (
     <>

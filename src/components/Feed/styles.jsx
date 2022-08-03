@@ -18,6 +18,7 @@ export const StSearchInputDiv = styled.div`
   border: 1px solid var(--gray-3);
   border-radius: 55px;
   .inputBox {
+    width: 90%;
     border: none;
     margin-left: 20px;
     &:focus {

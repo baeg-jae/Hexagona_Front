@@ -15,35 +15,46 @@ const FeedContainer = () => {
   const [debounceInput, setDebounceInput] = useDebounce(text, 300);
   const { ref, inView } = useInView();
   const { data, fetchNextPage, isFetchingNextPage } = useGetPost();
-
   const onClickHandler = useCallback(
     (postId) => {
       navigate(`/feed/${postId}`);
     },
     [navigate]
   );
-
   useEffect(() => {
-    if (inView) {
-      fetchNextPage();
+    // 무한스크롤 마지막페이지에선느 안부르기
+    if (
+      data?.pages[data?.pages[0].data.pageTotalSize - 1]?.currentPage ===
+        data?.pages[0].data.pageTotalSize + 1 ||
+      data?.pages[data?.pages[0].data.pageTotalSize - 1]?.currentPage ===
+        undefined
+    ) {
+      if (inView) {
+        fetchNextPage();
+      }
     }
-  }, [fetchNextPage, inView]);
+  }, [fetchNextPage, inView, data?.pages]);
 
   return (
     <>
-      <Search setKeyword={setDebounceInput} text="키워드를 입력해주세요." />
+      <Search
+        setKeyword={setDebounceInput}
+        text="유저이름 or 키워드를 입력해주세요."
+      />
       <StScrollWrapper>
         <Grid>
           <MyPageFeed />
           {data?.pages?.map((page) => {
-            return page?.data
+            return page?.data?.postResponseDtoList
               .filter((v) => {
+                console.log();
                 if (debounceInput === "") {
                   return v;
                 } else if (
                   v.postContent
                     .toLowerCase()
-                    .includes(debounceInput.toLowerCase())
+                    .includes(debounceInput.toLowerCase()) ||
+                  v.nickname.toLowerCase().includes(debounceInput.toLowerCase())
                 ) {
                   return v;
                 }
@@ -51,9 +62,12 @@ const FeedContainer = () => {
               })
               .map((v, i) => {
                 return (
-                  v.postContent
+                  (v.postContent
                     .toLowerCase()
-                    .includes(debounceInput.toLowerCase()) && (
+                    .includes(debounceInput.toLowerCase()) ||
+                    v.nickname
+                      .toLowerCase()
+                      .includes(debounceInput.toLowerCase())) && (
                     <StImgDiv
                       className="imgDiv"
                       onClick={() => onClickHandler(v?.postId)}
