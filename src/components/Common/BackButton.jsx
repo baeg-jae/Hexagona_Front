@@ -1,12 +1,17 @@
 import { MdArrowBackIosNew } from "react-icons/md";
 import flex from "components/Common/flex";
 import styled from "@emotion/styled";
-import useBack from "components/Hooks/useBack";
+import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 
-const BackButton = () => {
-  const back = useBack();
+const BackButton = ({ link }) => {
+  const navigate = useNavigate();
+  const onClickHandler = useCallback(() => {
+    navigate(link);
+  }, [navigate, link]);
+
   return (
-    <StWrap onClick={back}>
+    <StWrap onClick={onClickHandler}>
       <MdArrowBackIosNew />
     </StWrap>
   );
@@ -20,4 +25,5 @@ const StWrap = styled.div`
   height: 20px;
   margin-left: 24px;
   font-size: 30px;
+  cursor: pointer;
 `;

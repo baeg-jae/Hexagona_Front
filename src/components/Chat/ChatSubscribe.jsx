@@ -97,7 +97,7 @@ const ChatSubscribe = () => {
 
   // 채팅 보내기
   const SendMessage = () => {
-    if (messageData === "") {
+    if (inputRef.current.value === "") {
       return;
     }
     const data = {
@@ -139,7 +139,7 @@ const ChatSubscribe = () => {
   return (
     <>
       <StHeader>
-        <BackButton />
+        <BackButton link="/chat" />
         <StOtherName>{post_list?.otherNickName}</StOtherName>
         <StOtherProfile img={post_list?.otherProfileImg} />
       </StHeader>
@@ -210,7 +210,7 @@ const ChatSubscribe = () => {
               onKeyPress={onKeyPress}
             />
             <button className="commentButton" onClick={SendMessage}>
-              게시
+              보내기
             </button>
           </StInputDivGlobal>
         </StInputDiv>
@@ -232,7 +232,7 @@ const StHeader = styled.div`
 const StBody = styled.div`
   ${flex({ direction: "column", justify: "space-between" })}
   width: 100%;
-  max-height: calc(100% - 180px);
+  max-height: calc(100% - 240px);
 `;
 
 const StOtherProfile = styled.div`
@@ -257,7 +257,7 @@ const StInputDiv = styled.div`
   position: absolute;
   width: calc(100% - 32px);
   height: 50px;
-  bottom: 68px;
+  bottom: 88px;
   background-color: white;
 `;
 

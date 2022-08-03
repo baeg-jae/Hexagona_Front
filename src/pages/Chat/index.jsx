@@ -28,7 +28,7 @@ const Chat = () => {
         <title>채팅: 갓생메이커</title>
       </Helmet>
       <StChatMainContent>
-        <Search text="이름을 검색해주세요." setKeyword={setDebounceInput} />
+        <Search text="유저이름을 검색해주세요." setKeyword={setDebounceInput} />
         <div style={{ width: "500px", height: "77px" }} />
         <div>
           <StLikeTitle>좋아요 표시한 게시글</StLikeTitle>

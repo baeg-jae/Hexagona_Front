@@ -20,7 +20,7 @@ const MyFeed = () => {
   return (
     <StCalculatedWrap>
       <WebTitle text="내사진보기: 갓생메이커" />
-      <Search setKeyword={setKeyword} />
+      <Search setKeyword={setKeyword} text="키워드를 입력해주세요." />
       <StScrollWrapper>
         <StDiv>
           {data

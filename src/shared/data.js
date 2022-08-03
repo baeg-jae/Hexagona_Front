@@ -1,6 +1,6 @@
 export const SPLASH_FADE_ANIMATION = 1;
 export const FEED_DETAIL_ANIMATION = 3;
-export const SPLASH_LOADING_TIME = 1000;
+export const SPLASH_LOADING_TIME = 2000;
 export const SIGN_UP_MAX_LENGTH = 7;
 export const COMMENT_MAX_LENGTH = 100;
 export const MISSION_ADD_LENGTH = 20;

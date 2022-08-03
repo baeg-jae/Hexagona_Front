@@ -71,13 +71,15 @@ const TodayLiked = ({ userData }) => {
           className="mySwiper"
         >
           {todayLikes !== undefined ? (
-            todayLikes?.map((v, i) => {
-              return (
-                <SwiperSlide key={i} onClick={() => onClickHandler(v.userId)}>
-                  <StTodayLIked img={v.photoUrl} />
-                </SwiperSlide>
-              );
-            })
+            todayLikes
+              ?.map((v, i) => {
+                return (
+                  <SwiperSlide key={i} onClick={() => onClickHandler(v.userId)}>
+                    <StTodayLIked img={v.photoUrl} />
+                  </SwiperSlide>
+                );
+              })
+              .reverse()
           ) : (
             <Loading />
           )}
