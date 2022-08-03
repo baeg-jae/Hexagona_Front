@@ -33,10 +33,6 @@
   object-fit: cover;
 }
 
-.swiper-pagination {
-  display: none;
-}
-
 span.swiper-pagination-bullet.swiper-pagination-bullet-active {
   background-color: #0084ff;
 }

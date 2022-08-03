@@ -16,8 +16,8 @@ export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id
 
 //Naver
 const NAVER_CLIENT_ID = process.env.REACT_APP_NAVER_CLIENTID;
-// const NAVER_REDIRECT_URI = "http://godlife.co.kr/oauth/naver/callback";
-const NAVER_REDIRECT_URI = "http://localhost:3000/oauth/naver/callback";
+const NAVER_REDIRECT_URI = "http://godlife.co.kr/oauth/naver/callback";
+// const NAVER_REDIRECT_URI = "http://localhost:3000/oauth/naver/callback";
 
 const STATE_STRING = process.env.REACT_APP_STATE_STRING;
 
